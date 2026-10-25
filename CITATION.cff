@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "biomedical-science-ai999x: an offline, verified biomedical science solver"
+authors:
+  - family-names: Farabi
+    given-names: Ibnul Jaif
+    affiliation: AI999X
+version: 1.0.1
+license: Apache-2.0
+url: "https://huggingface.co/AI999X/biomedical-science-ai999x"
+repository-code: "https://huggingface.co/AI999X/biomedical-science-ai999x"
+keywords:
+  - biomedical science
+  - pharmacokinetics
+  - compartment model
+  - epidemic model
+  - SIR model
+  - diagnostic test statistics
+  - ROC curve
+  - survival analysis
+  - Kaplan-Meier
+  - Cox model
+  - biomechanics
+  - Windkessel
