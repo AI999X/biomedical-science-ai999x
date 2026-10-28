@@ -4,7 +4,7 @@
 
 **[Install](https://pypi.org/project/biomedical-science-ai999x/)** · **[Capability guide](https://huggingface.co/AI999X/biomedical-science-ai999x/tree/main/docs)** · **[Evaluation](https://huggingface.co/AI999X/biomedical-science-ai999x/tree/main/evaluation)** · **[AI999X on Hugging Face](https://huggingface.co/AI999X)** · **[Website](https://ai999x.com)** · **[Support: Buy Me a Coffee](https://buymeacoffee.com/ibnuljaiffarabi)**
 
-License: Apache-2.0 · Author: Ibnul Jaif Farabi (creator and engineer) · Organization: AI999X · Version 1.0.2
+License: Apache-2.0 · Author: Ibnul Jaif Farabi (creator and engineer) · Organization: AI999X · Version 1.0.3
 
 Field: **Life Sciences** · Tasks: Question Answering, Token Classification, Text Classification, Sentence Similarity, Feature Extraction
 
@@ -27,7 +27,7 @@ biomedical-science-ai999x is an offline, deterministic Python solver that answer
 
 | Property | Value |
 |---|---|
-| Package | `biomedical-science-ai999x` 1.0.2 (import `biomedical_science_ai999x`) |
+| Package | `biomedical-science-ai999x` 1.0.3 (import `biomedical_science_ai999x`) |
 | Type | Deterministic neuro-symbolic biomedical science engine (rule-based reading + certified symbolic capabilities) |
 | Capabilities | 86 certified procedures |
 | Knowledge pack | version 1.0.0 |
@@ -61,7 +61,7 @@ biomedical_science.ask("Who created you?").message
 # -> biomedical-science-ai999x was created and engineered by Ibnul Jaif Farabi at AI999X.
 ```
 
-Command line: `biomedical-science-ai999x "<question>"`, `biomedical-science-ai999x --capabilities`. The outputs above were produced by running this exact code on biomedical-science-ai999x 1.0.2.
+Command line: `biomedical-science-ai999x "<question>"`, `biomedical-science-ai999x --capabilities`. The outputs above were produced by running this exact code on biomedical-science-ai999x 1.0.3.
 
 ## Find the right capability, and draw it
 
@@ -222,10 +222,10 @@ _Forest plot of six effect measures, each computed by the package on its own wor
 ## Citation
 
 ```bibtex
-@software{biomedical_science_ai999x_1_0_2,
+@software{biomedical_science_ai999x_1_0_3,
   title  = {biomedical-science-ai999x: an offline, verified biomedical science solver},
   author = {Farabi, Ibnul Jaif}, organization = {AI999X},
-  year   = {2026}, version = {1.0.2},
+  year   = {2026}, version = {1.0.3},
   url    = {https://huggingface.co/AI999X/biomedical-science-ai999x}
 }
 ```

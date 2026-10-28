@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "biomedical-science-ai999x"
-version = "1.0.2"
+version = "1.0.3"
 description = "Offline biomedical science solver: pharmacokinetics and dosing models, epidemic models, diagnostic test statistics, survival analysis, biomechanics, neuron models and medical-imaging physics (quantitative only, no clinical advice), with steps, LaTeX and honest refusals"
 readme = "README.md"
 requires-python = ">=3.10"
