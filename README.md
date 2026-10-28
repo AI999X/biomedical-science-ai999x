@@ -4,7 +4,7 @@
 
 **[Install](https://pypi.org/project/biomedical-science-ai999x/)** · **[Capability guide](https://huggingface.co/AI999X/biomedical-science-ai999x/tree/main/docs)** · **[Evaluation](https://huggingface.co/AI999X/biomedical-science-ai999x/tree/main/evaluation)** · **[AI999X on Hugging Face](https://huggingface.co/AI999X)** · **[Website](https://ai999x.com)** · **[Support: Buy Me a Coffee](https://buymeacoffee.com/ibnuljaiffarabi)**
 
-License: Apache-2.0 · Author: Ibnul Jaif Farabi (creator and engineer) · Organization: AI999X · Version 1.0.1
+License: Apache-2.0 · Author: Ibnul Jaif Farabi (creator and engineer) · Organization: AI999X · Version 1.0.2
 
 Field: **Life Sciences** · Tasks: Question Answering, Token Classification, Text Classification, Sentence Similarity, Feature Extraction
 
@@ -27,7 +27,7 @@ biomedical-science-ai999x is an offline, deterministic Python solver that answer
 
 | Property | Value |
 |---|---|
-| Package | `biomedical-science-ai999x` 1.0.1 (import `biomedical_science_ai999x`) |
+| Package | `biomedical-science-ai999x` 1.0.2 (import `biomedical_science_ai999x`) |
 | Type | Deterministic neuro-symbolic biomedical science engine (rule-based reading + certified symbolic capabilities) |
 | Capabilities | 86 certified procedures |
 | Knowledge pack | version 1.0.0 |
@@ -61,7 +61,18 @@ biomedical_science.ask("Who created you?").message
 # -> biomedical-science-ai999x was created and engineered by Ibnul Jaif Farabi at AI999X.
 ```
 
-Command line: `biomedical-science-ai999x "<question>"`, `biomedical-science-ai999x --capabilities`. The outputs above were produced by running this exact code on biomedical-science-ai999x 1.0.1.
+Command line: `biomedical-science-ai999x "<question>"`, `biomedical-science-ai999x --capabilities`. The outputs above were produced by running this exact code on biomedical-science-ai999x 1.0.2.
+
+## Find the right capability, and draw it
+
+`biomedical_science.search()` finds which certified capability a question is about — across **every** AI999X model, so a question for another model points you to it. It runs **[ai999x-encoder](https://huggingface.co/AI999X/ai999x-encoder)**, AI999X's own capability encoder (4.7M parameters, a 4.9 MB ONNX model, offline; the root `model.safetensors` of this repository): `pip install "biomedical-science-ai999x[search]"`. `ask(question, suggest=True)` adds the same pointers to a question it does not answer; an answer itself never changes.
+
+```python
+import biomedical_science_ai999x as biomedical_science
+
+biomedical_science.search("Solve x^2 - 5x + 6 = 0", k=2)
+# -> Roots of a quadratic equation (math-foundations-ai999x, 0.63); Roots of a cubic equation (math-foundations-ai999x, 0.59)
+```
 
 ## How every answer is verified
 
@@ -71,6 +82,122 @@ Command line: `biomedical-science-ai999x "<question>"`, `biomedical-science-ai99
 4. **Checking** — dimensions, substitution back into the defining equation, and agreement between independent readings; any disagreement becomes a refusal, never a number.
 
 Capabilities are certified before they ship: each must reproduce hand-worked reference cases, reject a deliberately wrong variant (a control), and leave every benchmark answer unchanged.
+
+## Worked examples
+
+Each question was put to `biomedical-science-ai999x`; the answer is the one it returned, with the steps it took.
+
+**One-compartment IV bolus: concentration at a time (a model calculation, not medical advice)** · _Pharmacokinetic models_
+
+> IV bolus concentration: D = 500 mg, V = 40 L, k = 0.1 1/h, t = 6 h
+
+→ **C = 0.006860145451 kg/m^3, fraction_remaining = 0.5488116361**
+
+<details><summary>Steps</summary>
+
+- One-compartment IV bolus: concentration at a time (a model calculation, not medical advice): D = 500 mg, V = 40 L, k = 0.1 1/h, t = 6 h → C = 0.006860145451 kg/m^3, fraction_remaining = 0.5488116361 kg/m^3
+
+</details>
+
+**SIR epidemic model: final size (final susceptible fraction and attack fraction)** · _Epidemic models_
+
+> SIR final size: R0 = 2.5, s0 = 0.99, i0 = 0.01
+
+→ **s_inf = 0.1058941943, attack = 0.8841058057**
+
+<details><summary>Steps</summary>
+
+- SIR epidemic model: final size (final susceptible fraction and attack fraction): R0 = 2.5, s0 = 0.99, i0 = 0.01 → s_inf = 0.1058941943, attack = 0.8841058057
+
+</details>
+
+**Kaplan-Meier survival estimate at a time and median survival** · _Survival analysis_
+
+> Kaplan-Meier survival: times = [2, 3, 3, 5, 8, 9, 12, 15], events = [1, 0, 1, 1, 0, 1, 1, 0], t = 6
+
+→ **S_t = 0.6, median = 9**
+
+<details><summary>Steps</summary>
+
+- Kaplan-Meier survival estimate at a time and median survival: times = [2, 3, 3, 5, 8, 9, 12, 15], events = [1, 0, 1, 1, 0, 1, 1, 0], t = 6 → S_t = 0.6, median = 9
+
+</details>
+
+**Goldman-Hodgkin-Katz voltage equation: membrane potential from K, Na and Cl** · _Neuron models_
+
+> GHK voltage: T = 310 K, PK = 1, PNa = 0.04, PCl = 0.45, K_o = 4 mmol/L, K_i = 140 mmol/L, Na_o = 145 mmol/L, Na_i = 12 mmol/L, Cl_o = 116 mmol/L, Cl_i = 4 mmol/L
+
+→ **V_m = -0.07506627615 V**
+
+<details><summary>Steps</summary>
+
+- Goldman-Hodgkin-Katz voltage equation: membrane potential from K, Na and Cl: T = 310 K, PK = 1, PNa = 0.04, PCl = 0.45, K_o = 4 mmol/L, K_i = 140 mmol/L, Na_o = 145 mmol/L, Na_i = 12 mmol/L, Cl_o = 116 mmol/L, Cl_i = 4 mmol/L → V_m = -0.07506627615 V
+
+</details>
+
+**Odds ratio of a 2x2 exposure-outcome table with Woolf (logit) interval** · _Epidemiological measures of association_
+
+`m.solve("bmed_odds_ratio_ci", a=20, b=80, c=10, d=90, level=0.95)`
+
+→ **OR = 2.25, lower = 0.9942948923, upper = 5.091547829**
+
+<details><summary>Steps</summary>
+
+- Odds ratio of a 2x2 exposure-outcome table with Woolf (logit) interval: a = 20, b = 80, c = 10, d = 90, level = 0.95 → OR = 2.25, lower = 0.9942948923, upper = 5.091547829
+
+</details>
+
+**Body mass index (a calculation, not medical advice)** · _Biomechanics_
+
+> Body mass index: m = 70 kg, h = 1.75 m
+
+→ **BMI = 22.85714286, BMI_prime = 0.9142857143**
+
+<details><summary>Steps</summary>
+
+- Body mass index (a calculation, not medical advice): m = 70 kg, h = 1.75 m → BMI = 22.85714286, BMI_prime = 0.9142857143
+
+</details>
+
+## Figures
+
+Every point was computed by `biomedical-science-ai999x`.
+
+**Kaplan–Meier survival curve with confidence band**
+
+![Kaplan–Meier survival curve with confidence band — computed by biomedical-science-ai999x](https://huggingface.co/AI999X/biomedical-science-ai999x/resolve/main/figures/bmed-km-survival-median-survival.svg)
+
+_Kaplan–Meier survival estimate for 21 subjects (9 events, the rest censored), with its pointwise 95 % confidence band, both computed by the package at every whole time from 0 to 36. S(12) = 0.752941; marked: median survival t = 23, S = 0.448179._
+
+**ROC curve of a diagnostic test**
+
+![ROC curve of a diagnostic test — computed by biomedical-science-ai999x](https://huggingface.co/AI999X/biomedical-science-ai999x/resolve/main/figures/bmed-dx-threshold-sensitivity-specificity-roc.svg)
+
+_ROC curve of a test with 5 diseased and 6 healthy scores: sensitivity and specificity computed by the package at 12 thresholds; area under the curve 0.883333. Marked: the Youden-optimal cut-off 0.55 (sensitivity 0.8, specificity 0.833333, J = 0.633333)._
+
+**Oral dose: concentration against time**
+
+![Oral dose: concentration against time — computed by biomedical-science-ai999x](https://huggingface.co/AI999X/biomedical-science-ai999x/resolve/main/figures/bmed-pk-oral-concentration-pharmacokinetics.svg)
+
+_Plasma concentration after one oral dose (D = 250 mg, F = 0.8, V = 35 L, ka = 1.2 1/h, k = 0.15 1/h), computed by the package at 120 times over 24 h; marked: t_max = 1.98042 h, C_max = 4.2457 mg/L._
+
+**Repeated doses: accumulation to steady state**
+
+![Repeated doses: accumulation to steady state — computed by biomedical-science-ai999x](https://huggingface.co/AI999X/biomedical-science-ai999x/resolve/main/figures/bmed-pk-nth-dose-iv-pharmacokinetics.svg)
+
+_Seven intravenous doses of 500 mg every 8 h (V = 40 L, k = 0.1 1/h): the concentration computed by the package at 31 times in each interval rises towards the steady state it returns (max 22.6996 mg/L, min 10.1996 mg/L, accumulation ratio 1.81597); marked: peak after dose 7, t = 48 h, C = 22.6156 mg/L._
+
+**Confusion matrix at the optimal cut-off**
+
+![Confusion matrix at the optimal cut-off — computed by biomedical-science-ai999x](https://huggingface.co/AI999X/biomedical-science-ai999x/resolve/main/figures/bmed-dx-confusion-heatmap.svg)
+
+_The 2 × 2 table (rows: diseased, healthy; columns: test positive, test negative) with the same table as rates per row (right), for the test at its Youden-optimal cut-off 0.55, counted by the package from 5 diseased and 6 healthy scores: TP = 4, FN = 1, FP = 1, TN = 5. Sensitivity 0.8 (95 % interval 0.375535–0.963776), specificity 0.833333 (0.436497–0.969947)._
+
+**Effect sizes with confidence intervals (forest plot)**
+
+![Effect sizes with confidence intervals (forest plot) — computed by biomedical-science-ai999x](https://huggingface.co/AI999X/biomedical-science-ai999x/resolve/main/figures/bmed-odds-ratio-ci-forest.svg)
+
+_Forest plot of six effect measures, each computed by the package on its own worked example, with 95 % intervals: odds ratio 2.25 (0.994295–5.09155); relative risk 2 (0.986563–4.05448); incidence rate ratio 2.4 (1.29133–4.46051); Mantel–Haenszel odds ratio 2.60776 (1.08405–6.27313); exponential hazard ratio 5.16055 (1.58923–16.7573); Cox hazard ratio 1.04846 (0.279864–3.92787). An interval that crosses 1 (grey point) is compatible with no effect._
 
 ## Capabilities
 
@@ -95,10 +222,10 @@ Capabilities are certified before they ship: each must reproduce hand-worked ref
 ## Citation
 
 ```bibtex
-@software{biomedical_science_ai999x_1_0_1,
+@software{biomedical_science_ai999x_1_0_2,
   title  = {biomedical-science-ai999x: an offline, verified biomedical science solver},
   author = {Farabi, Ibnul Jaif}, organization = {AI999X},
-  year   = {2026}, version = {1.0.1},
+  year   = {2026}, version = {1.0.2},
   url    = {https://huggingface.co/AI999X/biomedical-science-ai999x}
 }
 ```
