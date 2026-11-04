@@ -2,7 +2,7 @@
 
 [![tests](https://github.com/AI999X/biomedical-science-ai999x/actions/workflows/ci.yml/badge.svg)](https://github.com/AI999X/biomedical-science-ai999x/actions/workflows/ci.yml) [![PyPI](https://img.shields.io/pypi/v/biomedical-science-ai999x)](https://pypi.org/project/biomedical-science-ai999x/) [![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97-Hugging%20Face-yellow)](https://huggingface.co/AI999X/biomedical-science-ai999x)
 
-**[Install](https://pypi.org/project/biomedical-science-ai999x/)** · **[Capability guide](https://huggingface.co/AI999X/biomedical-science-ai999x/tree/main/docs)** · **[Evaluation](https://huggingface.co/AI999X/biomedical-science-ai999x/tree/main/evaluation)** · **[AI999X on Hugging Face](https://huggingface.co/AI999X)** · **[Website](https://ai999x.com)** · **[Support: Buy Me a Coffee](https://buymeacoffee.com/ibnuljaiffarabi)**
+**[Desktop app & command line](https://www.ai999x.com/desktop-cli/)** · **[Compute in your browser](https://www.ai999x.com/models/biomedical-science-ai999x/#try)** · **[Install (Python)](https://pypi.org/project/biomedical-science-ai999x/)** · **[Guides](https://huggingface.co/AI999X/biomedical-science-ai999x/tree/main/docs)** · **[Evaluation](https://huggingface.co/AI999X/biomedical-science-ai999x/tree/main/evaluation)** · **[AI999X on Hugging Face](https://huggingface.co/AI999X)** · **[Website](https://ai999x.com)** · **[Support: Buy Me a Coffee](https://buymeacoffee.com/ibnuljaiffarabi)**
 
 License: Apache-2.0 · Author: Ibnul Jaif Farabi (creator and engineer) · Organization: AI999X · Version 1.0.3
 
@@ -12,7 +12,299 @@ biomedical-science-ai999x is an offline, deterministic Python solver that answer
 
 **biomedical-science-ai999x** is a compact, deterministic biomedical science engine for Python. It reads a question in plain English (or a typed call), picks a certified biomedical science capability, computes the answer exactly, checks it, and returns the result with its steps, units, LaTeX and assumptions — or an honest refusal that says what is missing. It runs fully offline on any CPU, needs no GPU, no API key and no internet, and is built to give **zero wrong answers**: when it is not sure, it refuses instead of guessing.
 
-[![Buy me a coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-support%20development-FFDD00?logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/ibnuljaiffarabi) ![License](https://img.shields.io/badge/license-Apache--2.0-blue) ![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13%20%7C%203.14-blue) ![Offline](https://img.shields.io/badge/runs-offline%20on%20CPU-green)
+[![Buy me a coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-support%20development-FFDD00?logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/ibnuljaiffarabi) ![License](https://img.shields.io/badge/license-Apache--2.0-blue) ![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13%20%7C%203.14-blue) ![Offline](https://img.shields.io/badge/runs-offline%20on%20CPU-green) ![Rust](https://img.shields.io/badge/Rust-Windows%20%7C%20Linux%20%7C%20WebAssembly-orange)
+
+**Run it your way.** biomedical-science-ai999x comes as the AI999X desktop app and as the command-line program `biomedical-science` for Windows and Linux, runs in your browser as WebAssembly, and installs as a Python package. The desktop app, the command line and the browser run the same compiled Rust program on your own device: offline, no Python needed.
+
+## Get it
+
+| Way to run it | For | Get it |
+|---|---|---|
+| **AI999X Biomedical Science desktop app** 1.2.0 | Windows, Linux — this model in its own app: search, ask in words, forms, live figures, explanations, offline | [Windows (x86-64)](https://www.ai999x.com/downloads/desktop/1.2.0/ai999x-biomedical-science-1.2.0-windows-x86_64.zip) · [Linux (x86-64)](https://www.ai999x.com/downloads/desktop/1.2.0/ai999x-biomedical-science-1.2.0-linux-x86_64.tar.gz) |
+| **AI999X desktop app** 1.2.0 | Windows, Linux — every AI999X model in one app: search, ask in words, forms, live figures, explanations, offline | [Windows (x86-64)](https://www.ai999x.com/downloads/desktop/1.2.0/ai999x-1.2.0-windows-x86_64.zip) · [Linux (x86-64)](https://www.ai999x.com/downloads/desktop/1.2.0/ai999x-1.2.0-linux-x86_64.tar.gz) |
+| **Command line** (`biomedical-science`) | Windows, Linux — one program per model, offline, no Python | [Windows (x86-64)](https://www.ai999x.com/downloads/desktop/1.2.0/ai999x-cli-1.2.0-windows-x86_64.zip) · [Linux (x86-64)](https://www.ai999x.com/downloads/desktop/1.2.0/ai999x-cli-1.2.0-linux-x86_64.tar.gz) |
+| **In your browser** | any device — nothing to install | [Compute on the model page](https://www.ai999x.com/models/biomedical-science-ai999x/#try) |
+| **Python** | Python 3.10+ | `pip install biomedical-science-ai999x` |
+
+Checksums: [SHA256SUMS](https://www.ai999x.com/downloads/desktop/1.2.0/SHA256SUMS) · every version: [https://www.ai999x.com/downloads/desktop/latest/](https://www.ai999x.com/downloads/desktop/latest/) · install guide: [desktop & command line](https://www.ai999x.com/desktop-cli/)
+
+## Rust versions
+
+Biomedical Science also comes as native programs compiled from Rust, version 1.2.0 of the AI999X desktop app and command line: they run offline on your computer and need no Python. Each file is in this repository's `rust/` folder, on the [GitHub release v1.0.3](https://github.com/AI999X/biomedical-science-ai999x/releases/tag/v1.0.3) and on the website.
+
+| Program | System | File | Size | Download | Use |
+|---|---|---|---|---|---|
+| Desktop app (Biomedical Science) | Windows x86-64 | `ai999x-biomedical-science-1.2.0-windows-x86_64.zip` | 7.6 MB | [Hub](https://huggingface.co/AI999X/biomedical-science-ai999x/resolve/main/rust/ai999x-biomedical-science-1.2.0-windows-x86_64.zip) · [GitHub](https://github.com/AI999X/biomedical-science-ai999x/releases/download/v1.0.3/ai999x-biomedical-science-1.2.0-windows-x86_64.zip) · [website](https://www.ai999x.com/downloads/desktop/1.2.0/ai999x-biomedical-science-1.2.0-windows-x86_64.zip) | unzip, then double-click `ai999x-biomedical-science.exe` (no installer) |
+| Desktop app (Biomedical Science) | Linux x86-64 | `ai999x-biomedical-science-1.2.0-linux-x86_64.tar.gz` | 8.5 MB | [Hub](https://huggingface.co/AI999X/biomedical-science-ai999x/resolve/main/rust/ai999x-biomedical-science-1.2.0-linux-x86_64.tar.gz) · [GitHub](https://github.com/AI999X/biomedical-science-ai999x/releases/download/v1.0.3/ai999x-biomedical-science-1.2.0-linux-x86_64.tar.gz) · [website](https://www.ai999x.com/downloads/desktop/1.2.0/ai999x-biomedical-science-1.2.0-linux-x86_64.tar.gz) | extract, then run `./ai999x-biomedical-science` (X11 or Wayland desktop) |
+| Command line (`biomedical-science`) | Windows x86-64 | `ai999x-biomedical-science-cli-1.2.0-windows-x86_64.zip` | 3.1 MB | [Hub](https://huggingface.co/AI999X/biomedical-science-ai999x/resolve/main/rust/ai999x-biomedical-science-cli-1.2.0-windows-x86_64.zip) · [GitHub](https://github.com/AI999X/biomedical-science-ai999x/releases/download/v1.0.3/ai999x-biomedical-science-cli-1.2.0-windows-x86_64.zip) · [website (all models)](https://www.ai999x.com/downloads/desktop/1.2.0/ai999x-cli-1.2.0-windows-x86_64.zip) | unzip, then `biomedical-science.exe ask "<question>"` or `biomedical-science.exe solve <capability> name=value` |
+| Command line (`biomedical-science`) | Linux x86-64 | `ai999x-biomedical-science-cli-1.2.0-linux-x86_64.tar.gz` | 3.1 MB | [Hub](https://huggingface.co/AI999X/biomedical-science-ai999x/resolve/main/rust/ai999x-biomedical-science-cli-1.2.0-linux-x86_64.tar.gz) · [GitHub](https://github.com/AI999X/biomedical-science-ai999x/releases/download/v1.0.3/ai999x-biomedical-science-cli-1.2.0-linux-x86_64.tar.gz) · [website (all models)](https://www.ai999x.com/downloads/desktop/1.2.0/ai999x-cli-1.2.0-linux-x86_64.tar.gz) | extract, then `./biomedical-science ask "<question>"` or `./biomedical-science solve <capability> name=value` |
+
+The command-line archive holds `biomedical-science` with a README of its commands and examples, the licence and the notice. Checksums: [`rust/SHA256SUMS`](https://huggingface.co/AI999X/biomedical-science-ai999x/resolve/main/rust/SHA256SUMS) (`sha256sum -c SHA256SUMS`).
+
+## Quick start
+
+### Desktop app
+
+Download **AI999X Biomedical Science** for your system (above), unpack it and start it; type a question in words or pick a capability, fill in the form and press Compute. Figures and an explanation of the answer appear beside it. The AI999X desktop app has the same, with Biomedical Science among all AI999X models.
+
+Linux, from a terminal:
+
+```bash
+curl -LO https://www.ai999x.com/downloads/desktop/1.2.0/ai999x-biomedical-science-1.2.0-linux-x86_64.tar.gz
+curl -LO https://www.ai999x.com/downloads/desktop/1.2.0/SHA256SUMS
+sha256sum -c --ignore-missing SHA256SUMS
+tar xzf ai999x-biomedical-science-1.2.0-linux-x86_64.tar.gz
+./ai999x-biomedical-science-1.2.0-linux-x86_64/ai999x-biomedical-science
+```
+
+### Command line
+
+Linux:
+
+```bash
+curl -LO https://www.ai999x.com/downloads/desktop/1.2.0/ai999x-cli-1.2.0-linux-x86_64.tar.gz
+curl -LO https://www.ai999x.com/downloads/desktop/1.2.0/SHA256SUMS
+sha256sum -c --ignore-missing SHA256SUMS
+mkdir -p ~/.local/share && tar xzf ai999x-cli-1.2.0-linux-x86_64.tar.gz -C ~/.local/share
+echo 'export PATH="$HOME/.local/share/ai999x-cli-1.2.0-linux-x86_64:$PATH"' >> ~/.bashrc && source ~/.bashrc
+biomedical-science --version
+```
+
+Windows (PowerShell):
+
+```powershell
+$F = "ai999x-cli-1.2.0-windows-x86_64.zip"
+Invoke-WebRequest "https://www.ai999x.com/downloads/desktop/1.2.0/$F" -OutFile $F
+Invoke-WebRequest "https://www.ai999x.com/downloads/desktop/1.2.0/SHA256SUMS" -OutFile SHA256SUMS
+(Get-FileHash $F -Algorithm SHA256).Hash.ToLower() -eq ((Select-String -SimpleMatch $F SHA256SUMS).Line -split ' ')[0]
+Expand-Archive $F -DestinationPath "$env:LOCALAPPDATA\AI999X" -Force
+$D = "$env:LOCALAPPDATA\AI999X\ai999x-cli-1.2.0-windows-x86_64"; $env:Path += ";$D"
+[Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path", "User") + ";$D", "User")
+biomedical-science --version
+```
+
+Every command below was run as shown; the text under it is what the program printed.
+
+**Ask in words** — Write the question as you would say it: the program reads the quantities and their units, picks the capability and answers.
+
+```console
+$ biomedical-science ask "IV bolus concentration: D = 500 mg, V = 40 L, k = 0.1 1/h, t = 6 h"
+Read as: One-compartment IV bolus: concentration at a time (a model calculation, not medical advice)
+C = 0.006860145451 kg/m^3
+fraction_remaining = 0.5488116361
+  by: One-compartment IV bolus: concentration at a time (a model calculation, not medical advice)  (C(t) = (D/V) exp(-k t))
+  D = 0.0005 kg
+  V = 0.04 m^3
+  k = 2.777777778e-05 1/s
+  t = 21600 s
+  assumes: one compartment, instantaneous mixing; first-order elimination; t >= 0
+```
+
+**What a capability needs** — The equation or method, every input and output with its SI unit. Read this before solve: it tells you the input names.
+
+```console
+$ biomedical-science info bmed_pk_iv_bolus_concentration
+One-compartment IV bolus: concentration at a time (a model calculation, not medical advice)
+  C(t) = (D/V) exp(-k t)
+  in   D        bolus dose [kg]
+  in   V        volume of distribution [m^3]
+  in   k        elimination rate constant [1/s]
+  in   t        time after the dose [s]
+  out  C        concentration at time t [kg/m^3]
+  out  fraction_remaining fraction of the dose still in the body [1]
+```
+
+**Solve** — Inputs as name=value, each with any unit of the right kind. The answer lists every output, the method used, each input converted to SI, and the conditions the answer assumes.
+
+```console
+$ biomedical-science solve bmed_pk_iv_bolus_concentration "D=500 mg" "V=40 L" "k=0.1 1/h" "t=6 h"
+C = 0.006860145451 kg/m^3
+fraction_remaining = 0.5488116361
+  by: One-compartment IV bolus: concentration at a time (a model calculation, not medical advice)  (C(t) = (D/V) exp(-k t))
+  D = 0.0005 kg
+  V = 0.04 m^3
+  k = 2.777777778e-05 1/s
+  t = 21600 s
+  assumes: one compartment, instantaneous mixing; first-order elimination; t >= 0
+```
+
+**Draw the figures** — The live figures for your own inputs, written as SVG files into the folder given with --out (here the current folder); open them in any browser. Without --out the SVG text comes back as JSON.
+
+```console
+$ biomedical-science figures bmed_pk_iv_bolus_concentration "D=500 mg" "V=40 L" "k=0.1 1/h" "t=6 h" --out .
+[
+  {
+    "slug": "bmed-pk-iv-bolus-concentration-live-1",
+    "title": "Concentration at time t as volume of distribution varies",
+    "caption": "Concentration at time t as V runs from 10 to 70 L, every other input as you entered it (41 solutions). Marked: your V = 40 L gives C = 0.00686. Your inputs: D = 500 mg, V = 40 L, k = 0.1 1/h, t = 6 h.",
+    "file": "./bmed-pk-iv-bolus-concentration-live-1.svg"
+  },
+  {
+    "slug": "bmed-pk-iv-bolus-concentration-live-2",
+    "title": "Concentration at time t as bolus dose varies",
+    "caption": "Concentration at time t as D runs from 125 to 875 mg, every other input as you entered it (29 solutions). Marked: your D = 500 mg gives C = 0.00686. Your inputs: D = 500 mg, V = 40 L, k = 0.1 1/h, t = 6 h.",
+    "file": "./bmed-pk-iv-bolus-concentration-live-2.svg"
+  }
+]
+```
+
+**Many questions at once** — One JSON request per line in, one JSON answer per line out, in order: for scripts, notebooks and agents (the program starts once). In PowerShell: Get-Content cases.jsonl | biomedical-science batch
+
+`cases.jsonl`:
+
+```json
+{"key": "bmed_pk_iv_bolus_concentration", "inputs": {"D": "500 mg", "V": "40 L", "k": "0.1 1/h", "t": "6 h"}}
+{"key": "bmed_epi_sir_final_size", "inputs": {"R0": 2.5, "s0": 0.99, "i0": 0.01}}
+```
+
+```console
+$ biomedical-science batch < cases.jsonl
+{"outcome":"SOLVED","message":"","value":0.00686014545118,"unit":"kg/m^3","solved_for":"C","si":[["D",0.0005],["V",0.04],["k",0.00002777777777777778],["t",21600.0]],"values":[["C",0.00686014545118,"kg/m^3"],["fraction_remaining",0.548811636094,""]],"target":"C","phrase":"concentration at time t","assumptions":["one compartment, instantaneous mixing","first-order elimination","t >= 0"],"name":"One-compartment IV bolus: concentration at a time (a model calculation, not medical advice)","equation":"C(t) = (D/V) exp(-k t)"}
+{"outcome":"SOLVED","message":"","value":0.105894194336,"unit":"","solved_for":"s_inf","si":[["R0",2.5],["s0",0.99],["i0",0.01]],"values":[["s_inf",0.105894194336,""],["attack",0.884105805664,""]],"target":"s_inf","phrase":"susceptible fraction at the end","assumptions":["closed population, no births or deaths, homogeneous mixing","fractions of the population","the rest of the population (1 - s0 - i0) is immune"],"name":"SIR epidemic model: final size (final susceptible fraction and attack fraction)","equation":"final-size relation ln(s0/s_inf) = R0 (s0 + i0 - s_inf), solved by bisection on (0, min(s0, 1/R0)]"}
+```
+
+### In your browser
+
+Open [Biomedical Science on ai999x.com](https://www.ai999x.com/models/biomedical-science-ai999x/#try), choose a capability and press **Compute**: the model runs on your own device as WebAssembly; nothing is sent anywhere. Change any input (any unit of the right kind) and the answer, its explanation and the figures follow.
+
+In your own page: `biomedical_science_ai999x.wasm` and the loader `ax-wasm.js` (https://www.ai999x.com/compute/rust/ax-wasm.js).
+
+### Python
+
+```bash
+pip install biomedical-science-ai999x
+```
+
+## Worked examples in every form
+
+The same worked example from the command line, from Python and in the browser. Each command-line output is what the program printed.
+
+### Basal metabolic rate by a stated regression (a calculation, not medical advice)
+
+The basal metabolic rate estimated by the Mifflin-St Jeor (1990) or the revised Harris-Benedict (Roza and Shizgal 1984) regression from mass, height, age and sex, in kcal/day, W and MJ/day; a model calculation, not dietary or medical advice.
+
+Command line:
+
+```console
+$ biomedical-science solve bmed_bmr "m=70 kg" "h=175 cm" age=30 sex=male equation=mifflin_st_jeor
+BMR_kcal_day = 1648.75
+BMR_W = 79.84224537 W
+BMR_MJ_day = 6.89837
+  by: Basal metabolic rate by a stated regression (a calculation, not medical advice)  (Mifflin-St Jeor: 10 m + 6.25 h_cm - 5 age + 5 (male) or - 161 (female); revised Harris-Benedict: 88.362 + 13.397 m + 4.799 h_cm - 5.677 age (male), 447.593 + 9.247 m + 3.098 h_cm - 4.330 age (female))
+  m = 70 kg
+  h = 1.75 m
+  age = 30
+  sex = male
+  equation = mifflin_st_jeor
+  assumes: a population regression, not a measurement and not advice; adults 18 to 120 years; 1 kcal = 4.184 kJ
+```
+
+Python:
+
+```python
+import biomedical_science_ai999x as m
+
+a = m.solve("bmed_bmr", m="70 kg", h="175 cm", age="30", sex="male", equation="mifflin_st_jeor")
+print(a.values or (a.value, a.unit))
+```
+
+Browser: [open this capability on the model page](https://www.ai999x.com/models/biomedical-science-ai999x/#cap-bmed_bmr) and press **Compute in your browser**.
+
+_What this means:_ This calculation estimates the basal metabolic rate using either the Mifflin-St Jeor or revised Harris-Benedict regression, based on body mass of 70 kg, height of 175 cm, age of 30, and sex. The resulting energy expenditure is 1648.75 per day, which converts to 79.8422 W in watts and 6.89837 megajoules per day. This figure represents a statistical population average for resting energy use, not a personalized medical measurement.
+
+### Body mass index (a calculation, not medical advice)
+
+The body mass index BMI = m/h^2 (kg/m^2) and BMI prime (BMI/25) as a calculation from mass and height; no category or health advice is given.
+
+Command line:
+
+```console
+$ biomedical-science solve bmed_bmi "m=70 kg" "h=1.75 m"
+BMI = 22.85714286
+BMI_prime = 0.9142857143
+  by: Body mass index (a calculation, not medical advice)  (BMI = m/h^2)
+  m = 70 kg
+  h = 1.75 m
+  assumes: a calculation only: not medical advice; 1 <= m <= 700 kg, 0.3 <= h <= 2.8 m
+```
+
+Python:
+
+```python
+import biomedical_science_ai999x as m
+
+a = m.solve("bmed_bmi", m="70 kg", h="1.75 m")
+print(a.values or (a.value, a.unit))
+```
+
+Browser: [open this capability on the model page](https://www.ai999x.com/models/biomedical-science-ai999x/#cap-bmed_bmi) and press **Compute in your browser**.
+
+_What this means:_ This calculation determines the Body Mass Index using the formula BMI equals mass divided by height squared. With an input mass of 70 kg and a height of 1.75 m, the resulting index is 22.8571. The secondary output, which is the index divided by twenty five, yields 0.914286. These figures are mathematical results derived from physical measurements and do not constitute medical advice or diagnostic categories.
+
+### Cardiac output by indicator dilution (Stewart-Hamilton)
+
+The cardiac output (volume flow) from the mass of an injected indicator and its sampled first-pass concentration curve, by the Stewart-Hamilton principle with a trapezoidal area.
+
+Command line:
+
+```console
+$ biomedical-science solve bmed_indicator_dilution_cardiac_output "m=5 mg" "t=[0, 2, 4, 6, 8, 10, 12, 14, 16]" "C=[0, 0.5, 2.8, 4.1, 3.5, 2.2, 1.1, 0.5, 0.2]"
+AUC = 29.6
+CO = 0.0001689189189 m^3/s
+  by: Cardiac output by indicator dilution (Stewart-Hamilton)  (CO = m / integral of C dt (linear trapezoidal rule))
+  m = 5e-06 kg
+  assumes: complete mixing, no indicator loss; first-pass curve (recirculation removed by the user); times in s, concentrations in mg/L; linear trapezoids
+```
+
+Python:
+
+```python
+import biomedical_science_ai999x as m
+
+a = m.solve("bmed_indicator_dilution_cardiac_output", m="5 mg", t=[0, 2, 4, 6, 8, 10, 12, 14, 16], C=[0, 0.5, 2.8, 4.1, 3.5, 2.2, 1.1, 0.5, 0.2])
+print(a.values or (a.value, a.unit))
+```
+
+Browser: [open this capability on the model page](https://www.ai999x.com/models/biomedical-science-ai999x/#cap-bmed_indicator_dilution_cardiac_output) and press **Compute in your browser**.
+
+_What this means:_ This calculation determines the volume of blood pumped by the heart per second using the Stewart-Hamilton principle. By dividing the known mass of the injected indicator, recorded as 5 mg, by the total area under the concentration-time curve, computed here as 29.6, the resulting flow rate is found to be 0.000168919 m^3/s. This value represents the efficiency of the heart's pumping action based on how quickly the tracer clears from the bloodstream.
+
+### Kelvin-Voigt viscoelastic tissue model: creep strain under constant stress
+
+The strain of a Kelvin-Voigt (spring parallel to dashpot) tissue model a time t after a constant stress is applied.
+
+Command line:
+
+```console
+$ biomedical-science solve bmed_kelvin_voigt_creep "sigma=10 kPa" "E=100 kPa" "eta=500 kPa*s" "t=3 s"
+strain = 0.04511883639
+  by: Kelvin-Voigt viscoelastic tissue model: creep strain under constant stress  (eta de/dt + E e = sigma: e = (sigma/E)(1 - exp(-E t/eta)))
+  sigma = 10000 Pa
+  E = 100000 Pa
+  eta = 500000 Pa*s
+  t = 3 s
+  assumes: linear viscoelasticity; stress applied as a step at t = 0, no initial strain
+```
+
+Python:
+
+```python
+import biomedical_science_ai999x as m
+
+a = m.solve("bmed_kelvin_voigt_creep", sigma="10 kPa", E="100 kPa", eta="500 kPa*s", t="3 s")
+print(a.values or (a.value, a.unit))
+```
+
+Browser: [open this capability on the model page](https://www.ai999x.com/models/biomedical-science-ai999x/#cap-bmed_kelvin_voigt_creep) and press **Compute in your browser**.
+
+_What this means:_ This calculation determines the viscoelastic creep strain of a tissue modeled as a Kelvin-Voigt element. Given a constant applied stress of 10 kPa, a spring modulus of 100 kPa, and a dashpot viscosity of 500 kPa*s, the model predicts that the strain reaches 0.0451188 after 3 s. This result reflects the gradual deformation characteristic of soft tissues under sustained load, where the viscous component limits the rate of extension.
+
+## Documentation
+
+- **Rust user guide** — the command line, every capability with a command and what it printed: [PDF](https://huggingface.co/AI999X/biomedical-science-ai999x/blob/main/docs/biomedical_science_ai999x_rust_guide.pdf) · [Markdown](https://huggingface.co/AI999X/biomedical-science-ai999x/blob/main/docs/biomedical_science_ai999x_rust_guide.md)
+- **Python guide** — every capability with a Python example: [PDF](https://huggingface.co/AI999X/biomedical-science-ai999x/blob/main/docs/biomedical_science_ai999x_capabilities.pdf) · [Markdown](https://huggingface.co/AI999X/biomedical-science-ai999x/blob/main/docs/biomedical_science_ai999x_capabilities.md)
+- **Desktop app & command line** — downloads, install, ask and search, figures, offline use, checksums: https://www.ai999x.com/desktop-cli/
+- **Model page** — compute in your browser, every capability explained: https://www.ai999x.com/models/biomedical-science-ai999x/
 
 ## Highlights
 
@@ -20,6 +312,7 @@ biomedical-science-ai999x is an offline, deterministic Python solver that answer
 - **Zero wrong answers by design.** Seven explicit outcomes — SOLVED, NEEDS_INPUT, AMBIGUOUS, INVALID_INPUT, OUT_OF_SCOPE, UNRECOGNIZED_FORMAT, INTERNAL_ERROR — never a silent guess. Every one of its 561 documented answers is reproduced exactly on every tested platform.
 - **Plain-English questions and a guaranteed typed interface.** `ask()` reads documented question forms; `solve(capability_id, **inputs)` always solves a supported task with valid inputs.
 - **Explains itself.** Steps, formulas in LaTeX, units, assumptions and the model used, ready for notebooks, tutoring apps and homework checkers.
+- **Native and in the browser.** Every capability also computes natively in Rust: the desktop app and the `biomedical-science` command line for Windows and Linux, and WebAssembly on the model page — no Python, no network.
 - **Small and portable.** Pure Python (sympy, mpmath); identical answers on Windows and Linux (Python 3.10, 3.11, 3.12, 3.13, 3.14).
 - **Coverage:** pharmacokinetic and epidemic models, diagnostic test statistics, survival analysis, biomechanics, neuron models and medical-imaging physics (quantitative model calculations only, not medical advice).
 
@@ -38,7 +331,7 @@ biomedical-science-ai999x is an offline, deterministic Python solver that answer
 | Creator / engineer | Ibnul Jaif Farabi |
 | Organization | AI999X |
 
-## Quickstart
+## Python quick start
 
 ```bash
 pip install biomedical-science-ai999x
@@ -61,7 +354,7 @@ biomedical_science.ask("Who created you?").message
 # -> biomedical-science-ai999x was created and engineered by Ibnul Jaif Farabi at AI999X.
 ```
 
-Command line: `biomedical-science-ai999x "<question>"`, `biomedical-science-ai999x --capabilities`. The outputs above were produced by running this exact code on biomedical-science-ai999x 1.0.3.
+The Python package also installs a Python command, `biomedical-science-ai999x "<question>"`; for the native program use `biomedical-science` (above). The outputs above were produced by running this exact code on biomedical-science-ai999x 1.0.3.
 
 ## Find the right capability, and draw it
 
@@ -83,7 +376,7 @@ biomedical_science.search("Solve x^2 - 5x + 6 = 0", k=2)
 
 Capabilities are certified before they ship: each must reproduce hand-worked reference cases, reject a deliberately wrong variant (a control), and leave every benchmark answer unchanged.
 
-## Worked examples
+## Python worked examples, with their steps
 
 Each question was put to `biomedical-science-ai999x`; the answer is the one it returned, with the steps it took.
 
@@ -212,6 +505,7 @@ _Forest plot of six effect measures, each computed by the package on its own wor
 - Open-ended explanation, essay writing or tutoring dialogue: it is a solver, not a chatbot.
 - Questions outside its certified biomedical science capabilities, and any question whose stated numbers it cannot all use — it refuses with the reason instead.
 - High-stakes engineering, medical or legal decisions without independent review.
+- **Not medical advice.** It computes textbook quantities from the numbers you give it; it does not diagnose, treat or recommend doses, and its results are no substitute for a qualified clinician.
 
 ## Limitations
 
