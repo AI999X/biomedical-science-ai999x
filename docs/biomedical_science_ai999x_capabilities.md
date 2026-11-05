@@ -155,7 +155,7 @@ Call `solve("<id>", **inputs)` with plain numbers; the result's `values` holds e
 
 <a id="bmed_pk_iv_bolus_concentration"></a>
 
-### One-compartment IV bolus: concentration at a time (a model calculation, not medical advice) — `bmed_pk_iv_bolus_concentration`
+### One-compartment IV bolus: concentration at a time (a model calculation, not medical advice), `bmed_pk_iv_bolus_concentration`
 
 The plasma concentration of a one-compartment model a time t after an intravenous bolus dose, with first-order elimination; also the fraction of the dose remaining.
 
@@ -207,7 +207,7 @@ biomedical_science_ai999x.solve('bmed_pk_iv_bolus_concentration', D=0.001, V=0.0
 
 <a id="bmed_pk_terminal_half_life_fit"></a>
 
-### Elimination rate constant and half-life from concentration data (log-linear fit) — `bmed_pk_terminal_half_life_fit`
+### Elimination rate constant and half-life from concentration data (log-linear fit), `bmed_pk_terminal_half_life_fit`
 
 The first-order elimination rate constant, half-life and back-extrapolated concentration from a straight-line least-squares fit of ln C against time (mono-exponential decline).
 
@@ -257,7 +257,7 @@ biomedical_science_ai999x.solve('bmed_pk_terminal_half_life_fit', t=[0.5, 1, 3, 
 
 <a id="bmed_pk_auc_iv_bolus"></a>
 
-### Area under the concentration curve of a one-compartment IV bolus (a model calculation, not medical advice) — `bmed_pk_auc_iv_bolus`
+### Area under the concentration curve of a one-compartment IV bolus (a model calculation, not medical advice), `bmed_pk_auc_iv_bolus`
 
 The area under the plasma concentration-time curve from 0 to infinity and from 0 to t after an IV bolus in a one-compartment model.
 
@@ -307,7 +307,7 @@ biomedical_science_ai999x.solve('bmed_pk_auc_iv_bolus', D=9.999999999999999e-05,
 
 <a id="bmed_pk_auc_trapezoid"></a>
 
-### AUC from concentration-time data by the trapezoidal rule — `bmed_pk_auc_trapezoid`
+### AUC from concentration-time data by the trapezoidal rule, `bmed_pk_auc_trapezoid`
 
 The area under a sampled concentration-time curve from the first to the last sample, by the linear trapezoidal rule or the linear-up/log-down rule (stated).
 
@@ -356,7 +356,7 @@ biomedical_science_ai999x.solve('bmed_pk_auc_trapezoid', t=[0, 0.5, 1, 2, 4, 6, 
 
 <a id="bmed_pk_nca_iv_bolus"></a>
 
-### Non-compartmental analysis of an IV bolus profile (AUC, lambda_z, half-life, clearance, Vz) — `bmed_pk_nca_iv_bolus`
+### Non-compartmental analysis of an IV bolus profile (AUC, lambda_z, half-life, clearance, Vz), `bmed_pk_nca_iv_bolus`
 
 Non-compartmental parameters from a concentration-time profile after an IV bolus: AUC to the last sample (linear trapezoids), terminal rate constant from the last n points, half-life, AUC to infinity, clearance and terminal volume.
 
@@ -410,7 +410,7 @@ biomedical_science_ai999x.solve('bmed_pk_nca_iv_bolus', D=0.00025, t=[0, 1, 2, 4
 
 <a id="bmed_pk_oral_concentration"></a>
 
-### Oral dose, first-order absorption: concentration at a time (Bateman function) (a model calculation, not medical advice) — `bmed_pk_oral_concentration`
+### Oral dose, first-order absorption: concentration at a time (Bateman function) (a model calculation, not medical advice), `bmed_pk_oral_concentration`
 
 The plasma concentration and partial AUC of a one-compartment model with first-order absorption (rate ka) and elimination (rate k) after a single oral dose with bioavailability F.
 
@@ -467,7 +467,7 @@ biomedical_science_ai999x.solve('bmed_pk_oral_concentration', F=0.6, D=4.9999999
 
 <a id="bmed_pk_oral_peak"></a>
 
-### Oral dose: time and height of the peak concentration (tmax, Cmax) (a model calculation, not medical advice) — `bmed_pk_oral_peak`
+### Oral dose: time and height of the peak concentration (tmax, Cmax) (a model calculation, not medical advice), `bmed_pk_oral_peak`
 
 The time of the peak plasma concentration and the peak concentration of a one-compartment model with first-order absorption after a single oral dose.
 
@@ -494,7 +494,7 @@ $$
 
 ![Oral dose (F = 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-oral-peak-pharmacokinetics)
 
-*Oral dose (F = 0.8, D = 250 mg, V = 35 L, k = 0.15 1/h) for three absorption rate constants: concentration curves (97 runs each) with the peak the package returns marked on each — faster absorption gives an earlier, higher peak. Marked: ka = 3.6 1/h: t_max 0.921175 h, C_max 4.97683 mg/L; ka = 1.2 1/h: t_max 1.98042 h, C_max 4.2457 mg/L; ka = 0.4 1/h: t_max 3.92332 h, C_max 3.17235 mg/L.*
+*Oral dose (F = 0.8, D = 250 mg, V = 35 L, k = 0.15 1/h) for three absorption rate constants: concentration curves (97 runs each) with the peak the package returns marked on each, faster absorption gives an earlier, higher peak. Marked: ka = 3.6 1/h: t_max 0.921175 h, C_max 4.97683 mg/L; ka = 1.2 1/h: t_max 1.98042 h, C_max 4.2457 mg/L; ka = 0.4 1/h: t_max 3.92332 h, C_max 3.17235 mg/L.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_pk_oral_peak', F=0.8, D=0.00025, V=0.035, ka=0.0003333333333333333, k=4.1666666666666665e-05)
@@ -517,7 +517,7 @@ biomedical_science_ai999x.solve('bmed_pk_oral_peak', F=1, D=0.0005, V=0.06, ka=0
 
 <a id="bmed_pk_nth_dose_iv"></a>
 
-### Repeated IV bolus doses: concentration after the nth dose (a model calculation, not medical advice) — `bmed_pk_nth_dose_iv`
+### Repeated IV bolus doses: concentration after the nth dose (a model calculation, not medical advice), `bmed_pk_nth_dose_iv`
 
 The peak concentration just after the nth of equal IV bolus doses given every tau, and the concentration a time t later, in a one-compartment model (superposition).
 
@@ -574,7 +574,7 @@ biomedical_science_ai999x.solve('bmed_pk_nth_dose_iv', D=0.001, V=0.06, k=5.5555
 
 <a id="bmed_pk_steady_state_iv"></a>
 
-### Repeated IV bolus dosing: steady-state peak, trough, average and accumulation factor (a model calculation, not medical advice) — `bmed_pk_steady_state_iv`
+### Repeated IV bolus dosing: steady-state peak, trough, average and accumulation factor (a model calculation, not medical advice), `bmed_pk_steady_state_iv`
 
 The steady-state peak, trough and average concentrations and the accumulation factor of a one-compartment model given equal IV bolus doses every tau.
 
@@ -625,7 +625,7 @@ biomedical_science_ai999x.solve('bmed_pk_steady_state_iv', D=0.00025, V=0.025, k
 
 <a id="bmed_pk_steady_state_oral"></a>
 
-### Repeated oral dosing: steady-state peak, its time and the trough (a model calculation, not medical advice) — `bmed_pk_steady_state_oral`
+### Repeated oral dosing: steady-state peak, its time and the trough (a model calculation, not medical advice), `bmed_pk_steady_state_oral`
 
 The steady-state peak concentration, the time of the peak after a dose and the trough of a one-compartment model with first-order absorption given equal oral doses every tau.
 
@@ -677,7 +677,7 @@ biomedical_science_ai999x.solve('bmed_pk_steady_state_oral', F=0.5, D=9.99999999
 
 <a id="bmed_pk_infusion_concentration"></a>
 
-### Constant-rate IV infusion: concentration at a time and steady state (a model calculation, not medical advice) — `bmed_pk_infusion_concentration`
+### Constant-rate IV infusion: concentration at a time and steady state (a model calculation, not medical advice), `bmed_pk_infusion_concentration`
 
 The plasma concentration of a one-compartment model during a constant-rate intravenous infusion started at $t = 0$, and the steady-state concentration it approaches.
 
@@ -726,7 +726,7 @@ biomedical_science_ai999x.solve('bmed_pk_infusion_concentration', R0=3.333333333
 
 <a id="bmed_pk_short_infusion"></a>
 
-### Infusion of fixed duration: concentration during and after it (a model calculation, not medical advice) — `bmed_pk_short_infusion`
+### Infusion of fixed duration: concentration during and after it (a model calculation, not medical advice), `bmed_pk_short_infusion`
 
 The plasma concentration of a one-compartment model at time t after the start of a constant-rate infusion lasting T_inf (during or after the infusion), and the concentration at the end of the infusion.
 
@@ -776,7 +776,7 @@ biomedical_science_ai999x.solve('bmed_pk_short_infusion', R0=2.7777777777777777e
 
 <a id="bmed_pk_loading_maintenance"></a>
 
-### Loading dose and maintenance infusion rate of a one-compartment model (model calculation, not a dosing recommendation) — `bmed_pk_loading_maintenance`
+### Loading dose and maintenance infusion rate of a one-compartment model (model calculation, not a dosing recommendation), `bmed_pk_loading_maintenance`
 
 For a one-compartment model, the bolus and the constant infusion rate that together hold the model concentration at a target value from the start (model calculation only, not a dosing recommendation).
 
@@ -824,7 +824,7 @@ biomedical_science_ai999x.solve('bmed_pk_loading_maintenance', C_target=0.002, V
 
 <a id="bmed_pk_intermittent_infusion_steady_state"></a>
 
-### Repeated short infusions: steady-state peak and trough (a model calculation, not medical advice) — `bmed_pk_intermittent_infusion_steady_state`
+### Repeated short infusions: steady-state peak and trough (a model calculation, not medical advice), `bmed_pk_intermittent_infusion_steady_state`
 
 The steady-state peak (end of infusion) and trough (end of interval) of a one-compartment model given infusions of duration T_inf at rate R0 every tau.
 
@@ -875,7 +875,7 @@ biomedical_science_ai999x.solve('bmed_pk_intermittent_infusion_steady_state', R0
 
 <a id="bmed_pk_time_to_steady_state_fraction"></a>
 
-### Constant infusion: time to reach a fraction of steady state (a model calculation, not medical advice) — `bmed_pk_time_to_steady_state_fraction`
+### Constant infusion: time to reach a fraction of steady state (a model calculation, not medical advice), `bmed_pk_time_to_steady_state_fraction`
 
 The time after the start of a constant-rate infusion at which a one-compartment model reaches a stated fraction of its steady-state concentration.
 
@@ -923,7 +923,7 @@ biomedical_science_ai999x.solve('bmed_pk_time_to_steady_state_fraction', CL=5.55
 
 <a id="bmed_pk_michaelis_menten_concentration"></a>
 
-### Michaelis-Menten (saturable) elimination: concentration at a time (a model calculation, not medical advice) — `bmed_pk_michaelis_menten_concentration`
+### Michaelis-Menten (saturable) elimination: concentration at a time (a model calculation, not medical advice), `bmed_pk_michaelis_menten_concentration`
 
 The concentration a time t after an IV bolus in a one-compartment model with saturable Michaelis-Menten elimination, from the closed form with the Lambert W function.
 
@@ -972,7 +972,7 @@ biomedical_science_ai999x.solve('bmed_pk_michaelis_menten_concentration', C0=0.0
 
 <a id="bmed_pk_michaelis_menten_time"></a>
 
-### Michaelis-Menten elimination: time to fall to a concentration (a model calculation, not medical advice) — `bmed_pk_michaelis_menten_time`
+### Michaelis-Menten elimination: time to fall to a concentration (a model calculation, not medical advice), `bmed_pk_michaelis_menten_time`
 
 The time for the concentration of a one-compartment model with Michaelis-Menten elimination to fall from C0 to C.
 
@@ -1022,7 +1022,7 @@ biomedical_science_ai999x.solve('bmed_pk_michaelis_menten_time', C0=0.03, C=0.00
 
 <a id="bmed_pk_michaelis_menten_steady_state"></a>
 
-### Michaelis-Menten elimination: steady-state concentration under a constant dosing rate (a model calculation, not medical advice) — `bmed_pk_michaelis_menten_steady_state`
+### Michaelis-Menten elimination: steady-state concentration under a constant dosing rate (a model calculation, not medical advice), `bmed_pk_michaelis_menten_steady_state`
 
 The steady-state concentration of a one-compartment model with Michaelis-Menten elimination given a constant dosing rate below Vmax.
 
@@ -1070,7 +1070,7 @@ biomedical_science_ai999x.solve('bmed_pk_michaelis_menten_steady_state', R0=4.16
 
 <a id="bmed_pk_two_compartment_bolus"></a>
 
-### Two-compartment IV bolus: macro-constants and concentration from micro-constants (a model calculation, not medical advice) — `bmed_pk_two_compartment_bolus`
+### Two-compartment IV bolus: macro-constants and concentration from micro-constants (a model calculation, not medical advice), `bmed_pk_two_compartment_bolus`
 
 The hybrid rate constants alpha and beta, the coefficients A and B and the central concentration at time t of a two-compartment model after an IV bolus, from the volume V1 and the micro-constants k10, k12, k21.
 
@@ -1124,7 +1124,7 @@ biomedical_science_ai999x.solve('bmed_pk_two_compartment_bolus', D=0.0005, V1=0.
 
 <a id="bmed_pk_two_compartment_micro_constants"></a>
 
-### Two-compartment model: micro-constants, clearance and Vss from a biexponential curve (a model calculation, not medical advice) — `bmed_pk_two_compartment_micro_constants`
+### Two-compartment model: micro-constants, clearance and Vss from a biexponential curve (a model calculation, not medical advice), `bmed_pk_two_compartment_micro_constants`
 
 The central volume, the micro rate constants k10, k12, k21, the clearance and the steady-state volume of a two-compartment model from the biexponential fit $C = A$ exp(-alpha t) + B exp(-beta t) of an IV bolus.
 
@@ -1179,7 +1179,7 @@ biomedical_science_ai999x.solve('bmed_pk_two_compartment_micro_constants', D=0.0
 
 <a id="bmed_pk_bioavailability_from_profiles"></a>
 
-### Absolute bioavailability from IV and oral concentration profiles (a model calculation, not medical advice) — `bmed_pk_bioavailability_from_profiles`
+### Absolute bioavailability from IV and oral concentration profiles (a model calculation, not medical advice), `bmed_pk_bioavailability_from_profiles`
 
 The absolute bioavailability F from the dose-normalised areas under an oral and an IV concentration-time profile (linear trapezoids from the first to the last sample).
 
@@ -1231,7 +1231,7 @@ biomedical_science_ai999x.solve('bmed_pk_bioavailability_from_profiles', D_iv=4.
 
 <a id="bmed_pk_hepatic_clearance_well_stirred"></a>
 
-### Hepatic clearance: well-stirred liver model (a model calculation, not medical advice) — `bmed_pk_hepatic_clearance_well_stirred`
+### Hepatic clearance: well-stirred liver model (a model calculation, not medical advice), `bmed_pk_hepatic_clearance_well_stirred`
 
 The hepatic clearance and extraction ratio of the well-stirred (venous equilibrium) liver model from hepatic blood flow, unbound fraction and intrinsic clearance.
 
@@ -1279,7 +1279,7 @@ biomedical_science_ai999x.solve('bmed_pk_hepatic_clearance_well_stirred', Q=2.5e
 
 <a id="bmed_pk_hepatic_clearance_parallel_tube"></a>
 
-### Hepatic clearance: parallel-tube (sinusoidal) liver model (a model calculation, not medical advice) — `bmed_pk_hepatic_clearance_parallel_tube`
+### Hepatic clearance: parallel-tube (sinusoidal) liver model (a model calculation, not medical advice), `bmed_pk_hepatic_clearance_parallel_tube`
 
 The hepatic clearance and extraction ratio of the parallel-tube liver model, in which the concentration falls along the sinusoids, from blood flow, unbound fraction and intrinsic clearance.
 
@@ -1327,7 +1327,7 @@ biomedical_science_ai999x.solve('bmed_pk_hepatic_clearance_parallel_tube', Q=2.5
 
 <a id="bmed_pk_effect_site_concentration"></a>
 
-### Effect-compartment model: effect-site concentration and its peak after an IV bolus (a model calculation, not medical advice) — `bmed_pk_effect_site_concentration`
+### Effect-compartment model: effect-site concentration and its peak after an IV bolus (a model calculation, not medical advice), `bmed_pk_effect_site_concentration`
 
 The effect-site concentration of a one-compartment model linked to an effect compartment (rate ke0) after an IV bolus, the time of its peak and the peak value.
 
@@ -1378,7 +1378,7 @@ biomedical_science_ai999x.solve('bmed_pk_effect_site_concentration', D=9.9999999
 
 <a id="bmed_epi_sir_final_size"></a>
 
-### SIR epidemic model: final size (final susceptible fraction and attack fraction) — `bmed_epi_sir_final_size`
+### SIR epidemic model: final size (final susceptible fraction and attack fraction), `bmed_epi_sir_final_size`
 
 The fraction still susceptible when an SIR epidemic ends and the fraction infected during it, from R0 and the initial susceptible and infected fractions (the final-size relation).
 
@@ -1428,7 +1428,7 @@ biomedical_science_ai999x.solve('bmed_epi_sir_final_size', R0=1.5, s0=0.7, i0=0.
 
 <a id="bmed_epi_seir_final_size"></a>
 
-### SEIR epidemic model: final size — `bmed_epi_seir_final_size`
+### SEIR epidemic model: final size, `bmed_epi_seir_final_size`
 
 The final susceptible fraction and the attack fraction of an SEIR epidemic (the latent stage does not change the final size) from R0 and the initial susceptible, exposed and infectious fractions.
 
@@ -1477,7 +1477,7 @@ biomedical_science_ai999x.solve('bmed_epi_seir_final_size', R0=1.8, s0=0.6, e0=0
 
 <a id="bmed_epi_sir_peak"></a>
 
-### SIR epidemic model: peak prevalence and the time of the peak — `bmed_epi_sir_peak`
+### SIR epidemic model: peak prevalence and the time of the peak, `bmed_epi_sir_peak`
 
 The largest infected fraction of an SIR epidemic and the time at which it occurs, from the transmission and recovery rates and the initial fractions.
 
@@ -1527,7 +1527,7 @@ biomedical_science_ai999x.solve('bmed_epi_sir_peak', beta=5.787037037037037e-06,
 
 <a id="bmed_epi_seir_growth_rate"></a>
 
-### SEIR epidemic model: initial exponential growth rate from R0 — `bmed_epi_seir_growth_rate`
+### SEIR epidemic model: initial exponential growth rate from R0, `bmed_epi_seir_growth_rate`
 
 The early exponential growth (or decline) rate of an SEIR epidemic in a fully susceptible population, from R0, the rate of leaving the latent stage and the recovery rate.
 
@@ -1574,7 +1574,7 @@ biomedical_science_ai999x.solve('bmed_epi_seir_growth_rate', R0=0.8, sigma=5.787
 
 <a id="bmed_epi_r_from_growth_rate"></a>
 
-### Reproduction number from an epidemic growth rate (gamma-distributed generation interval) — `bmed_epi_r_from_growth_rate`
+### Reproduction number from an epidemic growth rate (gamma-distributed generation interval), `bmed_epi_r_from_growth_rate`
 
 The reproduction number implied by an observed exponential growth rate when the generation interval follows a gamma distribution of stated mean and standard deviation (Wallinga-Lipsitch).
 
@@ -1621,7 +1621,7 @@ biomedical_science_ai999x.solve('bmed_epi_r_from_growth_rate', r=-5.787037037037
 
 <a id="bmed_epi_sis_prevalence"></a>
 
-### SIS epidemic model: prevalence at a time and the endemic level — `bmed_epi_sis_prevalence`
+### SIS epidemic model: prevalence at a time and the endemic level, `bmed_epi_sis_prevalence`
 
 The infected fraction of an SIS model (no immunity after recovery) at time t and the endemic equilibrium it approaches.
 
@@ -1670,7 +1670,7 @@ biomedical_science_ai999x.solve('bmed_epi_sis_prevalence', beta=1.15740740740740
 
 <a id="bmed_epi_reed_frost_final_size"></a>
 
-### Reed-Frost chain-binomial epidemic: distribution and mean of the final size — `bmed_epi_reed_frost_final_size`
+### Reed-Frost chain-binomial epidemic: distribution and mean of the final size, `bmed_epi_reed_frost_final_size`
 
 The probability distribution of the number of susceptibles eventually infected in a Reed-Frost chain-binomial epidemic in a small closed group, its mean and the chance of no spread.
 
@@ -1725,7 +1725,7 @@ biomedical_science_ai999x.solve('bmed_epi_reed_frost_final_size', n=10, m=2, p=0
 
 <a id="bmed_dx_roc_auc"></a>
 
-### ROC curve area of a diagnostic score (Mann-Whitney form) — `bmed_dx_roc_auc`
+### ROC curve area of a diagnostic score (Mann-Whitney form), `bmed_dx_roc_auc`
 
 The area under the ROC curve of a continuous diagnostic score from the scores of diseased and non-diseased subjects: the probability that a diseased subject scores higher (ties count one half), with the Mann-Whitney U.
 
@@ -1772,7 +1772,7 @@ biomedical_science_ai999x.solve('bmed_dx_roc_auc', scores_pos=[3, 4, 5, 5], scor
 
 <a id="bmed_dx_youden_cutoff"></a>
 
-### Optimal diagnostic cut-off by the Youden index — `bmed_dx_youden_cutoff`
+### Optimal diagnostic cut-off by the Youden index, `bmed_dx_youden_cutoff`
 
 The score threshold that maximises the Youden index J = sensitivity + specificity - 1 over all observed cut-offs, with the sensitivity and specificity there.
 
@@ -1821,7 +1821,7 @@ biomedical_science_ai999x.solve('bmed_dx_youden_cutoff', scores_pos=[12, 15, 18,
 
 <a id="bmed_dx_threshold_sensitivity_specificity"></a>
 
-### Sensitivity and specificity of a diagnostic score at a cut-off — `bmed_dx_threshold_sensitivity_specificity`
+### Sensitivity and specificity of a diagnostic score at a cut-off, `bmed_dx_threshold_sensitivity_specificity`
 
 The confusion-matrix counts, sensitivity and specificity of a continuous diagnostic score when scores at or above a threshold are called positive.
 
@@ -1881,7 +1881,7 @@ biomedical_science_ai999x.solve('bmed_dx_threshold_sensitivity_specificity', sco
 
 <a id="bmed_dx_sensitivity_specificity_ci"></a>
 
-### Sensitivity and specificity with Wilson score intervals — `bmed_dx_sensitivity_specificity_ci`
+### Sensitivity and specificity with Wilson score intervals, `bmed_dx_sensitivity_specificity_ci`
 
 Sensitivity and specificity of a diagnostic test from its 2x2 counts, each with a Wilson score confidence interval at the stated level.
 
@@ -1936,7 +1936,7 @@ biomedical_science_ai999x.solve('bmed_dx_sensitivity_specificity_ci', TP=18, FN=
 
 <a id="bmed_odds_ratio_ci"></a>
 
-### Odds ratio of a 2x2 exposure-outcome table with Woolf (logit) interval — `bmed_odds_ratio_ci`
+### Odds ratio of a 2x2 exposure-outcome table with Woolf (logit) interval, `bmed_odds_ratio_ci`
 
 The odds ratio of an exposure-outcome 2x2 table (case-control or cohort) with the Woolf logit confidence interval at the stated level.
 
@@ -1992,7 +1992,7 @@ biomedical_science_ai999x.solve('bmed_odds_ratio_ci', a=45, b=55, c=30, d=120, l
 
 <a id="bmed_relative_risk_ci"></a>
 
-### Relative risk (risk ratio) of a cohort 2x2 table with log (Katz) interval — `bmed_relative_risk_ci`
+### Relative risk (risk ratio) of a cohort 2x2 table with log (Katz) interval, `bmed_relative_risk_ci`
 
 The risk ratio of exposed to unexposed in a cohort 2x2 table with the log-scale (Katz) confidence interval at the stated level.
 
@@ -2043,7 +2043,7 @@ biomedical_science_ai999x.solve('bmed_relative_risk_ci', a=45, b=55, c=30, d=120
 
 <a id="bmed_nnt_ci"></a>
 
-### Absolute risk reduction and number needed to treat with Wald intervals — `bmed_nnt_ci`
+### Absolute risk reduction and number needed to treat with Wald intervals, `bmed_nnt_ci`
 
 The absolute risk reduction (control risk minus treated risk) of a two-arm trial with its Wald confidence interval, and the number needed to treat with the interval obtained by inverting it.
 
@@ -2098,7 +2098,7 @@ biomedical_science_ai999x.solve('bmed_nnt_ci', events_t=40, n_t=400, events_c=80
 
 <a id="bmed_incidence_rate_ratio_ci"></a>
 
-### Incidence rate ratio of two person-time groups with log-Wald interval — `bmed_incidence_rate_ratio_ci`
+### Incidence rate ratio of two person-time groups with log-Wald interval, `bmed_incidence_rate_ratio_ci`
 
 The ratio of the incidence rates (events per person-time) of two groups with the log-scale Wald confidence interval at the stated level.
 
@@ -2149,7 +2149,7 @@ biomedical_science_ai999x.solve('bmed_incidence_rate_ratio_ci', events1=12, time
 
 <a id="bmed_smr_exact_ci"></a>
 
-### Standardized mortality (incidence) ratio with exact Poisson interval — `bmed_smr_exact_ci`
+### Standardized mortality (incidence) ratio with exact Poisson interval, `bmed_smr_exact_ci`
 
 The standardized mortality or incidence ratio observed/expected with the exact (Garwood) Poisson confidence interval at the stated level.
 
@@ -2198,7 +2198,7 @@ biomedical_science_ai999x.solve('bmed_smr_exact_ci', observed=3, expected=7.5, l
 
 <a id="bmed_mantel_haenszel_odds_ratio"></a>
 
-### Mantel-Haenszel pooled odds ratio over strata with Robins-Breslow-Greenland interval — `bmed_mantel_haenszel_odds_ratio`
+### Mantel-Haenszel pooled odds ratio over strata with Robins-Breslow-Greenland interval, `bmed_mantel_haenszel_odds_ratio`
 
 The Mantel-Haenszel odds ratio pooled over strata of 2x2 tables (adjusting for a confounder), with the Robins-Breslow-Greenland confidence interval at the stated level.
 
@@ -2246,7 +2246,7 @@ biomedical_science_ai999x.solve('bmed_mantel_haenszel_odds_ratio', tables=[[25, 
 
 <a id="bmed_cohens_kappa"></a>
 
-### Cohen's kappa for agreement between two raters or two tests — `bmed_cohens_kappa`
+### Cohen's kappa for agreement between two raters or two tests, `bmed_cohens_kappa`
 
 Cohen's kappa (chance-corrected agreement) and the observed agreement of two raters or two diagnostic tests classifying the same subjects, from their k x k agreement table.
 
@@ -2296,7 +2296,7 @@ biomedical_science_ai999x.solve('bmed_cohens_kappa', counts=[[20, 5, 1], [4, 30,
 
 <a id="bmed_km_survival_median"></a>
 
-### Kaplan-Meier survival estimate at a time and median survival — `bmed_km_survival_median`
+### Kaplan-Meier survival estimate at a time and median survival, `bmed_km_survival_median`
 
 The Kaplan-Meier (product-limit) estimate of the survival probability at time t and the median survival time from follow-up times with event or censoring indicators.
 
@@ -2349,7 +2349,7 @@ biomedical_science_ai999x.solve('bmed_km_survival_median', times=[2, 3, 3, 5, 8,
 
 <a id="bmed_km_confidence_interval"></a>
 
-### Kaplan-Meier survival with log(-log) (exponential Greenwood) confidence interval — `bmed_km_confidence_interval`
+### Kaplan-Meier survival with log(-log) (exponential Greenwood) confidence interval, `bmed_km_confidence_interval`
 
 The Kaplan-Meier survival estimate at time t with its confidence interval on the log(-log) scale (Greenwood variance; the exponential Greenwood interval) at the stated level.
 
@@ -2400,7 +2400,7 @@ biomedical_science_ai999x.solve('bmed_km_confidence_interval', times=[2, 3, 3, 5
 
 <a id="bmed_nelson_aalen_hazard"></a>
 
-### Nelson-Aalen cumulative hazard at a time — `bmed_nelson_aalen_hazard`
+### Nelson-Aalen cumulative hazard at a time: `bmed_nelson_aalen_hazard`
 
 The Nelson-Aalen estimate of the cumulative hazard at time t from follow-up times with event or censoring indicators.
 
@@ -2447,7 +2447,7 @@ biomedical_science_ai999x.solve('bmed_nelson_aalen_hazard', times=[2, 3, 3, 5, 8
 
 <a id="bmed_logrank_test"></a>
 
-### Log-rank test comparing two survival curves — `bmed_logrank_test`
+### Log-rank test comparing two survival curves, `bmed_logrank_test`
 
 The log-rank (Mantel-Cox) chi-square statistic and p-value for equal survival in two groups from follow-up times and event indicators.
 
@@ -2496,7 +2496,7 @@ biomedical_science_ai999x.solve('bmed_logrank_test', times1=[5, 8, 12, 20, 25], 
 
 <a id="bmed_cox_hazard_ratio"></a>
 
-### Cox proportional-hazards model with one covariate: hazard ratio (Efron ties) — `bmed_cox_hazard_ratio`
+### Cox proportional-hazards model with one covariate: hazard ratio (Efron ties), `bmed_cox_hazard_ratio`
 
 The log hazard ratio, hazard ratio, its standard error and Wald confidence interval of a Cox proportional-hazards model with a single covariate, by maximum partial likelihood with Efron's handling of ties.
 
@@ -2548,7 +2548,7 @@ biomedical_science_ai999x.solve('bmed_cox_hazard_ratio', times=[2, 3, 3, 5, 8, 9
 
 <a id="bmed_exponential_survival_fit"></a>
 
-### Exponential survival model: hazard rate, mean and median survival (maximum likelihood) — `bmed_exponential_survival_fit`
+### Exponential survival model: hazard rate, mean and median survival (maximum likelihood), `bmed_exponential_survival_fit`
 
 The maximum-likelihood constant hazard of an exponential survival model from censored follow-up data, with the implied mean and median survival times.
 
@@ -2596,7 +2596,7 @@ biomedical_science_ai999x.solve('bmed_exponential_survival_fit', times=[2.5, 3.1
 
 <a id="bmed_exponential_hazard_ratio"></a>
 
-### Hazard ratio of two exponential survival groups with Wald interval — `bmed_exponential_hazard_ratio`
+### Hazard ratio of two exponential survival groups with Wald interval, `bmed_exponential_hazard_ratio`
 
 The ratio of the maximum-likelihood constant hazards of two groups (group 1 relative to group 2) with the log-scale Wald confidence interval.
 
@@ -2647,7 +2647,7 @@ biomedical_science_ai999x.solve('bmed_exponential_hazard_ratio', times1=[5, 8, 1
 
 <a id="bmed_restricted_mean_survival_time"></a>
 
-### Restricted mean survival time from the Kaplan-Meier curve — `bmed_restricted_mean_survival_time`
+### Restricted mean survival time from the Kaplan-Meier curve, `bmed_restricted_mean_survival_time`
 
 The restricted mean survival time up to tau: the area under the Kaplan-Meier survival curve from 0 to tau.
 
@@ -2694,7 +2694,7 @@ biomedical_science_ai999x.solve('bmed_restricted_mean_survival_time', times=[2, 
 
 <a id="bmed_elbow_lever_muscle_force"></a>
 
-### Static lever model of the forearm: muscle force and joint reaction — `bmed_elbow_lever_muscle_force`
+### Static lever model of the forearm: muscle force and joint reaction, `bmed_elbow_lever_muscle_force`
 
 For a horizontal forearm held in static equilibrium, the elbow-flexor muscle force and the joint reaction force from the hand load, the forearm weight, their distances from the elbow and the muscle's insertion distance and angle.
 
@@ -2752,7 +2752,7 @@ biomedical_science_ai999x.solve('bmed_elbow_lever_muscle_force', W=100.0, d_load
 
 <a id="bmed_poiseuille_vessel_flow"></a>
 
-### Poiseuille flow in a blood vessel: flow rate, mean velocity, wall shear stress, resistance — `bmed_poiseuille_vessel_flow`
+### Poiseuille flow in a blood vessel: flow rate, mean velocity, wall shear stress, resistance, `bmed_poiseuille_vessel_flow`
 
 Laminar (Hagen-Poiseuille) flow of a Newtonian fluid through a rigid vessel: volume flow rate, mean velocity, wall shear stress and hydraulic resistance from the pressure drop, radius, length and viscosity.
 
@@ -2780,7 +2780,7 @@ $$
 
 ![Poiseuille flow in a vessel (Δp = 533](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-poiseuille-vessel-flow-flow)
 
-*Poiseuille flow in a vessel (Δp = 533.29 Pa over L = 10 cm, viscosity 3.5 mPa·s): top, the parabolic velocity profile drawn from the returned mean velocity 76.1842 cm/s (centre velocity twice the mean, derived; arrows not to the length scale of the vessel); bottom, flow against radius, 36 runs — it grows with the fourth power of the radius. Marked: Q = 9.57359 mL/s at r = 2 mm, hydraulic resistance 5.5704e+07 Pa·s/m³.*
+*Poiseuille flow in a vessel (Δp = 533.29 Pa over L = 10 cm, viscosity 3.5 mPa·s): top, the parabolic velocity profile drawn from the returned mean velocity 76.1842 cm/s (centre velocity twice the mean, derived; arrows not to the length scale of the vessel); bottom, flow against radius, 36 runs, it grows with the fourth power of the radius. Marked: Q = 9.57359 mL/s at r = 2 mm, hydraulic resistance 5.5704e+07 Pa·s/m³.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_poiseuille_vessel_flow', dP=533.28954966, r=0.002, L=0.1, mu=0.0035)
@@ -2803,7 +2803,7 @@ biomedical_science_ai999x.solve('bmed_poiseuille_vessel_flow', dP=50.0, r=9.9999
 
 <a id="bmed_windkessel_diastolic_decay"></a>
 
-### Two-element Windkessel: diastolic pressure decay — `bmed_windkessel_diastolic_decay`
+### Two-element Windkessel: diastolic pressure decay, `bmed_windkessel_diastolic_decay`
 
 The arterial pressure of a two-element Windkessel model during diastole (no inflow), decaying from P0 towards the venous pressure with time constant RC.
 
@@ -2852,7 +2852,7 @@ biomedical_science_ai999x.solve('bmed_windkessel_diastolic_decay', P0=13332.2387
 
 <a id="bmed_windkessel_input_impedance"></a>
 
-### Windkessel models (two- and three-element): input impedance at a frequency — `bmed_windkessel_input_impedance`
+### Windkessel models (two- and three-element): input impedance at a frequency, `bmed_windkessel_input_impedance`
 
 The modulus and phase of the input impedance of a two-element (R, C) or three-element (Zc, R, C) Windkessel model of the arterial tree at a stated frequency.
 
@@ -2903,7 +2903,7 @@ biomedical_science_ai999x.solve('bmed_windkessel_input_impedance', model='three_
 
 <a id="bmed_kelvin_voigt_creep"></a>
 
-### Kelvin-Voigt viscoelastic tissue model: creep strain under constant stress — `bmed_kelvin_voigt_creep`
+### Kelvin-Voigt viscoelastic tissue model: creep strain under constant stress, `bmed_kelvin_voigt_creep`
 
 The strain of a Kelvin-Voigt (spring parallel to dashpot) tissue model a time t after a constant stress is applied.
 
@@ -2951,7 +2951,7 @@ biomedical_science_ai999x.solve('bmed_kelvin_voigt_creep', sigma=2000000.0, E=10
 
 <a id="bmed_sls_creep"></a>
 
-### Standard linear solid (Zener) tissue model: creep under constant stress — `bmed_sls_creep`
+### Standard linear solid (Zener) tissue model: creep under constant stress, `bmed_sls_creep`
 
 The creep strain of a standard linear solid (a spring E_inf parallel to a Maxwell arm E1-eta) a time t after a constant stress is applied, and the final strain.
 
@@ -3001,7 +3001,7 @@ biomedical_science_ai999x.solve('bmed_sls_creep', sigma=1000000.0, E_inf=2000000
 
 <a id="bmed_sls_stress_relaxation"></a>
 
-### Standard linear solid (Zener) tissue model: stress relaxation at constant strain — `bmed_sls_stress_relaxation`
+### Standard linear solid (Zener) tissue model: stress relaxation at constant strain, `bmed_sls_stress_relaxation`
 
 The stress of a standard linear solid a time t after a step strain eps0 is imposed, and the relaxed (equilibrium) stress.
 
@@ -3051,7 +3051,7 @@ biomedical_science_ai999x.solve('bmed_sls_stress_relaxation', eps0=0.01, E_inf=2
 
 <a id="bmed_indicator_dilution_cardiac_output"></a>
 
-### Cardiac output by indicator dilution (Stewart-Hamilton) — `bmed_indicator_dilution_cardiac_output`
+### Cardiac output by indicator dilution (Stewart-Hamilton), `bmed_indicator_dilution_cardiac_output`
 
 The cardiac output (volume flow) from the mass of an injected indicator and its sampled first-pass concentration curve, by the Stewart-Hamilton principle with a trapezoidal area.
 
@@ -3099,7 +3099,7 @@ biomedical_science_ai999x.solve('bmed_indicator_dilution_cardiac_output', m=9.99
 
 <a id="bmed_respiratory_mechanics_fit"></a>
 
-### Single-compartment respiratory mechanics: resistance and compliance by least squares — `bmed_respiratory_mechanics_fit`
+### Single-compartment respiratory mechanics: resistance and compliance by least squares, `bmed_respiratory_mechanics_fit`
 
 Airway resistance, respiratory compliance and the end-expiratory pressure of the single-compartment equation of motion $P = R$ $Q + V/C + P_{0}$, fitted by least squares to sampled pressure, flow and volume.
 
@@ -3148,7 +3148,7 @@ biomedical_science_ai999x.solve('bmed_respiratory_mechanics_fit', P=[8, 12.5, 16
 
 <a id="bmed_ghk_voltage"></a>
 
-### Goldman-Hodgkin-Katz voltage equation: membrane potential from K, Na and Cl — `bmed_ghk_voltage`
+### Goldman-Hodgkin-Katz voltage equation: membrane potential from K, Na and Cl, `bmed_ghk_voltage`
 
 The resting membrane potential of the Goldman-Hodgkin-Katz voltage equation from the relative permeabilities and the inside and outside concentrations of K+, Na+ and Cl-.
 
@@ -3203,7 +3203,7 @@ biomedical_science_ai999x.solve('bmed_ghk_voltage', T=279.45, PK=1, PNa=0.03, PC
 
 <a id="bmed_ghk_current_density"></a>
 
-### Goldman-Hodgkin-Katz current equation: ionic current density through a membrane — `bmed_ghk_current_density`
+### Goldman-Hodgkin-Katz current equation: ionic current density through a membrane, `bmed_ghk_current_density`
 
 The current density carried by one ion species through a membrane of given permeability at a stated membrane potential, from the GHK current (constant-field) equation; outward current positive.
 
@@ -3254,7 +3254,7 @@ biomedical_science_ai999x.solve('bmed_ghk_current_density', P=5e-09, z=2, C_in=0
 
 <a id="bmed_lif_firing_rate"></a>
 
-### Leaky integrate-and-fire neuron: firing rate under constant current — `bmed_lif_firing_rate`
+### Leaky integrate-and-fire neuron: firing rate under constant current, `bmed_lif_firing_rate`
 
 The interspike interval and firing rate of a leaky integrate-and-fire neuron driven by a constant current, with reset and an absolute refractory period.
 
@@ -3307,7 +3307,7 @@ biomedical_science_ai999x.solve('bmed_lif_firing_rate', tau_m=0.01, R_m=50000000
 
 <a id="bmed_lif_subthreshold_voltage"></a>
 
-### Passive membrane (leaky integrator): voltage at a time under constant current — `bmed_lif_subthreshold_voltage`
+### Passive membrane (leaky integrator): voltage at a time under constant current, `bmed_lif_subthreshold_voltage`
 
 The membrane potential of a passive RC membrane (the subthreshold leaky integrate-and-fire neuron) a time t after a constant current starts, from its initial potential.
 
@@ -3357,7 +3357,7 @@ biomedical_science_ai999x.solve('bmed_lif_subthreshold_voltage', tau_m=0.01, R_m
 
 <a id="bmed_cable_steady_state"></a>
 
-### Passive cable (dendrite or axon): steady-state voltage along it and input resistance — `bmed_cable_steady_state`
+### Passive cable (dendrite or axon): steady-state voltage along it and input resistance, `bmed_cable_steady_state`
 
 The steady-state voltage at distance x along a passive cylindrical cable held at V0 at $x = 0$, and the input resistance there, for a sealed end, a killed (short-circuited) end or a semi-infinite cable.
 
@@ -3415,7 +3415,7 @@ biomedical_science_ai999x.solve('bmed_cable_steady_state', Rm=1.0, Ri=2.0, d=4e-
 
 <a id="bmed_hh_gating_steady_state"></a>
 
-### Hodgkin-Huxley model: steady-state gating variables at a membrane potential — `bmed_hh_gating_steady_state`
+### Hodgkin-Huxley model: steady-state gating variables at a membrane potential, `bmed_hh_gating_steady_state`
 
 The steady-state values of the Hodgkin-Huxley gating variables m, h and n at a clamped membrane potential, from the 1952 squid-axon rate functions.
 
@@ -3462,7 +3462,7 @@ biomedical_science_ai999x.solve('bmed_hh_gating_steady_state', V=-0.02)
 
 <a id="bmed_hh_resting_potential"></a>
 
-### Hodgkin-Huxley model: zero-current steady (resting) membrane potential — `bmed_hh_resting_potential`
+### Hodgkin-Huxley model: zero-current steady (resting) membrane potential, `bmed_hh_resting_potential`
 
 The membrane potential at which the steady-state Na, K and leak currents of the Hodgkin-Huxley model sum to zero (the resting potential), from the maximal conductances and reversal potentials.
 
@@ -3512,7 +3512,7 @@ biomedical_science_ai999x.solve('bmed_hh_resting_potential', gNa=1000.0, gK=400.
 
 <a id="bmed_hh_potassium_conductance_clamp"></a>
 
-### Hodgkin-Huxley model: potassium conductance after a voltage-clamp step — `bmed_hh_potassium_conductance_clamp`
+### Hodgkin-Huxley model: potassium conductance after a voltage-clamp step, `bmed_hh_potassium_conductance_clamp`
 
 The potassium conductance gK = gK_max $n^{4}$ and the gate n a time t after the membrane is stepped from a holding potential (at steady state) to a new clamped potential, in the Hodgkin-Huxley model.
 
@@ -3561,7 +3561,7 @@ biomedical_science_ai999x.solve('bmed_hh_potassium_conductance_clamp', gK_max=36
 
 <a id="bmed_postsynaptic_potential"></a>
 
-### Postsynaptic potential of a passive membrane driven by an exponentially decaying synaptic current — `bmed_postsynaptic_potential`
+### Postsynaptic potential of a passive membrane driven by an exponentially decaying synaptic current, `bmed_postsynaptic_potential`
 
 The postsynaptic potential of a passive RC membrane receiving a synaptic current I0 exp(-t/tau_s) at $t = 0$: its value at time t, the time of its peak and the peak value.
 
@@ -3612,7 +3612,7 @@ biomedical_science_ai999x.solve('bmed_postsynaptic_potential', tau_m=0.01, tau_s
 
 <a id="bmed_fitzhugh_nagumo_fixed_point"></a>
 
-### FitzHugh-Nagumo neuron model: fixed point and its stability — `bmed_fitzhugh_nagumo_fixed_point`
+### FitzHugh-Nagumo neuron model: fixed point and its stability, `bmed_fitzhugh_nagumo_fixed_point`
 
 The resting (fixed) point of the FitzHugh-Nagumo model v' = $v - v^{3}/3 - w + I$, w' = eps (v + a - b w), the trace and determinant of its Jacobian and whether it is stable (resting) or unstable (repetitive firing).
 
@@ -3645,7 +3645,7 @@ $$
 
 ![true when the fixed point is stable (stable) over a (parameter a) from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-fitzhugh-nagumo-fixed-point-decision)
 
-*true when the fixed point is stable (stable) over a (parameter a) from 0.07 to 7 and b (parameter b (0 < b < 1)) from 0.08 to 8 (logarithmic axes): each of the 31 × 21 cells is one run of biomedical-science-ai999x, coloured by the verdict it returned — yes: 166 cells, no: 175 cells; blank cells: inputs the capability refuses. Other inputs as in the worked example: eps = 0.08, I = 0. Marked: the worked example, a = 0.7, b = 0.8 → yes.*
+*true when the fixed point is stable (stable) over a (parameter a) from 0.07 to 7 and b (parameter b (0 < b < 1)) from 0.08 to 8 (logarithmic axes): each of the 31 × 21 cells is one run of biomedical-science-ai999x, coloured by the verdict it returned, yes: 166 cells, no: 175 cells; blank cells: inputs the capability refuses. Other inputs as in the worked example: eps = 0.08, I = 0. Marked: the worked example, a = 0.7, b = 0.8 → yes.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_fitzhugh_nagumo_fixed_point', a=0.7, b=0.8, eps=0.08, I=0)
@@ -3669,7 +3669,7 @@ biomedical_science_ai999x.solve('bmed_fitzhugh_nagumo_fixed_point', a=0.7, b=0.8
 
 <a id="bmed_xray_attenuation_layers"></a>
 
-### X-ray attenuation through tissue layers (narrow monoenergetic beam) — `bmed_xray_attenuation_layers`
+### X-ray attenuation through tissue layers (narrow monoenergetic beam), `bmed_xray_attenuation_layers`
 
 The transmitted fraction and intensity of a narrow monoenergetic X-ray beam crossing successive tissue layers, from each layer's mass attenuation coefficient, density and thickness.
 
@@ -3718,7 +3718,7 @@ biomedical_science_ai999x.solve('bmed_xray_attenuation_layers', I0=50.0, mu_rho=
 
 <a id="bmed_mri_spin_echo_signal"></a>
 
-### MRI spin-echo signal from T1, T2, TR and TE (simplified model) — `bmed_mri_spin_echo_signal`
+### MRI spin-echo signal from T1, T2, TR and TE (simplified model), `bmed_mri_spin_echo_signal`
 
 The steady-state spin-echo signal $S = M_{0}$ (1 - exp(-TR/T1)) exp(-TE/T2) of a tissue with relaxation times T1 and T2, for repetition time TR and echo time TE.
 
@@ -3768,7 +3768,7 @@ biomedical_science_ai999x.solve('bmed_mri_spin_echo_signal', M0=0.8, TR=3.0, TE=
 
 <a id="bmed_mri_inversion_recovery"></a>
 
-### MRI inversion recovery: longitudinal magnetisation at TI and the null point — `bmed_mri_inversion_recovery`
+### MRI inversion recovery: longitudinal magnetisation at TI and the null point, `bmed_mri_inversion_recovery`
 
 The longitudinal magnetisation (fraction of M0, signed) at inversion time TI in a repeated inversion-recovery sequence with repetition time TR, and the inversion time that nulls the tissue.
 
@@ -3816,7 +3816,7 @@ biomedical_science_ai999x.solve('bmed_mri_inversion_recovery', T1=4.0, TR=9.0, T
 
 <a id="bmed_mri_spoiled_gradient_echo"></a>
 
-### MRI spoiled gradient-echo signal (Ernst equation) — `bmed_mri_spoiled_gradient_echo`
+### MRI spoiled gradient-echo signal (Ernst equation), `bmed_mri_spoiled_gradient_echo`
 
 The steady-state signal of a spoiled gradient-echo sequence with flip angle alpha, repetition time TR and echo time TE for a tissue with T1 and $T_{2} .$
 
@@ -3866,7 +3866,7 @@ biomedical_science_ai999x.solve('bmed_mri_spoiled_gradient_echo', M0=0.9, TR=0.0
 
 <a id="bmed_ultrasound_interface"></a>
 
-### Ultrasound reflection and transmission at a tissue interface (normal incidence) — `bmed_ultrasound_interface`
+### Ultrasound reflection and transmission at a tissue interface (normal incidence), `bmed_ultrasound_interface`
 
 The intensity reflection and transmission coefficients and the pressure amplitude coefficients of an ultrasound wave meeting a flat interface between two media at normal incidence.
 
@@ -3919,7 +3919,7 @@ biomedical_science_ai999x.solve('bmed_ultrasound_interface', Z1=1380000.0, Z2=42
 
 <a id="bmed_ultrasound_matching_layer"></a>
 
-### Ultrasound transmission through a matching layer (normal incidence) — `bmed_ultrasound_matching_layer`
+### Ultrasound transmission through a matching layer (normal incidence), `bmed_ultrasound_matching_layer`
 
 The intensity transmission coefficient from a transducer (impedance Z1) through a matching layer (impedance Zm, thickness d, sound speed c_m) into tissue (Z2) at frequency f, and the layer's phase thickness.
 
@@ -3970,7 +3970,7 @@ biomedical_science_ai999x.solve('bmed_ultrasound_matching_layer', Z1=30000000.0,
 
 <a id="bmed_gaussian_psf_mtf"></a>
 
-### Imaging resolution: MTF of a Gaussian point-spread function — `bmed_gaussian_psf_mtf`
+### Imaging resolution: MTF of a Gaussian point-spread function, `bmed_gaussian_psf_mtf`
 
 The modulation transfer function at a spatial frequency of an imaging system with a Gaussian point-spread function of stated FWHM, and the frequency at which the MTF falls to 50 %.
 
@@ -4021,7 +4021,7 @@ biomedical_science_ai999x.solve('bmed_gaussian_psf_mtf', fwhm=0.004, f=100.0)
 
 <a id="bmed_mri_adc_fit"></a>
 
-### Diffusion MRI: apparent diffusion coefficient from signals at several b-values — `bmed_mri_adc_fit`
+### Diffusion MRI: apparent diffusion coefficient from signals at several b-values, `bmed_mri_adc_fit`
 
 The apparent diffusion coefficient and the $b = 0$ signal from diffusion-weighted signals at two or more b-values, by a least-squares fit of ln S against b (mono-exponential decay).
 
@@ -4068,7 +4068,7 @@ biomedical_science_ai999x.solve('bmed_mri_adc_fit', b=[0, 200, 500, 1000], S=[98
 
 <a id="bmed_mri_t2_fit"></a>
 
-### MRI multi-echo T2 estimate (log-linear fit) — `bmed_mri_t2_fit`
+### MRI multi-echo T2 estimate (log-linear fit), `bmed_mri_t2_fit`
 
 The transverse relaxation time T2 and the extrapolated signal at $TE = 0$ from signals at several echo times, by a least-squares fit of ln S against TE.
 
@@ -4115,7 +4115,7 @@ biomedical_science_ai999x.solve('bmed_mri_t2_fit', TE=[20, 100], S=[800, 260])
 
 <a id="bmed_snr_averaging"></a>
 
-### Signal-to-noise ratio gained by signal averaging — `bmed_snr_averaging`
+### Signal-to-noise ratio gained by signal averaging, `bmed_snr_averaging`
 
 The signal-to-noise ratio after averaging N acquisitions with independent noise, SNR_N = SNR_1 sqrt(N), or the smallest number of averages that reaches a target SNR.
 
@@ -4169,7 +4169,7 @@ biomedical_science_ai999x.solve('bmed_snr_averaging', SNR1=5, SNR_target=20)
 
 <a id="bmed_mri_ernst_angle"></a>
 
-### MRI Ernst angle (the flip angle of the largest spoiled gradient-echo signal) — `bmed_mri_ernst_angle`
+### MRI Ernst angle (the flip angle of the largest spoiled gradient-echo signal), `bmed_mri_ernst_angle`
 
 The Ernst angle alpha_E = arccos(exp(-TR/T1)) that maximises the steady-state signal of a spoiled gradient-echo sequence, and that largest signal as a fraction of M0 (T2* decay excluded).
 
@@ -4222,7 +4222,7 @@ biomedical_science_ai999x.solve('bmed_mri_ernst_angle', TR=0.5, T1=0.9)
 
 <a id="bmed_epi_seir_peak"></a>
 
-### SEIR epidemic model: peak prevalence and the time of the peak — `bmed_epi_seir_peak`
+### SEIR epidemic model: peak prevalence and the time of the peak, `bmed_epi_seir_peak`
 
 The largest infectious fraction of an SEIR epidemic and the time at which it occurs, from the transmission, incubation and recovery rates and the initial fractions.
 
@@ -4276,7 +4276,7 @@ biomedical_science_ai999x.solve('bmed_epi_seir_peak', beta=3.472222222222222e-06
 
 <a id="bmed_bmi"></a>
 
-### Body mass index (a calculation, not medical advice) — `bmed_bmi`
+### Body mass index (a calculation, not medical advice), `bmed_bmi`
 
 The body mass index BMI = m/h^2 $(kg/m^{2})$ and BMI prime (BMI/25) as a calculation from mass and height; no category or health advice is given.
 
@@ -4328,7 +4328,7 @@ biomedical_science_ai999x.solve('bmed_bmi', m=90.0, h=1.8)
 
 <a id="bmed_bmr"></a>
 
-### Basal metabolic rate by a stated regression (a calculation, not medical advice) — `bmed_bmr`
+### Basal metabolic rate by a stated regression (a calculation, not medical advice), `bmed_bmr`
 
 The basal metabolic rate estimated by the Mifflin-St Jeor (1990) or the revised Harris-Benedict (Roza and Shizgal 1984) regression from mass, height, age and sex, in kcal/day, W and MJ/day; a model calculation, not dietary or medical advice.
 
@@ -4384,7 +4384,7 @@ biomedical_science_ai999x.solve('bmed_bmr', m=60.0, h=1.6500000000000001, age=45
 
 <a id="bmed_hounsfield_units"></a>
 
-### CT number in Hounsfield units — `bmed_hounsfield_units`
+### CT number in Hounsfield units: `bmed_hounsfield_units`
 
 The CT number $HU = 1000$ (mu - mu_water)/(mu_water - mu_air) of a material from its linear attenuation coefficient and those of water and air (air 0 by default, then 1000 (mu - mu_water)/mu_water).
 
@@ -4433,7 +4433,7 @@ biomedical_science_ai999x.solve('bmed_hounsfield_units', mu=20.0, mu_water=19.0,
 
 <a id="bmed_larmor_frequency"></a>
 
-### Larmor (precession) frequency in a magnetic field — `bmed_larmor_frequency`
+### Larmor (precession) frequency in a magnetic field, `bmed_larmor_frequency`
 
 The Larmor frequency f = (gamma/2 pi) B of nuclear spins in a field B: protons by default (42.577478461 MHz/T, CODATA 2022), or another nucleus with its stated $\gamma/2$ pi in MHz/T.
 
@@ -4482,7 +4482,7 @@ biomedical_science_ai999x.solve('bmed_larmor_frequency', B=3.0, gamma_bar=17.235
 
 <a id="bmed_ultrasound_wavelength"></a>
 
-### Ultrasound wavelength in tissue — `bmed_ultrasound_wavelength`
+### Ultrasound wavelength in tissue: `bmed_ultrasound_wavelength`
 
 The wavelength $\lambda = c/f$ of ultrasound of frequency f in a medium with speed of sound c (1540 m/s, the soft-tissue convention, by default), with the period and wavenumber.
 
