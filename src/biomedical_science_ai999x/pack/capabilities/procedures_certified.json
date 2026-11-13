@@ -85,9 +85,19 @@
   "bmed_bmr",
   "bmed_hounsfield_units",
   "bmed_larmor_frequency",
-  "bmed_ultrasound_wavelength"
+  "bmed_ultrasound_wavelength",
+  "bmed_epi_basic_rates",
+  "bmed_dx_predictive_values",
+  "bmed_epi_herd_immunity",
+  "bmed_vaccine_efficacy",
+  "bmed_dose_weight_based",
+  "bmed_dose_tablets",
+  "bmed_dose_liquid_volume",
+  "bmed_reconstitution_concentration",
+  "bmed_iv_flow_rate",
+  "bmed_iv_rate_from_dose_rate"
  ],
- "generated": "2026-10-24",
+ "generated": "2026-11-13",
  "tool": "tools/certify_procedures.py",
  "report": "release/procedure_certification.json",
  "weak_references": {

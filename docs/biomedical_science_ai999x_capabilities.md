@@ -19,9 +19,10 @@ result.show()
 | topic | capabilities |
 |---|---|
 | Biomechanics | [Static lever model of the forearm: muscle force and joint reaction](#bmed_elbow_lever_muscle_force), [Poiseuille flow in a blood vessel: flow rate, mean velocity, wall shear stress, resistance](#bmed_poiseuille_vessel_flow), [Two-element Windkessel: diastolic pressure decay](#bmed_windkessel_diastolic_decay), [Windkessel models (two- and three-element): input impedance at a frequency](#bmed_windkessel_input_impedance), [Kelvin-Voigt viscoelastic tissue model: creep strain under constant stress](#bmed_kelvin_voigt_creep), [Standard linear solid (Zener) tissue model: creep under constant stress](#bmed_sls_creep), [Standard linear solid (Zener) tissue model: stress relaxation at constant strain](#bmed_sls_stress_relaxation), [Cardiac output by indicator dilution (Stewart-Hamilton)](#bmed_indicator_dilution_cardiac_output), [Single-compartment respiratory mechanics: resistance and compliance by least squares](#bmed_respiratory_mechanics_fit), [Body mass index (a calculation, not medical advice)](#bmed_bmi), [Basal metabolic rate by a stated regression (a calculation, not medical advice)](#bmed_bmr) |
-| Diagnostic test statistics | [ROC curve area of a diagnostic score (Mann-Whitney form)](#bmed_dx_roc_auc), [Optimal diagnostic cut-off by the Youden index](#bmed_dx_youden_cutoff), [Sensitivity and specificity of a diagnostic score at a cut-off](#bmed_dx_threshold_sensitivity_specificity), [Sensitivity and specificity with Wilson score intervals](#bmed_dx_sensitivity_specificity_ci), [Cohen's kappa for agreement between two raters or two tests](#bmed_cohens_kappa) |
-| Epidemic models | [SIR epidemic model: final size (final susceptible fraction and attack fraction)](#bmed_epi_sir_final_size), [SEIR epidemic model: final size](#bmed_epi_seir_final_size), [SIR epidemic model: peak prevalence and the time of the peak](#bmed_epi_sir_peak), [SEIR epidemic model: initial exponential growth rate from R0](#bmed_epi_seir_growth_rate), [Reproduction number from an epidemic growth rate (gamma-distributed generation interval)](#bmed_epi_r_from_growth_rate), [SIS epidemic model: prevalence at a time and the endemic level](#bmed_epi_sis_prevalence), [Reed-Frost chain-binomial epidemic: distribution and mean of the final size](#bmed_epi_reed_frost_final_size), [SEIR epidemic model: peak prevalence and the time of the peak](#bmed_epi_seir_peak) |
-| Epidemiological measures of association | [Odds ratio of a 2x2 exposure-outcome table with Woolf (logit) interval](#bmed_odds_ratio_ci), [Relative risk (risk ratio) of a cohort 2x2 table with log (Katz) interval](#bmed_relative_risk_ci), [Absolute risk reduction and number needed to treat with Wald intervals](#bmed_nnt_ci), [Incidence rate ratio of two person-time groups with log-Wald interval](#bmed_incidence_rate_ratio_ci), [Standardized mortality (incidence) ratio with exact Poisson interval](#bmed_smr_exact_ci), [Mantel-Haenszel pooled odds ratio over strata with Robins-Breslow-Greenland interval](#bmed_mantel_haenszel_odds_ratio) |
+| Diagnostic test statistics | [ROC curve area of a diagnostic score (Mann-Whitney form)](#bmed_dx_roc_auc), [Optimal diagnostic cut-off by the Youden index](#bmed_dx_youden_cutoff), [Sensitivity and specificity of a diagnostic score at a cut-off](#bmed_dx_threshold_sensitivity_specificity), [Sensitivity and specificity with Wilson score intervals](#bmed_dx_sensitivity_specificity_ci), [Cohen's kappa for agreement between two raters or two tests](#bmed_cohens_kappa), [Predictive values and likelihood ratios of a diagnostic test](#bmed_dx_predictive_values) |
+| Dosage calculations | [Weight-based dose (dosage arithmetic, not medical advice)](#bmed_dose_weight_based), [Tablets to give: desired over have (dosage arithmetic, not medical advice)](#bmed_dose_tablets), [Volume of a liquid to give: desired over have (dosage arithmetic, not medical advice)](#bmed_dose_liquid_volume), [Reconstituted powder: concentration and volume to give (dosage arithmetic, not medical advice)](#bmed_reconstitution_concentration), [IV flow rate: mL/h, drops per minute and infusion time (arithmetic, not medical advice)](#bmed_iv_flow_rate), [Infusion pump rate from a dose rate (arithmetic, not medical advice)](#bmed_iv_rate_from_dose_rate) |
+| Epidemic models | [SIR epidemic model: final size (final susceptible fraction and attack fraction)](#bmed_epi_sir_final_size), [SEIR epidemic model: final size](#bmed_epi_seir_final_size), [SIR epidemic model: peak prevalence and the time of the peak](#bmed_epi_sir_peak), [SEIR epidemic model: initial exponential growth rate from R0](#bmed_epi_seir_growth_rate), [Reproduction number from an epidemic growth rate (gamma-distributed generation interval)](#bmed_epi_r_from_growth_rate), [SIS epidemic model: prevalence at a time and the endemic level](#bmed_epi_sis_prevalence), [Reed-Frost chain-binomial epidemic: distribution and mean of the final size](#bmed_epi_reed_frost_final_size), [SEIR epidemic model: peak prevalence and the time of the peak](#bmed_epi_seir_peak), [Herd-immunity threshold and critical vaccination coverage](#bmed_epi_herd_immunity) |
+| Epidemiological measures of association | [Odds ratio of a 2x2 exposure-outcome table with Woolf (logit) interval](#bmed_odds_ratio_ci), [Relative risk (risk ratio) of a cohort 2x2 table with log (Katz) interval](#bmed_relative_risk_ci), [Absolute risk reduction and number needed to treat with Wald intervals](#bmed_nnt_ci), [Incidence rate ratio of two person-time groups with log-Wald interval](#bmed_incidence_rate_ratio_ci), [Standardized mortality (incidence) ratio with exact Poisson interval](#bmed_smr_exact_ci), [Mantel-Haenszel pooled odds ratio over strata with Robins-Breslow-Greenland interval](#bmed_mantel_haenszel_odds_ratio), [Basic epidemiological rates: incidence, attack rate, prevalence, case fatality and mortality](#bmed_epi_basic_rates), [Vaccine efficacy from attack rates](#bmed_vaccine_efficacy) |
 | Medical-imaging physics | [X-ray attenuation through tissue layers (narrow monoenergetic beam)](#bmed_xray_attenuation_layers), [MRI spin-echo signal from T1, T2, TR and TE (simplified model)](#bmed_mri_spin_echo_signal), [MRI inversion recovery: longitudinal magnetisation at TI and the null point](#bmed_mri_inversion_recovery), [MRI spoiled gradient-echo signal (Ernst equation)](#bmed_mri_spoiled_gradient_echo), [Ultrasound reflection and transmission at a tissue interface (normal incidence)](#bmed_ultrasound_interface), [Ultrasound transmission through a matching layer (normal incidence)](#bmed_ultrasound_matching_layer), [Imaging resolution: MTF of a Gaussian point-spread function](#bmed_gaussian_psf_mtf), [Diffusion MRI: apparent diffusion coefficient from signals at several b-values](#bmed_mri_adc_fit), [MRI multi-echo T2 estimate (log-linear fit)](#bmed_mri_t2_fit), [Signal-to-noise ratio gained by signal averaging](#bmed_snr_averaging), [MRI Ernst angle (the flip angle of the largest spoiled gradient-echo signal)](#bmed_mri_ernst_angle), [CT number in Hounsfield units](#bmed_hounsfield_units), [Larmor (precession) frequency in a magnetic field](#bmed_larmor_frequency), [Ultrasound wavelength in tissue](#bmed_ultrasound_wavelength) |
 | Neuron models | [Goldman-Hodgkin-Katz voltage equation: membrane potential from K, Na and Cl](#bmed_ghk_voltage), [Goldman-Hodgkin-Katz current equation: ionic current density through a membrane](#bmed_ghk_current_density), [Leaky integrate-and-fire neuron: firing rate under constant current](#bmed_lif_firing_rate), [Passive membrane (leaky integrator): voltage at a time under constant current](#bmed_lif_subthreshold_voltage), [Passive cable (dendrite or axon): steady-state voltage along it and input resistance](#bmed_cable_steady_state), [Hodgkin-Huxley model: steady-state gating variables at a membrane potential](#bmed_hh_gating_steady_state), [Hodgkin-Huxley model: zero-current steady (resting) membrane potential](#bmed_hh_resting_potential), [Hodgkin-Huxley model: potassium conductance after a voltage-clamp step](#bmed_hh_potassium_conductance_clamp), [Postsynaptic potential of a passive membrane driven by an exponentially decaying synaptic current](#bmed_postsynaptic_potential), [FitzHugh-Nagumo neuron model: fixed point and its stability](#bmed_fitzhugh_nagumo_fixed_point) |
 | Pharmacokinetic data analysis | [Elimination rate constant and half-life from concentration data (log-linear fit)](#bmed_pk_terminal_half_life_fit), [AUC from concentration-time data by the trapezoidal rule](#bmed_pk_auc_trapezoid), [Non-compartmental analysis of an IV bolus profile (AUC, lambda z, half-life, clearance, Vz)](#bmed_pk_nca_iv_bolus), [Absolute bioavailability from IV and oral concentration profiles (a model calculation, not medical advice)](#bmed_pk_bioavailability_from_profiles) |
@@ -152,6 +153,16 @@ Call `solve("<id>", **inputs)` with plain numbers; the result's `values` holds e
 | bmed_hounsfield_units | CT number in Hounsfield units | mu, mu_water, mu_air | HU, mu_rel |
 | bmed_larmor_frequency | Larmor (precession) frequency in a magnetic field | B, gamma_bar | f, f_MHz, omega |
 | bmed_ultrasound_wavelength | Ultrasound wavelength in tissue | f, c | wavelength, wavelength_mm, period, k |
+| bmed_epi_basic_rates | Basic epidemiological rates: incidence, attack rate, prevalence, case fatality and mortality | cases, population, prevalent, deaths, period | incidence_proportion, incidence_per_100000, incidence_rate, incidence_per_100000_person_years, prevalence, prevalence_per_100000, case_fatality, mortality_per_100000, mortality_per_100000_person_years |
+| bmed_dx_predictive_values | Predictive values and likelihood ratios of a diagnostic test | sensitivity, specificity, prevalence | PPV, NPV, LR_pos, LR_neg, DOR |
+| bmed_epi_herd_immunity | Herd-immunity threshold and critical vaccination coverage | R0, efficacy | threshold, threshold_percent, coverage, coverage_percent, reachable |
+| bmed_vaccine_efficacy | Vaccine efficacy from attack rates | cases_v, n_v, cases_u, n_u | ARV, ARU, RR, VE, VE_percent, ARR, NNV |
+| bmed_dose_weight_based | Weight-based dose (dosage arithmetic, not medical advice) | dose_mg_per_kg, W, basis, doses_per_day | dose, dose_mg, daily_dose, daily_dose_mg |
+| bmed_dose_tablets | Tablets to give: desired over have (dosage arithmetic, not medical advice) | D, H | tablets |
+| bmed_dose_liquid_volume | Volume of a liquid to give: desired over have (dosage arithmetic, not medical advice) | D, H, Q | V, V_mL, C |
+| bmed_reconstitution_concentration | Reconstituted powder: concentration and volume to give (dosage arithmetic, not medical advice) | powder, diluent, displacement, D | V_total, V_total_mL, C, C_mg_mL, V_give, V_give_mL |
+| bmed_iv_flow_rate | IV flow rate: mL/h, drops per minute and infusion time (arithmetic, not medical advice) | V, T, rate, drop_factor | flow, flow_mL_h, duration, duration_h, duration_min, drops_per_min |
+| bmed_iv_rate_from_dose_rate | Infusion pump rate from a dose rate (arithmetic, not medical advice) | drug, bag_volume, dose_rate, dose_ug_per_kg_min, W, drop_factor | C, dose_rate, dose_mg_h, flow, flow_mL_h, drops_per_min |
 
 <a id="bmed_pk_iv_bolus_concentration"></a>
 
@@ -4529,3 +4540,574 @@ biomedical_science_ai999x.solve('bmed_ultrasound_wavelength', f=3500000.0, c=158
 | Ultrasound wavelength:  | NEEDS_INPUT | bmed_ultrasound_wavelength needs f (ultrasound frequency). Example: solve('bmed_ultrasound_wavelength', f='5e+06 Hz'). |
 | Ultrasound wavelength: f = 5 MHz, zz = 1 | UNRECOGNIZED_FORMAT | I could not match this question to a documented form, so I will not guess. Every form: biomedical_science_ai999x.templat |
 | Ultrasound wavelength: f = 0 MHz | INVALID_INPUT | Ultrasound wavelength in tissue: the frequency and the speed of sound must be a positive number. |
+
+<a id="bmed_epi_basic_rates"></a>
+
+### Basic epidemiological rates: incidence, attack rate, prevalence, case fatality and mortality, `bmed_epi_basic_rates`
+
+The incidence proportion (attack rate) and, when given, the incidence rate per person-year, the point prevalence, the case-fatality rate and the mortality, from case counts in one population.
+
+$$
+IP = \frac{\text{new cases}}{N},\quad P = \frac{\text{existing cases}}{N},\quad CFR = \frac{\text{deaths}}{\text{cases}}
+$$
+
+| input | meaning | condition |
+|---|---|---|
+| `cases` | new cases during the period |  |
+| `population` | population at risk at the start of the period |  |
+| `prevalent` | existing cases at a point in time (optional, for the prevalence) |  |
+| `deaths` | deaths from the disease among its cases (optional) |  |
+| `period` | length of the observation period (optional, for rates per person-year) |  |
+
+| output | meaning |
+|---|---|
+| `incidence_proportion` | incidence proportion (attack rate) = new cases / population |
+| `incidence_per_100000` | incidence proportion per 100,000 |
+| `incidence_rate` | incidence rate per person and unit time (when the period is given) |
+| `incidence_per_100000_person_years` | incidence rate per 100,000 person-years (when the period is given) |
+| `prevalence` | point prevalence = existing cases / population (when given) |
+| `prevalence_per_100000` | prevalence per 100,000 |
+| `case_fatality` | case-fatality rate = deaths / cases (when deaths are given) |
+| `mortality_per_100000` | disease mortality per 100,000 population over the period |
+| `mortality_per_100000_person_years` | mortality rate per 100,000 person-years (deaths and period given) |
+
+- **Method:** incidence proportion = cases/N; incidence rate = cases/(N T); prevalence = existing cases/N; case fatality = deaths/cases; mortality = deaths/N
+- **Assumes:** 0 <= cases <= population; existing cases <= population; deaths <= cases; one closed population, constant over the period
+- **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![incidence_proportion (incidence proportion (attack rate) = new cases / population) against cases (new cases during the period) from 1 to 300 on a logarithmic axis](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-epi-basic-rates-curve)
+
+*incidence_proportion (incidence proportion (attack rate) = new cases / population) against cases (new cases during the period) from 1 to 300 on a logarithmic axis. One curve for each value of population (population at risk at the start of the period): 10000, 5000, 20000. Other inputs as in the worked example: prevalent = 400, deaths = 6, period = 31557600.0 s. 29 points per curve computed by biomedical-science-ai999x; marked: the worked example, cases = 150, incidence_proportion = 0.015.*
+
+```python
+biomedical_science_ai999x.solve('bmed_epi_basic_rates', cases=150, population=10000, prevalent=400, deaths=6, period=31557600.0)
+# -> incidence_proportion = 0.015, incidence_per_100000 = 1500, incidence_rate = 4.75321e-10 Hz, incidence_per_100000_person_years = 1500, prevalence = 0.04, prevalence_per_100000 = 4000, case_fatality = 0.04, mortality_per_100000 = 60, mortality_per_100000_person_years = 60   (SOLVED)
+```
+
+```python
+biomedical_science_ai999x.solve('bmed_epi_basic_rates', cases=30, population=1200, deaths=3)
+# -> incidence_proportion = 0.025, incidence_per_100000 = 2500, case_fatality = 0.1, mortality_per_100000 = 250   (SOLVED)
+```
+
+**Questions in words (documented forms), as executed:**
+
+| question | outcome | result |
+|---|---|---|
+| Epidemiological rates: cases = 150, population = 10000, prevalent = 400, deaths = 6, period = 1 yr | SOLVED | incidence_proportion = 0.015, incidence_per_100000 = 1500, incidence_rate = 4.75321e-10 Hz, incidence_per_100000_person_years = 1500, prevalence = 0.04, prevalence_per_100000 = 4000, case_fatality = 0.04, mortality_per_100000 = 60, mortality_per_100000_person_years = 60 |
+| Epidemiological rates: cases = 30, population = 1200, deaths = 3 | SOLVED | incidence_proportion = 0.025, incidence_per_100000 = 2500, case_fatality = 0.1, mortality_per_100000 = 250 |
+| Epidemiological rates: population = 10000, prevalent = 400, deaths = 6, period = 1 yr | NEEDS_INPUT | bmed_epi_basic_rates needs cases (new cases during the period). Example: solve('bmed_epi_basic_rates', cases=150, popula |
+| Epidemiological rates: cases = 150, population = 10000, prevalent = 400, deaths = 6, period = 1 yr, zz = 1 | UNRECOGNIZED_FORMAT | I could not match this question to a documented form, so I will not guess. Every form: biomedical_science_ai999x.templat |
+| Attack rate and case fatality: cases = 30, population = 1200, deaths = 3 | SOLVED | incidence_proportion = 0.025, incidence_per_100000 = 2500, case_fatality = 0.1, mortality_per_100000 = 250 |
+| Epidemiological rates: cases = 30, population = 1200, deaths = 31 | INVALID_INPUT | Basic epidemiological rates: incidence, attack rate, prevalence, case fatality and mortality: the deaths from the diseas |
+
+<a id="bmed_dx_predictive_values"></a>
+
+### Predictive values and likelihood ratios of a diagnostic test, `bmed_dx_predictive_values`
+
+The positive and negative predictive values of a test at a stated prevalence (pre-test probability), and its positive and negative likelihood ratios and diagnostic odds ratio.
+
+$$
+PPV = \frac{Se\,p}{Se\,p + (1-Sp)(1-p)},\quad NPV = \frac{Sp(1-p)}{Sp(1-p) + (1-Se)p},\quad LR^{+} = \frac{Se}{1-Sp}
+$$
+
+| input | meaning | condition |
+|---|---|---|
+| `sensitivity` | sensitivity P(positive \| disease), a fraction or % |  |
+| `specificity` | specificity P(negative \| no disease), a fraction or % |  |
+| `prevalence` | prevalence (pre-test probability of disease), a fraction or % |  |
+
+| output | meaning |
+|---|---|
+| `PPV` | positive predictive value P(disease \| positive) |
+| `NPV` | negative predictive value P(no disease \| negative) |
+| `LR_pos` | positive likelihood ratio sens/(1 - spec) |
+| `LR_neg` | negative likelihood ratio (1 - sens)/spec |
+| `DOR` | diagnostic odds ratio LR+/LR- |
+
+- **Method:** PPV = Se p / (Se $p + (1 - Sp)$$(1 - p)$); NPV = Sp (1 - p) / (Sp $(1 - p) + (1 - Se)$ p); LR+ = $Se/(1 - Sp)$; LR- = $(1 - Se)/Sp$
+- **Assumes:** 0 < sensitivity, specificity, prevalence < 1; the test's accuracy does not depend on prevalence
+- **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![PPV (positive predictive value P(disease | positive)) against specificity (specificity P(negative | no disease), a fraction or %) from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-dx-predictive-values-curve)
+
+*PPV (positive predictive value P(disease | positive)) against specificity (specificity P(negative | no disease), a fraction or %) from 0.02 to 0.98. One curve for each value of prevalence (prevalence (pre-test probability of disease), a fraction or %): 0.02, 0.26, 0.74. Other inputs as in the worked example: sensitivity = 0.9. 41 points per curve computed by biomedical-science-ai999x; marked: the worked example, specificity = 0.95, PPV = 0.268657.*
+
+```python
+biomedical_science_ai999x.solve('bmed_dx_predictive_values', sensitivity=0.9, specificity=0.95, prevalence=0.02)
+# -> PPV = 0.268657, NPV = 0.997856, LR_pos = 18, LR_neg = 0.105263, DOR = 171   (SOLVED)
+```
+
+```python
+biomedical_science_ai999x.solve('bmed_dx_predictive_values', sensitivity=0.8, specificity=0.9, prevalence=0.3)
+# -> PPV = 0.774194, NPV = 0.913043, LR_pos = 8, LR_neg = 0.222222, DOR = 36   (SOLVED)
+```
+
+**Questions in words (documented forms), as executed:**
+
+| question | outcome | result |
+|---|---|---|
+| Predictive values and likelihood ratios: sensitivity = 90%, specificity = 95%, prevalence = 2% | SOLVED | PPV = 0.268657, NPV = 0.997856, LR_pos = 18, LR_neg = 0.105263, DOR = 171 |
+| Predictive values and likelihood ratios: sensitivity = 0.8, specificity = 0.9, prevalence = 0.3 | SOLVED | PPV = 0.774194, NPV = 0.913043, LR_pos = 8, LR_neg = 0.222222, DOR = 36 |
+| Predictive values and likelihood ratios: specificity = 95%, prevalence = 2% | NEEDS_INPUT | bmed_dx_predictive_values needs sensitivity (sensitivity P(positive \| disease), a fraction or %). Example: solve('bmed_d |
+| Predictive values and likelihood ratios: sensitivity = 90%, specificity = 95%, prevalence = 2%, zz = 1 | UNRECOGNIZED_FORMAT | I could not match this question to a documented form, so I will not guess. Every form: biomedical_science_ai999x.templat |
+| Likelihood ratios of a test: sensitivity = 0.9, specificity = 0.95, prevalence = 0.02 | SOLVED | PPV = 0.268657, NPV = 0.997856, LR_pos = 18, LR_neg = 0.105263, DOR = 171 |
+| Predictive values and likelihood ratios: sensitivity = 90%, specificity = 100%, prevalence = 2% | INVALID_INPUT | Predictive values and likelihood ratios of a diagnostic test: the specificity must be a fraction between 0 and 1. |
+
+<a id="bmed_epi_herd_immunity"></a>
+
+### Herd-immunity threshold and critical vaccination coverage, `bmed_epi_herd_immunity`
+
+The fraction of a population that must be immune to stop sustained spread, $1 - 1/R_{0}$, and, for a vaccine of stated efficacy, the vaccination coverage that achieves it (and whether it is reachable).
+
+$$
+H = 1 - \frac{1}{R_0},\quad V_c = \frac{1 - 1/R_0}{E}
+$$
+
+| input | meaning | condition |
+|---|---|---|
+| `R0` | basic reproduction number |  |
+| `efficacy` | vaccine efficacy against infection, a fraction or % (optional) |  |
+
+| output | meaning |
+|---|---|
+| `threshold` | herd-immunity threshold $1 - 1/R_{0}$ (immune fraction) |
+| `threshold_percent` | threshold in % |
+| `coverage` | critical vaccination coverage $(1 - 1/R_{0})/E$ (when the efficacy is given) |
+| `coverage_percent` | critical coverage in % |
+| `reachable` | reachable (coverage <= 100 %) or not reachable with this vaccine |
+
+- **Method:** $H = 1 - 1/R_{0}$; $V_c = H / E$
+- **Assumes:** $1 < R_{0}  \leq  100$; 0 < efficacy <= 1; homogeneous mixing, lasting all-or-nothing immunity
+- **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![reachable (coverage <= 100 %) or not reachable with this vaccine (reachable) over R0 (basic reproduction number) from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-epi-herd-immunity-decision)
+
+*reachable (coverage <= 100 %) or not reachable with this vaccine (reachable) over R0 (basic reproduction number) from 0.4 to 40 and efficacy (vaccine efficacy against infection, a fraction or % (optional)) from 0.02 to 0.98 (logarithmic horizontal axis): each of the 31 × 21 cells is one run of biomedical-science-ai999x, coloured by the verdict it returned, not reachable with this vaccine: 380 cells, reachable: 145 cells; blank cells: inputs the capability refuses. Marked: the worked example, R0 = 4, efficacy = 0.9 → reachable.*
+
+![threshold (herd-immunity threshold 1 - 1/R0 (immune fraction)) against R0 (basic reproduction number) from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-epi-herd-immunity-curve)
+
+*threshold (herd-immunity threshold 1 - 1/R0 (immune fraction)) against R0 (basic reproduction number) from 0.4 to 40 on a logarithmic axis. Other inputs as in the worked example: efficacy = 0.9. 33 points computed by biomedical-science-ai999x; marked: the worked example, R0 = 4, threshold = 0.75.*
+
+```python
+biomedical_science_ai999x.solve('bmed_epi_herd_immunity', R0=4, efficacy=0.9)
+# -> threshold = 0.75, threshold_percent = 75, coverage = 0.833333, coverage_percent = 83.3333, reachable = reachable   (SOLVED)
+```
+
+```python
+biomedical_science_ai999x.solve('bmed_epi_herd_immunity', R0=15, efficacy=0.97)
+# -> threshold = 0.933333, threshold_percent = 93.3333, coverage = 0.962199, coverage_percent = 96.2199, reachable = reachable   (SOLVED)
+```
+
+```python
+biomedical_science_ai999x.solve('bmed_epi_herd_immunity', R0=18, efficacy=0.9)
+# -> threshold = 0.944444, threshold_percent = 94.4444, coverage = 1.04938, coverage_percent = 104.938, reachable = not reachable with this vaccine   (SOLVED)
+```
+
+**Questions in words (documented forms), as executed:**
+
+| question | outcome | result |
+|---|---|---|
+| Herd-immunity threshold: R0 = 4, efficacy = 90% | SOLVED | threshold = 0.75, threshold_percent = 75, coverage = 0.833333, coverage_percent = 83.3333, reachable = reachable |
+| Herd-immunity threshold: R0 = 15, efficacy = 0.97 | SOLVED | threshold = 0.933333, threshold_percent = 93.3333, coverage = 0.962199, coverage_percent = 96.2199, reachable = reachable |
+| Herd-immunity threshold: R0 = 18, efficacy = 0.9 | SOLVED | threshold = 0.944444, threshold_percent = 94.4444, coverage = 1.04938, coverage_percent = 104.938, reachable = not reachable with this vaccine |
+| Herd-immunity threshold: efficacy = 90% | NEEDS_INPUT | bmed_epi_herd_immunity needs R0 (basic reproduction number). Example: solve('bmed_epi_herd_immunity', R0=4, efficacy=0.9 |
+| Herd-immunity threshold: R0 = 4, efficacy = 90%, zz = 1 | UNRECOGNIZED_FORMAT | I could not match this question to a documented form, so I will not guess. Every form: biomedical_science_ai999x.templat |
+| Critical vaccination coverage: R0 = 4, efficacy = 0.9 | SOLVED | threshold = 0.75, threshold_percent = 75, coverage = 0.833333, coverage_percent = 83.3333, reachable = reachable |
+| Herd-immunity threshold: R0 = 0.8, efficacy = 90% | INVALID_INPUT | Herd-immunity threshold and critical vaccination coverage: R0 must exceed 1 (below 1 an infection dies out without vacci |
+
+<a id="bmed_vaccine_efficacy"></a>
+
+### Vaccine efficacy from attack rates: `bmed_vaccine_efficacy`
+
+Vaccine efficacy VE = (ARU - ARV)/ARU = 1 - RR from the attack rates of the vaccinated and the unvaccinated, with the risk ratio, the absolute risk reduction and the number needed to vaccinate.
+
+$$
+VE = \frac{ARU - ARV}{ARU} = 1 - \frac{ARV}{ARU}
+$$
+
+| input | meaning | condition |
+|---|---|---|
+| `cases_v` | cases among the vaccinated |  |
+| `n_v` | number vaccinated |  |
+| `cases_u` | cases among the unvaccinated |  |
+| `n_u` | number unvaccinated |  |
+
+| output | meaning |
+|---|---|
+| `ARV` | attack rate in the vaccinated |
+| `ARU` | attack rate in the unvaccinated |
+| `RR` | risk ratio ARV/ARU |
+| `VE` | vaccine efficacy 1 - ARV/ARU (fraction) |
+| `VE_percent` | vaccine efficacy in % |
+| `ARR` | absolute risk reduction ARU - ARV |
+| `NNV` | number needed to vaccinate to prevent one case, 1/ARR (when ARR > 0) |
+
+- **Method:** ARV = cases_v/n_v; ARU = cases_u/n_u; VE = (ARU - ARV)/ARU = 1 - ARV/ARU
+- **Assumes:** cases <= group size; at least one unvaccinated case; comparable groups, equal follow-up
+- **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![VE (vaccine efficacy 1 - ARV/ARU (fraction)) against cases_u (cases among the unvaccinated) from 1 to 200 on a logarithmic axis](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-vaccine-efficacy-curve)
+
+*VE (vaccine efficacy 1 - ARV/ARU (fraction)) against cases_u (cases among the unvaccinated) from 1 to 200 on a logarithmic axis. One curve for each value of n_v (number vaccinated): 1000, 500, 2000. Other inputs as in the worked example: cases_v = 20, n_u = 1000. 33 points per curve computed by biomedical-science-ai999x; marked: the worked example, cases_u = 100, VE = 0.8.*
+
+```python
+biomedical_science_ai999x.solve('bmed_vaccine_efficacy', cases_v=20, n_v=1000, cases_u=100, n_u=1000)
+# -> ARV = 0.02, ARU = 0.1, RR = 0.2, VE = 0.8, VE_percent = 80, ARR = 0.08, NNV = 12.5   (SOLVED)
+```
+
+```python
+biomedical_science_ai999x.solve('bmed_vaccine_efficacy', cases_v=15, n_v=600, cases_u=60, n_u=400)
+# -> ARV = 0.025, ARU = 0.15, RR = 0.166667, VE = 0.833333, VE_percent = 83.3333, ARR = 0.125, NNV = 8   (SOLVED)
+```
+
+**Questions in words (documented forms), as executed:**
+
+| question | outcome | result |
+|---|---|---|
+| Vaccine efficacy: cases_v = 20, n_v = 1000, cases_u = 100, n_u = 1000 | SOLVED | ARV = 0.02, ARU = 0.1, RR = 0.2, VE = 0.8, VE_percent = 80, ARR = 0.08, NNV = 12.5 |
+| Vaccine efficacy: cases_v = 15, n_v = 600, cases_u = 60, n_u = 400 | SOLVED | ARV = 0.025, ARU = 0.15, RR = 0.166667, VE = 0.833333, VE_percent = 83.3333, ARR = 0.125, NNV = 8 |
+| Vaccine efficacy: n_v = 1000, cases_u = 100, n_u = 1000 | NEEDS_INPUT | bmed_vaccine_efficacy needs cases_v (cases among the vaccinated). Example: solve('bmed_vaccine_efficacy', cases_v=20, n_ |
+| Vaccine efficacy: cases_v = 20, n_v = 1000, cases_u = 100, n_u = 1000, zz = 1 | UNRECOGNIZED_FORMAT | I could not match this question to a documented form, so I will not guess. Every form: biomedical_science_ai999x.templat |
+| Vaccine efficacy: cases_v = 700, n_v = 600, cases_u = 60, n_u = 400 | INVALID_INPUT | Vaccine efficacy from attack rates: the cases cannot exceed the group size. |
+
+<a id="bmed_dose_weight_based"></a>
+
+### Weight-based dose (dosage arithmetic, not medical advice), `bmed_dose_weight_based`
+
+The dose for a body weight from an order in mg/kg, per dose or per day, with the daily total or the single dose when the number of doses per day is given; arithmetic only, no dose is judged safe.
+
+$$
+D = d_{kg}\,W,\qquad D_{dose} = \frac{d_{kg,day}\,W}{n}
+$$
+
+| input | meaning | condition |
+|---|---|---|
+| `dose_mg_per_kg` | ordered dose per kilogram of body weight, a number in mg/kg |  |
+| `W` | body weight |  |
+| `basis` | whether the mg/kg figure is per dose or per day |  |
+| `doses_per_day` | number of doses per day (needed for a per-day order) |  |
+
+| output | meaning |
+|---|---|
+| `dose` | single dose |
+| `dose_mg` | single dose in mg |
+| `daily_dose` | total dose per day (when the doses per day are known) |
+| `daily_dose_mg` | total dose per day in mg |
+
+- **Method:** dose = (mg/kg) x weight in kg; per day: single dose = daily dose / doses per day
+- **Assumes:** arithmetic only: not medical advice; 0 < dose per kilogram <= 1000 mg/kg; 0.3 kg <= body weight <= 400 kg; a per-day order needs the number of doses per day (1 to 24)
+- **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![dose (single dose) against dose_mg_per_kg (ordered dose per kilogram of body weight, a number in mg/kg) from 7](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-dose-weight-based-curve)
+
+*dose (single dose) against dose_mg_per_kg (ordered dose per kilogram of body weight, a number in mg/kg) from 7.5 to 22.5. One curve for each value of W (body weight): 20 kg, 10 kg, 40 kg. Other inputs as in the worked example: basis = per_dose, doses_per_day = 4. 31 points per curve computed by biomedical-science-ai999x; marked: the worked example, dose_mg_per_kg = 15, dose = 0.0003 kg.*
+
+```python
+biomedical_science_ai999x.solve('bmed_dose_weight_based', dose_mg_per_kg=15, W=20.0, basis='per_dose', doses_per_day=4)
+# -> dose_mg = 300, daily_dose_mg = 1200, dose = 0.0003 kg, daily_dose = 0.0012 kg   (SOLVED)
+```
+
+```python
+biomedical_science_ai999x.solve('bmed_dose_weight_based', dose_mg_per_kg=40, W=25.0, basis='per_day', doses_per_day=2)
+# -> dose_mg = 500, daily_dose_mg = 1000, dose = 0.0005 kg, daily_dose = 0.001 kg   (SOLVED)
+```
+
+```python
+biomedical_science_ai999x.solve('bmed_dose_weight_based', dose_mg_per_kg=10, W=3.5, basis='per_dose')
+# -> dose_mg = 35, dose = 3.5e-05 kg   (SOLVED)
+```
+
+**Questions in words (documented forms), as executed:**
+
+| question | outcome | result |
+|---|---|---|
+| Weight-based dose: dose_mg_per_kg = 15, W = 20 kg, basis = per_dose, doses_per_day = 4 | SOLVED | dose_mg = 300, daily_dose_mg = 1200, dose = 0.0003 kg, daily_dose = 0.0012 kg |
+| Weight-based dose: dose_mg_per_kg = 40, W = 25 kg, basis = per_day, doses_per_day = 2 | SOLVED | dose_mg = 500, daily_dose_mg = 1000, dose = 0.0005 kg, daily_dose = 0.001 kg |
+| Weight-based dose: dose_mg_per_kg = 10, W = 3500 g, basis = per_dose | SOLVED | dose_mg = 35, dose = 3.5e-05 kg |
+| Weight-based dose: W = 20 kg, basis = per_dose, doses_per_day = 4 | NEEDS_INPUT | bmed_dose_weight_based needs dose_mg_per_kg (ordered dose per kilogram of body weight, a number in mg/kg). Example: solv |
+| Weight-based dose: dose_mg_per_kg = 15, W = 20 kg, basis = per_dose, doses_per_day = 4, zz = 1 | UNRECOGNIZED_FORMAT | I could not match this question to a documented form, so I will not guess. Every form: biomedical_science_ai999x.templat |
+| Dose by body weight: dose_mg_per_kg = 15, W = 20 kg, basis = per_dose, doses_per_day = 4 | SOLVED | dose_mg = 300, daily_dose_mg = 1200, dose = 0.0003 kg, daily_dose = 0.0012 kg |
+| Weight-based dose: dose_mg_per_kg = 40, W = 25 kg, basis = per_day | INVALID_INPUT | Weight-based dose (dosage arithmetic, not medical advice): a dose per kilogram per day needs the number of doses per day |
+| Weight-based dose: dose_mg_per_kg = 15, W = 900 kg, basis = per_dose | INVALID_INPUT | Weight-based dose (dosage arithmetic, not medical advice): the body weight must lie between 0.3 and 400 kg. |
+
+<a id="bmed_dose_tablets"></a>
+
+### Tablets to give: desired over have (dosage arithmetic, not medical advice), `bmed_dose_tablets`
+
+The number of tablets (or capsules) for an ordered dose from the strength of one tablet, tablets = D/H; arithmetic only (whether a tablet may be split is not judged).
+
+$$
+n = \frac{D}{H}
+$$
+
+| input | meaning | condition |
+|---|---|---|
+| `D` | ordered (desired) dose |  |
+| `H` | strength of one tablet or capsule (have) |  |
+
+| output | meaning |
+|---|---|
+| `tablets` | number of tablets to give, D/H |
+
+- **Method:** tablets = D/H (desired over have)
+- **Assumes:** arithmetic only: not medical advice; $D > 0$, $H > 0$
+- **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![tablets (number of tablets to give, D/H) against H (strength of one tablet or capsule (have)) from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-dose-tablets-curve)
+
+*tablets (number of tablets to give, D/H) against H (strength of one tablet or capsule (have)) from 0.000125 kg to 0.000375 kg. One curve for each value of D (ordered (desired) dose): 0.0005 kg, 0.00025 kg, 0.001 kg. 31 points per curve computed by biomedical-science-ai999x; marked: the worked example, H = 0.00025 kg, tablets = 2.*
+
+![tablets (number of tablets to give, D/H) over D (ordered (desired) dose) from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-dose-tablets-field)
+
+*tablets (number of tablets to give, D/H) over D (ordered (desired) dose) from 0.00025 kg to 0.00075 kg and H (strength of one tablet or capsule (have)) from 0.000125 kg to 0.000375 kg: each of the 21 × 15 cells is one run of biomedical-science-ai999x, shaded by its value (light 0.666667 to dark 6); iso-lines at tablets = 1, 2, 3, 4, 5. Marked: the worked example, D = 0.0005 kg, H = 0.00025 kg, tablets = 2.*
+
+```python
+biomedical_science_ai999x.solve('bmed_dose_tablets', D=0.0005, H=0.00025)
+# -> tablets = 2   (SOLVED)
+```
+
+```python
+biomedical_science_ai999x.solve('bmed_dose_tablets', D=1.25e-07, H=2.5e-07)
+# -> tablets = 0.5   (SOLVED)
+```
+
+```python
+biomedical_science_ai999x.solve('bmed_dose_tablets', D=0.00075, H=0.0005)
+# -> tablets = 1.5   (SOLVED)
+```
+
+**Questions in words (documented forms), as executed:**
+
+| question | outcome | result |
+|---|---|---|
+| Tablets to give: D = 500 mg, H = 250 mg | SOLVED | tablets = 2 |
+| Tablets to give: D = 0.125 mg, H = 0.25 mg | SOLVED | tablets = 0.5 |
+| Tablets to give: D = 750 mg, H = 500 mg | SOLVED | tablets = 1.5 |
+| Tablets to give: H = 250 mg | NEEDS_INPUT | bmed_dose_tablets needs D (ordered (desired) dose). Example: solve('bmed_dose_tablets', D='0.0005 kg', H='0.00025 kg'). |
+| Tablets to give: D = 500 mg, H = 250 mg, zz = 1 | UNRECOGNIZED_FORMAT | I could not match this question to a documented form, so I will not guess. Every form: biomedical_science_ai999x.templat |
+| Number of tablets: D = 0.5 g, H = 250 mg | SOLVED | tablets = 2 |
+| Tablets to give: D = 500 mg, H = 0 mg | INVALID_INPUT | Tablets to give: desired over have (dosage arithmetic, not medical advice): the ordered dose D and the tablet strength H |
+
+<a id="bmed_dose_liquid_volume"></a>
+
+### Volume of a liquid to give: desired over have (dosage arithmetic, not medical advice), `bmed_dose_liquid_volume`
+
+The volume of a liquid or injection stock to give for an ordered dose, $V = D/H$ x Q, where the stock holds H in a volume Q; also the stock concentration H/Q.
+
+$$
+V = \frac{D}{H}\,Q
+$$
+
+| input | meaning | condition |
+|---|---|---|
+| `D` | ordered (desired) dose |  |
+| `H` | amount of drug in the stock volume (have) |  |
+| `Q` | stock volume that holds H |  |
+
+| output | meaning |
+|---|---|
+| `V` | volume to give |
+| `V_mL` | volume to give in mL |
+| `C` | stock concentration H/Q (1 $kg/m^{3} = 1$ mg/mL) |
+
+- **Method:** $V = (D/H)$ x Q (desired over have times quantity)
+- **Assumes:** arithmetic only: not medical advice; $D > 0$, $H > 0$, $Q > 0$
+- **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![V (volume to give) against H (amount of drug in the stock volume (have)) from 6](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-dose-liquid-volume-curve)
+
+*V (volume to give) against H (amount of drug in the stock volume (have)) from 6.2500e-05 kg to 0.0001875 kg. One curve for each value of D (ordered (desired) dose): 0.00025 kg, 0.000125 kg, 0.0005 kg. Other inputs as in the worked example: Q = 4.9999999999999996e-06 m^3. 31 points per curve computed by biomedical-science-ai999x; marked: the worked example, H = 0.000125 kg, V = 1.0000e-05 m^3.*
+
+```python
+biomedical_science_ai999x.solve('bmed_dose_liquid_volume', D=0.00025, H=0.000125, Q=4.9999999999999996e-06)
+# -> V = 1e-05 m^3, V_mL = 10, C = 25 kg/m^3   (SOLVED)
+```
+
+```python
+biomedical_science_ai999x.solve('bmed_dose_liquid_volume', D=7.5e-05, H=9.999999999999999e-05, Q=2e-06)
+# -> V = 1.5e-06 m^3, V_mL = 1.5, C = 50 kg/m^3   (SOLVED)
+```
+
+**Questions in words (documented forms), as executed:**
+
+| question | outcome | result |
+|---|---|---|
+| Liquid dose volume: D = 250 mg, H = 125 mg, Q = 5 mL | SOLVED | V = 1e-05 m^3, V_mL = 10, C = 25 kg/m^3 |
+| Liquid dose volume: D = 75 mg, H = 100 mg, Q = 2 mL | SOLVED | V = 1.5e-06 m^3, V_mL = 1.5, C = 50 kg/m^3 |
+| Liquid dose volume: H = 125 mg, Q = 5 mL | NEEDS_INPUT | bmed_dose_liquid_volume needs D (ordered (desired) dose). Example: solve('bmed_dose_liquid_volume', D='0.00025 kg', H='0 |
+| Liquid dose volume: D = 250 mg, H = 125 mg, Q = 5 mL, zz = 1 | UNRECOGNIZED_FORMAT | I could not match this question to a documented form, so I will not guess. Every form: biomedical_science_ai999x.templat |
+| Desired over have: D = 250 mg, H = 125 mg, Q = 5 mL | SOLVED | V = 1e-05 m^3, V_mL = 10, C = 25 kg/m^3 |
+| Liquid dose volume: D = 250 mg, H = 125 mg, Q = -5 mL | INVALID_INPUT | Volume of a liquid to give: desired over have (dosage arithmetic, not medical advice): the ordered dose D, the stock amo |
+
+<a id="bmed_reconstitution_concentration"></a>
+
+### Reconstituted powder: concentration and volume to give (dosage arithmetic, not medical advice), `bmed_reconstitution_concentration`
+
+The concentration of a powder drug after reconstitution, C = drug/(diluent + displacement volume), and the volume to give for an ordered dose, D/C.
+
+$$
+C = \frac{m}{V_{dil} + V_{disp}},\qquad V = \frac{D}{C}
+$$
+
+| input | meaning | condition |
+|---|---|---|
+| `powder` | drug amount in the vial |  |
+| `diluent` | diluent volume added |  |
+| `displacement` | displacement volume of the powder (optional, default 0) |  |
+| `D` | ordered dose (optional) |  |
+
+| output | meaning |
+|---|---|
+| `V_total` | final volume after reconstitution |
+| `V_total_mL` | final volume in mL |
+| `C` | concentration after reconstitution (1 $kg/m^{3} = 1$ mg/mL) |
+| `C_mg_mL` | concentration in mg/mL |
+| `V_give` | volume to give for the ordered dose (when given) |
+| `V_give_mL` | volume to give in mL |
+
+- **Method:** final volume = diluent + displacement; C = drug / final volume; volume to give = D / C
+- **Assumes:** arithmetic only: not medical advice; drug > 0, diluent > 0, displacement >= 0; ordered dose <= drug in the vial
+- **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![C (concentration after reconstitution (1 kg/m^3 = 1 mg/mL)) against diluent (diluent volume added) from 3](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-reconstitution-concentration-curve)
+
+*C (concentration after reconstitution (1 kg/m^3 = 1 mg/mL)) against diluent (diluent volume added) from 3.4000e-07 m^3 to 3.4000e-05 m^3 on a logarithmic axis. One curve for each value of powder (drug amount in the vial): 0.001 kg, 0.0005 kg, 0.002 kg. Other inputs as in the worked example: displacement = 6e-07 m^3, D = 0.0005 kg. 41 points per curve computed by biomedical-science-ai999x; marked: the worked example, diluent = 3.4000e-06 m^3, C = 250 kg/m^3.*
+
+```python
+biomedical_science_ai999x.solve('bmed_reconstitution_concentration', powder=0.001, diluent=3.3999999999999996e-06, displacement=6e-07, D=0.0005)
+# -> V_total = 4e-06 m^3, V_total_mL = 4, C = 250 kg/m^3, C_mg_mL = 250, V_give = 2e-06 m^3, V_give_mL = 2   (SOLVED)
+```
+
+```python
+biomedical_science_ai999x.solve('bmed_reconstitution_concentration', powder=0.0005, diluent=9.999999999999999e-06)
+# -> V_total = 1e-05 m^3, V_total_mL = 10, C = 50 kg/m^3, C_mg_mL = 50   (SOLVED)
+```
+
+**Questions in words (documented forms), as executed:**
+
+| question | outcome | result |
+|---|---|---|
+| Reconstitution: powder = 1 g, diluent = 3.4 mL, displacement = 0.6 mL, D = 500 mg | SOLVED | V_total = 4e-06 m^3, V_total_mL = 4, C = 250 kg/m^3, C_mg_mL = 250, V_give = 2e-06 m^3, V_give_mL = 2 |
+| Reconstitution: powder = 500 mg, diluent = 10 mL | SOLVED | V_total = 1e-05 m^3, V_total_mL = 10, C = 50 kg/m^3, C_mg_mL = 50 |
+| Reconstitution: diluent = 3.4 mL, displacement = 0.6 mL, D = 500 mg | NEEDS_INPUT | bmed_reconstitution_concentration needs powder (drug amount in the vial). Example: solve('bmed_reconstitution_concentrat |
+| Reconstitution: powder = 1 g, diluent = 3.4 mL, displacement = 0.6 mL, D = 500 mg, zz = 1 | UNRECOGNIZED_FORMAT | I could not match this question to a documented form, so I will not guess. Every form: biomedical_science_ai999x.templat |
+| Reconstituted concentration: powder = 500 mg, diluent = 10 mL | SOLVED | V_total = 1e-05 m^3, V_total_mL = 10, C = 50 kg/m^3, C_mg_mL = 50 |
+| Reconstitution: powder = 500 mg, diluent = 10 mL, D = 750 mg | INVALID_INPUT | Reconstituted powder: concentration and volume to give (dosage arithmetic, not medical advice): the ordered dose cannot  |
+
+<a id="bmed_iv_flow_rate"></a>
+
+### IV flow rate: mL/h, drops per minute and infusion time (arithmetic, not medical advice), `bmed_iv_flow_rate`
+
+The flow rate of an infusion in mL/h from the volume and the time (or the infusion time from the volume and the rate), and the drip rate in drops per minute from the set's drop factor.
+
+$$
+\dot V = \frac{V}{T},\qquad \text{gtt/min} = \frac{V\,[\mathrm{mL}]}{T\,[\mathrm{min}]}\times\text{drop factor}
+$$
+
+| input | meaning | condition |
+|---|---|---|
+| `V` | volume to infuse |  |
+| `T` | infusion time (give T or rate) |  |
+| `rate` | flow rate (give rate or T) |  |
+| `drop_factor` | drop factor of the giving set, drops per mL (optional) |  |
+
+| output | meaning |
+|---|---|
+| `flow` | flow rate |
+| `flow_mL_h` | flow rate in mL/h |
+| `duration` | infusion time |
+| `duration_h` | infusion time in h |
+| `duration_min` | infusion time in min |
+| `drops_per_min` | drip rate in drops per minute (when the drop factor is given) |
+
+- **Method:** mL/h = volume / hours; time = volume / rate; drops/min = (mL/h / 60) x drop factor
+- **Assumes:** arithmetic only: not medical advice; $V > 0$; exactly one of $T > 0$ or rate > 0; drop factor a whole number of drops per mL, 1 to 100
+- **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![flow_mL_h (flow rate in mL/h) against T (infusion time (give T or rate)) from 14400 s to 43200 s](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-iv-flow-rate-curve)
+
+*flow_mL_h (flow rate in mL/h) against T (infusion time (give T or rate)) from 14400 s to 43200 s. One curve for each value of V (volume to infuse): 0.001 m^3, 0.0005 m^3, 0.002 m^3. Other inputs as in the worked example: drop_factor = 15. 31 points per curve computed by biomedical-science-ai999x; marked: the worked example, T = 28800 s, flow_mL_h = 125.*
+
+```python
+biomedical_science_ai999x.solve('bmed_iv_flow_rate', V=0.001, T=28800.0, drop_factor=15)
+# -> flow = 3.47222e-08 m^3/s, flow_mL_h = 125, duration = 28800 s, duration_h = 8, duration_min = 480, drops_per_min = 31.25   (SOLVED)
+```
+
+```python
+biomedical_science_ai999x.solve('bmed_iv_flow_rate', V=0.0005, rate=2.7777777777777777e-08)
+# -> flow = 2.77778e-08 m^3/s, flow_mL_h = 100, duration = 18000 s, duration_h = 5, duration_min = 300   (SOLVED)
+```
+
+```python
+biomedical_science_ai999x.solve('bmed_iv_flow_rate', V=0.00025, T=1800.0, drop_factor=20)
+# -> flow = 1.38889e-07 m^3/s, flow_mL_h = 500, duration = 1800 s, duration_h = 0.5, duration_min = 30, drops_per_min = 166.667   (SOLVED)
+```
+
+**Questions in words (documented forms), as executed:**
+
+| question | outcome | result |
+|---|---|---|
+| IV flow rate: V = 1000 mL, T = 8 h, drop_factor = 15 | SOLVED | flow = 3.47222e-08 m^3/s, flow_mL_h = 125, duration = 28800 s, duration_h = 8, duration_min = 480, drops_per_min = 31.25 |
+| IV flow rate: V = 500 mL, rate = 100 mL/h | SOLVED | flow = 2.77778e-08 m^3/s, flow_mL_h = 100, duration = 18000 s, duration_h = 5, duration_min = 300 |
+| IV flow rate: V = 250 mL, T = 30 min, drop_factor = 20 | SOLVED | flow = 1.38889e-07 m^3/s, flow_mL_h = 500, duration = 1800 s, duration_h = 0.5, duration_min = 30, drops_per_min = 166.667 |
+| IV flow rate: T = 8 h, drop_factor = 15 | NEEDS_INPUT | bmed_iv_flow_rate needs V (volume to infuse). Example: solve('bmed_iv_flow_rate', V='0.001 m^3', T='28800 s', drop_facto |
+| IV flow rate: V = 1000 mL, T = 8 h, drop_factor = 15, zz = 1 | UNRECOGNIZED_FORMAT | I could not match this question to a documented form, so I will not guess. Every form: biomedical_science_ai999x.templat |
+| IV drip rate: V = 1 L, T = 480 min, drop_factor = 15 | SOLVED | flow = 3.47222e-08 m^3/s, flow_mL_h = 125, duration = 28800 s, duration_h = 8, duration_min = 480, drops_per_min = 31.25 |
+| IV flow rate: V = 1000 mL, T = 8 h, rate = 125 mL/h | INVALID_INPUT | IV flow rate: mL/h, drops per minute and infusion time (arithmetic, not medical advice): give either the infusion time T |
+
+<a id="bmed_iv_rate_from_dose_rate"></a>
+
+### Infusion pump rate from a dose rate (arithmetic, not medical advice), `bmed_iv_rate_from_dose_rate`
+
+The pump rate in mL/h that delivers an ordered dose rate (mg/h, or ug/kg/min with the body weight) from a bag holding a stated amount of drug in a stated volume; also the drip rate for a drop factor.
+
+$$
+\dot V = \frac{\dot D}{C},\qquad C = \frac{m}{V_{bag}},\qquad \dot D = d\,W
+$$
+
+| input | meaning | condition |
+|---|---|---|
+| `drug` | amount of drug in the bag |  |
+| `bag_volume` | volume of the bag |  |
+| `dose_rate` | ordered dose rate, e.g. mg/h (give this or dose_ug_per_kg_min) |  |
+| `dose_ug_per_kg_min` | ordered dose per kilogram per minute, a number in ug/kg/min (optional) |  |
+| `W` | body weight (with dose_ug_per_kg_min) |  |
+| `drop_factor` | drop factor of the giving set, drops per mL (optional) |  |
+
+| output | meaning |
+|---|---|
+| `C` | concentration in the bag (1 $kg/m^{3} = 1$ mg/mL) |
+| `dose_rate` | dose rate delivered |
+| `dose_mg_h` | dose rate in mg/h |
+| `flow` | pump rate |
+| `flow_mL_h` | pump rate in mL/h |
+| `drops_per_min` | drip rate in drops per minute (when the drop factor is given) |
+
+- **Method:** C = drug/bag volume; dose rate = (ug/kg/min) x W x $60 / 1000$ mg/h; $mL/h = (mg/h) / (mg/mL)$
+- **Assumes:** arithmetic only: not medical advice; drug > 0, bag volume > 0; exactly one of a dose rate or a dose per kilogram per minute (with 0.3 $kg  \leq  W  \leq  400$ kg)
+- **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![flow_mL_h (pump rate in mL/h) against drug (amount of drug in the bag) from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-iv-rate-from-dose-rate-curve)
+
+*flow_mL_h (pump rate in mL/h) against drug (amount of drug in the bag) from 0.0002 kg to 0.0006 kg. One curve for each value of bag_volume (volume of the bag): 0.00025 m^3, 0.000125 m^3, 0.0005 m^3. Other inputs as in the worked example: dose_ug_per_kg_min = 5, W = 80.0 kg. 31 points per curve computed by biomedical-science-ai999x; marked: the worked example, drug = 0.0004 kg, flow_mL_h = 15.*
+
+```python
+biomedical_science_ai999x.solve('bmed_iv_rate_from_dose_rate', drug=0.00039999999999999996, bag_volume=0.00025, dose_ug_per_kg_min=5, W=80.0)
+# -> C = 1.6 kg/m^3, dose_rate = 6.66667e-09 kg/s, dose_mg_h = 24, flow = 4.16667e-09 m^3/s, flow_mL_h = 15   (SOLVED)
+```
+
+```python
+biomedical_science_ai999x.solve('bmed_iv_rate_from_dose_rate', drug=9.999999999999999e-05, bag_volume=9.999999999999999e-05, dose_rate=1.3888888888888888e-09, drop_factor=60)
+# -> C = 1 kg/m^3, dose_rate = 1.38889e-09 kg/s, dose_mg_h = 5, flow = 1.38889e-09 m^3/s, flow_mL_h = 5, drops_per_min = 5   (SOLVED)
+```
+
+**Questions in words (documented forms), as executed:**
+
+| question | outcome | result |
+|---|---|---|
+| IV rate from dose rate: drug = 400 mg, bag_volume = 250 mL, dose_ug_per_kg_min = 5, W = 80 kg | SOLVED | C = 1.6 kg/m^3, dose_rate = 6.66667e-09 kg/s, dose_mg_h = 24, flow = 4.16667e-09 m^3/s, flow_mL_h = 15 |
+| IV rate from dose rate: drug = 100 mg, bag_volume = 100 mL, dose_rate = 5 mg/h, drop_factor = 60 | SOLVED | C = 1 kg/m^3, dose_rate = 1.38889e-09 kg/s, dose_mg_h = 5, flow = 1.38889e-09 m^3/s, flow_mL_h = 5, drops_per_min = 5 |
+| IV rate from dose rate: bag_volume = 250 mL, dose_ug_per_kg_min = 5, W = 80 kg | NEEDS_INPUT | bmed_iv_rate_from_dose_rate needs drug (amount of drug in the bag). Example: solve('bmed_iv_rate_from_dose_rate', drug=' |
+| IV rate from dose rate: drug = 400 mg, bag_volume = 250 mL, dose_ug_per_kg_min = 5, W = 80 kg, zz = 1 | UNRECOGNIZED_FORMAT | I could not match this question to a documented form, so I will not guess. Every form: biomedical_science_ai999x.templat |
+| Pump rate from dose rate: drug = 100 mg, bag_volume = 100 mL, dose_rate = 5 mg/h, drop_factor = 60 | SOLVED | C = 1 kg/m^3, dose_rate = 1.38889e-09 kg/s, dose_mg_h = 5, flow = 1.38889e-09 m^3/s, flow_mL_h = 5, drops_per_min = 5 |
+| IV rate from dose rate: drug = 400 mg, bag_volume = 250 mL, dose_rate = 5 mg/h, W = 80 kg | INVALID_INPUT | Infusion pump rate from a dose rate (arithmetic, not medical advice): the body weight is used only with a dose per kilog |

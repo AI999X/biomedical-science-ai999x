@@ -15,7 +15,7 @@ def _bind(product) -> None:
     _P = product
 
 
-CapabilityId = Literal["bmed_bmi", "bmed_bmr", "bmed_cable_steady_state", "bmed_cohens_kappa", "bmed_cox_hazard_ratio", "bmed_dx_roc_auc", "bmed_dx_sensitivity_specificity_ci", "bmed_dx_threshold_sensitivity_specificity", "bmed_dx_youden_cutoff", "bmed_elbow_lever_muscle_force", "bmed_epi_r_from_growth_rate", "bmed_epi_reed_frost_final_size", "bmed_epi_seir_final_size", "bmed_epi_seir_growth_rate", "bmed_epi_seir_peak", "bmed_epi_sir_final_size", "bmed_epi_sir_peak", "bmed_epi_sis_prevalence", "bmed_exponential_hazard_ratio", "bmed_exponential_survival_fit", "bmed_fitzhugh_nagumo_fixed_point", "bmed_gaussian_psf_mtf", "bmed_ghk_current_density", "bmed_ghk_voltage", "bmed_hh_gating_steady_state", "bmed_hh_potassium_conductance_clamp", "bmed_hh_resting_potential", "bmed_hounsfield_units", "bmed_incidence_rate_ratio_ci", "bmed_indicator_dilution_cardiac_output", "bmed_kelvin_voigt_creep", "bmed_km_confidence_interval", "bmed_km_survival_median", "bmed_larmor_frequency", "bmed_lif_firing_rate", "bmed_lif_subthreshold_voltage", "bmed_logrank_test", "bmed_mantel_haenszel_odds_ratio", "bmed_mri_adc_fit", "bmed_mri_ernst_angle", "bmed_mri_inversion_recovery", "bmed_mri_spin_echo_signal", "bmed_mri_spoiled_gradient_echo", "bmed_mri_t2_fit", "bmed_nelson_aalen_hazard", "bmed_nnt_ci", "bmed_odds_ratio_ci", "bmed_pk_auc_iv_bolus", "bmed_pk_auc_trapezoid", "bmed_pk_bioavailability_from_profiles", "bmed_pk_effect_site_concentration", "bmed_pk_hepatic_clearance_parallel_tube", "bmed_pk_hepatic_clearance_well_stirred", "bmed_pk_infusion_concentration", "bmed_pk_intermittent_infusion_steady_state", "bmed_pk_iv_bolus_concentration", "bmed_pk_loading_maintenance", "bmed_pk_michaelis_menten_concentration", "bmed_pk_michaelis_menten_steady_state", "bmed_pk_michaelis_menten_time", "bmed_pk_nca_iv_bolus", "bmed_pk_nth_dose_iv", "bmed_pk_oral_concentration", "bmed_pk_oral_peak", "bmed_pk_short_infusion", "bmed_pk_steady_state_iv", "bmed_pk_steady_state_oral", "bmed_pk_terminal_half_life_fit", "bmed_pk_time_to_steady_state_fraction", "bmed_pk_two_compartment_bolus", "bmed_pk_two_compartment_micro_constants", "bmed_poiseuille_vessel_flow", "bmed_postsynaptic_potential", "bmed_relative_risk_ci", "bmed_respiratory_mechanics_fit", "bmed_restricted_mean_survival_time", "bmed_sls_creep", "bmed_sls_stress_relaxation", "bmed_smr_exact_ci", "bmed_snr_averaging", "bmed_ultrasound_interface", "bmed_ultrasound_matching_layer", "bmed_ultrasound_wavelength", "bmed_windkessel_diastolic_decay", "bmed_windkessel_input_impedance", "bmed_xray_attenuation_layers"]
+CapabilityId = Literal["bmed_bmi", "bmed_bmr", "bmed_cable_steady_state", "bmed_cohens_kappa", "bmed_cox_hazard_ratio", "bmed_dose_liquid_volume", "bmed_dose_tablets", "bmed_dose_weight_based", "bmed_dx_predictive_values", "bmed_dx_roc_auc", "bmed_dx_sensitivity_specificity_ci", "bmed_dx_threshold_sensitivity_specificity", "bmed_dx_youden_cutoff", "bmed_elbow_lever_muscle_force", "bmed_epi_basic_rates", "bmed_epi_herd_immunity", "bmed_epi_r_from_growth_rate", "bmed_epi_reed_frost_final_size", "bmed_epi_seir_final_size", "bmed_epi_seir_growth_rate", "bmed_epi_seir_peak", "bmed_epi_sir_final_size", "bmed_epi_sir_peak", "bmed_epi_sis_prevalence", "bmed_exponential_hazard_ratio", "bmed_exponential_survival_fit", "bmed_fitzhugh_nagumo_fixed_point", "bmed_gaussian_psf_mtf", "bmed_ghk_current_density", "bmed_ghk_voltage", "bmed_hh_gating_steady_state", "bmed_hh_potassium_conductance_clamp", "bmed_hh_resting_potential", "bmed_hounsfield_units", "bmed_incidence_rate_ratio_ci", "bmed_indicator_dilution_cardiac_output", "bmed_iv_flow_rate", "bmed_iv_rate_from_dose_rate", "bmed_kelvin_voigt_creep", "bmed_km_confidence_interval", "bmed_km_survival_median", "bmed_larmor_frequency", "bmed_lif_firing_rate", "bmed_lif_subthreshold_voltage", "bmed_logrank_test", "bmed_mantel_haenszel_odds_ratio", "bmed_mri_adc_fit", "bmed_mri_ernst_angle", "bmed_mri_inversion_recovery", "bmed_mri_spin_echo_signal", "bmed_mri_spoiled_gradient_echo", "bmed_mri_t2_fit", "bmed_nelson_aalen_hazard", "bmed_nnt_ci", "bmed_odds_ratio_ci", "bmed_pk_auc_iv_bolus", "bmed_pk_auc_trapezoid", "bmed_pk_bioavailability_from_profiles", "bmed_pk_effect_site_concentration", "bmed_pk_hepatic_clearance_parallel_tube", "bmed_pk_hepatic_clearance_well_stirred", "bmed_pk_infusion_concentration", "bmed_pk_intermittent_infusion_steady_state", "bmed_pk_iv_bolus_concentration", "bmed_pk_loading_maintenance", "bmed_pk_michaelis_menten_concentration", "bmed_pk_michaelis_menten_steady_state", "bmed_pk_michaelis_menten_time", "bmed_pk_nca_iv_bolus", "bmed_pk_nth_dose_iv", "bmed_pk_oral_concentration", "bmed_pk_oral_peak", "bmed_pk_short_infusion", "bmed_pk_steady_state_iv", "bmed_pk_steady_state_oral", "bmed_pk_terminal_half_life_fit", "bmed_pk_time_to_steady_state_fraction", "bmed_pk_two_compartment_bolus", "bmed_pk_two_compartment_micro_constants", "bmed_poiseuille_vessel_flow", "bmed_postsynaptic_potential", "bmed_reconstitution_concentration", "bmed_relative_risk_ci", "bmed_respiratory_mechanics_fit", "bmed_restricted_mean_survival_time", "bmed_sls_creep", "bmed_sls_stress_relaxation", "bmed_smr_exact_ci", "bmed_snr_averaging", "bmed_ultrasound_interface", "bmed_ultrasound_matching_layer", "bmed_ultrasound_wavelength", "bmed_vaccine_efficacy", "bmed_windkessel_diastolic_decay", "bmed_windkessel_input_impedance", "bmed_xray_attenuation_layers"]
 
 
 def solve(find: CapabilityId | str, given: dict | None = None, conditions=(), *, target: str | None = None, **inputs):
@@ -99,6 +99,58 @@ def bmed_cox_hazard_ratio(times=None, events=None, x=None, level=None):
     given = {k: v for k, v in dict(times=times, events=events, x=x, level=level).items() if v is not None}
     return _P.solve("bmed_cox_hazard_ratio", **given)
 
+def bmed_dose_liquid_volume(D=None, H=None, Q=None):
+    """Volume of a liquid to give: desired over have (dosage arithmetic, not medical advice). The volume of a liquid or injection stock to give for an ordered dose, V = D/H x Q, where the stock holds H in a volume Q; also the stock concentration H/Q.
+    Formula: V = \\frac{D}{H}\\,Q
+    Inputs:
+        D: ordered (desired) dose
+        H: amount of drug in the stock volume (have)
+        Q: stock volume that holds H
+    Outputs: V (volume to give), V_mL (volume to give in mL), C (stock concentration H/Q (1 kg/m^3 = 1 mg/mL))
+    See also: help("bmed_dose_liquid_volume")
+    """
+    given = {k: v for k, v in dict(D=D, H=H, Q=Q).items() if v is not None}
+    return _P.solve("bmed_dose_liquid_volume", **given)
+
+def bmed_dose_tablets(D=None, H=None):
+    """Tablets to give: desired over have (dosage arithmetic, not medical advice). The number of tablets (or capsules) for an ordered dose from the strength of one tablet, tablets = D/H; arithmetic only (whether a tablet may be split is not judged).
+    Formula: n = \\frac{D}{H}
+    Inputs:
+        D: ordered (desired) dose
+        H: strength of one tablet or capsule (have)
+    Outputs: tablets (number of tablets to give, D/H)
+    See also: help("bmed_dose_tablets")
+    """
+    given = {k: v for k, v in dict(D=D, H=H).items() if v is not None}
+    return _P.solve("bmed_dose_tablets", **given)
+
+def bmed_dose_weight_based(dose_mg_per_kg=None, W=None, basis=None, doses_per_day=None):
+    """Weight-based dose (dosage arithmetic, not medical advice). The dose for a body weight from an order in mg/kg, per dose or per day, with the daily total or the single dose when the number of doses per day is given; arithmetic only, no dose is judged safe.
+    Formula: D = d_{kg}\\,W,\\qquad D_{dose} = \\frac{d_{kg,day}\\,W}{n}
+    Inputs:
+        dose_mg_per_kg: ordered dose per kilogram of body weight, a number in mg/kg
+        W: body weight
+        basis: whether the mg/kg figure is per dose or per day
+        doses_per_day: number of doses per day (needed for a per-day order) (optional)
+    Outputs: dose (single dose), dose_mg (single dose in mg), daily_dose (total dose per day (when the doses per day are known)), daily_dose_mg (total dose per day in mg)
+    See also: help("bmed_dose_weight_based")
+    """
+    given = {k: v for k, v in dict(dose_mg_per_kg=dose_mg_per_kg, W=W, basis=basis, doses_per_day=doses_per_day).items() if v is not None}
+    return _P.solve("bmed_dose_weight_based", **given)
+
+def bmed_dx_predictive_values(sensitivity=None, specificity=None, prevalence=None):
+    """Predictive values and likelihood ratios of a diagnostic test. The positive and negative predictive values of a test at a stated prevalence (pre-test probability), and its positive and negative likelihood ratios and diagnostic odds ratio.
+    Formula: PPV = \\frac{Se\\,p}{Se\\,p + (1-Sp)(1-p)},\\quad NPV = \\frac{Sp(1-p)}{Sp(1-p) + (1-Se)p},\\quad LR^{+} = \\frac{Se}{1-Sp}
+    Inputs:
+        sensitivity: sensitivity P(positive | disease), a fraction or %
+        specificity: specificity P(negative | no disease), a fraction or %
+        prevalence: prevalence (pre-test probability of disease), a fraction or %
+    Outputs: PPV (positive predictive value P(disease | positive)), NPV (negative predictive value P(no disease | negative)), LR_pos (positive likelihood ratio sens/(1 - spec)), LR_neg (negative likelihood ratio (1 - sens)/spec), DOR (diagnostic odds ratio LR+/LR-)
+    See also: help("bmed_dx_predictive_values")
+    """
+    given = {k: v for k, v in dict(sensitivity=sensitivity, specificity=specificity, prevalence=prevalence).items() if v is not None}
+    return _P.solve("bmed_dx_predictive_values", **given)
+
 def bmed_dx_roc_auc(scores_pos=None, scores_neg=None):
     """ROC curve area of a diagnostic score (Mann-Whitney form). The area under the ROC curve of a continuous diagnostic score from the scores of diseased and non-diseased subjects: the probability that a diseased subject scores higher (ties count one half), with the Mann-Whitney U.
     Formula: AUC = \\frac{1}{n_1 n_0}\\sum_{i,j}\\left[\\mathbb{1}(x_i > y_j) + \\tfrac12\\mathbb{1}(x_i = y_j)\\right]
@@ -166,6 +218,33 @@ def bmed_elbow_lever_muscle_force(W=None, d_load=None, W_arm=None, d_arm=None, d
     """
     given = {k: v for k, v in dict(W=W, d_load=d_load, W_arm=W_arm, d_arm=d_arm, d_muscle=d_muscle, theta=theta).items() if v is not None}
     return _P.solve("bmed_elbow_lever_muscle_force", **given)
+
+def bmed_epi_basic_rates(cases=None, population=None, prevalent=None, deaths=None, period=None):
+    """Basic epidemiological rates: incidence, attack rate, prevalence, case fatality and mortality. The incidence proportion (attack rate) and, when given, the incidence rate per person-year, the point prevalence, the case-fatality rate and the mortality, from case counts in one population.
+    Formula: IP = \\frac{\\text{new cases}}{N},\\quad P = \\frac{\\text{existing cases}}{N},\\quad CFR = \\frac{\\text{deaths}}{\\text{cases}}
+    Inputs:
+        cases: new cases during the period
+        population: population at risk at the start of the period
+        prevalent: existing cases at a point in time (optional, for the prevalence) (optional)
+        deaths: deaths from the disease among its cases (optional) (optional)
+        period: length of the observation period (optional, for rates per person-year) (optional)
+    Outputs: incidence_proportion (incidence proportion (attack rate) = new cases / population), incidence_per_100000 (incidence proportion per 100,000), incidence_rate (incidence rate per person and unit time (when the period is given)), incidence_per_100000_person_years (incidence rate per 100,000 person-years (when the period is given)), prevalence (point prevalence = existing cases / population (when given)), prevalence_per_100000 (prevalence per 100,000), case_fatality (case-fatality rate = deaths / cases (when deaths are given)), mortality_per_100000 (disease mortality per 100,000 population over the period), mortality_per_100000_person_years (mortality rate per 100,000 person-years (deaths and period given))
+    See also: help("bmed_epi_basic_rates")
+    """
+    given = {k: v for k, v in dict(cases=cases, population=population, prevalent=prevalent, deaths=deaths, period=period).items() if v is not None}
+    return _P.solve("bmed_epi_basic_rates", **given)
+
+def bmed_epi_herd_immunity(R0=None, efficacy=None):
+    """Herd-immunity threshold and critical vaccination coverage. The fraction of a population that must be immune to stop sustained spread, 1 - 1/R0, and, for a vaccine of stated efficacy, the vaccination coverage that achieves it (and whether it is reachable).
+    Formula: H = 1 - \\frac{1}{R_0},\\quad V_c = \\frac{1 - 1/R_0}{E}
+    Inputs:
+        R0: basic reproduction number
+        efficacy: vaccine efficacy against infection, a fraction or % (optional) (optional)
+    Outputs: threshold (herd-immunity threshold 1 - 1/R0 (immune fraction)), threshold_percent (threshold in %), coverage (critical vaccination coverage (1 - 1/R0)/E (when the efficacy is given)), coverage_percent (critical coverage in %), reachable (reachable (coverage <= 100 %) or not reachable with this vaccine)
+    See also: help("bmed_epi_herd_immunity")
+    """
+    given = {k: v for k, v in dict(R0=R0, efficacy=efficacy).items() if v is not None}
+    return _P.solve("bmed_epi_herd_immunity", **given)
 
 def bmed_epi_r_from_growth_rate(r=None, Tg_mean=None, Tg_sd=None):
     """Reproduction number from an epidemic growth rate (gamma-distributed generation interval). The reproduction number implied by an observed exponential growth rate when the generation interval follows a gamma distribution of stated mean and standard deviation (Wallinga-Lipsitch).
@@ -447,6 +526,36 @@ def bmed_indicator_dilution_cardiac_output(m=None, t=None, C=None):
     """
     given = {k: v for k, v in dict(m=m, t=t, C=C).items() if v is not None}
     return _P.solve("bmed_indicator_dilution_cardiac_output", **given)
+
+def bmed_iv_flow_rate(V=None, T=None, rate=None, drop_factor=None):
+    """IV flow rate: mL/h, drops per minute and infusion time (arithmetic, not medical advice). The flow rate of an infusion in mL/h from the volume and the time (or the infusion time from the volume and the rate), and the drip rate in drops per minute from the set's drop factor.
+    Formula: \\dot V = \\frac{V}{T},\\qquad \\text{gtt/min} = \\frac{V\\,[\\mathrm{mL}]}{T\\,[\\mathrm{min}]}\\times\\text{drop factor}
+    Inputs:
+        V: volume to infuse
+        T: infusion time (give T or rate) (optional)
+        rate: flow rate (give rate or T) (optional)
+        drop_factor: drop factor of the giving set, drops per mL (optional) (optional)
+    Outputs: flow (flow rate), flow_mL_h (flow rate in mL/h), duration (infusion time), duration_h (infusion time in h), duration_min (infusion time in min), drops_per_min (drip rate in drops per minute (when the drop factor is given))
+    See also: help("bmed_iv_flow_rate")
+    """
+    given = {k: v for k, v in dict(V=V, T=T, rate=rate, drop_factor=drop_factor).items() if v is not None}
+    return _P.solve("bmed_iv_flow_rate", **given)
+
+def bmed_iv_rate_from_dose_rate(drug=None, bag_volume=None, dose_rate=None, dose_ug_per_kg_min=None, W=None, drop_factor=None):
+    """Infusion pump rate from a dose rate (arithmetic, not medical advice). The pump rate in mL/h that delivers an ordered dose rate (mg/h, or ug/kg/min with the body weight) from a bag holding a stated amount of drug in a stated volume; also the drip rate for a drop factor.
+    Formula: \\dot V = \\frac{\\dot D}{C},\\qquad C = \\frac{m}{V_{bag}},\\qquad \\dot D = d\\,W
+    Inputs:
+        drug: amount of drug in the bag
+        bag_volume: volume of the bag
+        dose_rate: ordered dose rate, e.g. mg/h (give this or dose_ug_per_kg_min) (optional)
+        dose_ug_per_kg_min: ordered dose per kilogram per minute, a number in ug/kg/min (optional) (optional)
+        W: body weight (with dose_ug_per_kg_min) (optional)
+        drop_factor: drop factor of the giving set, drops per mL (optional) (optional)
+    Outputs: C (concentration in the bag (1 kg/m^3 = 1 mg/mL)), dose_rate (dose rate delivered), dose_mg_h (dose rate in mg/h), flow (pump rate), flow_mL_h (pump rate in mL/h), drops_per_min (drip rate in drops per minute (when the drop factor is given))
+    See also: help("bmed_iv_rate_from_dose_rate")
+    """
+    given = {k: v for k, v in dict(drug=drug, bag_volume=bag_volume, dose_rate=dose_rate, dose_ug_per_kg_min=dose_ug_per_kg_min, W=W, drop_factor=drop_factor).items() if v is not None}
+    return _P.solve("bmed_iv_rate_from_dose_rate", **given)
 
 def bmed_kelvin_voigt_creep(sigma=None, E=None, eta=None, t=None):
     """Kelvin-Voigt viscoelastic tissue model: creep strain under constant stress. The strain of a Kelvin-Voigt (spring parallel to dashpot) tissue model a time t after a constant stress is applied.
@@ -1057,6 +1166,20 @@ def bmed_postsynaptic_potential(tau_m=None, tau_s=None, R_m=None, I0=None, t=Non
     given = {k: v for k, v in dict(tau_m=tau_m, tau_s=tau_s, R_m=R_m, I0=I0, t=t).items() if v is not None}
     return _P.solve("bmed_postsynaptic_potential", **given)
 
+def bmed_reconstitution_concentration(powder=None, diluent=None, displacement=None, D=None):
+    """Reconstituted powder: concentration and volume to give (dosage arithmetic, not medical advice). The concentration of a powder drug after reconstitution, C = drug/(diluent + displacement volume), and the volume to give for an ordered dose, D/C.
+    Formula: C = \\frac{m}{V_{dil} + V_{disp}},\\qquad V = \\frac{D}{C}
+    Inputs:
+        powder: drug amount in the vial
+        diluent: diluent volume added
+        displacement: displacement volume of the powder (optional, default 0) (optional)
+        D: ordered dose (optional) (optional)
+    Outputs: V_total (final volume after reconstitution), V_total_mL (final volume in mL), C (concentration after reconstitution (1 kg/m^3 = 1 mg/mL)), C_mg_mL (concentration in mg/mL), V_give (volume to give for the ordered dose (when given)), V_give_mL (volume to give in mL)
+    See also: help("bmed_reconstitution_concentration")
+    """
+    given = {k: v for k, v in dict(powder=powder, diluent=diluent, displacement=displacement, D=D).items() if v is not None}
+    return _P.solve("bmed_reconstitution_concentration", **given)
+
 def bmed_relative_risk_ci(a=None, b=None, c=None, d=None, level=None):
     """Relative risk (risk ratio) of a cohort 2x2 table with log (Katz) interval. The risk ratio of exposed to unexposed in a cohort 2x2 table with the log-scale (Katz) confidence interval at the stated level.
     Formula: RR = \\frac{a/(a+b)}{c/(c+d)},\\quad \\mathrm{SE}(\\ln RR) = \\sqrt{\\tfrac1a - \\tfrac1{a+b} + \\tfrac1c - \\tfrac1{c+d}}
@@ -1194,6 +1317,20 @@ def bmed_ultrasound_wavelength(f=None, c=None):
     given = {k: v for k, v in dict(f=f, c=c).items() if v is not None}
     return _P.solve("bmed_ultrasound_wavelength", **given)
 
+def bmed_vaccine_efficacy(cases_v=None, n_v=None, cases_u=None, n_u=None):
+    """Vaccine efficacy from attack rates. Vaccine efficacy VE = (ARU - ARV)/ARU = 1 - RR from the attack rates of the vaccinated and the unvaccinated, with the risk ratio, the absolute risk reduction and the number needed to vaccinate.
+    Formula: VE = \\frac{ARU - ARV}{ARU} = 1 - \\frac{ARV}{ARU}
+    Inputs:
+        cases_v: cases among the vaccinated
+        n_v: number vaccinated
+        cases_u: cases among the unvaccinated
+        n_u: number unvaccinated
+    Outputs: ARV (attack rate in the vaccinated), ARU (attack rate in the unvaccinated), RR (risk ratio ARV/ARU), VE (vaccine efficacy 1 - ARV/ARU (fraction)), VE_percent (vaccine efficacy in %), ARR (absolute risk reduction ARU - ARV), NNV (number needed to vaccinate to prevent one case, 1/ARR (when ARR > 0))
+    See also: help("bmed_vaccine_efficacy")
+    """
+    given = {k: v for k, v in dict(cases_v=cases_v, n_v=n_v, cases_u=cases_u, n_u=n_u).items() if v is not None}
+    return _P.solve("bmed_vaccine_efficacy", **given)
+
 def bmed_windkessel_diastolic_decay(P0=None, Pv=None, R=None, C=None, t=None):
     """Two-element Windkessel: diastolic pressure decay. The arterial pressure of a two-element Windkessel model during diastole (no inflow), decaying from P0 towards the venous pressure with time constant RC.
     Formula: P(t) = P_v + (P_0 - P_v)\\,e^{-t/(RC)}
@@ -1239,4 +1376,4 @@ def bmed_xray_attenuation_layers(I0=None, mu_rho=None, rho=None, x=None):
     return _P.solve("bmed_xray_attenuation_layers", **given)
 
 
-__all__ = ["CapabilityId", "solve", "help", "bmed_bmi", "bmed_bmr", "bmed_cable_steady_state", "bmed_cohens_kappa", "bmed_cox_hazard_ratio", "bmed_dx_roc_auc", "bmed_dx_sensitivity_specificity_ci", "bmed_dx_threshold_sensitivity_specificity", "bmed_dx_youden_cutoff", "bmed_elbow_lever_muscle_force", "bmed_epi_r_from_growth_rate", "bmed_epi_reed_frost_final_size", "bmed_epi_seir_final_size", "bmed_epi_seir_growth_rate", "bmed_epi_seir_peak", "bmed_epi_sir_final_size", "bmed_epi_sir_peak", "bmed_epi_sis_prevalence", "bmed_exponential_hazard_ratio", "bmed_exponential_survival_fit", "bmed_fitzhugh_nagumo_fixed_point", "bmed_gaussian_psf_mtf", "bmed_ghk_current_density", "bmed_ghk_voltage", "bmed_hh_gating_steady_state", "bmed_hh_potassium_conductance_clamp", "bmed_hh_resting_potential", "bmed_hounsfield_units", "bmed_incidence_rate_ratio_ci", "bmed_indicator_dilution_cardiac_output", "bmed_kelvin_voigt_creep", "bmed_km_confidence_interval", "bmed_km_survival_median", "bmed_larmor_frequency", "bmed_lif_firing_rate", "bmed_lif_subthreshold_voltage", "bmed_logrank_test", "bmed_mantel_haenszel_odds_ratio", "bmed_mri_adc_fit", "bmed_mri_ernst_angle", "bmed_mri_inversion_recovery", "bmed_mri_spin_echo_signal", "bmed_mri_spoiled_gradient_echo", "bmed_mri_t2_fit", "bmed_nelson_aalen_hazard", "bmed_nnt_ci", "bmed_odds_ratio_ci", "bmed_pk_auc_iv_bolus", "bmed_pk_auc_trapezoid", "bmed_pk_bioavailability_from_profiles", "bmed_pk_effect_site_concentration", "bmed_pk_hepatic_clearance_parallel_tube", "bmed_pk_hepatic_clearance_well_stirred", "bmed_pk_infusion_concentration", "bmed_pk_intermittent_infusion_steady_state", "bmed_pk_iv_bolus_concentration", "bmed_pk_loading_maintenance", "bmed_pk_michaelis_menten_concentration", "bmed_pk_michaelis_menten_steady_state", "bmed_pk_michaelis_menten_time", "bmed_pk_nca_iv_bolus", "bmed_pk_nth_dose_iv", "bmed_pk_oral_concentration", "bmed_pk_oral_peak", "bmed_pk_short_infusion", "bmed_pk_steady_state_iv", "bmed_pk_steady_state_oral", "bmed_pk_terminal_half_life_fit", "bmed_pk_time_to_steady_state_fraction", "bmed_pk_two_compartment_bolus", "bmed_pk_two_compartment_micro_constants", "bmed_poiseuille_vessel_flow", "bmed_postsynaptic_potential", "bmed_relative_risk_ci", "bmed_respiratory_mechanics_fit", "bmed_restricted_mean_survival_time", "bmed_sls_creep", "bmed_sls_stress_relaxation", "bmed_smr_exact_ci", "bmed_snr_averaging", "bmed_ultrasound_interface", "bmed_ultrasound_matching_layer", "bmed_ultrasound_wavelength", "bmed_windkessel_diastolic_decay", "bmed_windkessel_input_impedance", "bmed_xray_attenuation_layers"]
+__all__ = ["CapabilityId", "solve", "help", "bmed_bmi", "bmed_bmr", "bmed_cable_steady_state", "bmed_cohens_kappa", "bmed_cox_hazard_ratio", "bmed_dose_liquid_volume", "bmed_dose_tablets", "bmed_dose_weight_based", "bmed_dx_predictive_values", "bmed_dx_roc_auc", "bmed_dx_sensitivity_specificity_ci", "bmed_dx_threshold_sensitivity_specificity", "bmed_dx_youden_cutoff", "bmed_elbow_lever_muscle_force", "bmed_epi_basic_rates", "bmed_epi_herd_immunity", "bmed_epi_r_from_growth_rate", "bmed_epi_reed_frost_final_size", "bmed_epi_seir_final_size", "bmed_epi_seir_growth_rate", "bmed_epi_seir_peak", "bmed_epi_sir_final_size", "bmed_epi_sir_peak", "bmed_epi_sis_prevalence", "bmed_exponential_hazard_ratio", "bmed_exponential_survival_fit", "bmed_fitzhugh_nagumo_fixed_point", "bmed_gaussian_psf_mtf", "bmed_ghk_current_density", "bmed_ghk_voltage", "bmed_hh_gating_steady_state", "bmed_hh_potassium_conductance_clamp", "bmed_hh_resting_potential", "bmed_hounsfield_units", "bmed_incidence_rate_ratio_ci", "bmed_indicator_dilution_cardiac_output", "bmed_iv_flow_rate", "bmed_iv_rate_from_dose_rate", "bmed_kelvin_voigt_creep", "bmed_km_confidence_interval", "bmed_km_survival_median", "bmed_larmor_frequency", "bmed_lif_firing_rate", "bmed_lif_subthreshold_voltage", "bmed_logrank_test", "bmed_mantel_haenszel_odds_ratio", "bmed_mri_adc_fit", "bmed_mri_ernst_angle", "bmed_mri_inversion_recovery", "bmed_mri_spin_echo_signal", "bmed_mri_spoiled_gradient_echo", "bmed_mri_t2_fit", "bmed_nelson_aalen_hazard", "bmed_nnt_ci", "bmed_odds_ratio_ci", "bmed_pk_auc_iv_bolus", "bmed_pk_auc_trapezoid", "bmed_pk_bioavailability_from_profiles", "bmed_pk_effect_site_concentration", "bmed_pk_hepatic_clearance_parallel_tube", "bmed_pk_hepatic_clearance_well_stirred", "bmed_pk_infusion_concentration", "bmed_pk_intermittent_infusion_steady_state", "bmed_pk_iv_bolus_concentration", "bmed_pk_loading_maintenance", "bmed_pk_michaelis_menten_concentration", "bmed_pk_michaelis_menten_steady_state", "bmed_pk_michaelis_menten_time", "bmed_pk_nca_iv_bolus", "bmed_pk_nth_dose_iv", "bmed_pk_oral_concentration", "bmed_pk_oral_peak", "bmed_pk_short_infusion", "bmed_pk_steady_state_iv", "bmed_pk_steady_state_oral", "bmed_pk_terminal_half_life_fit", "bmed_pk_time_to_steady_state_fraction", "bmed_pk_two_compartment_bolus", "bmed_pk_two_compartment_micro_constants", "bmed_poiseuille_vessel_flow", "bmed_postsynaptic_potential", "bmed_reconstitution_concentration", "bmed_relative_risk_ci", "bmed_respiratory_mechanics_fit", "bmed_restricted_mean_survival_time", "bmed_sls_creep", "bmed_sls_stress_relaxation", "bmed_smr_exact_ci", "bmed_snr_averaging", "bmed_ultrasound_interface", "bmed_ultrasound_matching_layer", "bmed_ultrasound_wavelength", "bmed_vaccine_efficacy", "bmed_windkessel_diastolic_decay", "bmed_windkessel_input_impedance", "bmed_xray_attenuation_layers"]

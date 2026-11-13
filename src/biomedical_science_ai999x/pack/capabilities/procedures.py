@@ -9,9 +9,11 @@ Topics (the biomedical view): pharmacokinetic models (one-compartment IV bolus, 
 multiple dosing to steady state, loading and maintenance rates of a model, Michaelis-Menten elimination,
 two-compartment models, hepatic clearance models, effect-site models, non-compartmental analysis of data), epidemic
 models (SIR and SEIR final size, SIR peak prevalence and timing, SEIR early growth, reproduction number from a growth
-rate, SIS prevalence, the Reed-Frost chain binomial), diagnostic test statistics (ROC area, Youden cut-off,
-sensitivity and specificity with Wilson intervals, odds ratio, relative risk, number needed to treat, incidence rate
-ratio, standardized mortality ratio, Mantel-Haenszel odds ratio, Cohen's kappa), survival analysis (Kaplan-Meier
+rate, SIS prevalence, the Reed-Frost chain binomial, the herd-immunity threshold and critical coverage), diagnostic
+test statistics (ROC area, Youden cut-off, sensitivity and specificity with Wilson intervals, predictive values and
+likelihood ratios, odds ratio, relative risk, number needed to treat, incidence rate ratio, standardized mortality
+ratio, Mantel-Haenszel odds ratio, Cohen's kappa, incidence, prevalence, attack rate, case fatality and mortality,
+vaccine efficacy), survival analysis (Kaplan-Meier
 estimate, median and interval, Nelson-Aalen hazard, log-rank test, Cox and exponential hazard ratios, restricted mean
 survival time), biomechanics (static lever model of the elbow, Poiseuille flow in a vessel, Windkessel models,
 viscoelastic tissue models, indicator dilution, respiratory mechanics), neuron models (Goldman-Hodgkin-Katz voltage
@@ -5052,3 +5054,758 @@ for _k, _vals in _EXV.items():
     if _k in PROCEDURES:
         for _e, _v in zip(PROCEDURES[_k]["examples"], _vals):
             _e["outputs"].update(_v)
+
+
+# ================================================================================================ CORE GAPS (2026-11-12)
+# The elementary epidemiology and immunization calculations of a first course: incidence, prevalence, attack rate,
+# case fatality and mortality; predictive values and likelihood ratios of a test; the herd-immunity threshold and the
+# critical vaccination coverage; vaccine efficacy from attack rates. Worked-example values are hand-worked (exact
+# fractions) and written into each example. Conventions: one population for every proportion (the population at risk
+# at the start of the period); per-year rates use the Julian year (365.25 days, the shared reader's "yr"); deaths are
+# deaths from the disease among its cases (case fatality = deaths/cases, mortality = deaths/population); vaccine
+# efficacy = 1 - ARV/ARU (negative when the vaccinated fare worse).
+YEAR_S = 3.15576e7                                 # Julian year in seconds
+_ATOM_FIXED["yr"] = YEAR_S                         # for the written examples (the runtime reads "yr" itself)
+
+
+def epi_basic_rates(cases, population, prevalent=None, deaths=None, period=None):
+    _count("the number of new cases", cases, 0)
+    _count("the population", population, 1)
+    _need(cases <= population, "the new cases cannot exceed the population")
+    ip = cases / population
+    out = {"incidence_proportion": ip, "incidence_per_100000": ip * 1e5}
+    if period is not None:
+        _pos("the period", period)
+        out["incidence_rate"] = cases / (population * period)
+        out["incidence_per_100000_person_years"] = cases / (population * period / YEAR_S) * 1e5
+    if prevalent is not None:
+        _count("the number of existing (prevalent) cases", prevalent, 0)
+        _need(prevalent <= population, "the existing cases cannot exceed the population")
+        out["prevalence"] = prevalent / population
+        out["prevalence_per_100000"] = prevalent / population * 1e5
+    if deaths is not None:
+        _count("the number of deaths", deaths, 0)
+        _need(cases >= 1, "the case-fatality rate needs at least one case")
+        _need(deaths <= cases, "the deaths from the disease cannot exceed its cases")
+        out["case_fatality"] = deaths / cases
+        out["mortality_per_100000"] = deaths / population * 1e5
+        if period is not None:
+            out["mortality_per_100000_person_years"] = deaths / (population * period / YEAR_S) * 1e5
+    return _out(**out)
+
+
+def _ref_epi_basic_rates(cases, population, prevalent=None, deaths=None, period=None):
+    """Each rate as an exact rational number (sympy), the per-year rates through person-years."""
+    import sympy as sp
+    N = sp.Integer(population)
+    out = {"incidence_proportion": float(sp.Integer(cases) / N), "incidence_per_100000": float(sp.Integer(cases) * 100000 / N)}
+    if period is not None:
+        py = N * sp.Rational(repr(period)) / sp.Rational(repr(YEAR_S))           # person-years at risk
+        out["incidence_rate"] = float(sp.Integer(cases) / (N * sp.Rational(repr(period))))
+        out["incidence_per_100000_person_years"] = float(sp.Integer(cases) * 100000 / py)
+    if prevalent is not None:
+        out["prevalence"] = float(sp.Integer(prevalent) / N)
+        out["prevalence_per_100000"] = float(sp.Integer(prevalent) * 100000 / N)
+    if deaths is not None:
+        out["case_fatality"] = float(sp.Rational(deaths, cases))
+        out["mortality_per_100000"] = float(sp.Integer(deaths) * 100000 / N)
+        if period is not None:
+            out["mortality_per_100000_person_years"] = float(sp.Integer(deaths) * 100000 / py)
+    return out
+
+
+def _wrong_epi_basic_rates(cases, population, prevalent=None, deaths=None, period=None):
+    """Odds in place of proportions: the numerator subtracted from every denominator."""
+    out = {"incidence_proportion": cases / (population - cases), "incidence_per_100000": cases / (population - cases) * 1e5}
+    if period is not None:
+        out["incidence_rate"] = cases / ((population - cases) * period)
+        out["incidence_per_100000_person_years"] = cases / ((population - cases) * period / YEAR_S) * 1e5
+    if prevalent is not None:
+        out["prevalence"] = prevalent / (population - prevalent)
+        out["prevalence_per_100000"] = prevalent / (population - prevalent) * 1e5
+    if deaths is not None:
+        out["case_fatality"] = deaths / (cases - deaths)
+        out["mortality_per_100000"] = deaths / (population - deaths) * 1e5
+        if period is not None:
+            out["mortality_per_100000_person_years"] = deaths / ((population - deaths) * period / YEAR_S) * 1e5
+    return _out(**out)
+
+
+def _rand_epi_rates(rng):
+    N = rng.randint(200, 2000000)
+    cases = max(1, int(N * rng.uniform(0.01, 0.3)))
+    d = {"cases": cases, "population": N}
+    if rng.random() < 0.6:
+        d["prevalent"] = max(1, int(N * rng.uniform(0.01, 0.3)))
+    if rng.random() < 0.6:
+        d["deaths"] = max(1, int(cases * rng.uniform(0.01, 0.4)))
+    if rng.random() < 0.5:
+        d["period"] = rng.choice([0.25, 0.5, 1.0, 2.0, 5.0]) * YEAR_S
+    return d
+
+
+_add("bmed_epi_basic_rates",
+     name="Basic epidemiological rates: incidence, attack rate, prevalence, case fatality and mortality", topic=_EP,
+     purpose="The incidence proportion (attack rate) and, when given, the incidence rate per person-year, the point prevalence, the case-fatality rate and the mortality, from case counts in one population.",
+     inputs=[_intin("cases", "new cases during the period", 0), _intin("population", "population at risk at the start of the period", 1),
+             _intin("prevalent", "existing cases at a point in time (optional, for the prevalence)", 0, required=False),
+             _intin("deaths", "deaths from the disease among its cases (optional)", 0, required=False),
+             _phys("period", "time", "length of the observation period (optional, for rates per person-year)", required=False)],
+     outputs=[_o("incidence_proportion", "number", "incidence proportion (attack rate) = new cases / population"),
+              _o("incidence_per_100000", "number", "incidence proportion per 100,000"),
+              _o("incidence_rate", "frequency", "incidence rate per person and unit time (when the period is given)"),
+              _o("incidence_per_100000_person_years", "number", "incidence rate per 100,000 person-years (when the period is given)"),
+              _o("prevalence", "number", "point prevalence = existing cases / population (when given)"),
+              _o("prevalence_per_100000", "number", "prevalence per 100,000"),
+              _o("case_fatality", "number", "case-fatality rate = deaths / cases (when deaths are given)"),
+              _o("mortality_per_100000", "number", "disease mortality per 100,000 population over the period"),
+              _o("mortality_per_100000_person_years", "number", "mortality rate per 100,000 person-years (deaths and period given)")],
+     primary="incidence_proportion", conditions=["0 <= cases <= population", "existing cases <= population", "deaths <= cases",
+                                                 "one closed population, constant over the period"],
+     method="incidence proportion = cases/N; incidence rate = cases/(N T); prevalence = existing cases/N; case fatality = deaths/cases; mortality = deaths/N",
+     latex=r"IP = \frac{\text{new cases}}{N},\quad P = \frac{\text{existing cases}}{N},\quad CFR = \frac{\text{deaths}}{\text{cases}}",
+     run=epi_basic_rates, reference=_ref_epi_basic_rates, wrong=_wrong_epi_basic_rates, rand=_rand_epi_rates,
+     phrases=("Epidemiological rates", "Incidence and prevalence", "Attack rate and case fatality"),
+     examples=[_ex({"cases": 150, "population": 10000, "prevalent": 400, "deaths": 6, "period": "1 yr"},
+                   {"incidence_proportion": 0.015, "incidence_per_100000": 1500.0, "incidence_per_100000_person_years": 1500.0,
+                    "prevalence": 0.04, "prevalence_per_100000": 4000.0, "case_fatality": 0.04, "mortality_per_100000": 60.0,
+                    "mortality_per_100000_person_years": 60.0}),
+               _ex({"cases": 30, "population": 1200, "deaths": 3},
+                   {"incidence_proportion": 0.025, "incidence_per_100000": 2500.0, "case_fatality": 0.1, "mortality_per_100000": 250.0})],
+     level="beginner",
+     extra_q=[{"q": "Attack rate and case fatality: cases = 30, population = 1200, deaths = 3", "like": 1},
+              {"q": "Epidemiological rates: cases = 30, population = 1200, deaths = 31", "outcome": "INVALID_INPUT"}])
+
+
+def dx_predictive_values(sensitivity, specificity, prevalence):
+    _frac("the sensitivity", sensitivity, lo_open=True, hi_open=True)
+    _frac("the specificity", specificity, lo_open=True, hi_open=True)
+    _frac("the prevalence", prevalence, lo_open=True, hi_open=True)
+    tp = sensitivity * prevalence
+    fp = (1.0 - specificity) * (1.0 - prevalence)
+    tn = specificity * (1.0 - prevalence)
+    fn = (1.0 - sensitivity) * prevalence
+    lrp = sensitivity / (1.0 - specificity)
+    lrn = (1.0 - sensitivity) / specificity
+    return _out(PPV=tp / (tp + fp), NPV=tn / (tn + fn), LR_pos=lrp, LR_neg=lrn, DOR=lrp / lrn)
+
+
+def _ref_dx_predictive_values(sensitivity, specificity, prevalence):
+    """The odds form of Bayes' theorem (the Fagan nomogram): post-test odds = pre-test odds x likelihood ratio, the
+    diagnostic odds ratio as the odds ratio of the expected 2x2 table (statsmodels Table2x2)."""
+    import numpy as np
+    from statsmodels.stats.contingency_tables import Table2x2
+    pre = prevalence / (1.0 - prevalence)
+    lrp = sensitivity / (1.0 - specificity)
+    lrn = (1.0 - sensitivity) / specificity
+    op, on = pre * lrp, pre * lrn
+    t = Table2x2(np.array([[sensitivity * prevalence, (1 - sensitivity) * prevalence],
+                           [(1 - specificity) * (1 - prevalence), specificity * (1 - prevalence)]], dtype=float))
+    return {"PPV": op / (1.0 + op), "NPV": 1.0 / (1.0 + on), "LR_pos": lrp, "LR_neg": lrn, "DOR": float(t.oddsratio)}
+
+
+_add("bmed_dx_predictive_values",
+     name="Predictive values and likelihood ratios of a diagnostic test", topic=_DX,
+     purpose="The positive and negative predictive values of a test at a stated prevalence (pre-test probability), and its positive and negative likelihood ratios and diagnostic odds ratio.",
+     inputs=[_numin("sensitivity", "sensitivity P(positive | disease), a fraction or %", pct=True),
+             _numin("specificity", "specificity P(negative | no disease), a fraction or %", pct=True),
+             _numin("prevalence", "prevalence (pre-test probability of disease), a fraction or %", pct=True)],
+     outputs=[_o("PPV", "number", "positive predictive value P(disease | positive)"), _o("NPV", "number", "negative predictive value P(no disease | negative)"),
+              _o("LR_pos", "number", "positive likelihood ratio sens/(1 - spec)"), _o("LR_neg", "number", "negative likelihood ratio (1 - sens)/spec"),
+              _o("DOR", "number", "diagnostic odds ratio LR+/LR-")],
+     primary="PPV", conditions=["0 < sensitivity, specificity, prevalence < 1", "the test's accuracy does not depend on prevalence"],
+     method="PPV = Se p / (Se p + (1 - Sp)(1 - p)); NPV = Sp (1 - p) / (Sp (1 - p) + (1 - Se) p); LR+ = Se/(1 - Sp); LR- = (1 - Se)/Sp",
+     latex=r"PPV = \frac{Se\,p}{Se\,p + (1-Sp)(1-p)},\quad NPV = \frac{Sp(1-p)}{Sp(1-p) + (1-Se)p},\quad LR^{+} = \frac{Se}{1-Sp}",
+     run=dx_predictive_values, reference=_ref_dx_predictive_values,
+     wrong=lambda sensitivity, specificity, prevalence: _out(
+         PPV=sensitivity * prevalence / (sensitivity * prevalence + specificity * (1 - prevalence)),
+         NPV=specificity * (1 - prevalence) / (specificity * (1 - prevalence) + sensitivity * prevalence),
+         LR_pos=sensitivity / specificity, LR_neg=(1 - sensitivity) / (1 - specificity),
+         DOR=sensitivity * (1 - specificity) / (specificity * (1 - sensitivity))),
+     rand=lambda rng: {"sensitivity": _sig(rng.uniform(0.55, 0.99), 3), "specificity": _sig(rng.uniform(0.55, 0.99), 3),
+                       "prevalence": _sig(_lu(rng, 0.002, 0.6), 3)},
+     phrases=("Predictive values and likelihood ratios", "Positive and negative predictive values", "Likelihood ratios of a test"),
+     examples=[_ex({"sensitivity": "90%", "specificity": "95%", "prevalence": "2%"},
+                   {"PPV": 0.268656716418, "NPV": 0.997856377278, "LR_pos": 18.0, "LR_neg": 0.105263157895, "DOR": 171.0}),
+               _ex({"sensitivity": 0.8, "specificity": 0.9, "prevalence": 0.3},
+                   {"PPV": 0.774193548387, "NPV": 0.913043478261, "LR_pos": 8.0, "LR_neg": 0.222222222222, "DOR": 36.0})],
+     level="beginner",
+     extra_q=[{"q": "Likelihood ratios of a test: sensitivity = 0.9, specificity = 0.95, prevalence = 0.02", "like": 0},
+              {"q": "Predictive values and likelihood ratios: sensitivity = 90%, specificity = 100%, prevalence = 2%", "outcome": "INVALID_INPUT"}])
+
+
+def epi_herd_immunity(R0, efficacy=None):
+    _pos("R0", R0)
+    _need(R0 > 1.0, "R0 must exceed 1 (below 1 an infection dies out without vaccination)")
+    _need(R0 <= 100.0, "R0 must be at most 100")
+    h = 1.0 - 1.0 / R0
+    out = {"threshold": h, "threshold_percent": h * 100.0}
+    if efficacy is not None:
+        _frac("the vaccine efficacy", efficacy, lo_open=True)
+        c = h / efficacy
+        out["coverage"] = c
+        out["coverage_percent"] = c * 100.0
+        out["reachable"] = "reachable" if c <= 1.0 else "not reachable with this vaccine"
+    return _out(**out)
+
+
+def _ref_epi_herd_immunity(R0, efficacy=None):
+    """The immune fraction p at which the effective reproduction number R0 (1 - p) falls to 1, and the coverage c at
+    which R0 (1 - E c) falls to 1, each found by root-finding (scipy brentq)."""
+    h = _brentq(lambda p: R0 * (1.0 - p) - 1.0, 0.0, 1.0)
+    out = {"threshold": h, "threshold_percent": h * 100.0}
+    if efficacy is not None:
+        c = _brentq(lambda cc: R0 * (1.0 - efficacy * cc) - 1.0, 0.0, 1.0 / efficacy)
+        out["coverage"] = c
+        out["coverage_percent"] = c * 100.0
+        out["reachable"] = "reachable" if c <= 1.0 else "not reachable with this vaccine"
+    return out
+
+
+def _wrong_epi_herd_immunity(R0, efficacy=None):
+    h = 1.0 / R0                                        # the susceptible fraction at the threshold, not the immune one
+    out = {"threshold": h, "threshold_percent": h * 100.0}
+    if efficacy is not None:
+        out["coverage"] = h / efficacy
+        out["coverage_percent"] = h / efficacy * 100.0
+        out["reachable"] = "reachable" if h / efficacy <= 1.0 else "not reachable with this vaccine"
+    return _out(**out)
+
+
+_add("bmed_epi_herd_immunity",
+     name="Herd-immunity threshold and critical vaccination coverage", topic=_EPI,
+     purpose="The fraction of a population that must be immune to stop sustained spread, 1 - 1/R0, and, for a vaccine of stated efficacy, the vaccination coverage that achieves it (and whether it is reachable).",
+     inputs=[_numin("R0", "basic reproduction number"),
+             _numin("efficacy", "vaccine efficacy against infection, a fraction or % (optional)", required=False, pct=True)],
+     outputs=[_o("threshold", "number", "herd-immunity threshold 1 - 1/R0 (immune fraction)"), _o("threshold_percent", "number", "threshold in %"),
+              _o("coverage", "number", "critical vaccination coverage (1 - 1/R0)/E (when the efficacy is given)"),
+              _o("coverage_percent", "number", "critical coverage in %"),
+              _o("reachable", "number", "reachable (coverage <= 100 %) or not reachable with this vaccine")],
+     primary="threshold", conditions=["1 < R0 <= 100", "0 < efficacy <= 1", "homogeneous mixing, lasting all-or-nothing immunity"],
+     method="H = 1 - 1/R0; V_c = H / E", latex=r"H = 1 - \frac{1}{R_0},\quad V_c = \frac{1 - 1/R_0}{E}",
+     run=epi_herd_immunity, reference=_ref_epi_herd_immunity, wrong=_wrong_epi_herd_immunity,
+     rand=lambda rng: dict({"R0": _sig(_lu(rng, 1.2, 18.0), 3)}, **({"efficacy": _sig(rng.uniform(0.5, 0.99), 3)} if rng.random() < 0.7 else {})),
+     phrases=("Herd-immunity threshold", "Herd immunity threshold", "Critical vaccination coverage"),
+     examples=[_ex({"R0": 4, "efficacy": "90%"},
+                   {"threshold": 0.75, "threshold_percent": 75.0, "coverage": 0.833333333333, "coverage_percent": 83.3333333333, "reachable": "reachable"}),
+               _ex({"R0": 15, "efficacy": 0.97},
+                   {"threshold": 0.933333333333, "threshold_percent": 93.3333333333, "coverage": 0.962199312715, "reachable": "reachable"}),
+               _ex({"R0": 18, "efficacy": 0.9},
+                   {"threshold": 0.944444444444, "coverage": 1.04938271605, "reachable": "not reachable with this vaccine"})],
+     level="beginner",
+     extra_q=[{"q": "Critical vaccination coverage: R0 = 4, efficacy = 0.9", "like": 0},
+              {"q": "Herd-immunity threshold: R0 = 0.8, efficacy = 90%", "outcome": "INVALID_INPUT"}])
+
+
+def vaccine_efficacy(cases_v, n_v, cases_u, n_u):
+    _count("the vaccinated cases", cases_v, 0)
+    _count("the vaccinated group size", n_v, 1)
+    _count("the unvaccinated cases", cases_u, 1)
+    _count("the unvaccinated group size", n_u, 1)
+    _need(cases_v <= n_v and cases_u <= n_u, "the cases cannot exceed the group size")
+    arv = cases_v / n_v
+    aru = cases_u / n_u
+    rr = arv / aru
+    out = {"ARV": arv, "ARU": aru, "RR": rr, "VE": 1.0 - rr, "VE_percent": (1.0 - rr) * 100.0, "ARR": aru - arv}
+    if aru > arv:
+        out["NNV"] = 1.0 / (aru - arv)
+    return _out(**out)
+
+
+def _ref_vaccine_efficacy(cases_v, n_v, cases_u, n_u):
+    """The risk ratio of the vaccinated-versus-unvaccinated 2x2 table (statsmodels Table2x2); VE = 1 - RR."""
+    import numpy as np
+    from statsmodels.stats.contingency_tables import Table2x2
+    t = Table2x2(np.array([[cases_v, n_v - cases_v], [cases_u, n_u - cases_u]], dtype=float), shift_zeros=False)
+    rr = float(t.riskratio)
+    arv, aru = cases_v / n_v, cases_u / n_u
+    out = {"ARV": arv, "ARU": aru, "RR": rr, "VE": 1.0 - rr, "VE_percent": (1.0 - rr) * 100.0, "ARR": aru - arv}
+    if aru > arv:
+        out["NNV"] = 1.0 / (aru - arv)
+    return out
+
+
+def _wrong_vaccine_efficacy(cases_v, n_v, cases_u, n_u):
+    arv, aru = cases_v / n_v, cases_u / n_u
+    ve = (aru - arv) / arv if arv > 0 else 1.0           # divided by the vaccinated attack rate
+    out = {"ARV": arv, "ARU": aru, "RR": arv / aru, "VE": ve, "VE_percent": ve * 100.0, "ARR": aru - arv}
+    if aru > arv:
+        out["NNV"] = 1.0 / (aru - arv)
+    return _out(**out)
+
+
+def _rand_ve(rng):
+    n_u = rng.randint(100, 20000)
+    n_v = rng.randint(100, 20000)
+    aru = rng.uniform(0.02, 0.4)
+    cases_u = max(2, int(n_u * aru))
+    cases_v = max(1, int(n_v * aru * rng.uniform(0.03, 0.7)))
+    return {"cases_v": cases_v, "n_v": n_v, "cases_u": cases_u, "n_u": n_u}
+
+
+_add("bmed_vaccine_efficacy",
+     name="Vaccine efficacy from attack rates", topic=_EP,
+     purpose="Vaccine efficacy VE = (ARU - ARV)/ARU = 1 - RR from the attack rates of the vaccinated and the unvaccinated, with the risk ratio, the absolute risk reduction and the number needed to vaccinate.",
+     inputs=[_intin("cases_v", "cases among the vaccinated", 0), _intin("n_v", "number vaccinated", 1),
+             _intin("cases_u", "cases among the unvaccinated", 1), _intin("n_u", "number unvaccinated", 1)],
+     outputs=[_o("ARV", "number", "attack rate in the vaccinated"), _o("ARU", "number", "attack rate in the unvaccinated"),
+              _o("RR", "number", "risk ratio ARV/ARU"), _o("VE", "number", "vaccine efficacy 1 - ARV/ARU (fraction)"),
+              _o("VE_percent", "number", "vaccine efficacy in %"), _o("ARR", "number", "absolute risk reduction ARU - ARV"),
+              _o("NNV", "number", "number needed to vaccinate to prevent one case, 1/ARR (when ARR > 0)")],
+     primary="VE", conditions=["cases <= group size", "at least one unvaccinated case", "comparable groups, equal follow-up"],
+     method="ARV = cases_v/n_v; ARU = cases_u/n_u; VE = (ARU - ARV)/ARU = 1 - ARV/ARU",
+     latex=r"VE = \frac{ARU - ARV}{ARU} = 1 - \frac{ARV}{ARU}",
+     run=vaccine_efficacy, reference=_ref_vaccine_efficacy, wrong=_wrong_vaccine_efficacy, rand=_rand_ve,
+     phrases=("Vaccine efficacy", "Vaccine efficacy from attack rates"),
+     examples=[_ex({"cases_v": 20, "n_v": 1000, "cases_u": 100, "n_u": 1000},
+                   {"ARV": 0.02, "ARU": 0.1, "RR": 0.2, "VE": 0.8, "VE_percent": 80.0, "ARR": 0.08, "NNV": 12.5}),
+               _ex({"cases_v": 15, "n_v": 600, "cases_u": 60, "n_u": 400},
+                   {"ARV": 0.025, "ARU": 0.15, "RR": 0.166666666667, "VE": 0.833333333333, "VE_percent": 83.3333333333, "ARR": 0.125, "NNV": 8.0})],
+     level="beginner",
+     extra_q=[{"q": "Vaccine efficacy: cases_v = 700, n_v = 600, cases_u = 60, n_u = 400", "outcome": "INVALID_INPUT"}])
+
+
+# ================================================================================================ CORE GAPS, PART 3 (2026-11-12)
+# Dosage arithmetic and IV flow rates of a first pharmacology course: the weight-based dose, the amount to give from a
+# stock strength ("desired over have": tablets, or millilitres of a liquid), the concentration of a reconstituted
+# powder, the IV flow rate in mL/h and drops per minute, the infusion time, and the pump rate from a dose rate.
+# QUANTITATIVE ARITHMETIC ONLY, not medical advice: no dose is recommended, judged safe or checked against a limit.
+# Conventions: a dose per kilogram is a plain number in mg/kg (dose_mg_per_kg) or ug/kg/min (dose_ug_per_kg_min),
+# with the body weight given as a mass; whether a mg/kg figure is per dose or per day is a required input (basis);
+# a drop factor is a whole number of drops per mL (gtt/mL); the results are exact (no rounding to whole drops or to
+# measurable volumes); 1 kg/m^3 = 1 mg/mL. The references are re-solves by dimensional analysis in sympy's unit
+# system (exact rationals, every unit conversion done by sympy, not by the factors of the shipped code); they are
+# weaker references (the same definitions), named as such in the report.
+_DOSE = "dosage calculations"
+
+
+def _sp_q(value, unit):
+    """Exact sympy quantity of a SI value (references only); unit is one of the names below."""
+    import sympy as sp
+    from sympy.physics import units as u
+    units = {"kg": u.kilogram, "m3": u.meter ** 3, "s": u.second, "kg/s": u.kilogram / u.second,
+             "m3/s": u.meter ** 3 / u.second, "kg/m3": u.kilogram / u.meter ** 3}
+    return sp.Rational(repr(float(value))) * units[unit]
+
+
+def _sp_in(q, unit):
+    """The number of `unit` (mg, ug, mL, h, min, mg/h, mL/h, mg/mL, ug/min) in the sympy quantity q, exactly."""
+    from sympy.physics import units as u
+    units = {"mg": u.milligram, "ug": u.microgram, "kg": u.kilogram, "mL": u.milliliter, "h": u.hour,
+             "min": u.minute, "s": u.second, "m3": u.meter ** 3}
+    if "/" in unit:
+        a, b = unit.split("/")
+        return _sp_in(q * units[b], a)                    # (amount per b) x b = amount, counted in a
+    t = units[unit]
+    return u.convert_to(q, t) / t
+
+
+def dose_weight_based(dose_mg_per_kg, W, basis, doses_per_day=None):
+    _pos("the dose per kilogram", dose_mg_per_kg)
+    _need(dose_mg_per_kg <= 1000.0, "the dose per kilogram is a number in mg/kg and must be at most 1000")
+    _pos("the body weight", W)
+    _need(0.3 <= W <= 400.0, "the body weight must lie between 0.3 and 400 kg")
+    _need(basis == "per_dose" or basis == "per_day", "basis must be per_dose or per_day (what the mg/kg figure refers to)")
+    if doses_per_day is not None:
+        _count("the number of doses per day", doses_per_day, 1)
+        _need(doses_per_day <= 24, "at most 24 doses per day")
+    _need(basis == "per_dose" or doses_per_day is not None, "a dose per kilogram per day needs the number of doses per day")
+    mg = dose_mg_per_kg * W                               # W in kg
+    out = {}
+    if basis == "per_day":
+        out["dose_mg"] = mg / doses_per_day
+        out["daily_dose_mg"] = mg
+    else:
+        out["dose_mg"] = mg
+        if doses_per_day is not None:
+            out["daily_dose_mg"] = mg * doses_per_day
+    out["dose"] = out["dose_mg"] * 1e-6
+    if "daily_dose_mg" in out:
+        out["daily_dose"] = out["daily_dose_mg"] * 1e-6
+    return _out(**out)
+
+
+def _ref_dose_weight_based(dose_mg_per_kg, W, basis, doses_per_day=None):
+    """Dimensional analysis in sympy's unit system: (mg/kg) x body mass, converted to mg and to kg exactly."""
+    import sympy as sp
+    from sympy.physics import units as u
+    total = sp.Rational(repr(float(dose_mg_per_kg))) * u.milligram / u.kilogram * _sp_q(W, "kg")
+    if basis == "per_day":
+        per, daily = total / doses_per_day, total
+    else:
+        per, daily = total, (total * doses_per_day if doses_per_day is not None else None)
+    out = {"dose": float(_sp_in(per, "kg")), "dose_mg": float(_sp_in(per, "mg"))}
+    if daily is not None:
+        out["daily_dose"] = float(_sp_in(daily, "kg"))
+        out["daily_dose_mg"] = float(_sp_in(daily, "mg"))
+    return out
+
+
+def _wrong_dose_weight_based(dose_mg_per_kg, W, basis, doses_per_day=None):
+    """The weight taken in pounds (kg x 2.2) instead of kilograms."""
+    o = dose_weight_based(dose_mg_per_kg, W, basis, doses_per_day)
+    return {k: v * 2.2 for k, v in o.items()}
+
+
+def _rand_dose_weight(rng):
+    basis = rng.choice(["per_dose", "per_day"])
+    d = {"dose_mg_per_kg": _sig(_lu(rng, 0.5, 100.0), 3), "W": _sig(rng.uniform(2.5, 110.0), 3), "basis": basis}
+    if basis == "per_day" or rng.random() < 0.6:
+        d["doses_per_day"] = rng.choice([1, 2, 3, 4, 6])
+    return d
+
+
+_add("bmed_dose_weight_based",
+     name="Weight-based dose (dosage arithmetic, not medical advice)", topic=_DOSE,
+     purpose="The dose for a body weight from an order in mg/kg, per dose or per day, with the daily total or the single dose when the number of doses per day is given; arithmetic only, no dose is judged safe.",
+     inputs=[_numin("dose_mg_per_kg", "ordered dose per kilogram of body weight, a number in mg/kg"),
+             _phys("W", "mass", "body weight"),
+             _choice("basis", ["per_dose", "per_day"], "whether the mg/kg figure is per dose or per day"),
+             _intin("doses_per_day", "number of doses per day (needed for a per-day order)", 1, 24, required=False)],
+     outputs=[_o("dose", "mass", "single dose"), _o("dose_mg", "number", "single dose in mg"),
+              _o("daily_dose", "mass", "total dose per day (when the doses per day are known)"),
+              _o("daily_dose_mg", "number", "total dose per day in mg")],
+     primary="dose", conditions=["arithmetic only: not medical advice", "0 < dose per kilogram <= 1000 mg/kg",
+                                 "0.3 kg <= body weight <= 400 kg", "a per-day order needs the number of doses per day (1 to 24)"],
+     method="dose = (mg/kg) x weight in kg; per day: single dose = daily dose / doses per day",
+     latex=r"D = d_{kg}\,W,\qquad D_{dose} = \frac{d_{kg,day}\,W}{n}",
+     run=dose_weight_based, reference=_ref_dose_weight_based, wrong=_wrong_dose_weight_based, rand=_rand_dose_weight,
+     phrases=("Weight-based dose", "Dose by body weight"),
+     examples=[_ex({"dose_mg_per_kg": 15, "W": "20 kg", "basis": "per_dose", "doses_per_day": 4},
+                   {"dose": 0.0003, "dose_mg": 300.0, "daily_dose": 0.0012, "daily_dose_mg": 1200.0}),
+               _ex({"dose_mg_per_kg": 40, "W": "25 kg", "basis": "per_day", "doses_per_day": 2},
+                   {"dose": 0.0005, "dose_mg": 500.0, "daily_dose": 0.001, "daily_dose_mg": 1000.0}),
+               _ex({"dose_mg_per_kg": 10, "W": "3500 g", "basis": "per_dose"}, {"dose": 3.5e-05, "dose_mg": 35.0})],
+     level="beginner",
+     extra_q=[{"q": "Dose by body weight: dose_mg_per_kg = 15, W = 20 kg, basis = per_dose, doses_per_day = 4", "like": 0},
+              {"q": "Weight-based dose: dose_mg_per_kg = 40, W = 25 kg, basis = per_day", "outcome": "INVALID_INPUT"},
+              {"q": "Weight-based dose: dose_mg_per_kg = 15, W = 900 kg, basis = per_dose", "outcome": "INVALID_INPUT"}])
+
+
+def dose_tablets(D, H):
+    _pos("the ordered dose D and the tablet strength H", D, H)
+    return _out(tablets=D / H)
+
+
+def _ref_dose_tablets(D, H):
+    """The proportion H : 1 tablet = D : x solved for x (sympy), both masses converted to mg by sympy's unit system."""
+    import sympy as sp
+    x = sp.Symbol("x", positive=True)
+    sol = sp.solve(sp.Eq(_sp_in(_sp_q(H, "kg"), "mg") * x, _sp_in(_sp_q(D, "kg"), "mg")), x)
+    return {"tablets": float(sol[0])}
+
+
+def _rand_dose_tablets(rng):
+    H = rng.choice([5, 10, 12.5, 25, 50, 100, 125, 250, 500]) * 1e-6
+    n = rng.choice([0.25, 0.5, 1.5, 2, 2.5, 3, 4])
+    return {"D": _sig(H * n, 6), "H": _sig(H, 6)}
+
+
+_add("bmed_dose_tablets",
+     name="Tablets to give: desired over have (dosage arithmetic, not medical advice)", topic=_DOSE,
+     purpose="The number of tablets (or capsules) for an ordered dose from the strength of one tablet, tablets = D/H; arithmetic only (whether a tablet may be split is not judged).",
+     inputs=[_phys("D", "mass", "ordered (desired) dose"), _phys("H", "mass", "strength of one tablet or capsule (have)")],
+     outputs=[_o("tablets", "number", "number of tablets to give, D/H")],
+     primary="tablets", conditions=["arithmetic only: not medical advice", "D > 0, H > 0"],
+     method="tablets = D/H (desired over have)", latex=r"n = \frac{D}{H}",
+     run=dose_tablets, reference=_ref_dose_tablets, rand=_rand_dose_tablets,
+     wrong=lambda D, H: _out(tablets=H / D),
+     phrases=("Tablets to give", "Number of tablets"),
+     examples=[_ex({"D": "500 mg", "H": "250 mg"}, {"tablets": 2.0}),
+               _ex({"D": "0.125 mg", "H": "0.25 mg"}, {"tablets": 0.5}),
+               _ex({"D": "750 mg", "H": "500 mg"}, {"tablets": 1.5})],
+     level="beginner",
+     extra_q=[{"q": "Number of tablets: D = 0.5 g, H = 250 mg", "like": 0},
+              {"q": "Tablets to give: D = 500 mg, H = 0 mg", "outcome": "INVALID_INPUT"}])
+
+
+def dose_liquid_volume(D, H, Q):
+    _pos("the ordered dose D, the stock amount H and the stock volume Q", D, H, Q)
+    V = D / H * Q
+    return _out(V=V, V_mL=V * 1e6, C=H / Q)
+
+
+def _ref_dose_liquid_volume(D, H, Q):
+    """The proportion H : Q = D : x solved for x in mL (sympy), every conversion by sympy's unit system."""
+    import sympy as sp
+    x = sp.Symbol("x", positive=True)
+    h, d, q = _sp_in(_sp_q(H, "kg"), "mg"), _sp_in(_sp_q(D, "kg"), "mg"), _sp_in(_sp_q(Q, "m3"), "mL")
+    ml = sp.solve(sp.Eq(h / q, d / x), x)[0]
+    from sympy.physics import units as u
+    return {"V": float(_sp_in(ml * u.milliliter, "m3")), "V_mL": float(ml), "C": float(h / q)}
+
+
+def _rand_dose_liquid(rng):
+    H = rng.choice([1, 2, 5, 10, 25, 40, 50, 80, 100, 125, 250, 500]) * 1e-6
+    Q = rng.choice([1, 2, 5, 10, 15, 20]) * 1e-6
+    n = rng.choice([0.2, 0.25, 0.4, 0.5, 0.75, 1.5, 2, 2.5, 3])
+    return {"D": _sig(H * n, 6), "H": _sig(H, 6), "Q": _sig(Q, 6)}
+
+
+_add("bmed_dose_liquid_volume",
+     name="Volume of a liquid to give: desired over have (dosage arithmetic, not medical advice)", topic=_DOSE,
+     purpose="The volume of a liquid or injection stock to give for an ordered dose, V = D/H x Q, where the stock holds H in a volume Q; also the stock concentration H/Q.",
+     inputs=[_phys("D", "mass", "ordered (desired) dose"), _phys("H", "mass", "amount of drug in the stock volume (have)"),
+             _phys("Q", "volume", "stock volume that holds H")],
+     outputs=[_o("V", "volume", "volume to give"), _o("V_mL", "number", "volume to give in mL"),
+              _o("C", "mass_concentration", "stock concentration H/Q (1 kg/m^3 = 1 mg/mL)")],
+     primary="V", conditions=["arithmetic only: not medical advice", "D > 0, H > 0, Q > 0"],
+     method="V = (D/H) x Q (desired over have times quantity)", latex=r"V = \frac{D}{H}\,Q",
+     run=dose_liquid_volume, reference=_ref_dose_liquid_volume, rand=_rand_dose_liquid,
+     wrong=lambda D, H, Q: _out(V=H / D * Q, V_mL=H / D * Q * 1e6, C=H / Q),
+     phrases=("Liquid dose volume", "Desired over have"),
+     examples=[_ex({"D": "250 mg", "H": "125 mg", "Q": "5 mL"}, {"V": 1e-05, "V_mL": 10.0, "C": 25.0}),
+               _ex({"D": "75 mg", "H": "100 mg", "Q": "2 mL"}, {"V": 1.5e-06, "V_mL": 1.5, "C": 50.0})],
+     level="beginner",
+     extra_q=[{"q": "Desired over have: D = 250 mg, H = 125 mg, Q = 5 mL", "like": 0},
+              {"q": "Liquid dose volume: D = 250 mg, H = 125 mg, Q = -5 mL", "outcome": "INVALID_INPUT"}])
+
+
+def reconstitution(powder, diluent, displacement=None, D=None):
+    _pos("the drug amount in the vial and the diluent volume", powder, diluent)
+    disp = 0.0
+    if displacement is not None:
+        _nonneg("the displacement volume", displacement)
+        disp = displacement
+    Vt = diluent + disp
+    C = powder / Vt
+    out = {"V_total": Vt, "V_total_mL": Vt * 1e6, "C": C, "C_mg_mL": C}
+    if D is not None:
+        _pos("the ordered dose", D)
+        _need(D <= powder, "the ordered dose cannot exceed the drug in the vial")
+        out["V_give"] = D / C
+        out["V_give_mL"] = D / C * 1e6
+    return _out(**out)
+
+
+def _ref_reconstitution(powder, diluent, displacement=None, D=None):
+    """Exact rationals in mg and mL (sympy's unit system): concentration = drug / (diluent + displacement); the volume
+    to give solved from the proportion C : 1 mL = D : x."""
+    import sympy as sp
+    from sympy.physics import units as u
+    mg = _sp_in(_sp_q(powder, "kg"), "mg")
+    vt = _sp_in(_sp_q(diluent, "m3"), "mL") + (_sp_in(_sp_q(displacement, "m3"), "mL") if displacement is not None else 0)
+    c = mg / vt
+    out = {"V_total": float(_sp_in(vt * u.milliliter, "m3")), "V_total_mL": float(vt), "C": float(c), "C_mg_mL": float(c)}
+    if D is not None:
+        x = sp.Symbol("x", positive=True)
+        ml = sp.solve(sp.Eq(c * x, _sp_in(_sp_q(D, "kg"), "mg")), x)[0]
+        out["V_give"] = float(_sp_in(ml * u.milliliter, "m3"))
+        out["V_give_mL"] = float(ml)
+    return out
+
+
+def _wrong_reconstitution(powder, diluent, displacement=None, D=None):
+    """The displacement volume of the powder ignored (concentration = drug / diluent)."""
+    return reconstitution(powder, diluent, None, D)
+
+
+def _rand_reconstitution(rng):
+    powder = rng.choice([100, 250, 500, 1000, 2000]) * 1e-6
+    d = {"powder": powder, "diluent": _sig(rng.uniform(1.0, 20.0), 3) * 1e-6,
+         "displacement": _sig(rng.uniform(0.05, 1.5), 2) * 1e-6}
+    if rng.random() < 0.7:
+        d["D"] = _sig(powder * rng.uniform(0.1, 1.0), 3)
+    return d
+
+
+_add("bmed_reconstitution_concentration",
+     name="Reconstituted powder: concentration and volume to give (dosage arithmetic, not medical advice)", topic=_DOSE,
+     purpose="The concentration of a powder drug after reconstitution, C = drug/(diluent + displacement volume), and the volume to give for an ordered dose, D/C.",
+     inputs=[_phys("powder", "mass", "drug amount in the vial"), _phys("diluent", "volume", "diluent volume added"),
+             _phys("displacement", "volume", "displacement volume of the powder (optional, default 0)", required=False),
+             _phys("D", "mass", "ordered dose (optional)", required=False)],
+     outputs=[_o("V_total", "volume", "final volume after reconstitution"), _o("V_total_mL", "number", "final volume in mL"),
+              _o("C", "mass_concentration", "concentration after reconstitution (1 kg/m^3 = 1 mg/mL)"),
+              _o("C_mg_mL", "number", "concentration in mg/mL"),
+              _o("V_give", "volume", "volume to give for the ordered dose (when given)"), _o("V_give_mL", "number", "volume to give in mL")],
+     primary="C", conditions=["arithmetic only: not medical advice", "drug > 0, diluent > 0, displacement >= 0",
+                              "ordered dose <= drug in the vial"],
+     method="final volume = diluent + displacement; C = drug / final volume; volume to give = D / C",
+     latex=r"C = \frac{m}{V_{dil} + V_{disp}},\qquad V = \frac{D}{C}",
+     run=reconstitution, reference=_ref_reconstitution, wrong=_wrong_reconstitution, rand=_rand_reconstitution,
+     phrases=("Reconstitution", "Reconstituted concentration"),
+     examples=[_ex({"powder": "1 g", "diluent": "3.4 mL", "displacement": "0.6 mL", "D": "500 mg"},
+                   {"V_total": 4e-06, "V_total_mL": 4.0, "C": 250.0, "C_mg_mL": 250.0, "V_give": 2e-06, "V_give_mL": 2.0}),
+               _ex({"powder": "500 mg", "diluent": "10 mL"}, {"V_total": 1e-05, "V_total_mL": 10.0, "C": 50.0, "C_mg_mL": 50.0})],
+     level="beginner",
+     extra_q=[{"q": "Reconstituted concentration: powder = 500 mg, diluent = 10 mL", "like": 1},
+              {"q": "Reconstitution: powder = 500 mg, diluent = 10 mL, D = 750 mg", "outcome": "INVALID_INPUT"}])
+
+
+def iv_flow_rate(V, T=None, rate=None, drop_factor=None):
+    _pos("the volume to infuse", V)
+    _need((T is None) != (rate is None), "give either the infusion time T or the flow rate, not both")
+    if T is not None:
+        _pos("the infusion time", T)
+        q = V / T
+        dur = T
+    else:
+        _pos("the flow rate", rate)
+        q = rate
+        dur = V / rate
+    out = {"flow": q, "flow_mL_h": q * 3.6e9, "duration": dur, "duration_h": dur / 3600.0, "duration_min": dur / 60.0}
+    if drop_factor is not None:
+        _count("the drop factor (drops per mL)", drop_factor, 1)
+        _need(drop_factor <= 100, "the drop factor must be at most 100 drops per mL")
+        out["drops_per_min"] = q * 6e7 * drop_factor        # mL/min x gtt/mL
+    return _out(**out)
+
+
+def _ref_iv_flow_rate(V, T=None, rate=None, drop_factor=None):
+    """Exact rationals in mL, hours and minutes (sympy's unit system): mL/h = mL / h; time = mL / (mL/h);
+    gtt/min = mL / min x drop factor."""
+    ml = _sp_in(_sp_q(V, "m3"), "mL")
+    if T is not None:
+        hours = _sp_in(_sp_q(T, "s"), "h")
+        mlh = ml / hours
+    else:
+        mlh = _sp_in(_sp_q(rate, "m3/s"), "mL/h")
+        hours = ml / mlh
+    from sympy.physics import units as u
+    dur = hours * u.hour
+    out = {"flow": float(_sp_in(mlh * u.milliliter / u.hour, "m3/s")), "flow_mL_h": float(mlh),
+           "duration": float(_sp_in(dur, "s")), "duration_h": float(hours), "duration_min": float(_sp_in(dur, "min"))}
+    if drop_factor is not None:
+        out["drops_per_min"] = float(_sp_in(mlh * u.milliliter / u.hour, "mL/min") * drop_factor)
+    return out
+
+
+def _wrong_iv_flow_rate(V, T=None, rate=None, drop_factor=None):
+    """Minutes taken for hours (a factor of 60 in the asked quantity)."""
+    o = iv_flow_rate(V, T, rate, drop_factor)
+    if T is not None:
+        return {k: (v * 60.0 if k in ("flow", "flow_mL_h", "drops_per_min") else v) for k, v in o.items()}
+    return {k: (v * 60.0 if k.startswith("duration") else v) for k, v in o.items()}
+
+
+def _rand_iv_flow(rng):
+    d = {"V": rng.choice([50, 100, 250, 500, 1000]) * 1e-6}
+    if rng.random() < 0.5:
+        d["T"] = _sig(rng.uniform(0.25, 24.0), 3) * 3600.0
+    else:
+        d["rate"] = _sig(rng.uniform(10.0, 250.0), 3) * 1e-6 / 3600.0
+    if rng.random() < 0.6:
+        d["drop_factor"] = rng.choice([10, 15, 20, 60])
+    return d
+
+
+_add("bmed_iv_flow_rate",
+     name="IV flow rate: mL/h, drops per minute and infusion time (arithmetic, not medical advice)", topic=_DOSE,
+     purpose="The flow rate of an infusion in mL/h from the volume and the time (or the infusion time from the volume and the rate), and the drip rate in drops per minute from the set's drop factor.",
+     inputs=[_phys("V", "volume", "volume to infuse"), _phys("T", "time", "infusion time (give T or rate)", required=False),
+             _phys("rate", "flow_rate", "flow rate (give rate or T)", required=False),
+             _intin("drop_factor", "drop factor of the giving set, drops per mL (optional)", 1, 100, required=False)],
+     outputs=[_o("flow", "flow_rate", "flow rate"), _o("flow_mL_h", "number", "flow rate in mL/h"),
+              _o("duration", "time", "infusion time"), _o("duration_h", "number", "infusion time in h"),
+              _o("duration_min", "number", "infusion time in min"),
+              _o("drops_per_min", "number", "drip rate in drops per minute (when the drop factor is given)")],
+     primary="flow_mL_h", conditions=["arithmetic only: not medical advice", "V > 0; exactly one of T > 0 or rate > 0",
+                                      "drop factor a whole number of drops per mL, 1 to 100"],
+     method="mL/h = volume / hours; time = volume / rate; drops/min = (mL/h / 60) x drop factor",
+     latex=r"\dot V = \frac{V}{T},\qquad \text{gtt/min} = \frac{V\,[\mathrm{mL}]}{T\,[\mathrm{min}]}\times\text{drop factor}",
+     run=iv_flow_rate, reference=_ref_iv_flow_rate, wrong=_wrong_iv_flow_rate, rand=_rand_iv_flow,
+     phrases=("IV flow rate", "Infusion flow rate", "IV drip rate"),
+     examples=[_ex({"V": "1000 mL", "T": "8 h", "drop_factor": 15},
+                   {"flow": 3.47222222222e-08, "flow_mL_h": 125.0, "duration": 28800.0, "duration_h": 8.0, "duration_min": 480.0,
+                    "drops_per_min": 31.25}),
+               _ex({"V": "500 mL", "rate": "100 mL/h"},
+                   {"flow": 2.77777777778e-08, "flow_mL_h": 100.0, "duration": 18000.0, "duration_h": 5.0, "duration_min": 300.0}),
+               _ex({"V": "250 mL", "T": "30 min", "drop_factor": 20},
+                   {"flow": 1.38888888889e-07, "flow_mL_h": 500.0, "duration": 1800.0, "duration_h": 0.5, "duration_min": 30.0,
+                    "drops_per_min": 166.666666667})],
+     level="beginner",
+     extra_q=[{"q": "IV drip rate: V = 1 L, T = 480 min, drop_factor = 15", "like": 0},
+              {"q": "IV flow rate: V = 1000 mL, T = 8 h, rate = 125 mL/h", "outcome": "INVALID_INPUT"}])
+
+
+def iv_rate_from_dose_rate(drug, bag_volume, dose_rate=None, dose_ug_per_kg_min=None, W=None, drop_factor=None):
+    _pos("the drug amount in the bag and the bag volume", drug, bag_volume)
+    _need((dose_rate is None) != (dose_ug_per_kg_min is None),
+          "give either the dose rate or the dose per kilogram per minute, not both")
+    if dose_ug_per_kg_min is not None:
+        _pos("the dose per kilogram per minute", dose_ug_per_kg_min)
+        _need(dose_ug_per_kg_min <= 1000.0, "the dose per kilogram per minute is a number in ug/kg/min and must be at most 1000")
+        _need(W is not None, "a dose per kilogram needs the body weight W")
+        _pos("the body weight", W)
+        _need(0.3 <= W <= 400.0, "the body weight must lie between 0.3 and 400 kg")
+        dr = dose_ug_per_kg_min * 1e-9 * W / 60.0          # kg/s
+    else:
+        _need(W is None, "the body weight is used only with a dose per kilogram")
+        _pos("the dose rate", dose_rate)
+        dr = dose_rate
+    C = drug / bag_volume
+    q = dr / C
+    out = {"C": C, "dose_rate": dr, "dose_mg_h": dr * 3.6e9, "flow": q, "flow_mL_h": q * 3.6e9}
+    if drop_factor is not None:
+        _count("the drop factor (drops per mL)", drop_factor, 1)
+        _need(drop_factor <= 100, "the drop factor must be at most 100 drops per mL")
+        out["drops_per_min"] = q * 6e7 * drop_factor
+    return _out(**out)
+
+
+def _ref_iv_rate_from_dose_rate(drug, bag_volume, dose_rate=None, dose_ug_per_kg_min=None, W=None, drop_factor=None):
+    """Exact rationals by sympy's unit system: concentration in mg/mL, dose rate in mg/h (from ug/kg/min x kg), pump
+    rate = (mg/h) / (mg/mL)."""
+    import sympy as sp
+    from sympy.physics import units as u
+    c = _sp_in(_sp_q(drug, "kg"), "mg") / _sp_in(_sp_q(bag_volume, "m3"), "mL")
+    if dose_ug_per_kg_min is not None:
+        q = sp.Rational(repr(float(dose_ug_per_kg_min))) * u.microgram / (u.kilogram * u.minute) * _sp_q(W, "kg")
+        mgh = _sp_in(q, "mg/h")
+    else:
+        mgh = _sp_in(_sp_q(dose_rate, "kg/s"), "mg/h")
+    mlh = mgh / c
+    out = {"C": float(c), "dose_rate": float(_sp_in(mgh * u.milligram / u.hour, "kg/s")), "dose_mg_h": float(mgh),
+           "flow": float(_sp_in(mlh * u.milliliter / u.hour, "m3/s")), "flow_mL_h": float(mlh)}
+    if drop_factor is not None:
+        out["drops_per_min"] = float(_sp_in(mlh * u.milliliter / u.hour, "mL/min") * drop_factor)
+    return out
+
+
+def _wrong_iv_rate_from_dose_rate(drug, bag_volume, dose_rate=None, dose_ug_per_kg_min=None, W=None, drop_factor=None):
+    """A slip of 60 between minutes and hours: ug/kg/min used as if per hour, or mg/h read as mg/min."""
+    o = iv_rate_from_dose_rate(drug, bag_volume, dose_rate, dose_ug_per_kg_min, W, drop_factor)
+    f = 1.0 / 60.0 if dose_ug_per_kg_min is not None else 60.0
+    return {k: (v * f if k != "C" else v) for k, v in o.items()}
+
+
+def _rand_iv_dose_rate(rng):
+    d = {"drug": rng.choice([50, 100, 200, 250, 400, 500, 1000]) * 1e-6, "bag_volume": rng.choice([50, 100, 250, 500]) * 1e-6}
+    if rng.random() < 0.5:
+        d["dose_ug_per_kg_min"] = _sig(rng.uniform(0.5, 20.0), 3)
+        d["W"] = _sig(rng.uniform(40.0, 120.0), 3)
+    else:
+        d["dose_rate"] = _sig(rng.uniform(0.5, 50.0), 3) * 1e-6 / 3600.0
+    if rng.random() < 0.4:
+        d["drop_factor"] = rng.choice([15, 20, 60])
+    return d
+
+
+_add("bmed_iv_rate_from_dose_rate",
+     name="Infusion pump rate from a dose rate (arithmetic, not medical advice)", topic=_DOSE,
+     purpose="The pump rate in mL/h that delivers an ordered dose rate (mg/h, or ug/kg/min with the body weight) from a bag holding a stated amount of drug in a stated volume; also the drip rate for a drop factor.",
+     inputs=[_phys("drug", "mass", "amount of drug in the bag"), _phys("bag_volume", "volume", "volume of the bag"),
+             _phys("dose_rate", "mass_flow_rate", "ordered dose rate, e.g. mg/h (give this or dose_ug_per_kg_min)", required=False),
+             _numin("dose_ug_per_kg_min", "ordered dose per kilogram per minute, a number in ug/kg/min (optional)", required=False),
+             _phys("W", "mass", "body weight (with dose_ug_per_kg_min)", required=False),
+             _intin("drop_factor", "drop factor of the giving set, drops per mL (optional)", 1, 100, required=False)],
+     outputs=[_o("C", "mass_concentration", "concentration in the bag (1 kg/m^3 = 1 mg/mL)"),
+              _o("dose_rate", "mass_flow_rate", "dose rate delivered"), _o("dose_mg_h", "number", "dose rate in mg/h"),
+              _o("flow", "flow_rate", "pump rate"), _o("flow_mL_h", "number", "pump rate in mL/h"),
+              _o("drops_per_min", "number", "drip rate in drops per minute (when the drop factor is given)")],
+     primary="flow_mL_h", conditions=["arithmetic only: not medical advice", "drug > 0, bag volume > 0",
+                                      "exactly one of a dose rate or a dose per kilogram per minute (with 0.3 kg <= W <= 400 kg)"],
+     method="C = drug/bag volume; dose rate = (ug/kg/min) x W x 60 / 1000 mg/h; mL/h = (mg/h) / (mg/mL)",
+     latex=r"\dot V = \frac{\dot D}{C},\qquad C = \frac{m}{V_{bag}},\qquad \dot D = d\,W",
+     run=iv_rate_from_dose_rate, reference=_ref_iv_rate_from_dose_rate, wrong=_wrong_iv_rate_from_dose_rate,
+     rand=_rand_iv_dose_rate,
+     phrases=("IV rate from dose rate", "Infusion rate from dose rate", "Pump rate from dose rate"),
+     examples=[_ex({"drug": "400 mg", "bag_volume": "250 mL", "dose_ug_per_kg_min": 5, "W": "80 kg"},
+                   {"C": 1.6, "dose_rate": 6.66666666667e-09, "dose_mg_h": 24.0, "flow": 4.16666666667e-09, "flow_mL_h": 15.0}),
+               _ex({"drug": "100 mg", "bag_volume": "100 mL", "dose_rate": "5 mg/h", "drop_factor": 60},
+                   {"C": 1.0, "dose_rate": 1.38888888889e-09, "dose_mg_h": 5.0, "flow": 1.38888888889e-09, "flow_mL_h": 5.0,
+                    "drops_per_min": 5.0})],
+     level="intermediate",
+     extra_q=[{"q": "Pump rate from dose rate: drug = 100 mg, bag_volume = 100 mL, dose_rate = 5 mg/h, drop_factor = 60", "like": 1},
+              {"q": "IV rate from dose rate: drug = 400 mg, bag_volume = 250 mL, dose_rate = 5 mg/h, W = 80 kg", "outcome": "INVALID_INPUT"}])

@@ -4,11 +4,11 @@
 
 **[Desktop app & command line](https://www.ai999x.com/desktop-cli/)** · **[Compute in your browser](https://www.ai999x.com/models/biomedical-science-ai999x/#try)** · **[Install (Python)](https://pypi.org/project/biomedical-science-ai999x/)** · **[Guides](https://huggingface.co/AI999X/biomedical-science-ai999x/tree/main/docs)** · **[Evaluation](https://huggingface.co/AI999X/biomedical-science-ai999x/tree/main/evaluation)** · **[AI999X on Hugging Face](https://huggingface.co/AI999X)** · **[Website](https://ai999x.com)** · **[Support: Buy Me a Coffee](https://buymeacoffee.com/ibnuljaiffarabi)**
 
-License: Apache-2.0 · Author: Ibnul Jaif Farabi (creator and engineer) · Organization: AI999X · Version 1.5.0
+License: Apache-2.0 · Author: Ibnul Jaif Farabi (creator and engineer) · Organization: AI999X · Version 1.6.0
 
 Field: **Life Sciences** · Tasks: Question Answering
 
-biomedical-science-ai999x is an offline, deterministic biomedical science solver written in Rust: a desktop app, a command-line program, a browser module and a Python package. It answers biomedical science questions with verified results from 86 certified capabilities, gives 561 documented answers identically on Windows and Linux, and refuses rather than guesses when an answer cannot be verified.
+biomedical-science-ai999x is an offline, deterministic biomedical science solver written in Rust: a desktop app, a command-line program, a browser module and a Python package. It answers biomedical science questions with verified results from 96 certified capabilities, gives 649 documented answers identically on Windows and Linux, and refuses rather than guesses when an answer cannot be verified.
 
 **biomedical-science-ai999x** reads a question in plain English (or a typed call), picks a certified biomedical science capability, computes the answer exactly, checks it, and returns the result with its steps, units, LaTeX and assumptions, or a refusal that says what is missing. It runs fully offline on any CPU, needs no GPU, no API key and no internet, and is built to give **zero wrong answers**: when it is not sure, it refuses instead of guessing.
 
@@ -20,13 +20,13 @@ biomedical-science-ai999x is an offline, deterministic biomedical science solver
 
 | Way to run it | For | Get it |
 |---|---|---|
-| **AI999X Biomedical Science desktop app** 1.5.0 | Windows, Linux. This model in its own app: search, ask in words, forms, live figures, explanations, offline | [Windows (x86-64)](https://downloads.ai999x.com/desktop/1.5.0/ai999x-biomedical-science-1.5.0-windows-x86_64.zip) · [Linux (x86-64)](https://downloads.ai999x.com/desktop/1.5.0/ai999x-biomedical-science-1.5.0-linux-x86_64.tar.gz) |
-| **AI999X desktop app** 1.5.0 | Windows, Linux. Every AI999X model in one app: search, ask in words, forms, live figures, explanations, offline | [Windows (x86-64)](https://downloads.ai999x.com/desktop/1.5.0/ai999x-1.5.0-windows-x86_64.zip) · [Linux (x86-64)](https://downloads.ai999x.com/desktop/1.5.0/ai999x-1.5.0-linux-x86_64.tar.gz) |
-| **Command line** (`biomedical-science`) | Windows, Linux. One program per model, offline, no Python | [Windows (x86-64)](https://downloads.ai999x.com/desktop/1.5.0/ai999x-cli-1.5.0-windows-x86_64.zip) · [Linux (x86-64)](https://downloads.ai999x.com/desktop/1.5.0/ai999x-cli-1.5.0-linux-x86_64.tar.gz) |
+| **AI999X Biomedical Science desktop app** 1.6.0 | Windows, Linux. This model in its own app: search, ask in words, forms, live figures, explanations, offline | [Windows (x86-64)](https://downloads.ai999x.com/desktop/1.6.0/ai999x-biomedical-science-1.6.0-windows-x86_64.zip) · [Linux (x86-64)](https://downloads.ai999x.com/desktop/1.6.0/ai999x-biomedical-science-1.6.0-linux-x86_64.tar.gz) |
+| **AI999X desktop app** 1.6.0 | Windows, Linux. Every AI999X model in one app: search, ask in words, forms, live figures, explanations, offline | [Windows (x86-64)](https://downloads.ai999x.com/desktop/1.6.0/ai999x-1.6.0-windows-x86_64.zip) · [Linux (x86-64)](https://downloads.ai999x.com/desktop/1.6.0/ai999x-1.6.0-linux-x86_64.tar.gz) |
+| **Command line** (`biomedical-science`) | Windows, Linux. One program per model, offline, no Python | [Windows (x86-64)](https://downloads.ai999x.com/desktop/1.6.0/ai999x-cli-1.6.0-windows-x86_64.zip) · [Linux (x86-64)](https://downloads.ai999x.com/desktop/1.6.0/ai999x-cli-1.6.0-linux-x86_64.tar.gz) |
 | **In your browser** | any device. Nothing to install | [Compute on the model page](https://www.ai999x.com/models/biomedical-science-ai999x/#try) |
 | **Python** | Python 3.10+ | `pip install biomedical-science-ai999x` |
 
-Checksums: [SHA256SUMS](https://downloads.ai999x.com/desktop/1.5.0/SHA256SUMS) · every version: [https://downloads.ai999x.com/desktop/latest/](https://downloads.ai999x.com/desktop/latest/) · install guide: [desktop & command line](https://www.ai999x.com/desktop-cli/)
+Checksums: [SHA256SUMS](https://downloads.ai999x.com/desktop/1.6.0/SHA256SUMS) · every version: [https://downloads.ai999x.com/desktop/latest/](https://downloads.ai999x.com/desktop/latest/) · install guide: [desktop & command line](https://www.ai999x.com/desktop-cli/)
 
 ## Quick start
 
@@ -37,11 +37,11 @@ Download **AI999X Biomedical Science** for your system (above), unpack it and st
 Linux, from a terminal:
 
 ```bash
-curl -LO https://downloads.ai999x.com/desktop/1.5.0/ai999x-biomedical-science-1.5.0-linux-x86_64.tar.gz
-curl -LO https://downloads.ai999x.com/desktop/1.5.0/SHA256SUMS
+curl -LO https://downloads.ai999x.com/desktop/1.6.0/ai999x-biomedical-science-1.6.0-linux-x86_64.tar.gz
+curl -LO https://downloads.ai999x.com/desktop/1.6.0/SHA256SUMS
 sha256sum -c --ignore-missing SHA256SUMS
-tar xzf ai999x-biomedical-science-1.5.0-linux-x86_64.tar.gz
-./ai999x-biomedical-science-1.5.0-linux-x86_64/ai999x-biomedical-science
+tar xzf ai999x-biomedical-science-1.6.0-linux-x86_64.tar.gz
+./ai999x-biomedical-science-1.6.0-linux-x86_64/ai999x-biomedical-science
 ```
 
 ### Command line
@@ -49,23 +49,23 @@ tar xzf ai999x-biomedical-science-1.5.0-linux-x86_64.tar.gz
 Linux:
 
 ```bash
-curl -LO https://downloads.ai999x.com/desktop/1.5.0/ai999x-cli-1.5.0-linux-x86_64.tar.gz
-curl -LO https://downloads.ai999x.com/desktop/1.5.0/SHA256SUMS
+curl -LO https://downloads.ai999x.com/desktop/1.6.0/ai999x-cli-1.6.0-linux-x86_64.tar.gz
+curl -LO https://downloads.ai999x.com/desktop/1.6.0/SHA256SUMS
 sha256sum -c --ignore-missing SHA256SUMS
-mkdir -p ~/.local/share && tar xzf ai999x-cli-1.5.0-linux-x86_64.tar.gz -C ~/.local/share
-echo 'export PATH="$HOME/.local/share/ai999x-cli-1.5.0-linux-x86_64:$PATH"' >> ~/.bashrc && source ~/.bashrc
+mkdir -p ~/.local/share && tar xzf ai999x-cli-1.6.0-linux-x86_64.tar.gz -C ~/.local/share
+echo 'export PATH="$HOME/.local/share/ai999x-cli-1.6.0-linux-x86_64:$PATH"' >> ~/.bashrc && source ~/.bashrc
 biomedical-science --version
 ```
 
 Windows (PowerShell):
 
 ```powershell
-$F = "ai999x-cli-1.5.0-windows-x86_64.zip"
-Invoke-WebRequest "https://downloads.ai999x.com/desktop/1.5.0/$F" -OutFile $F
-Invoke-WebRequest "https://downloads.ai999x.com/desktop/1.5.0/SHA256SUMS" -OutFile SHA256SUMS
+$F = "ai999x-cli-1.6.0-windows-x86_64.zip"
+Invoke-WebRequest "https://downloads.ai999x.com/desktop/1.6.0/$F" -OutFile $F
+Invoke-WebRequest "https://downloads.ai999x.com/desktop/1.6.0/SHA256SUMS" -OutFile SHA256SUMS
 (Get-FileHash $F -Algorithm SHA256).Hash.ToLower() -eq ((Select-String -SimpleMatch $F SHA256SUMS).Line -split ' ')[0]
 Expand-Archive $F -DestinationPath "$env:LOCALAPPDATA\AI999X" -Force
-$D = "$env:LOCALAPPDATA\AI999X\ai999x-cli-1.5.0-windows-x86_64"; $env:Path += ";$D"
+$D = "$env:LOCALAPPDATA\AI999X\ai999x-cli-1.6.0-windows-x86_64"; $env:Path += ";$D"
 [Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path", "User") + ";$D", "User")
 biomedical-science --version
 ```
@@ -276,7 +276,7 @@ _What this means:_ This calculation determines the viscoelastic creep strain of 
 ## Highlights
 
 - **Verified, not generated.** Every answer is computed by a certified biomedical science capability and checked (substituted back, dimension-checked or compared with an independent computation) before it is returned.
-- **Zero wrong answers by design.** Seven explicit outcomes (SOLVED, NEEDS_INPUT, AMBIGUOUS, INVALID_INPUT, OUT_OF_SCOPE, UNRECOGNIZED_FORMAT, INTERNAL_ERROR), never a silent guess. Every one of its 561 documented answers is reproduced exactly on every tested platform.
+- **Zero wrong answers by design.** Seven explicit outcomes (SOLVED, NEEDS_INPUT, AMBIGUOUS, INVALID_INPUT, OUT_OF_SCOPE, UNRECOGNIZED_FORMAT, INTERNAL_ERROR), never a silent guess. Every one of its 649 documented answers is reproduced exactly on every tested platform.
 - **Plain-English questions and a guaranteed typed interface.** `ask()` reads documented question forms; `solve(capability_id, **inputs)` always solves a supported task with valid inputs.
 - **Explains itself.** Steps, formulas in LaTeX, units, assumptions and the model used, ready for notebooks, tutoring apps and homework checkers.
 - **Native and in the browser.** Every capability also computes natively in Rust: the desktop app and the `biomedical-science` command line for Windows and Linux, and WebAssembly on the model page, no Python, no network.
@@ -287,11 +287,11 @@ _What this means:_ This calculation determines the viscoelastic creep strain of 
 
 | Property | Value |
 |---|---|
-| Package | `biomedical-science-ai999x` 1.5.0 (import `biomedical_science_ai999x`) |
+| Package | `biomedical-science-ai999x` 1.6.0 (import `biomedical_science_ai999x`) |
 | Type | Deterministic neuro-symbolic biomedical science engine (rule-based reading + certified symbolic capabilities) |
-| Capabilities | 86 certified procedures |
+| Capabilities | 96 certified procedures |
 | Knowledge pack | version 1.0.0 |
-| Golden answers | 561 documented answers, identical on every tested platform |
+| Golden answers | 649 documented answers, identical on every tested platform |
 | Platforms tested | Windows (Python 3.13), Linux x86-64 (Python 3.10, 3.11, 3.12, 3.13, 3.14) |
 | Runtime | CPU only, offline; no GPU, no network, no API key |
 | License | Apache-2.0 |
@@ -321,7 +321,7 @@ biomedical_science.ask("Who created you?").message
 # -> biomedical-science-ai999x was created and engineered by Ibnul Jaif Farabi at AI999X.
 ```
 
-The Python package also installs a Python command, `biomedical-science-ai999x "<question>"`; for the native program use `biomedical-science` (above). The outputs above were produced by running this exact code on biomedical-science-ai999x 1.5.0.
+The Python package also installs a Python command, `biomedical-science-ai999x "<question>"`; for the native program use `biomedical-science` (above). The outputs above were produced by running this exact code on biomedical-science-ai999x 1.6.0.
 
 ## How every answer is verified
 
@@ -450,9 +450,9 @@ _Forest plot of six effect measures, each computed by the package on its own wor
 
 ## Capabilities
 
-86 certified procedures. A few of them:
+96 certified procedures. A few of them:
 
-- **Procedures:** AUC from concentration-time data by the trapezoidal rule; Absolute bioavailability from IV and oral concentration profiles (a model calculation, not medical advice); Absolute risk reduction and number needed to treat with Wald intervals; Area under the concentration curve of a one-compartment IV bolus (a model calculation, not medical advice); Basal metabolic rate by a stated regression (a calculation, not medical advice); Body mass index (a calculation, not medical advice); CT number in Hounsfield units; Cardiac output by indicator dilution (Stewart-Hamilton); Cohen's kappa for agreement between two raters or two tests; Constant infusion: time to reach a fraction of steady state (a model calculation, not medical advice); Constant-rate IV infusion: concentration at a time and steady state (a model calculation, not medical advice); Cox proportional-hazards model with one covariate: hazard ratio (Efron ties); Diffusion MRI: apparent diffusion coefficient from signals at several b-values; Effect-compartment model: effect-site concentration and its peak after an IV bolus (a model calculation, not medical advice); Elimination rate constant and half-life from concentration data (log-linear fit); Exponential survival model: hazard rate, mean and median survival (maximum likelihood); FitzHugh-Nagumo neuron model: fixed point and its stability; Goldman-Hodgkin-Katz current equation: ionic current density through a membrane; Goldman-Hodgkin-Katz voltage equation: membrane potential from K, Na and Cl; Hazard ratio of two exponential survival groups with Wald interval; Hepatic clearance: parallel-tube (sinusoidal) liver model (a model calculation, not medical advice); Hepatic clearance: well-stirred liver model (a model calculation, not medical advice); Hodgkin-Huxley model: potassium conductance after a voltage-clamp step; Hodgkin-Huxley model: steady-state gating variables at a membrane potential …
+- **Procedures:** AUC from concentration-time data by the trapezoidal rule; Absolute bioavailability from IV and oral concentration profiles (a model calculation, not medical advice); Absolute risk reduction and number needed to treat with Wald intervals; Area under the concentration curve of a one-compartment IV bolus (a model calculation, not medical advice); Basal metabolic rate by a stated regression (a calculation, not medical advice); Basic epidemiological rates: incidence, attack rate, prevalence, case fatality and mortality; Body mass index (a calculation, not medical advice); CT number in Hounsfield units; Cardiac output by indicator dilution (Stewart-Hamilton); Cohen's kappa for agreement between two raters or two tests; Constant infusion: time to reach a fraction of steady state (a model calculation, not medical advice); Constant-rate IV infusion: concentration at a time and steady state (a model calculation, not medical advice); Cox proportional-hazards model with one covariate: hazard ratio (Efron ties); Diffusion MRI: apparent diffusion coefficient from signals at several b-values; Effect-compartment model: effect-site concentration and its peak after an IV bolus (a model calculation, not medical advice); Elimination rate constant and half-life from concentration data (log-linear fit); Exponential survival model: hazard rate, mean and median survival (maximum likelihood); FitzHugh-Nagumo neuron model: fixed point and its stability; Goldman-Hodgkin-Katz current equation: ionic current density through a membrane; Goldman-Hodgkin-Katz voltage equation: membrane potential from K, Na and Cl; Hazard ratio of two exponential survival groups with Wald interval; Hepatic clearance: parallel-tube (sinusoidal) liver model (a model calculation, not medical advice); Hepatic clearance: well-stirred liver model (a model calculation, not medical advice); Herd-immunity threshold and critical vaccination coverage …
 
 `biomedical_science_ai999x.templates()` lists every question form `ask()` reads; the capability guide (PDF, every example executed) is included in this repository.
 
@@ -472,10 +472,10 @@ _Forest plot of six effect measures, each computed by the package on its own wor
 ## Citation
 
 ```bibtex
-@software{biomedical_science_ai999x_1_5_0,
+@software{biomedical_science_ai999x_1_6_0,
   title  = {biomedical-science-ai999x: an offline, verified biomedical science solver},
   author = {Farabi, Ibnul Jaif}, organization = {AI999X},
-  year   = {2026}, version = {1.5.0},
+  year   = {2026}, version = {1.6.0},
   url    = {https://huggingface.co/AI999X/biomedical-science-ai999x}
 }
 ```
@@ -492,7 +492,7 @@ Created and engineered by **Ibnul Jaif Farabi** · **[AI999X](https://huggingfac
 
 ## Source and releases
 
-This repository holds the installable source of each release, exactly as published on [PyPI](https://pypi.org/project/biomedical-science-ai999x/) (`pip install .` builds it). Releases are tagged `v1.5.0`; the [GitHub release](https://github.com/AI999X/biomedical-science-ai999x/releases/tag/v1.5.0) carries the wheel, the desktop app and the command-line program for Windows and Linux, and their checksums.
+This repository holds the installable source of each release, exactly as published on [PyPI](https://pypi.org/project/biomedical-science-ai999x/) (`pip install .` builds it). Releases are tagged `v1.6.0`; the [GitHub release](https://github.com/AI999X/biomedical-science-ai999x/releases/tag/v1.6.0) carries the wheel, the desktop app and the command-line program for Windows and Linux, and their checksums.
 
 ## Build the program from source
 

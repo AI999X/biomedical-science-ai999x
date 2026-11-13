@@ -1,8 +1,8 @@
 # biomedical-science: the Biomedical Science program, user guide
 
-**biomedical-science-ai999x 1.1.0**, Rust build: command line, desktop app and browser. **Creator / engineer:** Ibnul Jaif Farabi · **Company:** AI999X · support@ai999x.com
+**biomedical-science-ai999x 1.6.0**, Rust build: command line, desktop app and browser. **Creator / engineer:** Ibnul Jaif Farabi · **Company:** AI999X · support@ai999x.com
 
-Biomedical Science covers pharmacokinetics and dosing models, epidemic models, diagnostic test statistics, survival analysis, biomechanics, neuron models and medical-imaging physics (quantitative only, no clinical advice). This guide is about `biomedical-science`, the model as a self-contained program for Windows and Linux: 86 capabilities in 9 topics, answered on your own computer with no network, no Python and nothing else to install. The same compiled model runs in the AI999X desktop app and in the browser on the model's page (https://www.ai999x.com/models/biomedical-science-ai999x/); the Python package (`pip install biomedical-science-ai999x`) has its own guide. Every command output printed here is what the program printed.
+Biomedical Science covers pharmacokinetics and dosing models, epidemic models, diagnostic test statistics, survival analysis, biomechanics, neuron models and medical-imaging physics (quantitative only, no clinical advice). This guide is about `biomedical-science`, the model as a self-contained program for Windows and Linux: 96 capabilities in 10 topics, answered on your own computer with no network, no Python and nothing else to install. The same compiled model runs in the AI999X desktop app and in the browser on the model's page (https://www.ai999x.com/models/biomedical-science-ai999x/); the Python package (`pip install biomedical-science-ai999x`) has its own guide. Every command output printed here is what the program printed.
 
 ## Contents
 
@@ -17,37 +17,37 @@ Biomedical Science covers pharmacokinetics and dosing models, epidemic models, d
 
 ## 1. Get it
 
-Version 1.5.0 of the AI999X desktop app and of the command-line bundle. Checksums for every file: https://downloads.ai999x.com/desktop/1.5.0/SHA256SUMS; the newest version is always under https://downloads.ai999x.com/desktop/latest/. Full instructions: https://www.ai999x.com/desktop-cli/
+Version 1.6.0 of the AI999X desktop app and of the command-line bundle. Checksums for every file: https://downloads.ai999x.com/desktop/1.6.0/SHA256SUMS; the newest version is always under https://downloads.ai999x.com/desktop/latest/. Full instructions: https://www.ai999x.com/desktop-cli/
 
 | what | system | download |
 |---|---|---|
-| Desktop app: Biomedical Science | Windows x86-64 | https://downloads.ai999x.com/desktop/1.5.0/ai999x-biomedical-science-1.5.0-windows-x86_64.zip |
-| Desktop app: Biomedical Science | Linux x86-64 | https://downloads.ai999x.com/desktop/1.5.0/ai999x-biomedical-science-1.5.0-linux-x86_64.tar.gz |
-| Desktop app: all models | Windows x86-64 | https://downloads.ai999x.com/desktop/1.5.0/ai999x-1.5.0-windows-x86_64.zip |
-| Desktop app: all models | Linux x86-64 | https://downloads.ai999x.com/desktop/1.5.0/ai999x-1.5.0-linux-x86_64.tar.gz |
-| Command line | Windows x86-64 | https://downloads.ai999x.com/desktop/1.5.0/ai999x-cli-1.5.0-windows-x86_64.zip |
-| Command line | Linux x86-64 | https://downloads.ai999x.com/desktop/1.5.0/ai999x-cli-1.5.0-linux-x86_64.tar.gz |
+| Desktop app: Biomedical Science | Windows x86-64 | https://downloads.ai999x.com/desktop/1.6.0/ai999x-biomedical-science-1.6.0-windows-x86_64.zip |
+| Desktop app: Biomedical Science | Linux x86-64 | https://downloads.ai999x.com/desktop/1.6.0/ai999x-biomedical-science-1.6.0-linux-x86_64.tar.gz |
+| Desktop app: all models | Windows x86-64 | https://downloads.ai999x.com/desktop/1.6.0/ai999x-1.6.0-windows-x86_64.zip |
+| Desktop app: all models | Linux x86-64 | https://downloads.ai999x.com/desktop/1.6.0/ai999x-1.6.0-linux-x86_64.tar.gz |
+| Command line | Windows x86-64 | https://downloads.ai999x.com/desktop/1.6.0/ai999x-cli-1.6.0-windows-x86_64.zip |
+| Command line | Linux x86-64 | https://downloads.ai999x.com/desktop/1.6.0/ai999x-cli-1.6.0-linux-x86_64.tar.gz |
 
 ### Desktop app
 
-Biomedical Science in its own app: search, questions in words, input forms, live figures and explanations. Windows: Download ai999x-biomedical-science-1.5.0-windows-x86_64.zip, right-click it → Extract All, then open the folder and start ai999x-biomedical-science.exe. If Windows SmartScreen asks, choose More info → Run anyway. Linux:
+Biomedical Science in its own app: search, questions in words, input forms, live figures and explanations. Windows: Download ai999x-biomedical-science-1.6.0-windows-x86_64.zip, right-click it → Extract All, then open the folder and start ai999x-biomedical-science.exe. If Windows SmartScreen asks, choose More info → Run anyway. Linux:
 
 ```shell
-curl -LO https://downloads.ai999x.com/desktop/1.5.0/ai999x-biomedical-science-1.5.0-linux-x86_64.tar.gz
-curl -LO https://downloads.ai999x.com/desktop/1.5.0/SHA256SUMS
+curl -LO https://downloads.ai999x.com/desktop/1.6.0/ai999x-biomedical-science-1.6.0-linux-x86_64.tar.gz
+curl -LO https://downloads.ai999x.com/desktop/1.6.0/SHA256SUMS
 sha256sum -c --ignore-missing SHA256SUMS
-tar xzf ai999x-biomedical-science-1.5.0-linux-x86_64.tar.gz
-./ai999x-biomedical-science-1.5.0-linux-x86_64/ai999x-biomedical-science
+tar xzf ai999x-biomedical-science-1.6.0-linux-x86_64.tar.gz
+./ai999x-biomedical-science-1.6.0-linux-x86_64/ai999x-biomedical-science
 ```
 
-It opens on this model: type a question or pick a capability, fill in the form and press Compute. The AI999X desktop app with every model works the same way (choose the model first). Windows: Download ai999x-1.5.0-windows-x86_64.zip, right-click it → Extract All, then open the folder and start ai999x.exe. If Windows SmartScreen asks, choose More info → Run anyway. Linux:
+It opens on this model: type a question or pick a capability, fill in the form and press Compute. The AI999X desktop app with every model works the same way (choose the model first). Windows: Download ai999x-1.6.0-windows-x86_64.zip, right-click it → Extract All, then open the folder and start ai999x.exe. If Windows SmartScreen asks, choose More info → Run anyway. Linux:
 
 ```shell
-curl -LO https://downloads.ai999x.com/desktop/1.5.0/ai999x-1.5.0-linux-x86_64.tar.gz
-curl -LO https://downloads.ai999x.com/desktop/1.5.0/SHA256SUMS
+curl -LO https://downloads.ai999x.com/desktop/1.6.0/ai999x-1.6.0-linux-x86_64.tar.gz
+curl -LO https://downloads.ai999x.com/desktop/1.6.0/SHA256SUMS
 sha256sum -c --ignore-missing SHA256SUMS
-tar xzf ai999x-1.5.0-linux-x86_64.tar.gz
-./ai999x-1.5.0-linux-x86_64/ai999x
+tar xzf ai999x-1.6.0-linux-x86_64.tar.gz
+./ai999x-1.6.0-linux-x86_64/ai999x
 ```
 
 ### Command line: Linux
@@ -55,11 +55,11 @@ tar xzf ai999x-1.5.0-linux-x86_64.tar.gz
 The bundle holds one program per model; `biomedical-science` is this one. The checksum line should print OK.
 
 ```shell
-curl -LO https://downloads.ai999x.com/desktop/1.5.0/ai999x-cli-1.5.0-linux-x86_64.tar.gz
-curl -LO https://downloads.ai999x.com/desktop/1.5.0/SHA256SUMS
+curl -LO https://downloads.ai999x.com/desktop/1.6.0/ai999x-cli-1.6.0-linux-x86_64.tar.gz
+curl -LO https://downloads.ai999x.com/desktop/1.6.0/SHA256SUMS
 sha256sum -c --ignore-missing SHA256SUMS
-mkdir -p ~/.local/share && tar xzf ai999x-cli-1.5.0-linux-x86_64.tar.gz -C ~/.local/share
-echo 'export PATH="$HOME/.local/share/ai999x-cli-1.5.0-linux-x86_64:$PATH"' >> ~/.bashrc && source ~/.bashrc
+mkdir -p ~/.local/share && tar xzf ai999x-cli-1.6.0-linux-x86_64.tar.gz -C ~/.local/share
+echo 'export PATH="$HOME/.local/share/ai999x-cli-1.6.0-linux-x86_64:$PATH"' >> ~/.bashrc && source ~/.bashrc
 biomedical-science --version
 ```
 
@@ -68,12 +68,12 @@ biomedical-science --version
 The fourth line should print True.
 
 ```powershell
-$F = "ai999x-cli-1.5.0-windows-x86_64.zip"
-Invoke-WebRequest "https://downloads.ai999x.com/desktop/1.5.0/$F" -OutFile $F
-Invoke-WebRequest "https://downloads.ai999x.com/desktop/1.5.0/SHA256SUMS" -OutFile SHA256SUMS
+$F = "ai999x-cli-1.6.0-windows-x86_64.zip"
+Invoke-WebRequest "https://downloads.ai999x.com/desktop/1.6.0/$F" -OutFile $F
+Invoke-WebRequest "https://downloads.ai999x.com/desktop/1.6.0/SHA256SUMS" -OutFile SHA256SUMS
 (Get-FileHash $F -Algorithm SHA256).Hash.ToLower() -eq ((Select-String -SimpleMatch $F SHA256SUMS).Line -split ' ')[0]
 Expand-Archive $F -DestinationPath "$env:LOCALAPPDATA\AI999X" -Force
-$D = "$env:LOCALAPPDATA\AI999X\ai999x-cli-1.5.0-windows-x86_64"; $env:Path += ";$D"
+$D = "$env:LOCALAPPDATA\AI999X\ai999x-cli-1.6.0-windows-x86_64"; $env:Path += ";$D"
 [Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path", "User") + ";$D", "User")
 biomedical-science --version
 ```
@@ -96,7 +96,7 @@ Prints the model, its version and that this is the Rust build.
 
 ```shell
 $ biomedical-science --version
-biomedical-science-ai999x 1.5.0 (Rust build, ax-engine 1.5.0)
+biomedical-science-ai999x 1.6.0 (Rust build, ax-engine 1.6.0)
 ```
 
 ### 2.2 Ask in words
@@ -128,7 +128,7 @@ bmed_pk_effect_site_concentration    Effect-compartment model: effect-site conce
 bmed_pk_two_compartment_bolus        Two-compartment IV bolus: macro-constants and concentration from micro-constants (a model calculation, not medical advice)  (pharmacokinetic models)
 bmed_pk_loading_maintenance          Loading dose and maintenance infusion rate of a one-compartment model (model calculation, not a dosing recommendation)  (pharmacokinetic models)
 bmed_pk_nth_dose_iv                  Repeated IV bolus doses: concentration after the nth dose (a model calculation, not medical advice)  (pharmacokinetic models)
-bmed_pk_bioavailability_from_profiles Absolute bioavailability from IV and oral concentration profiles (a model calculation, not medical advice)  (pharmacokinetic data analysis)
+bmed_pk_steady_state_iv              Repeated IV bolus dosing: steady-state peak, trough, average and accumulation factor (a model calculation, not medical advice)  (pharmacokinetic models)
 bmed_pk_infusion_concentration       Constant-rate IV infusion: concentration at a time and steady state (a model calculation, not medical advice)  (pharmacokinetic models)
 … 12 more
 ```
@@ -144,10 +144,10 @@ bmed_bmr                                 Basal metabolic rate by a stated regres
 bmed_cable_steady_state                  Passive cable (dendrite or axon): steady-state voltage along it and input resistance
 bmed_cohens_kappa                        Cohen's kappa for agreement between two raters or two tests
 bmed_cox_hazard_ratio                    Cox proportional-hazards model with one covariate: hazard ratio (Efron ties)
-bmed_dx_roc_auc                          ROC curve area of a diagnostic score (Mann-Whitney form)
-bmed_dx_sensitivity_specificity_ci       Sensitivity and specificity with Wilson score intervals
-bmed_dx_threshold_sensitivity_specificity Sensitivity and specificity of a diagnostic score at a cut-off
-… 78 more
+bmed_dose_liquid_volume                  Volume of a liquid to give: desired over have (dosage arithmetic, not medical advice)
+bmed_dose_tablets                        Tablets to give: desired over have (dosage arithmetic, not medical advice)
+bmed_dose_weight_based                   Weight-based dose (dosage arithmetic, not medical advice)
+… 88 more
 ```
 
 ### 2.5 What a capability needs
@@ -687,7 +687,7 @@ phase_deg = -84.94708137
 
 In the worked example, model = two_element, R = 1 mmHg*s/mL, C = 1.5 mL/mmHg, f = 1.2 Hz go through the equation above and give Z_mod = 11742475.28 Pa*s/m^3, phase_deg = -84.94708137. It applies only when linear model, sinusoidal steady state; Zc only for the three-element model: outside that it says what is wrong instead of returning a number.
 
-### Diagnostic test statistics (5)
+### Diagnostic test statistics (6)
 
 <a id="bmed_cohens_kappa"></a>
 
@@ -749,6 +749,45 @@ J = 0.6333333333
 ```
 
 **What the worked example means:** This calculation determines the score cut-off that maximizes the Youden index, which combines sensitivity and specificity to identify the best balance between detecting disease and avoiding false alarms. Using the scores of diseased subjects [0.9, 0.8, 0.7, 0.55, 0.4] and non-diseased subjects [0.6, 0.45, 0.4, 0.3, 0.2, 0.1], the method evaluates every observed value as a potential threshold. The resulting optimal cut-off is 0.55, where the test correctly identifies 0.8 of diseased cases and correctly excludes 0.833333 of healthy cases, achieving a Youden index of 0.633333. This specific threshold was chosen because it provides the highest combined discriminative power among all possible cut-offs in the data.
+
+<a id="bmed_dx_predictive_values"></a>
+
+#### Predictive values and likelihood ratios of a diagnostic test, `bmed_dx_predictive_values`
+
+The positive and negative predictive values of a test at a stated prevalence (pre-test probability), and its positive and negative likelihood ratios and diagnostic odds ratio.
+
+$$
+PPV = \frac{Se\,p}{Se\,p + (1-Sp)(1-p)},\quad NPV = \frac{Sp(1-p)}{Sp(1-p) + (1-Se)p},\quad LR^{+} = \frac{Se}{1-Sp}
+$$
+
+| symbol |  | meaning | SI unit |
+|---|---|---|---|
+| `sensitivity` | in | sensitivity P(positive \| disease), a fraction or % | - |
+| `specificity` | in | specificity P(negative \| no disease), a fraction or % | - |
+| `prevalence` | in | prevalence (pre-test probability of disease), a fraction or % | - |
+| `PPV` | out | positive predictive value P(disease \| positive) | - |
+| `NPV` | out | negative predictive value P(no disease \| negative) | - |
+| `LR_pos` | out | positive likelihood ratio sens/(1 - spec) | - |
+| `LR_neg` | out | negative likelihood ratio (1 - sens)/spec | - |
+| `DOR` | out | diagnostic odds ratio LR+/LR- | - |
+
+**Applies when:** 0 < sensitivity, specificity, prevalence < 1; the test's accuracy does not depend on prevalence.
+
+```shell
+$ biomedical-science solve bmed_dx_predictive_values sensitivity=0.9 specificity=0.95 prevalence=0.02
+PPV = 0.2686567164
+NPV = 0.9978563773
+LR_pos = 18
+LR_neg = 0.1052631579
+DOR = 171
+  by: Predictive values and likelihood ratios of a diagnostic test  (PPV = Se p / (Se p + (1 - Sp)(1 - p)); NPV = Sp (1 - p) / (Sp (1 - p) + (1 - Se) p); LR+ = Se/(1 - Sp); LR- = (1 - Se)/Sp)
+  sensitivity = 0.9
+  specificity = 0.95
+  prevalence = 0.02
+  assumes: 0 < sensitivity, specificity, prevalence < 1; the test's accuracy does not depend on prevalence
+```
+
+In the worked example, sensitivity = 0.9, specificity = 0.95, prevalence = 0.02 go through the equation above and give PPV = 0.2686567164, NPV = 0.9978563773, LR_pos = 18, LR_neg = 0.1052631579. It applies only when 0 < sensitivity, specificity, prevalence < 1; the test's accuracy does not depend on prevalence: outside that it says what is wrong instead of returning a number.
 
 <a id="bmed_dx_roc_auc"></a>
 
@@ -859,7 +898,276 @@ spec_upper = 0.9447708629
 
 **What the worked example means:** Sensitivity and specificity are calculated from the true positive, false negative, true negative, and false positive counts. The point estimate for sensitivity is 0.9, bounded by the Wilson score interval limits of 0.786398 and 0.956524. Similarly, specificity is estimated at 0.9, with its confidence range extending from 0.825634 to 0.944771. These intervals provide a plausible range for the diagnostic performance metrics based on the observed data.
 
-### Epidemic models (8)
+### Dosage calculations (6)
+
+<a id="bmed_iv_rate_from_dose_rate"></a>
+
+#### Infusion pump rate from a dose rate (arithmetic, not medical advice), `bmed_iv_rate_from_dose_rate`
+
+The pump rate in mL/h that delivers an ordered dose rate (mg/h, or ug/kg/min with the body weight) from a bag holding a stated amount of drug in a stated volume; also the drip rate for a drop factor.
+
+$$
+\dot V = \frac{\dot D}{C},\qquad C = \frac{m}{V_{bag}},\qquad \dot D = d\,W
+$$
+
+| symbol |  | meaning | SI unit |
+|---|---|---|---|
+| `drug` | in | amount of drug in the bag | kg |
+| `bag_volume` | in | volume of the bag | m^3 |
+| `dose_rate` | in | ordered dose rate, e.g. mg/h (give this or dose_ug_per_kg_min) (optional) | kg/s |
+| `dose_ug_per_kg_min` | in | ordered dose per kilogram per minute, a number in ug/kg/min (optional) (optional) | - |
+| `W` | in | body weight (with dose_ug_per_kg_min) (optional) | kg |
+| `drop_factor` | in | drop factor of the giving set, drops per mL (optional) (optional) | - |
+| `C` | out | concentration in the bag (1 kg/m^3 = 1 mg/mL) | kg/m^3 |
+| `dose_rate` | out | dose rate delivered | kg/s |
+| `dose_mg_h` | out | dose rate in mg/h | - |
+| `flow` | out | pump rate | m^3/s |
+| `flow_mL_h` | out | pump rate in mL/h | - |
+| `drops_per_min` | out | drip rate in drops per minute (when the drop factor is given) | - |
+
+**Applies when:** arithmetic only: not medical advice; drug > 0, bag volume > 0; exactly one of a dose rate or a dose per kilogram per minute (with 0.3 kg <= W <= 400 kg).
+
+```shell
+$ biomedical-science solve bmed_iv_rate_from_dose_rate "drug=400 mg" "bag_volume=250 mL" dose_ug_per_kg_min=5 "W=80 kg"
+C = 1.6 kg/m^3
+dose_rate = 6.666666667e-09 kg/s
+dose_mg_h = 24
+flow = 4.166666667e-09 m^3/s
+flow_mL_h = 15
+  by: Infusion pump rate from a dose rate (arithmetic, not medical advice)  (C = drug/bag volume; dose rate = (ug/kg/min) x W x 60 / 1000 mg/h; mL/h = (mg/h) / (mg/mL))
+  drug = 0.0004 kg
+  bag_volume = 0.00025 m^3
+  dose_ug_per_kg_min = 5
+  W = 80 kg
+  assumes: arithmetic only: not medical advice; drug > 0, bag volume > 0; exactly one of a dose rate or a dose per kilogram per minute (with 0.3 kg <= W <= 400 kg)
+```
+
+In the worked example, drug = 400 mg, bag_volume = 250 mL, dose_ug_per_kg_min = 5, W = 80 kg go through the equation above and give C = 1.6 kg/m^3, dose_rate = 6.666666667e-09 kg/s, dose_mg_h = 24, flow = 4.166666667e-09 m^3/s. It applies only when arithmetic only: not medical advice; drug > 0, bag volume > 0; exactly one of a dose rate or a dose per kilogram per minute (with 0.3 kg <= W <= 400 kg): outside that it says what is wrong instead of returning a number.
+
+<a id="bmed_iv_flow_rate"></a>
+
+#### IV flow rate: mL/h, drops per minute and infusion time (arithmetic, not medical advice), `bmed_iv_flow_rate`
+
+The flow rate of an infusion in mL/h from the volume and the time (or the infusion time from the volume and the rate), and the drip rate in drops per minute from the set's drop factor.
+
+$$
+\dot V = \frac{V}{T},\qquad \text{gtt/min} = \frac{V\,[\mathrm{mL}]}{T\,[\mathrm{min}]}\times\text{drop factor}
+$$
+
+| symbol |  | meaning | SI unit |
+|---|---|---|---|
+| `V` | in | volume to infuse | m^3 |
+| `T` | in | infusion time (give T or rate) (optional) | s |
+| `rate` | in | flow rate (give rate or T) (optional) | m^3/s |
+| `drop_factor` | in | drop factor of the giving set, drops per mL (optional) (optional) | - |
+| `flow` | out | flow rate | m^3/s |
+| `flow_mL_h` | out | flow rate in mL/h | - |
+| `duration` | out | infusion time | s |
+| `duration_h` | out | infusion time in h | - |
+| `duration_min` | out | infusion time in min | - |
+| `drops_per_min` | out | drip rate in drops per minute (when the drop factor is given) | - |
+
+**Applies when:** arithmetic only: not medical advice; V > 0; exactly one of T > 0 or rate > 0; drop factor a whole number of drops per mL, 1 to 100.
+
+```shell
+$ biomedical-science solve bmed_iv_flow_rate "V=1000 mL" "T=8 h" drop_factor=15
+flow = 3.472222222e-08 m^3/s
+flow_mL_h = 125
+duration = 28800 s
+duration_h = 8
+duration_min = 480
+drops_per_min = 31.25
+  by: IV flow rate: mL/h, drops per minute and infusion time (arithmetic, not medical advice)  (mL/h = volume / hours; time = volume / rate; drops/min = (mL/h / 60) x drop factor)
+  V = 0.001 m^3
+  T = 28800 s
+  assumes: arithmetic only: not medical advice; V > 0; exactly one of T > 0 or rate > 0; drop factor a whole number of drops per mL, 1 to 100
+```
+
+In the worked example, V = 1000 mL, T = 8 h, drop_factor = 15 go through the equation above and give flow = 3.472222222e-08 m^3/s, flow_mL_h = 125, duration = 28800 s, duration_h = 8. It applies only when arithmetic only: not medical advice; V > 0; exactly one of T > 0 or rate > 0; drop factor a whole number of drops per mL, 1 to 100: outside that it says what is wrong instead of returning a number.
+
+<a id="bmed_reconstitution_concentration"></a>
+
+#### Reconstituted powder: concentration and volume to give (dosage arithmetic, not medical advice), `bmed_reconstitution_concentration`
+
+The concentration of a powder drug after reconstitution, C = drug/(diluent + displacement volume), and the volume to give for an ordered dose, D/C.
+
+$$
+C = \frac{m}{V_{dil} + V_{disp}},\qquad V = \frac{D}{C}
+$$
+
+| symbol |  | meaning | SI unit |
+|---|---|---|---|
+| `powder` | in | drug amount in the vial | kg |
+| `diluent` | in | diluent volume added | m^3 |
+| `displacement` | in | displacement volume of the powder (optional, default 0) (optional) | m^3 |
+| `D` | in | ordered dose (optional) (optional) | kg |
+| `V_total` | out | final volume after reconstitution | m^3 |
+| `V_total_mL` | out | final volume in mL | - |
+| `C` | out | concentration after reconstitution (1 kg/m^3 = 1 mg/mL) | kg/m^3 |
+| `C_mg_mL` | out | concentration in mg/mL | - |
+| `V_give` | out | volume to give for the ordered dose (when given) | m^3 |
+| `V_give_mL` | out | volume to give in mL | - |
+
+**Applies when:** arithmetic only: not medical advice; drug > 0, diluent > 0, displacement >= 0; ordered dose <= drug in the vial.
+
+```shell
+$ biomedical-science solve bmed_reconstitution_concentration "powder=1 g" "diluent=3.4 mL" "displacement=0.6 mL" "D=500 mg"
+V_total = 4e-06 m^3
+V_total_mL = 4
+C = 250 kg/m^3
+C_mg_mL = 250
+V_give = 2e-06 m^3
+V_give_mL = 2
+  by: Reconstituted powder: concentration and volume to give (dosage arithmetic, not medical advice)  (final volume = diluent + displacement; C = drug / final volume; volume to give = D / C)
+  powder = 0.001 kg
+  diluent = 3.4e-06 m^3
+  displacement = 6e-07 m^3
+  D = 0.0005 kg
+  assumes: arithmetic only: not medical advice; drug > 0, diluent > 0, displacement >= 0; ordered dose <= drug in the vial
+```
+
+In the worked example, powder = 1 g, diluent = 3.4 mL, displacement = 0.6 mL, D = 500 mg go through the equation above and give V_total = 4e-06 m^3, V_total_mL = 4, C = 250 kg/m^3, C_mg_mL = 250. It applies only when arithmetic only: not medical advice; drug > 0, diluent > 0, displacement >= 0; ordered dose <= drug in the vial: outside that it says what is wrong instead of returning a number.
+
+<a id="bmed_dose_tablets"></a>
+
+#### Tablets to give: desired over have (dosage arithmetic, not medical advice), `bmed_dose_tablets`
+
+The number of tablets (or capsules) for an ordered dose from the strength of one tablet, tablets = D/H; arithmetic only (whether a tablet may be split is not judged).
+
+$$
+n = \frac{D}{H}
+$$
+
+| symbol |  | meaning | SI unit |
+|---|---|---|---|
+| `D` | in | ordered (desired) dose | kg |
+| `H` | in | strength of one tablet or capsule (have) | kg |
+| `tablets` | out | number of tablets to give, D/H | - |
+
+**Applies when:** arithmetic only: not medical advice; D > 0, H > 0.
+
+```shell
+$ biomedical-science solve bmed_dose_tablets "D=500 mg" "H=250 mg"
+tablets = 2
+  by: Tablets to give: desired over have (dosage arithmetic, not medical advice)  (tablets = D/H (desired over have))
+  D = 0.0005 kg
+  H = 0.00025 kg
+  assumes: arithmetic only: not medical advice; D > 0, H > 0
+```
+
+In the worked example, D = 500 mg, H = 250 mg go through the equation above and give tablets = 2. It applies only when arithmetic only: not medical advice; D > 0, H > 0: outside that it says what is wrong instead of returning a number.
+
+<a id="bmed_dose_liquid_volume"></a>
+
+#### Volume of a liquid to give: desired over have (dosage arithmetic, not medical advice), `bmed_dose_liquid_volume`
+
+The volume of a liquid or injection stock to give for an ordered dose, V = D/H x Q, where the stock holds H in a volume Q; also the stock concentration H/Q.
+
+$$
+V = \frac{D}{H}\,Q
+$$
+
+| symbol |  | meaning | SI unit |
+|---|---|---|---|
+| `D` | in | ordered (desired) dose | kg |
+| `H` | in | amount of drug in the stock volume (have) | kg |
+| `Q` | in | stock volume that holds H | m^3 |
+| `V` | out | volume to give | m^3 |
+| `V_mL` | out | volume to give in mL | - |
+| `C` | out | stock concentration H/Q (1 kg/m^3 = 1 mg/mL) | kg/m^3 |
+
+**Applies when:** arithmetic only: not medical advice; D > 0, H > 0, Q > 0.
+
+```shell
+$ biomedical-science solve bmed_dose_liquid_volume "D=250 mg" "H=125 mg" "Q=5 mL"
+V = 1e-05 m^3
+V_mL = 10
+C = 25 kg/m^3
+  by: Volume of a liquid to give: desired over have (dosage arithmetic, not medical advice)  (V = (D/H) x Q (desired over have times quantity))
+  D = 0.00025 kg
+  H = 0.000125 kg
+  Q = 5e-06 m^3
+  assumes: arithmetic only: not medical advice; D > 0, H > 0, Q > 0
+```
+
+In the worked example, D = 250 mg, H = 125 mg, Q = 5 mL go through the equation above and give V = 1e-05 m^3, V_mL = 10, C = 25 kg/m^3. It applies only when arithmetic only: not medical advice; D > 0, H > 0, Q > 0: outside that it says what is wrong instead of returning a number.
+
+<a id="bmed_dose_weight_based"></a>
+
+#### Weight-based dose (dosage arithmetic, not medical advice), `bmed_dose_weight_based`
+
+The dose for a body weight from an order in mg/kg, per dose or per day, with the daily total or the single dose when the number of doses per day is given; arithmetic only, no dose is judged safe.
+
+$$
+D = d_{kg}\,W,\qquad D_{dose} = \frac{d_{kg,day}\,W}{n}
+$$
+
+| symbol |  | meaning | SI unit |
+|---|---|---|---|
+| `dose_mg_per_kg` | in | ordered dose per kilogram of body weight, a number in mg/kg | - |
+| `W` | in | body weight | kg |
+| `basis` | in | whether the mg/kg figure is per dose or per day | - |
+| `doses_per_day` | in | number of doses per day (needed for a per-day order) (optional) | - |
+| `dose` | out | single dose | kg |
+| `dose_mg` | out | single dose in mg | - |
+| `daily_dose` | out | total dose per day (when the doses per day are known) | kg |
+| `daily_dose_mg` | out | total dose per day in mg | - |
+
+**Applies when:** arithmetic only: not medical advice; 0 < dose per kilogram <= 1000 mg/kg; 0.3 kg <= body weight <= 400 kg; a per-day order needs the number of doses per day (1 to 24).
+
+```shell
+$ biomedical-science solve bmed_dose_weight_based dose_mg_per_kg=15 "W=20 kg" basis=per_dose doses_per_day=4
+dose_mg = 300
+daily_dose_mg = 1200
+dose = 0.0003 kg
+daily_dose = 0.0012 kg
+  by: Weight-based dose (dosage arithmetic, not medical advice)  (dose = (mg/kg) x weight in kg; per day: single dose = daily dose / doses per day)
+  dose_mg_per_kg = 15
+  W = 20 kg
+  basis = per_dose
+  assumes: arithmetic only: not medical advice; 0 < dose per kilogram <= 1000 mg/kg; 0.3 kg <= body weight <= 400 kg; a per-day order needs the number of doses per day (1 to 24)
+```
+
+In the worked example, dose_mg_per_kg = 15, W = 20 kg, basis = per_dose, doses_per_day = 4 go through the equation above and give dose_mg = 300, daily_dose_mg = 1200, dose = 0.0003 kg, daily_dose = 0.0012 kg. It applies only when arithmetic only: not medical advice; 0 < dose per kilogram <= 1000 mg/kg; 0.3 kg <= body weight <= 400 kg; a per-day order needs the number of doses per day (1 to 24): outside that it says what is wrong instead of returning a number.
+
+### Epidemic models (9)
+
+<a id="bmed_epi_herd_immunity"></a>
+
+#### Herd-immunity threshold and critical vaccination coverage, `bmed_epi_herd_immunity`
+
+The fraction of a population that must be immune to stop sustained spread, 1 - 1/R0, and, for a vaccine of stated efficacy, the vaccination coverage that achieves it (and whether it is reachable).
+
+$$
+H = 1 - \frac{1}{R_0},\quad V_c = \frac{1 - 1/R_0}{E}
+$$
+
+| symbol |  | meaning | SI unit |
+|---|---|---|---|
+| `R0` | in | basic reproduction number | - |
+| `efficacy` | in | vaccine efficacy against infection, a fraction or % (optional) (optional) | - |
+| `threshold` | out | herd-immunity threshold 1 - 1/R0 (immune fraction) | - |
+| `threshold_percent` | out | threshold in % | - |
+| `coverage` | out | critical vaccination coverage (1 - 1/R0)/E (when the efficacy is given) | - |
+| `coverage_percent` | out | critical coverage in % | - |
+| `reachable` | out | reachable (coverage <= 100 %) or not reachable with this vaccine | - |
+
+**Applies when:** 1 < R0 <= 100; 0 < efficacy <= 1; homogeneous mixing, lasting all-or-nothing immunity.
+
+```shell
+$ biomedical-science solve bmed_epi_herd_immunity R0=4 efficacy=0.9
+threshold = 0.75
+threshold_percent = 75
+coverage = 0.8333333333
+coverage_percent = 83.33333333
+reachable = reachable
+  by: Herd-immunity threshold and critical vaccination coverage  (H = 1 - 1/R0; V_c = H / E)
+  R0 = 4
+  efficacy = 0.9
+  assumes: 1 < R0 <= 100; 0 < efficacy <= 1; homogeneous mixing, lasting all-or-nothing immunity
+```
+
+In the worked example, R0 = 4, efficacy = 0.9 go through the equation above and give threshold = 0.75, threshold_percent = 75, coverage = 0.8333333333, coverage_percent = 83.33333333. It applies only when 1 < R0 <= 100; 0 < efficacy <= 1; homogeneous mixing, lasting all-or-nothing immunity: outside that it says what is wrong instead of returning a number.
 
 <a id="bmed_epi_reed_frost_final_size"></a>
 
@@ -1137,7 +1445,7 @@ i_star = 0.75
 
 **What the worked example means:** This calculation determines the proportion of infected individuals in an SIS epidemic model at a specific time point, given the transmission rate 0.4 1/day, recovery rate 0.1 1/day, initial infected fraction 0.01, and elapsed time 10 day. The result, 0.160111, represents the current prevalence of the disease within the closed population. Additionally, the endemic equilibrium 0.75 indicates the stable fraction of infected individuals that the system approaches over the long term when transmission exceeds recovery.
 
-### Epidemiological measures of association (6)
+### Epidemiological measures of association (8)
 
 <a id="bmed_nnt_ci"></a>
 
@@ -1179,6 +1487,53 @@ NNT_upper = 27.67294197
 ```
 
 **What the worked example means:** This calculation determines the absolute difference in event rates between the control and treated groups, defined as the control risk minus the treated risk. The resulting absolute risk reduction is 0.15, bounded by an unpooled Wald confidence interval ranging from 0.0361364 to 0.263864. This metric translates into the number of patients required to be treated to prevent one additional adverse outcome, calculated as the reciprocal of the absolute risk reduction. The estimated number needed to treat is 6.66667, with corresponding limits derived from the inverted confidence interval.
+
+<a id="bmed_epi_basic_rates"></a>
+
+#### Basic epidemiological rates: incidence, attack rate, prevalence, case fatality and mortality, `bmed_epi_basic_rates`
+
+The incidence proportion (attack rate) and, when given, the incidence rate per person-year, the point prevalence, the case-fatality rate and the mortality, from case counts in one population.
+
+$$
+IP = \frac{\text{new cases}}{N},\quad P = \frac{\text{existing cases}}{N},\quad CFR = \frac{\text{deaths}}{\text{cases}}
+$$
+
+| symbol |  | meaning | SI unit |
+|---|---|---|---|
+| `cases` | in | new cases during the period | - |
+| `population` | in | population at risk at the start of the period | - |
+| `prevalent` | in | existing cases at a point in time (optional, for the prevalence) (optional) | - |
+| `deaths` | in | deaths from the disease among its cases (optional) (optional) | - |
+| `period` | in | length of the observation period (optional, for rates per person-year) (optional) | s |
+| `incidence_proportion` | out | incidence proportion (attack rate) = new cases / population | - |
+| `incidence_per_100000` | out | incidence proportion per 100,000 | - |
+| `incidence_rate` | out | incidence rate per person and unit time (when the period is given) | Hz |
+| `incidence_per_100000_person_years` | out | incidence rate per 100,000 person-years (when the period is given) | - |
+| `prevalence` | out | point prevalence = existing cases / population (when given) | - |
+| `prevalence_per_100000` | out | prevalence per 100,000 | - |
+| `case_fatality` | out | case-fatality rate = deaths / cases (when deaths are given) | - |
+| `mortality_per_100000` | out | disease mortality per 100,000 population over the period | - |
+| `mortality_per_100000_person_years` | out | mortality rate per 100,000 person-years (deaths and period given) | - |
+
+**Applies when:** 0 <= cases <= population; existing cases <= population; deaths <= cases; one closed population, constant over the period.
+
+```shell
+$ biomedical-science solve bmed_epi_basic_rates cases=150 population=10000 prevalent=400 deaths=6 "period=1 yr"
+incidence_proportion = 0.015
+incidence_per_100000 = 1500
+incidence_rate = 4.753213172e-10 Hz
+incidence_per_100000_person_years = 1500
+prevalence = 0.04
+prevalence_per_100000 = 4000
+case_fatality = 0.04
+mortality_per_100000 = 60
+mortality_per_100000_person_years = 60
+  by: Basic epidemiological rates: incidence, attack rate, prevalence, case fatality and mortality  (incidence proportion = cases/N; incidence rate = cases/(N T); prevalence = existing cases/N; case fatality = deaths/cases; mortality = deaths/N)
+  period = 31557600 s
+  assumes: 0 <= cases <= population; existing cases <= population; deaths <= cases; one closed population, constant over the period
+```
+
+In the worked example, cases = 150, population = 10000, prevalent = 400, deaths = 6, period = 1 yr go through the equation above and give incidence_proportion = 0.015, incidence_per_100000 = 1500, incidence_rate = 4.753213172e-10 Hz, incidence_per_100000_person_years = 1500. It applies only when 0 <= cases <= population; existing cases <= population; deaths <= cases; one closed population, constant over the period: outside that it says what is wrong instead of returning a number.
 
 <a id="bmed_incidence_rate_ratio_ci"></a>
 
@@ -1352,6 +1707,47 @@ upper = 2.00570281
 ```
 
 **What the worked example means:** This calculation determines the standardized mortality or incidence ratio by dividing the observed number of events, 25, by the expected number derived from reference rates, 18.4. The result, 1.3587, indicates whether the event rate in the study population is higher or lower than expected. To account for statistical uncertainty, especially in small samples, exact Poisson confidence limits are computed at the specified level of 0.95. These limits, 0.879276 and 2.0057, provide a range within which the true ratio likely falls, assuming the observed count follows a Poisson distribution and the expected count is known precisely.
+
+<a id="bmed_vaccine_efficacy"></a>
+
+#### Vaccine efficacy from attack rates: `bmed_vaccine_efficacy`
+
+Vaccine efficacy VE = (ARU - ARV)/ARU = 1 - RR from the attack rates of the vaccinated and the unvaccinated, with the risk ratio, the absolute risk reduction and the number needed to vaccinate.
+
+$$
+VE = \frac{ARU - ARV}{ARU} = 1 - \frac{ARV}{ARU}
+$$
+
+| symbol |  | meaning | SI unit |
+|---|---|---|---|
+| `cases_v` | in | cases among the vaccinated | - |
+| `n_v` | in | number vaccinated | - |
+| `cases_u` | in | cases among the unvaccinated | - |
+| `n_u` | in | number unvaccinated | - |
+| `ARV` | out | attack rate in the vaccinated | - |
+| `ARU` | out | attack rate in the unvaccinated | - |
+| `RR` | out | risk ratio ARV/ARU | - |
+| `VE` | out | vaccine efficacy 1 - ARV/ARU (fraction) | - |
+| `VE_percent` | out | vaccine efficacy in % | - |
+| `ARR` | out | absolute risk reduction ARU - ARV | - |
+| `NNV` | out | number needed to vaccinate to prevent one case, 1/ARR (when ARR > 0) | - |
+
+**Applies when:** cases <= group size; at least one unvaccinated case; comparable groups, equal follow-up.
+
+```shell
+$ biomedical-science solve bmed_vaccine_efficacy cases_v=20 n_v=1000 cases_u=100 n_u=1000
+ARV = 0.02
+ARU = 0.1
+RR = 0.2
+VE = 0.8
+VE_percent = 80
+ARR = 0.08
+NNV = 12.5
+  by: Vaccine efficacy from attack rates  (ARV = cases_v/n_v; ARU = cases_u/n_u; VE = (ARU - ARV)/ARU = 1 - ARV/ARU)
+  assumes: cases <= group size; at least one unvaccinated case; comparable groups, equal follow-up
+```
+
+In the worked example, cases_v = 20, n_v = 1000, cases_u = 100, n_u = 1000 go through the equation above and give ARV = 0.02, ARU = 0.1, RR = 0.2, VE = 0.8. It applies only when cases <= group size; at least one unvaccinated case; comparable groups, equal follow-up: outside that it says what is wrong instead of returning a number.
 
 ### Medical-imaging physics (14)
 
