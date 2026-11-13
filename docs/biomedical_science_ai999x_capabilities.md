@@ -3656,7 +3656,7 @@ $$
 
 ![true when the fixed point is stable (stable) over a (parameter a) from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-fitzhugh-nagumo-fixed-point-decision)
 
-*true when the fixed point is stable (stable) over a (parameter a) from 0.07 to 7 and b (parameter b (0 < b < 1)) from 0.08 to 8 (logarithmic axes): each of the 31 × 21 cells is one run of biomedical-science-ai999x, coloured by the verdict it returned, yes: 166 cells, no: 175 cells; blank cells: inputs the capability refuses. Other inputs as in the worked example: eps = 0.08, I = 0. Marked: the worked example, a = 0.7, b = 0.8 → yes.*
+*true when the fixed point is stable (stable) over a (parameter a) from 0.07 to 7 and b (parameter b (0 < b < 1)) from 0.08 to 8 (logarithmic axes): each of the 31 × 21 cells is one run of biomedical-science-ai999x, coloured by the verdict it returned, yes: 166 cells, no: 175 cells; blank cells: inputs the capability refuses. Other inputs as in the worked example: eps = 0.08, I = 0.0. Marked: the worked example, a = 0.7, b = 0.8 → yes.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_fitzhugh_nagumo_fixed_point', a=0.7, b=0.8, eps=0.08, I=0)
@@ -4371,7 +4371,7 @@ $$
 
 ![BMR_kcal_day (basal metabolic rate in kcal/day) against m (body mass) from 35 kg to 105 kg](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-bmr-curve-2)
 
-*BMR_kcal_day (basal metabolic rate in kcal/day) against m (body mass) from 35 kg to 105 kg. One curve for each value of h (height): 1.75 m, 0.875 m. Other inputs as in the worked example: age = 30, sex = male, equation = mifflin_st_jeor. 31 points per curve computed by biomedical-science-ai999x; marked: the worked example, m = 70 kg, BMR_kcal_day = 1648.75.*
+*BMR_kcal_day (basal metabolic rate in kcal/day) against m (body mass) from 35 kg to 105 kg. One curve for each value of h (height): 1.75 m, 0.875 m. Other inputs as in the worked example: age = 30.0, sex = male, equation = mifflin_st_jeor. 31 points per curve computed by biomedical-science-ai999x; marked: the worked example, m = 70 kg, BMR_kcal_day = 1648.75.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_bmr', m=70.0, h=1.75, age=30, sex='male', equation='mifflin_st_jeor')
@@ -5089,7 +5089,7 @@ $$
 
 ![flow_mL_h (pump rate in mL/h) against drug (amount of drug in the bag) from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-iv-rate-from-dose-rate-curve)
 
-*flow_mL_h (pump rate in mL/h) against drug (amount of drug in the bag) from 0.0002 kg to 0.0006 kg. One curve for each value of bag_volume (volume of the bag): 0.00025 m^3, 0.000125 m^3, 0.0005 m^3. Other inputs as in the worked example: dose_ug_per_kg_min = 5, W = 80.0 kg. 31 points per curve computed by biomedical-science-ai999x; marked: the worked example, drug = 0.0004 kg, flow_mL_h = 15.*
+*flow_mL_h (pump rate in mL/h) against drug (amount of drug in the bag) from 0.0002 kg to 0.0006 kg. One curve for each value of bag_volume (volume of the bag): 0.00025 m^3, 0.000125 m^3, 0.0005 m^3. Other inputs as in the worked example: dose_ug_per_kg_min = 5.0, W = 80.0 kg. 31 points per curve computed by biomedical-science-ai999x; marked: the worked example, drug = 0.0004 kg, flow_mL_h = 15.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_iv_rate_from_dose_rate', drug=0.00039999999999999996, bag_volume=0.00025, dose_ug_per_kg_min=5, W=80.0)
