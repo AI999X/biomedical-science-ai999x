@@ -1,5 +1,5 @@
 {
- "package": "1.6.0",
+ "package": "1.6.1",
  "pack": "1.0.0",
  "knowledge_db": null,
  "files": {
@@ -7,8 +7,8 @@
   "dictionary/terms.json": "3781eac9e78cc74a52dfbb7f7c6ecd5f218e2a208be5aad6dabd1094f82ddc60",
   "knowledge/relations.json": "ecf74708e7c8fa7f973f5c7f27311ca9fdfd686527f8e6b2f7b3de99b8e3a508",
   "knowledge/reference_cases.json": "7414a14e2c4202a7fae8cdd14e1a2ef7267f35a9665b0633001349c698d4e4e7",
-  "capabilities/procedures.py": "e52a3b813d3708afa4a9aeaeafd61bbacedf6fa6aac7e9a72c698fb4cc10a529",
-  "capabilities/procedures_certified.json": "95133431a7eadee1a25d92fd44a64f55552c155a8b8399cfd9a8095f482cc5c1",
+  "capabilities/procedures.py": "fd584e53d4f0c085468dac53da30b6962ae068188881a230592dc6d1098d760f",
+  "capabilities/procedures_certified.json": "2f76a0e5d398189f9e49c2875bd2d74b4d0dc1f8b6bfa0124a95e1ac53e3706c",
   "biomedical_science_knowledge_public.sqlite": "4e7a311ecd6399c5416db135744bc97d6fbb32675946d1a5eefa22624a5011aa"
  },
  "engine": [

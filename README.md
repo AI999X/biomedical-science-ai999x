@@ -4,7 +4,7 @@
 
 **[Desktop app & command line](https://www.ai999x.com/desktop-cli/)** · **[Compute in your browser](https://www.ai999x.com/models/biomedical-science-ai999x/#try)** · **[Install (Python)](https://pypi.org/project/biomedical-science-ai999x/)** · **[Guides](https://huggingface.co/AI999X/biomedical-science-ai999x/tree/main/docs)** · **[Evaluation](https://huggingface.co/AI999X/biomedical-science-ai999x/tree/main/evaluation)** · **[AI999X on Hugging Face](https://huggingface.co/AI999X)** · **[Website](https://ai999x.com)** · **[Support: Buy Me a Coffee](https://buymeacoffee.com/ibnuljaiffarabi)**
 
-License: Apache-2.0 · Author: Ibnul Jaif Farabi (creator and engineer) · Organization: AI999X · Version 1.6.0
+License: Apache-2.0 · Author: Ibnul Jaif Farabi (creator and engineer) · Organization: AI999X · Version 1.6.1
 
 Field: **Life Sciences** · Tasks: Question Answering
 
@@ -287,7 +287,7 @@ _What this means:_ This calculation determines the viscoelastic creep strain of 
 
 | Property | Value |
 |---|---|
-| Package | `biomedical-science-ai999x` 1.6.0 (import `biomedical_science_ai999x`) |
+| Package | `biomedical-science-ai999x` 1.6.1 (import `biomedical_science_ai999x`) |
 | Type | Deterministic neuro-symbolic biomedical science engine (rule-based reading + certified symbolic capabilities) |
 | Capabilities | 96 certified procedures |
 | Knowledge pack | version 1.0.0 |
@@ -321,7 +321,7 @@ biomedical_science.ask("Who created you?").message
 # -> biomedical-science-ai999x was created and engineered by Ibnul Jaif Farabi at AI999X.
 ```
 
-The Python package also installs a Python command, `biomedical-science-ai999x "<question>"`; for the native program use `biomedical-science` (above). The outputs above were produced by running this exact code on biomedical-science-ai999x 1.6.0.
+The Python package also installs a Python command, `biomedical-science-ai999x "<question>"`; for the native program use `biomedical-science` (above). The outputs above were produced by running this exact code on biomedical-science-ai999x 1.6.1.
 
 ## How every answer is verified
 
@@ -472,10 +472,10 @@ _Forest plot of six effect measures, each computed by the package on its own wor
 ## Citation
 
 ```bibtex
-@software{biomedical_science_ai999x_1_6_0,
+@software{biomedical_science_ai999x_1_6_1,
   title  = {biomedical-science-ai999x: an offline, verified biomedical science solver},
   author = {Farabi, Ibnul Jaif}, organization = {AI999X},
-  year   = {2026}, version = {1.6.0},
+  year   = {2026}, version = {1.6.1},
   url    = {https://huggingface.co/AI999X/biomedical-science-ai999x}
 }
 ```
@@ -492,7 +492,7 @@ Created and engineered by **Ibnul Jaif Farabi** · **[AI999X](https://huggingfac
 
 ## Source and releases
 
-This repository holds the installable source of each release, exactly as published on [PyPI](https://pypi.org/project/biomedical-science-ai999x/) (`pip install .` builds it). Releases are tagged `v1.6.0`; the [GitHub release](https://github.com/AI999X/biomedical-science-ai999x/releases/tag/v1.6.0) carries the wheel, the desktop app and the command-line program for Windows and Linux, and their checksums.
+This repository holds the installable source of each release, exactly as published on [PyPI](https://pypi.org/project/biomedical-science-ai999x/) (`pip install .` builds it). Releases are tagged `v1.6.1`; the [GitHub release](https://github.com/AI999X/biomedical-science-ai999x/releases/tag/v1.6.1) carries the wheel, the desktop app and the command-line program for Windows and Linux, and their checksums.
 
 ## Build the program from source
 

@@ -1158,7 +1158,7 @@ def bmed_postsynaptic_potential(tau_m=None, tau_s=None, R_m=None, I0=None, t=Non
         tau_m: membrane time constant
         tau_s: synaptic current decay time constant
         R_m: membrane resistance
-        I0: peak synaptic current (negative for inward)
+        I0: peak synaptic current into the cell (positive depolarises; an outward, inhibitory current is negative)
         t: time after the synaptic event
     Outputs: V_t (potential change at time t), t_peak (time of the peak), V_peak (peak potential change)
     See also: help("bmed_postsynaptic_potential")

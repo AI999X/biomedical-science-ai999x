@@ -3585,7 +3585,7 @@ $$
 | `tau_m` | membrane time constant |  |
 | `tau_s` | synaptic current decay time constant |  |
 | `R_m` | membrane resistance |  |
-| `I0` | peak synaptic current (negative for inward) |  |
+| `I0` | peak synaptic current into the cell (positive depolarises; an outward, inhibitory current is negative) |  |
 | `t` | time after the synaptic event |  |
 
 | output | meaning |
