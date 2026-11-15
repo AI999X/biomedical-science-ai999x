@@ -21,7 +21,7 @@ figcaption{font-size:9pt;color:#555}
 .pb{page-break-after:always}
 </style></head><body>
 <h1>biomedical-science: the Biomedical Science program, user guide</h1>
-<p><strong>biomedical-science-ai999x 1.6.0</strong>, Rust build: command line, desktop app and browser. <strong>Creator / engineer:</strong> Ibnul Jaif Farabi · <strong>Company:</strong> AI999X · support@ai999x.com</p>
+<p><strong>biomedical-science-ai999x 1.6.3</strong>, Rust build: command line, desktop app and browser. <strong>Creator / engineer:</strong> Ibnul Jaif Farabi · <strong>Company:</strong> AI999X · support@ai999x.com</p>
 <p>Biomedical Science covers pharmacokinetics and dosing models, epidemic models, diagnostic test statistics, survival analysis, biomechanics, neuron models and medical-imaging physics (quantitative only, no clinical advice). This guide is about <code>biomedical-science</code>, the model as a self-contained program for Windows and Linux: 96 capabilities in 10 topics, answered on your own computer with no network, no Python and nothing else to install. The same compiled model runs in the AI999X desktop app and in the browser on the model&#x27;s page (https://www.ai999x.com/models/biomedical-science-ai999x/); the Python package (<code>pip install biomedical-science-ai999x</code>) has its own guide. Every command output printed here is what the program printed.</p>
 <h2>Contents</h2>
 <ul><li>1. Get it: desktop app, command line, browser, Python</li><li>2. Quick start</li><li>3. Writing inputs</li><li>4. Outcomes and exit codes</li><li>5. Scripts and agents: batch and JSON</li><li>6. Figures</li><li>7. In a web page or Node.js: WebAssembly</li><li>8. Every capability</li></ul>
@@ -67,7 +67,7 @@ biomedical-science --version</code></pre>
 <h3>2.1 Check the install</h3>
 <p>Prints the model, its version and that this is the Rust build.</p>
 <pre><code class="shell">$ biomedical-science --version
-biomedical-science-ai999x 1.6.0 (Rust build, ax-engine 1.6.0)</code></pre>
+biomedical-science-ai999x 1.6.3 (Rust build, ax-engine 1.6.3)</code></pre>
 <h3>2.2 Ask in words</h3>
 <p>Write the question as you would say it: the program reads the quantities and their units, picks the capability and answers.</p>
 <pre><code class="shell">$ biomedical-science ask &quot;IV bolus concentration: D = 500 mg, V = 40 L, k = 0.1 1/h, t = 6 h&quot;
@@ -1121,7 +1121,7 @@ V = -0.0640979599 V
 <h4 id="bmed_postsynaptic_potential">Postsynaptic potential of a passive membrane driven by an exponentially decaying synaptic current, <code>bmed_postsynaptic_potential</code></h4>
 <p>The postsynaptic potential of a passive RC membrane receiving a synaptic current I0 exp(-t/tau_s) at t = 0: its value at time t, the time of its peak and the peak value.</p>
 <div class="math">\[V(t) = \frac{R I_0 \tau_s}{\tau_s - \tau_m}\left(e^{-t/\tau_s} - e^{-t/\tau_m}\right),\quad t_{peak} = \frac{\tau_m\tau_s}{\tau_s - \tau_m}\ln\frac{\tau_s}{\tau_m}\]</div>
-<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>tau_m</code></td><td>in</td><td>membrane time constant</td><td>s</td></tr><tr><td><code>tau_s</code></td><td>in</td><td>synaptic current decay time constant</td><td>s</td></tr><tr><td><code>R_m</code></td><td>in</td><td>membrane resistance</td><td>ohm</td></tr><tr><td><code>I0</code></td><td>in</td><td>peak synaptic current (negative for inward)</td><td>A</td></tr><tr><td><code>t</code></td><td>in</td><td>time after the synaptic event</td><td>s</td></tr><tr><td><code>V_t</code></td><td>out</td><td>potential change at time t</td><td>V</td></tr><tr><td><code>t_peak</code></td><td>out</td><td>time of the peak</td><td>s</td></tr><tr><td><code>V_peak</code></td><td>out</td><td>peak potential change</td><td>V</td></tr></tbody></table>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>tau_m</code></td><td>in</td><td>membrane time constant</td><td>s</td></tr><tr><td><code>tau_s</code></td><td>in</td><td>synaptic current decay time constant</td><td>s</td></tr><tr><td><code>R_m</code></td><td>in</td><td>membrane resistance</td><td>ohm</td></tr><tr><td><code>I0</code></td><td>in</td><td>peak synaptic current into the cell (positive depolarises; an outward, inhibitory current is negative)</td><td>A</td></tr><tr><td><code>t</code></td><td>in</td><td>time after the synaptic event</td><td>s</td></tr><tr><td><code>V_t</code></td><td>out</td><td>potential change at time t</td><td>V</td></tr><tr><td><code>t_peak</code></td><td>out</td><td>time of the peak</td><td>s</td></tr><tr><td><code>V_peak</code></td><td>out</td><td>peak potential change</td><td>V</td></tr></tbody></table>
 <p><strong>Applies when:</strong> passive membrane starting at rest; current jumps to I0 and decays exponentially; tau_s != tau_m.</p>
 <pre><code class="shell">$ biomedical-science solve bmed_postsynaptic_potential &quot;tau_m=20 ms&quot; &quot;tau_s=5 ms&quot; &quot;R_m=100 Mohm&quot; &quot;I0=50 pA&quot; &quot;t=10 ms&quot;
 V_t = 0.0007853256275 V
