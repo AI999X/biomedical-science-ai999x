@@ -2135,9 +2135,9 @@ $$
 - **Assumes:** Poisson counts; log-Wald interval; the same person-time unit for both groups; level stated
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![The incidence rate ratio with its 95 % interval for the example's counts (events1 = 30, time1 = 1000, events2 = 15, time2 = 1200) and the same proportions with the counts scaled by 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-incidence-rate-ratio-ci-intervals)
+![The incidence rate ratio with its 95 % interval for the example's counts (events1 = 30, time1 = 1000](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-incidence-rate-ratio-ci-intervals)
 
-*The incidence rate ratio with its 95 % interval for the example's counts (events1 = 30, time1 = 1000, events2 = 15, time2 = 1200) and the same proportions with the counts scaled by 0.4, 1, 2, 4 (the label gives the factor): more data, narrower intervals, the estimate unchanged. Marked at the example: IRR 2.4 (1.29133–4.46051).*
+*The incidence rate ratio with its 95 % interval for the example's counts (events1 = 30, time1 = 1000.0, events2 = 15, time2 = 1200.0) and the same proportions with the counts scaled by 0.4, 1, 2, 4 (the label gives the factor): more data, narrower intervals, the estimate unchanged. Marked at the example: IRR 2.4 (1.29133–4.46051).*
 
 ```python
 biomedical_science_ai999x.solve('bmed_incidence_rate_ratio_ci', events1=30, time1=1000, events2=15, time2=1200, level=0.95)
@@ -4367,7 +4367,7 @@ $$
 
 ![Basal metabolic rate against age for a body of m = 70 kg and h = 1](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-bmr-curve)
 
-*Basal metabolic rate against age for a body of m = 70 kg and h = 1.75 m, for both sexes and both regressions (32 ages each): it falls steadily with age and is lower for the female form. Marked: the example (male, age 30, Mifflin–St Jeor) BMR = 1648.75 kcal/day (79.8422 W).*
+*Basal metabolic rate against age for a body of m = 70 kg and h = 1.75 m, for both sexes and both regressions (32 ages each): it falls steadily with age and is lower for the female form. Marked: the example (male, age 30.0, Mifflin–St Jeor) BMR = 1648.75 kcal/day (79.8422 W).*
 
 ![BMR_kcal_day (basal metabolic rate in kcal/day) against m (body mass) from 35 kg to 105 kg](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-bmr-curve-2)
 

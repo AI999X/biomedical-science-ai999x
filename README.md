@@ -10,34 +10,140 @@ Biomedical Science covers pharmacokinetics and dosing models, epidemic models, d
 
 | | |
 |---|---|
-| **Desktop app** (Windows, Linux) | [Windows](https://downloads.ai999x.com/desktop/latest/ai999x-windows-x86_64.zip) · [Linux](https://downloads.ai999x.com/desktop/latest/ai999x-linux-x86_64.tar.gz) |
-| **Command line** `biomedical-science` (Windows, Linux) | [Windows](https://downloads.ai999x.com/desktop/latest/ai999x-cli-windows-x86_64.zip) · [Linux](https://downloads.ai999x.com/desktop/latest/ai999x-cli-linux-x86_64.tar.gz) |
+| **Desktop app** (Windows, Linux) | [Windows](https://github.com/AI999X/ai999x-desktop/releases/download/v1.6.4/ai999x-1.6.4-windows-x86_64.zip) · [Linux](https://github.com/AI999X/ai999x-desktop/releases/download/v1.6.4/ai999x-1.6.4-linux-x86_64.tar.gz) |
+| **Command line** `biomedical-science` (Windows, Linux) | [Windows](https://github.com/AI999X/ai999x-desktop/releases/download/v1.6.4/ai999x-cli-1.6.4-windows-x86_64.zip) · [Linux](https://github.com/AI999X/ai999x-desktop/releases/download/v1.6.4/ai999x-cli-1.6.4-linux-x86_64.tar.gz) |
 | **Browser** (any device) | [Try it on the model page](https://www.ai999x.com/models/biomedical-science-ai999x/#try) |
 | **Python** 3.10+ | `pip install biomedical-science-ai999x`: on Windows and Linux (x86-64) `pip` installs the same compiled engine; on other systems (macOS, ARM) it installs a pure-Python build that gives the same answers |
 
-## Example
+## Ask in words: 15 examples
+
+Each question below was asked on this release; the comment under it is the line it printed.
 
 ```python
 import biomedical_science_ai999x as biomedical_science
-a = biomedical_science.ask("IV bolus concentration: D = 500 mg, V = 40 L, k = 0.1 1/h, t = 6 h")
-print(a.outcome, a.value, a.unit)
+
+a = biomedical_science.ask(
+    "Cohen's kappa: counts = [[40, 10], [5, 45]]"
+)
+print(a.outcome, a.values)
+# SOLVED {'kappa': 0.7, 'p_observed': 0.85}
+
+a = biomedical_science.ask(
+    "Hounsfield units: mu = 0.38 1/cm, mu_water = 0.19 1/cm"
+)
+print(a.outcome, a.values)
+# SOLVED {'HU': 1000.0, 'mu_rel': 2.0}
+
+a = biomedical_science.ask(
+    "Bioavailability from profiles: D_iv = 100 mg, t_iv = [0, 1, 2, 4, "
+    "8, 12], C_iv = [10, 8.2, 6.7, 4.5, 2, 0.9], D_oral = 200 mg, "
+    "t_oral = [0, 1, 2, 4, 8, 12], C_oral = [0, 6.1, 8, 7.2, 3.9, 1.8]"
+)
+print(a.outcome, a.values)
+# SOLVED {'AUC_iv': 46.55, 'AUC_oral': 58.9, 'F': 0.632653061224}
+
+a = biomedical_science.ask(
+    "AUC of an IV bolus: D = 500 mg, CL = 5 L/h, V = 40 L, t = 8 h"
+)
+print(a.outcome, a.values)
+# SOLVED {'AUC_inf': 360.0, 'AUC_0_t': 227.563401178}
+
+a = biomedical_science.ask("Body mass index: m = 70 kg, h = 1.75 m")
+print(a.outcome, a.values)
+# SOLVED {'BMI': 22.8571428571, 'BMI_prime': 0.914285714286}
+
+a = biomedical_science.ask("ADC fit: b = [0, 1000], S = [1200, 420]")
+print(a.outcome, a.values)
+# SOLVED {'ADC': 0.0010498221245, 'S0': 1200.0}
+
+a = biomedical_science.ask(
+    "GHK current density: P = 1e-8 m/s, z = 1, C_in = 140 mmol/L, "
+    "C_out = 4 mmol/L, V = -20 mV, T = 310 K"
+)
+print(a.outcome, a.values)
+# SOLVED {'I': 0.085282548488}
+
+a = biomedical_science.ask(
+    "AUC by the trapezoidal rule: t = [0, 0.5, 1, 2, 4, 6, 8, 12], C = "
+    "[0, 4.2, 6.8, 7.9, 6.1, 4.3, 3, 1.5], method = linear"
+)
+print(a.outcome, a.values)
+# SOLVED {'AUC': 51.85}
+
+a = biomedical_science.ask(
+    "Time to fraction of steady state: CL = 5 L/h, V = 40 L, f = 90%"
+)
+print(a.outcome, a.values)
+# SOLVED {'t': 66314.4506782}
+
+a = biomedical_science.ask(
+    "Indicator dilution cardiac output: m = 5 mg, t = [0, 2, 4, 6, 8, "
+    "10, 12, 14, 16], C = [0, 0.5, 2.8, 4.1, 3.5, 2.2, 1.1, 0.5, 0.2]"
+)
+print(a.outcome, a.values)
+# SOLVED {'AUC': 29.6, 'CO': 0.000168918918919}
+
+a = biomedical_science.ask(
+    "Reproduction number from growth rate: r = 0.1 1/day, Tg_mean = 5 "
+    "day, Tg_sd = 2 day"
+)
+print(a.outcome, a.values)
+# SOLVED {'R': 1.61770181142}
+
+a = biomedical_science.ask(
+    "Incidence rate ratio: events1 = 30, time1 = 1000, events2 = 15, "
+    "time2 = 1200, level = 95%"
+)
+print(a.outcome, a.values)
+# SOLVED {'IRR': 2.4, 'lower': 1.29133130431, 'upper': 4.46051294567}
+
+a = biomedical_science.ask(
+    "Gaussian PSF MTF: fwhm = 0.5 mm, f = 1 1/mm"
+)
+print(a.outcome, a.values)
+# SOLVED {'MTF': 0.410685800378, 'f50': 882.542400611}
+
+a = biomedical_science.ask(
+    "GHK voltage: T = 310 K, PK = 1, PNa = 0.04, PCl = 0.45, K_o = 4 "
+    "mmol/L, K_i = 140 mmol/L, Na_o = 145 mmol/L, Na_i = 12 mmol/L, "
+    "Cl_o = 116 mmol/L, Cl_i = 4 mmol/L"
+)
+print(a.outcome, a.values)
+# SOLVED {'V_m': -0.0750662761527}
+
+a = biomedical_science.ask(
+    "Infusion concentration: R0 = 50 mg/h, CL = 5 L/h, V = 40 L, t = 6 "
+    "h"
+)
+print(a.outcome, a.values)
+# SOLVED {'C': 0.00527633447259, 'C_ss': 0.01}
 ```
 
-Output:
+## Screenshots
 
-```text
-SOLVED 0.00686014545118 kg/m^3
-```
+[![The Biomedical Science desktop app: Infusion of fixed duration: concentration during and after it (a model calculation, not medical advice), with its worked example and live scene](https://www.ai999x.com/?ax_shot=biomedical-science-ai999x/hero-dark.webp)](https://www.ai999x.com/models/biomedical-science-ai999x/)
+
+[![CT number in Hounsfield units: the live scene in the Biomedical Science desktop app](https://www.ai999x.com/?ax_shot=biomedical-science-ai999x/see-1.webp)](https://www.ai999x.com/models/biomedical-science-ai999x/)
+
+*CT number in Hounsfield units*
+
+[![Body mass index (a calculation, not medical advice): the live scene in the Biomedical Science desktop app](https://www.ai999x.com/?ax_shot=biomedical-science-ai999x/see-2.webp)](https://www.ai999x.com/models/biomedical-science-ai999x/)
+
+*Body mass index (a calculation, not medical advice)*
+
+[![Goldman-Hodgkin-Katz voltage equation: membrane potential from K, Na and Cl: the live scene in the Biomedical Science desktop app](https://www.ai999x.com/?ax_shot=biomedical-science-ai999x/see-3.webp)](https://www.ai999x.com/models/biomedical-science-ai999x/)
+
+*Goldman-Hodgkin-Katz voltage equation: membrane potential from K, Na and Cl*
 
 Every calculation, with its formula, a worked example and its figures: **[Biomedical Science on ai999x.com](https://www.ai999x.com/models/biomedical-science-ai999x/)**. Install guides for the app and the command line: [https://www.ai999x.com/desktop-cli/](https://www.ai999x.com/desktop-cli/).
 
-Version 1.6.3 · License: Apache-2.0 · Author: Ibnul Jaif Farabi · Organization: AI999X · Contact: support@ai999x.com · [Support the project](https://buymeacoffee.com/ibnuljaiffarabi)
+Version 1.6.4 · License: Apache-2.0 · Author: Ibnul Jaif Farabi · Organization: AI999X · Contact: support@ai999x.com · [Support the project](https://buymeacoffee.com/ibnuljaiffarabi)
 
 *The Future Is Self-Improving.*
 
 ## Source and releases
 
-This repository holds the installable source of each release, exactly as published on [PyPI](https://pypi.org/project/biomedical-science-ai999x/) (`pip install .` builds it). Releases are tagged `v1.6.3`; the [GitHub release](https://github.com/AI999X/biomedical-science-ai999x/releases/tag/v1.6.3) carries the wheel, the desktop app and the command-line program for Windows and Linux, and their checksums.
+This repository holds the installable source of each release, exactly as published on [PyPI](https://pypi.org/project/biomedical-science-ai999x/) (`pip install .` builds it). Releases are tagged `v1.6.4`; the [GitHub release](https://github.com/AI999X/biomedical-science-ai999x/releases/tag/v1.6.4) carries the wheel, the desktop app and the command-line program for Windows and Linux, and their checksums.
 
 ## Build the program from source
 
