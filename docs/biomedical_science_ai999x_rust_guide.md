@@ -1,6 +1,6 @@
 # biomedical-science: the Biomedical Science program, user guide
 
-**biomedical-science-ai999x 1.6.3**, Rust build: command line, desktop app and browser. **Creator / engineer:** Ibnul Jaif Farabi · **Company:** AI999X · support@ai999x.com
+**biomedical-science-ai999x 1.6.4**, Rust build: command line, desktop app and browser. **Creator / engineer:** Ibnul Jaif Farabi · **Company:** AI999X · support@ai999x.com
 
 Biomedical Science covers pharmacokinetics and dosing models, epidemic models, diagnostic test statistics, survival analysis, biomechanics, neuron models and medical-imaging physics (quantitative only, no clinical advice). This guide is about `biomedical-science`, the model as a self-contained program for Windows and Linux: 96 capabilities in 10 topics, answered on your own computer with no network, no Python and nothing else to install. The same compiled model runs in the AI999X desktop app and in the browser on the model's page (https://www.ai999x.com/models/biomedical-science-ai999x/); the Python package (`pip install biomedical-science-ai999x`) has its own guide. Every command output printed here is what the program printed.
 
@@ -96,7 +96,7 @@ Prints the model, its version and that this is the Rust build.
 
 ```shell
 $ biomedical-science --version
-biomedical-science-ai999x 1.6.3 (Rust build, ax-engine 1.6.3)
+biomedical-science-ai999x 1.6.4 (Rust build, ax-engine 1.6.4)
 ```
 
 ### 2.2 Ask in words
