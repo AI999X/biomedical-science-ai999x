@@ -9,7 +9,7 @@ Every capability biomedical-science-ai999x supports, generated from its certifie
 ```python
 import biomedical_science_ai999x
 
-result = biomedical_science_ai999x.solve('bmed_pk_iv_bolus_concentration', D='0.0005 kg', V='0.04 m^3', k='2.77778e-05 1/s', t='21600 s')
+result = biomedical_science_ai999x.solve('bmed_pk_iv_bolus_concentration', D='0.0005 kg', V='0.04 m^3', k='2.777777777777778e-05 1/s', t='21600 s')
 result.show()
 # C = 0.00686014 kg/m^3, fraction_remaining = 0.548811
 ```
@@ -190,9 +190,17 @@ $$
 - **Assumes:** one compartment, instantaneous mixing; first-order elimination; $t  \geq  0$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![One-compartment intravenous bolus: plasma concentration over 48 h (log axis, so each line is straight) for D = 500 mg, V = 40 L and three elimination rate constants (the example k = 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-iv-bolus-concentration-pharmacokinetics)
+![One-compartment intravenous bolus: plasma concentration over 48 h (log axis, so each line is straight) for D = 500 mg, V = 40 L and three elimination rate constants (the given k = 0](https://huggingface.co/AI999X/biomedical-science-ai999x/resolve/main/figures/bmed-pk-iv-bolus-concentration-pharmacokinetics.svg)
 
-*One-compartment intravenous bolus: plasma concentration over 48 h (log axis, so each line is straight) for D = 500 mg, V = 40 L and three elimination rate constants (the example k = 0.1 1/h, half and double), 97 runs each. Marked: at t = 6 h, C = 6.86015 mg/L, fraction of the dose remaining 0.548812.*
+*One-compartment intravenous bolus: plasma concentration over 48 h (log axis, so each line is straight) for D = 500 mg, V = 40 L and three elimination rate constants (the given k = 0.1 1/h, half and double), 97 runs each. Marked: t = 6 h, C = 6.86 mg/L, fraction of the dose remaining 0.5488. In SI units: C = 0.00686 kg/m^3. Your inputs: D = 500 mg, V = 40 L, k = 0.1 1/h, t = 6 h.*
+
+![Concentration at time t as V runs from 24 to 56 L, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-iv-bolus-concentration-live-1)
+
+*Concentration at time t as V runs from 24 to 56 L, every other input as you entered it (41 solutions). Marked: your V = 40 L gives C = 6.86 mg/L. Your inputs: D = 500 mg, V = 40 L, k = 0.1 1/h, t = 6 h.*
+
+![Concentration at time t as D runs from 300 to 700 mg, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-iv-bolus-concentration-live-2)
+
+*Concentration at time t as D runs from 300 to 700 mg, every other input as you entered it (29 solutions). Marked: your D = 500 mg gives C = 6.86 mg/L. Your inputs: D = 500 mg, V = 40 L, k = 0.1 1/h, t = 6 h.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_pk_iv_bolus_concentration', D=0.0005, V=0.04, k=2.777777777777778e-05, t=21600.0)
@@ -241,9 +249,9 @@ $$
 - **Assumes:** mono-exponential decline over the sampled times; all concentrations positive; unweighted least squares on ln C; at least three points
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Log-linear fit of the example's 6 concentration samples (log axis)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-terminal-half-life-fit-fit)
+![Log-linear fit of the 6 concentration samples given (log axis)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-terminal-half-life-fit-fit)
 
-*Log-linear fit of the example's 6 concentration samples (log axis). The dashed line is C0·exp(−k t) drawn from the returned k = 0.174805 per time unit and C0 = 9.73505 (derived). Marked: the half-life t½ = 3.96526 where the line reaches C0/2; dot: back-extrapolated C0.*
+*Log-linear fit of the 6 concentration samples given (log axis). The dashed line is C0 exp(-k t) drawn from the returned k = 0.1748 per time unit and C0 = 9.735 (derived). Marked: the half-life t1/2 = 3.965 where the line reaches C0/2; dot: the back-extrapolated C0. Your inputs: t = 1, 2, 4, 6, 8, 12, C = 8.2, 6.9, 4.8, 3.4, 2.4, 1.2.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_pk_terminal_half_life_fit', t=[1, 2, 4, 6, 8, 12], C=[8.2, 6.9, 4.8, 3.4, 2.4, 1.2])
@@ -292,9 +300,17 @@ $$
 - **Assumes:** one compartment; first-order elimination $k = CL/V$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Area under the concentration curve of an intravenous bolus (D = 500 mg, CL = 5 L/h, V = 40 L): the curve is the package's bolus concentration with k = CL/V = 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-auc-iv-bolus-pharmacokinetics)
+![Concentration after an intravenous bolus (D = 500 mg, CL = 5 L/h, V = 40 L): each point is the model's bolus concentration with k = CL/V = 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-auc-iv-bolus-pharmacokinetics)
 
-*Area under the concentration curve of an intravenous bolus (D = 500 mg, CL = 5 L/h, V = 40 L): the curve is the package's bolus concentration with k = CL/V = 0.125 1/h, 91 runs over 24 h. Marked: AUC from 0 to 8 h = 63.2121 mg·h/L (shaded) of AUC to infinity = 100 mg·h/L.*
+*Concentration after an intravenous bolus (D = 500 mg, CL = 5 L/h, V = 40 L): each point is the model's bolus concentration with k = CL/V = 0.125 1/h, 91 runs over 24 h. Shaded: the area from 0 to t = 8 h, AUC = 63.21 mg h/L, of the area to infinity 100 mg h/L. In SI units: AUC_inf = 360 kg*s/m^3. Your inputs: D = 500 mg, CL = 5 L/h, V = 40 L, t = 8 h.*
+
+![Area from 0 to infinity and area from 0 to t as D runs from 300 to 700 mg, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-auc-iv-bolus-live-1)
+
+*Area from 0 to infinity and area from 0 to t as D runs from 300 to 700 mg, every other input as you entered it (41 solutions). Marked: your D = 500 mg gives AUC_inf = 360. Your inputs: D = 500 mg, CL = 5 L/h, V = 40 L, t = 8 h.*
+
+![Area from 0 to infinity and area from 0 to t as CL runs from 3 to 7 L/h, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-auc-iv-bolus-live-2)
+
+*Area from 0 to infinity and area from 0 to t as CL runs from 3 to 7 L/h, every other input as you entered it (29 solutions). Marked: your CL = 5 L/h gives AUC_inf = 360. Your inputs: D = 500 mg, CL = 5 L/h, V = 40 L, t = 8 h.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_pk_auc_iv_bolus', D=0.0005, CL=1.3888888888888887e-06, V=0.04, t=28800.0)
@@ -312,7 +328,7 @@ biomedical_science_ai999x.solve('bmed_pk_auc_iv_bolus', D=9.999999999999999e-05,
 |---|---|---|
 | AUC of an IV bolus: D = 500 mg, CL = 5 L/h, V = 40 L, t = 8 h | SOLVED | AUC_inf = 360 kg*s/m^3, AUC_0_t = 227.563 kg*s/m^3 |
 | AUC of an IV bolus: D = 100 mg, CL = 120 mL/min, V = 30 L, t = 1 day | SOLVED | AUC_inf = 50 kg*s/m^3, AUC_0_t = 49.8424 kg*s/m^3 |
-| AUC of an IV bolus: CL = 5 L/h, V = 40 L, t = 8 h | NEEDS_INPUT | bmed_pk_auc_iv_bolus needs D (bolus dose). Example: solve('bmed_pk_auc_iv_bolus', D='0.0005 kg', CL='1.38889e-06 m^3/s', |
+| AUC of an IV bolus: CL = 5 L/h, V = 40 L, t = 8 h | NEEDS_INPUT | bmed_pk_auc_iv_bolus needs D (bolus dose). Example: solve('bmed_pk_auc_iv_bolus', D='0.0005 kg', CL='1.3888888888888887e |
 | AUC of an IV bolus: D = 500 mg, CL = 5 L/h, V = 40 L, t = 8 h, zz = 1 | UNRECOGNIZED_FORMAT | I could not match this question to a documented form, so I will not guess. Every form: biomedical_science_ai999x.templat |
 | AUC of an IV bolus: D = 500 mg, CL = 0 L/h, V = 40 L, t = 8 h | INVALID_INPUT | Area under the concentration curve of a one-compartment IV bolus (a model calculation, not medical advice): the dose D,  |
 
@@ -340,9 +356,13 @@ $$
 - **Assumes:** times strictly increasing; concentrations >= 0; log-down segments need both concentrations positive (otherwise linear)
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![The 8 concentration samples of the example (input) and the 7 trapezoids whose areas add up to the package's linear AUC = 51](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-auc-trapezoid-trapezoids)
+![The 8 concentration samples given and the 7 trapezoids between them; the model's AUC by the linear method is 51](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-auc-trapezoid-trapezoids)
 
-*The 8 concentration samples of the example (input) and the 7 trapezoids whose areas add up to the package's linear AUC = 51.85 (concentration × time units). With linear trapezoids while rising and logarithmic ones while falling the package gives AUC = 51.2462.*
+*The 8 concentration samples given and the 7 trapezoids between them; the model's AUC by the linear method is 51.85 (with the method linear up log down the model gives AUC = 51.25). Your inputs: t = 0, 0.5, 1, 2, 4, 6, 8, 12, C = 0, 4.2, 6.8, 7.9, 6.1..., method = linear.*
+
+![Area from the first to the last sample, in](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-auc-trapezoid-live-1)
+
+*Area from the first to the last sample, in... for every choice of method, every other input as you entered it (highlighted: your choice). linear: 51.85; linear_up_log_down: 51.25. Your inputs: t = 0, 0.5, 1, 2, 4, 6, 8, 12, C = 0, 4.2, 6.8, 7.9, 6.1..., method = linear.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_pk_auc_trapezoid', t=[0, 0.5, 1, 2, 4, 6, 8, 12], C=[0, 4.2, 6.8, 7.9, 6.1, 4.3, 3.0, 1.5], method='linear')
@@ -395,9 +415,17 @@ $$
 - **Assumes:** linear trapezoidal rule; lambda_z by unweighted least squares on ln C of the last n points; extrapolation with the observed last concentration; times in h, concentrations in mg/L
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Non-compartmental analysis of the example's 10 samples after an intravenous bolus of 100 mg (log axis)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-nca-iv-bolus-pharmacokinetics)
+![Non-compartmental analysis of the 10 samples given after an intravenous bolus (log axis)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-nca-iv-bolus-pharmacokinetics)
 
-*Non-compartmental analysis of the example's 10 samples after an intravenous bolus of 100 mg (log axis). The dashed line has the package's terminal slope λz = 0.120166 1/h from the last 4 samples, drawn through the last sample (derived). Returned: t½ = 5.76825 h, AUC_last = 18.4825 mg·h/L, AUC_inf = 19.4145 mg·h/L, CL = 5.15078 L/h, Vz = 42.8639 L.*
+*Non-compartmental analysis of the 10 samples given after an intravenous bolus (log axis). The dashed line has the model's terminal slope lambda_z = 0.1202 from the last 4 samples, drawn through the last sample (derived). Returned: t1/2 = 5.768, AUC_last = 18.48, AUC_inf = 19.41, CL = 5.151, Vz = 42.86. Your inputs: D = 9.999999999999999e-05 kg, t = 0, 0.25, 0.5, 1, 2, 4..., C = 5, 4, 3.3, 2.44, 1.72..., n_terminal = 4.*
+
+![CL as D runs from 6e-05 to 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-nca-iv-bolus-live-1)
+
+*CL as D runs from 6e-05 to 0.00014 kg, every other input as you entered it (41 solutions). Marked: your D = 0.0001 kg gives CL = 5.151. Your inputs: D = 9.999999999999999e-05 kg, t = 0, 0.25, 0.5, 1, 2, 4..., C = 5, 4, 3.3, 2.44, 1.72..., n_terminal = 4.*
+
+![CL as n_terminal runs from 3 to 8, every other input as you entered it (6 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-nca-iv-bolus-live-2)
+
+*CL as n_terminal runs from 3 to 8, every other input as you entered it (6 solutions). Marked: your n_terminal = 4 gives CL = 5.151. Your inputs: D = 9.999999999999999e-05 kg, t = 0, 0.25, 0.5, 1, 2, 4..., C = 5, 4, 3.3, 2.44, 1.72..., n_terminal = 4.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_pk_nca_iv_bolus', D=9.999999999999999e-05, t=[0, 0.25, 0.5, 1, 2, 4, 6, 8, 12, 24], C=[5.0, 4.0, 3.3, 2.44, 1.72, 1.25, 0.974, 0.766, 0.474, 0.112], n_terminal=4)
@@ -415,7 +443,7 @@ biomedical_science_ai999x.solve('bmed_pk_nca_iv_bolus', D=0.00025, t=[0, 1, 2, 4
 |---|---|---|
 | Non-compartmental analysis of an IV bolus: D = 100 mg, t = [0, 0.25, 0.5, 1, 2, 4, 6, 8, 12, 24], C = [5, 4, 3.3, 2.44, 1.72, 1.25, 0.974, 0.766, 0.474, 0.112], n_terminal = 4 | SOLVED | AUC_last = 18.4825, lambda_z = 0.120166, t_half = 5.76825, AUC_inf = 19.4145, CL = 5.15078, Vz = 42.8639 |
 | Non-compartmental analysis of an IV bolus: D = 250 mg, t = [0, 1, 2, 4, 8, 12], C = [12.5, 9.8, 7.9, 5.1, 2.2, 0.95], n_terminal = 3 | SOLVED | AUC_last = 53.9, lambda_z = 0.210067, t_half = 3.29965, AUC_inf = 58.4224, CL = 4.27918, Vz = 20.3706 |
-| Non-compartmental analysis of an IV bolus: t = [0, 0.25, 0.5, 1, 2, 4, 6, 8, 12, 24], C = [5, 4, 3.3, 2.44, 1.72, 1.25, 0.974, 0.766, 0.474, 0.112], n_terminal = 4 | NEEDS_INPUT | bmed_pk_nca_iv_bolus needs D (IV bolus dose). Example: solve('bmed_pk_nca_iv_bolus', D='0.0001 kg', t=[0, 0.25, 0.5, 1,  |
+| Non-compartmental analysis of an IV bolus: t = [0, 0.25, 0.5, 1, 2, 4, 6, 8, 12, 24], C = [5, 4, 3.3, 2.44, 1.72, 1.25, 0.974, 0.766, 0.474, 0.112], n_terminal = 4 | NEEDS_INPUT | bmed_pk_nca_iv_bolus needs D (IV bolus dose). Example: solve('bmed_pk_nca_iv_bolus', D='9.999999999999999e-05 kg', t=[0, |
 | Non-compartmental analysis of an IV bolus: D = 100 mg, t = [0, 0.25, 0.5, 1, 2, 4, 6, 8, 12, 24], C = [5, 4, 3.3, 2.44, 1.72, 1.25, 0.974, 0.766, 0.474, 0.112], n_terminal = 4, zz = 1 | UNRECOGNIZED_FORMAT | I could not match this question to a documented form, so I will not guess. Every form: biomedical_science_ai999x.templat |
 | Non-compartmental analysis of an IV bolus: D = 100 mg, t = [1, 2, 4, 8, 12], C = [4, 3, 2, 1, 0.5], n_terminal = 3 | INVALID_INPUT | Non-compartmental analysis of an IV bolus profile (AUC, lambda_z, half-life, clearance, Vz): the first sample must be at |
 
@@ -447,13 +475,17 @@ $$
 - **Assumes:** one compartment; first-order absorption and elimination; $ka  \neq  k$; no lag time
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Plasma concentration after one oral dose (D = 250 mg, F = 0](https://huggingface.co/AI999X/biomedical-science-ai999x/resolve/main/figures/bmed-pk-oral-concentration-pharmacokinetics.svg)
+![Plasma concentration after one oral dose (D = 250 mg, F = 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-oral-concentration-pharmacokinetics)
 
-*Plasma concentration after one oral dose (D = 250 mg, F = 0.8, V = 35 L, ka = 1.2 1/h, k = 0.15 1/h), computed by the package at 120 times over 24 h; marked: t_max = 1.98042 h, C_max = 4.2457 mg/L.*
+*Plasma concentration after one oral dose (D = 250 mg, F = 0.8, V = 35 L, ka = 1.2 1/h, k = 0.15 1/h), computed by the model at 120 times over 24 h; dot: the peak the model returns, t_max = 1.98 h, C_max = 4.246 mg/L. Marked: t = 3 h, C = 3.986 mg/L. In SI units: C = 0.003986 kg/m^3. Your inputs: F = 0.8, D = 250 mg, V = 35 L, ka = 1.2 1/h, k = 0.15 1/h, t = 3 h.*
 
-![C (concentration at time t) against t (time after the dose) from 1080 s to 108000 s on a logarithmic axis](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-oral-concentration-curve)
+![Concentration at time t as t runs from 1](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-oral-concentration-live-1)
 
-*C (concentration at time t) against t (time after the dose) from 1080 s to 108000 s on a logarithmic axis. One curve for each value of D (oral dose): 0.00025 kg, 0.000125 kg, 0.0005 kg. Other inputs as in the worked example: F = 0.8, V = 0.035 m^3, ka = 0.0003333333333333333 1/s, k = 4.1666666666666665e-05 1/s. 41 points per curve computed by biomedical-science-ai999x; marked: the worked example, t = 10800 s, C = 0.00398566 kg/m^3.*
+*Concentration at time t as t runs from 1.8 to 4.2 h, every other input as you entered it (41 solutions). Marked: your t = 3 h gives C = 3.986 mg/L. Your inputs: F = 0.8, D = 250 mg, V = 35 L, ka = 1.2 1/h, k = 0.15 1/h, t = 3 h.*
+
+![Concentration at time t as F runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-oral-concentration-live-2)
+
+*Concentration at time t as F runs from 0.2 to 0.9714, every other input as you entered it (19 solutions). Marked: your F = 0.8 gives C = 3.986 mg/L. Your inputs: F = 0.8, D = 250 mg, V = 35 L, ka = 1.2 1/h, k = 0.15 1/h, t = 3 h.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_pk_oral_concentration', F=0.8, D=0.00025, V=0.035, ka=0.0003333333333333333, k=4.1666666666666665e-05, t=10800.0)
@@ -505,7 +537,15 @@ $$
 
 ![Oral dose (F = 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-oral-peak-pharmacokinetics)
 
-*Oral dose (F = 0.8, D = 250 mg, V = 35 L, k = 0.15 1/h) for three absorption rate constants: concentration curves (97 runs each) with the peak the package returns marked on each, faster absorption gives an earlier, higher peak. Marked: ka = 3.6 1/h: t_max 0.921175 h, C_max 4.97683 mg/L; ka = 1.2 1/h: t_max 1.98042 h, C_max 4.2457 mg/L; ka = 0.4 1/h: t_max 3.92332 h, C_max 3.17235 mg/L.*
+*Oral dose (F = 0.8, D = 250 mg, V = 35 L, k = 0.15 1/h) for three absorption rate constants (the given ka, three times and a third of it): concentration curves (81 runs each of the model's oral concentration) with the peak the model returns on each: ka = 1.2 1/h: t_max 1.98 h, C_max 4.246 mg/L; ka = 3.6 1/h: t_max 0.9212 h, C_max 4.977 mg/L; ka = 0.4 1/h: t_max 3.923 h, C_max 3.172 mg/L. Faster absorption gives an earlier, higher peak. In SI units: t_max = 7130 s. Your inputs: F = 0.8, D = 250 mg, V = 35 L, ka = 1.2 1/h, k = 0.15 1/h.*
+
+![Peak concentration as V runs from 21 to 49 L, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-oral-peak-live-1)
+
+*Peak concentration as V runs from 21 to 49 L, every other input as you entered it (41 solutions). Marked: your V = 35 L gives C_max = 4.246 mg/L. Your inputs: F = 0.8, D = 250 mg, V = 35 L, ka = 1.2 1/h, k = 0.15 1/h.*
+
+![Peak concentration as F runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-oral-peak-live-2)
+
+*Peak concentration as F runs from 0.2 to 0.9714, every other input as you entered it (19 solutions). Marked: your F = 0.8 gives C_max = 4.246 mg/L. Your inputs: F = 0.8, D = 250 mg, V = 35 L, ka = 1.2 1/h, k = 0.15 1/h.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_pk_oral_peak', F=0.8, D=0.00025, V=0.035, ka=0.0003333333333333333, k=4.1666666666666665e-05)
@@ -554,13 +594,17 @@ $$
 - **Assumes:** equal doses at equal intervals; linear one-compartment model; $0  \leq  t  \leq  \tau$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Seven intravenous doses of 500 mg every 8 h (V = 40 L, k = 0](https://huggingface.co/AI999X/biomedical-science-ai999x/resolve/main/figures/bmed-pk-nth-dose-iv-pharmacokinetics.svg)
+![5 intravenous doses of 500 mg every 8 h (V = 40 L, k = 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-nth-dose-iv-pharmacokinetics)
 
-*Seven intravenous doses of 500 mg every 8 h (V = 40 L, k = 0.1 1/h): the concentration computed by the package at 31 times in each interval rises towards the steady state it returns (max 22.6996 mg/L, min 10.1996 mg/L, accumulation ratio 1.81597); marked: peak after dose 7, t = 48 h, C = 22.6156 mg/L.*
+*5 intravenous doses of 500 mg every 8 h (V = 40 L, k = 0.1 1/h): the concentration the model computes at 21 times in each interval rises towards its steady state. Marked: 2 h after dose 3, C = 16.9 mg/L. In SI units: C = 0.0169 kg/m^3. Your inputs: D = 500 mg, V = 40 L, k = 0.1 1/h, tau = 8 h, n = 3, t = 2 h.*
 
-![C (concentration a time t after the nth dose) against n (number of the dose (1 = first)) from 1 to 11](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-nth-dose-iv-curve)
+![Concentration a time t after the nth dose as D runs from 300 to 700 mg, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-nth-dose-iv-live-1)
 
-*C (concentration a time t after the nth dose) against n (number of the dose (1 = first)) from 1 to 11. One curve for each value of D (each bolus dose): 0.0005 kg, 0.00025 kg, 0.001 kg. Other inputs as in the worked example: V = 0.04 m^3, k = 2.777777777777778e-05 1/s, tau = 28800.0 s, t = 7200.0 s. 11 points per curve computed by biomedical-science-ai999x; marked: the worked example, n = 3, C = 0.0168989 kg/m^3.*
+*Concentration a time t after the nth dose as D runs from 300 to 700 mg, every other input as you entered it (41 solutions). Marked: your D = 500 mg gives C = 16.9 mg/L. Your inputs: D = 500 mg, V = 40 L, k = 0.1 1/h, tau = 8 h, n = 3, t = 2 h.*
+
+![Concentration a time t after the nth dose as V runs from 24 to 56 L, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-nth-dose-iv-live-2)
+
+*Concentration a time t after the nth dose as V runs from 24 to 56 L, every other input as you entered it (29 solutions). Marked: your V = 40 L gives C = 16.9 mg/L. Your inputs: D = 500 mg, V = 40 L, k = 0.1 1/h, tau = 8 h, n = 3, t = 2 h.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_pk_nth_dose_iv', D=0.0005, V=0.04, k=2.777777777777778e-05, tau=28800.0, n=3, t=7200.0)
@@ -611,9 +655,13 @@ $$
 - **Assumes:** equal doses at equal intervals; linear one-compartment model
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Steady state of repeated intravenous doses (D = 500 mg, V = 40 L, k = 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-steady-state-iv-curve)
+![Steady-state peak (just after a dose) as k runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-steady-state-iv-live-1)
 
-*Steady state of repeated intravenous doses (D = 500 mg, V = 40 L, k = 0.1 1/h) against the dosing interval, 60 runs per output: peak, average and trough. Marked: the example τ = 8 h, peak 22.6996 mg/L, trough 10.1996 mg/L, average 15.625 mg/L, accumulation factor 1.81597.*
+*Steady-state peak (just after a dose) as k runs from 0.06 to 0.14 1/h, every other input as you entered it (41 solutions). Marked: your k = 0.1 1/h gives C_max_ss = 22.7 mg/L. Your inputs: D = 500 mg, V = 40 L, k = 0.1 1/h, tau = 8 h.*
+
+![Steady-state peak (just after a dose) as τ runs from 4](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-steady-state-iv-live-2)
+
+*Steady-state peak (just after a dose) as τ runs from 4.8 to 11.2 h, every other input as you entered it (29 solutions). Marked: your τ = 8 h gives C_max_ss = 22.7 mg/L. Your inputs: D = 500 mg, V = 40 L, k = 0.1 1/h, tau = 8 h.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_pk_steady_state_iv', D=0.0005, V=0.04, k=2.777777777777778e-05, tau=28800.0)
@@ -663,9 +711,13 @@ $$
 - **Assumes:** equal doses at equal intervals; linear one-compartment model, first-order absorption; $ka  \neq  k$; the steady-state peak lies inside the interval
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Steady state of repeated oral doses (F = 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-steady-state-oral-curve)
+![Steady-state peak and steady-state trough as τ runs from 4](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-steady-state-oral-live-1)
 
-*Steady state of repeated oral doses (F = 0.8, D = 250 mg, V = 35 L, ka = 1.2 1/h, k = 0.15 1/h) against the dosing interval, 60 runs each. Marked: the example τ = 8 h, peak 6.39474 mg/L at 1.63917 h after a dose, trough 2.81433 mg/L.*
+*Steady-state peak and steady-state trough as τ runs from 4.8 to 11.2 h, every other input as you entered it (41 solutions). Marked: your τ = 8 h gives C_max_ss = 6.395 mg/L. Your inputs: F = 0.8, D = 250 mg, V = 35 L, ka = 1.2 1/h, k = 0.15 1/h, tau = 8 h.*
+
+![Steady-state peak and steady-state trough as k runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-steady-state-oral-live-2)
+
+*Steady-state peak and steady-state trough as k runs from 0.09 to 0.21 1/h, every other input as you entered it (29 solutions). Marked: your k = 0.15 1/h gives C_max_ss = 6.395 mg/L. Your inputs: F = 0.8, D = 250 mg, V = 35 L, ka = 1.2 1/h, k = 0.15 1/h, tau = 8 h.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_pk_steady_state_oral', F=0.8, D=0.00025, V=0.035, ka=0.0003333333333333333, k=4.1666666666666665e-05, tau=28800.0)
@@ -712,9 +764,17 @@ $$
 - **Assumes:** one compartment, first-order elimination; infusion still running at t; no drug at $t = 0$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Constant-rate infusion (R0 = 50 mg/h, CL = 5 L/h): the concentration rises towards the steady state R0/CL = 10 mg/L, sooner for a smaller volume of distribution (three volumes, 81 runs each; C_ss does not depend on V)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-infusion-concentration-pharmacokinetics)
+![Constant-rate infusion (R0 = 50 mg/h, CL = 5 L/h): the concentration rises towards the steady state R0/CL = 10 mg/L, sooner for a smaller volume of distribution (half, the given and twice V, 81 runs each)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-infusion-concentration-pharmacokinetics)
 
-*Constant-rate infusion (R0 = 50 mg/h, CL = 5 L/h): the concentration rises towards the steady state R0/CL = 10 mg/L, sooner for a smaller volume of distribution (three volumes, 81 runs each; C_ss does not depend on V). Marked: example at t = 6 h, C = 5.27633 mg/L.*
+*Constant-rate infusion (R0 = 50 mg/h, CL = 5 L/h): the concentration rises towards the steady state R0/CL = 10 mg/L, sooner for a smaller volume of distribution (half, the given and twice V, 81 runs each). Marked: t = 6 h, C = 5.276 mg/L. In SI units: C = 0.005276 kg/m^3. Your inputs: R0 = 50 mg/h, CL = 5 L/h, V = 40 L, t = 6 h.*
+
+![Concentration at time t and steady-state concentration R0/CL as CL runs from 3 to 7 L/h, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-infusion-concentration-live-1)
+
+*Concentration at time t and steady-state concentration R0/CL as CL runs from 3 to 7 L/h, every other input as you entered it (41 solutions). Marked: your CL = 5 L/h gives C = 5.276 mg/L. Your inputs: R0 = 50 mg/h, CL = 5 L/h, V = 40 L, t = 6 h.*
+
+![Concentration at time t and steady-state concentration R0/CL as R0 runs from 30 to 70 mg/h, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-infusion-concentration-live-2)
+
+*Concentration at time t and steady-state concentration R0/CL as R0 runs from 30 to 70 mg/h, every other input as you entered it (29 solutions). Marked: your R0 = 50 mg/h gives C = 5.276 mg/L. Your inputs: R0 = 50 mg/h, CL = 5 L/h, V = 40 L, t = 6 h.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_pk_infusion_concentration', R0=1.3888888888888889e-08, CL=1.3888888888888887e-06, V=0.04, t=21600.0)
@@ -732,7 +792,7 @@ biomedical_science_ai999x.solve('bmed_pk_infusion_concentration', R0=3.333333333
 |---|---|---|
 | Infusion concentration: R0 = 50 mg/h, CL = 5 L/h, V = 40 L, t = 6 h | SOLVED | C = 0.00527633 kg/m^3, C_ss = 0.01 kg/m^3 |
 | Infusion concentration: R0 = 2 mg/min, CL = 100 mL/min, V = 20 L, t = 1 day | SOLVED | C = 0.0199851 kg/m^3, C_ss = 0.02 kg/m^3 |
-| Infusion concentration: CL = 5 L/h, V = 40 L, t = 6 h | NEEDS_INPUT | bmed_pk_infusion_concentration needs R0 (infusion rate). Example: solve('bmed_pk_infusion_concentration', R0='1.38889e-0 |
+| Infusion concentration: CL = 5 L/h, V = 40 L, t = 6 h | NEEDS_INPUT | bmed_pk_infusion_concentration needs R0 (infusion rate). Example: solve('bmed_pk_infusion_concentration', R0='1.38888888 |
 | Infusion concentration: R0 = 50 mg/h, CL = 5 L/h, V = 40 L, t = 6 h, zz = 1 | UNRECOGNIZED_FORMAT | I could not match this question to a documented form, so I will not guess. Every form: biomedical_science_ai999x.templat |
 
 <a id="bmed_pk_short_infusion"></a>
@@ -762,9 +822,17 @@ $$
 - **Assumes:** one compartment, first-order elimination; single infusion, no drug before it
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![A short infusion of R0 = 200 mg/h for T_inf = 1 h (CL = 6 L/h, V = 30 L): concentration over 12 h, 97 runs](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-short-infusion-pharmacokinetics)
+![A short infusion of R0 = 200 mg/h for T_inf = 1 h (CL = 6 L/h, V = 30 L, shaded: the infusion): concentration over 12 h, 97 runs](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-short-infusion-pharmacokinetics)
 
-*A short infusion of R0 = 200 mg/h for T_inf = 1 h (CL = 6 L/h, V = 30 L): concentration over 12 h, 97 runs. Marked: at the end of the infusion C_end = 6.04231 mg/L; dot: the example t = 4 h, C = 3.31609 mg/L.*
+*A short infusion of R0 = 200 mg/h for T_inf = 1 h (CL = 6 L/h, V = 30 L, shaded: the infusion): concentration over 12 h, 97 runs. Dot: at the end of the infusion C_end = 6.042 mg/L; marked: t = 4 h, C = 3.316 mg/L. In SI units: C = 0.003316 kg/m^3. Your inputs: R0 = 200 mg/h, T_inf = 1 h, CL = 6 L/h, V = 30 L, t = 4 h.*
+
+![Concentration at time t as T_inf runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-short-infusion-live-1)
+
+*Concentration at time t as T_inf runs from 0.6 to 1.4 h, every other input as you entered it (41 solutions). Marked: your T_inf = 1 h gives C = 3.316 mg/L. Your inputs: R0 = 200 mg/h, T_inf = 1 h, CL = 6 L/h, V = 30 L, t = 4 h.*
+
+![Concentration at time t as R0 runs from 120 to 280 mg/h, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-short-infusion-live-2)
+
+*Concentration at time t as R0 runs from 120 to 280 mg/h, every other input as you entered it (29 solutions). Marked: your R0 = 200 mg/h gives C = 3.316 mg/L. Your inputs: R0 = 200 mg/h, T_inf = 1 h, CL = 6 L/h, V = 30 L, t = 4 h.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_pk_short_infusion', R0=5.5555555555555555e-08, T_inf=3600.0, CL=1.6666666666666667e-06, V=0.03, t=14400.0)
@@ -782,7 +850,7 @@ biomedical_science_ai999x.solve('bmed_pk_short_infusion', R0=2.7777777777777777e
 |---|---|---|
 | Short infusion concentration: R0 = 200 mg/h, T_inf = 1 h, CL = 6 L/h, V = 30 L, t = 4 h | SOLVED | C = 0.00331609 kg/m^3, C_end = 0.00604231 kg/m^3 |
 | Short infusion concentration: R0 = 100 mg/h, T_inf = 2 h, CL = 4 L/h, V = 50 L, t = 1.5 h | SOLVED | C = 0.00282699 kg/m^3, C_end = 0.00369641 kg/m^3 |
-| Short infusion concentration: T_inf = 1 h, CL = 6 L/h, V = 30 L, t = 4 h | NEEDS_INPUT | bmed_pk_short_infusion needs R0 (infusion rate). Example: solve('bmed_pk_short_infusion', R0='5.55556e-08 kg/s', T_inf=' |
+| Short infusion concentration: T_inf = 1 h, CL = 6 L/h, V = 30 L, t = 4 h | NEEDS_INPUT | bmed_pk_short_infusion needs R0 (infusion rate). Example: solve('bmed_pk_short_infusion', R0='5.5555555555555555e-08 kg/ |
 | Short infusion concentration: R0 = 200 mg/h, T_inf = 1 h, CL = 6 L/h, V = 30 L, t = 4 h, zz = 1 | UNRECOGNIZED_FORMAT | I could not match this question to a documented form, so I will not guess. Every form: biomedical_science_ai999x.templat |
 
 <a id="bmed_pk_loading_maintenance"></a>
@@ -810,9 +878,17 @@ $$
 - **Assumes:** one compartment, first-order elimination; bolus and infusion start together
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Loading dose and maintenance infusion for a target of 15 mg/L (V = 50 L, CL = 4 L/h): the package returns LD = 750 mg and R0 = 60 mg/h](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-loading-maintenance-pharmacokinetics)
+![Loading dose and maintenance infusion for a target of 15 mg/L (V = 50 L, CL = 4 L/h): the model returns LD = 750 mg and R0 = 60 mg/h](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-loading-maintenance-pharmacokinetics)
 
-*Loading dose and maintenance infusion for a target of 15 mg/L (V = 50 L, CL = 4 L/h): the package returns LD = 750 mg and R0 = 60 mg/h. Drawn: the package's bolus concentration of LD (k = CL/V), its infusion concentration at R0, and their sum (superposition, derived), which holds the target from the start.*
+*Loading dose and maintenance infusion for a target of 15 mg/L (V = 50 L, CL = 4 L/h): the model returns LD = 750 mg and R0 = 60 mg/h. Drawn: the model's bolus concentration of LD (k = CL/V), its infusion concentration at R0, 61 runs each, and their sum (superposition, derived). In SI units: LD = 0.00075 kg. Your inputs: C_target = 15 mg/L, V = 50 L, CL = 4 L/h.*
+
+![Loading bolus of the model as C_target runs from 9 to 21 mg/L, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-loading-maintenance-live-1)
+
+*Loading bolus of the model as C_target runs from 9 to 21 mg/L, every other input as you entered it (41 solutions). Marked: your C_target = 15 mg/L gives LD = 0.75 g. Your inputs: C_target = 15 mg/L, V = 50 L, CL = 4 L/h.*
+
+![Maintenance infusion rate of the model as CL runs from 2](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-loading-maintenance-live-2)
+
+*Maintenance infusion rate of the model as CL runs from 2.4 to 5.6 L/h, every other input as you entered it (29 solutions). Marked: your CL = 4 L/h gives R0 = 1.667e-08. Your inputs: C_target = 15 mg/L, V = 50 L, CL = 4 L/h.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_pk_loading_maintenance', C_target=0.015, V=0.05, CL=1.111111111111111e-06)
@@ -860,9 +936,13 @@ $$
 - **Assumes:** one compartment, first-order elimination; T_inf < tau; identical infusions
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Steady-state peak and trough of repeated infusions (R0 = 1000 mg/h for 1 h each, CL = 6 L/h, V = 30 L) against the dosing interval, 60 runs each: a longer interval lowers both and widens the swing](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-intermittent-infusion-steady-state-curve)
+![Steady-state concentration at the end of an](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-intermittent-infusion-steady-state-live-1)
 
-*Steady-state peak and trough of repeated infusions (R0 = 1000 mg/h for 1 h each, CL = 6 L/h, V = 30 L) against the dosing interval, 60 runs each: a longer interval lowers both and widens the swing. Marked: the example τ = 8 h, peak 37.8542 mg/L, trough 9.33472 mg/L.*
+*Steady-state concentration at the end of an... as τ runs from 4.8 to 11.2 h, every other input as you entered it (41 solutions). Marked: your τ = 8 h gives C_max_ss = 37.85 mg/L. Your inputs: R0 = 1000 mg/h, T_inf = 1 h, tau = 8 h, CL = 6 L/h, V = 30 L.*
+
+![Steady-state concentration at the end of an](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-intermittent-infusion-steady-state-live-2)
+
+*Steady-state concentration at the end of an... as CL runs from 3.6 to 8.4 L/h, every other input as you entered it (29 solutions). Marked: your CL = 6 L/h gives C_max_ss = 37.85 mg/L. Your inputs: R0 = 1000 mg/h, T_inf = 1 h, tau = 8 h, CL = 6 L/h, V = 30 L.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_pk_intermittent_infusion_steady_state', R0=2.7777777777777776e-07, T_inf=3600.0, tau=28800.0, CL=1.6666666666666667e-06, V=0.03)
@@ -908,9 +988,13 @@ $$
 - **Assumes:** one compartment, first-order elimination; no drug at the start; $0 < f < 1$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Time to reach a fraction of the steady state under constant input (CL = 5 L/h, V = 40 L), 49 runs from 2 % to 98 %, drawn as fraction against time](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-time-to-steady-state-fraction-curve)
+![Time to reach f of steady state as f runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-time-to-steady-state-fraction-live-1)
 
-*Time to reach a fraction of the steady state under constant input (CL = 5 L/h, V = 40 L), 49 runs from 2 % to 98 %, drawn as fraction against time. Marked: 50 % after 5.54518 h (one half-life) and the example 90 % after 18.4207 h.*
+*Time to reach f of steady state as f runs from 0.125 to 0.875, every other input as you entered it (41 solutions). Marked: your f = 0.5 gives t = 1.444 day. Your inputs: CL = 2 L/h, V = 100 L, f = 0.5.*
+
+![Time to reach f of steady state as V runs from 60 to 140 L, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-time-to-steady-state-fraction-live-2)
+
+*Time to reach f of steady state as V runs from 60 to 140 L, every other input as you entered it (29 solutions). Marked: your V = 100 L gives t = 1.444 day. Your inputs: CL = 2 L/h, V = 100 L, f = 0.5.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_pk_time_to_steady_state_fraction', CL=1.3888888888888887e-06, V=0.04, f=0.9)
@@ -958,9 +1042,17 @@ $$
 - **Assumes:** one compartment; elimination rate Vmax C/(Km + C); no other elimination
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Saturable (Michaelis–Menten) elimination: concentration over 6 days for Vmax = 500 mg/day, Km = 4 mg/L, V = 50 L and three starting concentrations, 73 runs each](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-michaelis-menten-concentration-pharmacokinetics)
+![Saturable (Michaelis-Menten) elimination: concentration over 144 h for Vmax = 20](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-michaelis-menten-concentration-pharmacokinetics)
 
-*Saturable (Michaelis–Menten) elimination: concentration over 6 days for Vmax = 500 mg/day, Km = 4 mg/L, V = 50 L and three starting concentrations, 73 runs each. Far above Km the fall is nearly linear (zero order), below Km it becomes exponential. Marked: example at t = 2 days, C = 5.3069 mg/L.*
+*Saturable (Michaelis-Menten) elimination: concentration over 144 h for Vmax = 20.83 mg/h, Km = 4 mg/L, V = 50 L and three starting concentrations (half, the given and twice C0), 73 runs each. Far above Km the fall is nearly linear, below Km it becomes exponential. Marked: t = 48 h, C = 5.307 mg/L. In SI units: C = 0.005307 kg/m^3. Your inputs: C0 = 20 mg/L, Vmax = 500 mg/day, Km = 4 mg/L, V = 50 L, t = 2 day.*
+
+![Concentration at time t as V runs from 30 to 70 L, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-michaelis-menten-concentration-live-1)
+
+*Concentration at time t as V runs from 30 to 70 L, every other input as you entered it (41 solutions). Marked: your V = 50 L gives C = 5.307 mg/L. Your inputs: C0 = 20 mg/L, Vmax = 500 mg/day, Km = 4 mg/L, V = 50 L, t = 2 day.*
+
+![Concentration at time t as C0 runs from 12 to 28 mg/L, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-michaelis-menten-concentration-live-2)
+
+*Concentration at time t as C0 runs from 12 to 28 mg/L, every other input as you entered it (29 solutions). Marked: your C0 = 20 mg/L gives C = 5.307 mg/L. Your inputs: C0 = 20 mg/L, Vmax = 500 mg/day, Km = 4 mg/L, V = 50 L, t = 2 day.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_pk_michaelis_menten_concentration', C0=0.02, Vmax=5.787037037037037e-09, Km=0.004, V=0.05, t=172800.0)
@@ -1007,9 +1099,17 @@ $$
 - **Assumes:** one compartment; Michaelis-Menten elimination only; $C < C_{0}$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Time for the concentration to fall from C0 = 20 mg/L to each lower value under saturable elimination (Vmax = 500 mg/day, Km = 4 mg/L, V = 50 L), 60 runs, drawn as concentration against time](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-michaelis-menten-time-pharmacokinetics)
+![Time for the concentration to fall from C0 = 20 mg/L to each lower value under saturable elimination (Vmax = 20](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-michaelis-menten-time-pharmacokinetics)
 
-*Time for the concentration to fall from C0 = 20 mg/L to each lower value under saturable elimination (Vmax = 500 mg/day, Km = 4 mg/L, V = 50 L), 60 runs, drawn as concentration against time. Marked: the example target 10 mg/L is reached after t = 1.27726 days.*
+*Time for the concentration to fall from C0 = 20 mg/L to each lower value under saturable elimination (Vmax = 20.83 mg/h, Km = 4 mg/L, V = 50 L), 60 runs of the model, drawn as concentration against time. Marked: the target 10 mg/L is reached after t = 30.65 h. In SI units: t = 1.104e+05 s. Your inputs: C0 = 20 mg/L, C = 10 mg/L, Vmax = 500 mg/day, Km = 4 mg/L, V = 50 L.*
+
+![Time to fall from C0 to C as C0 runs from 12 to 28 mg/L, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-michaelis-menten-time-live-1)
+
+*Time to fall from C0 to C as C0 runs from 12 to 28 mg/L, every other input as you entered it (41 solutions). Marked: your C0 = 20 mg/L gives t = 1.277 day. Your inputs: C0 = 20 mg/L, C = 10 mg/L, Vmax = 500 mg/day, Km = 4 mg/L, V = 50 L.*
+
+![Time to fall from C0 to C as C runs from 6 to 14 mg/L, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-michaelis-menten-time-live-2)
+
+*Time to fall from C0 to C as C runs from 6 to 14 mg/L, every other input as you entered it (29 solutions). Marked: your C = 10 mg/L gives t = 1.277 day. Your inputs: C0 = 20 mg/L, C = 10 mg/L, Vmax = 500 mg/day, Km = 4 mg/L, V = 50 L.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_pk_michaelis_menten_time', C0=0.02, C=0.01, Vmax=5.787037037037037e-09, Km=0.004, V=0.05)
@@ -1055,9 +1155,13 @@ $$
 - **Assumes:** Michaelis-Menten elimination only; R0 < Vmax (otherwise no steady state)
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Steady-state concentration under saturable elimination against the dosing rate (Vmax = 500 mg/day, Km = 4 mg/L), 60 runs from 2 % to 95 % of Vmax: the concentration grows ever faster as the rate approaches Vmax, where no steady state exists](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-michaelis-menten-steady-state-curve)
+![Steady-state concentration as R0 runs from 180 to 420 mg/day, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-michaelis-menten-steady-state-live-1)
 
-*Steady-state concentration under saturable elimination against the dosing rate (Vmax = 500 mg/day, Km = 4 mg/L), 60 runs from 2 % to 95 % of Vmax: the concentration grows ever faster as the rate approaches Vmax, where no steady state exists. Marked: the example R0 = 300 mg/day gives C_ss = 6 mg/L.*
+*Steady-state concentration as R0 runs from 180 to 420 mg/day, every other input as you entered it (41 solutions). Marked: your R0 = 300 mg/day gives C_ss = 6 mg/L. Your inputs: R0 = 300 mg/day, Vmax = 500 mg/day, Km = 4 mg/L.*
+
+![Steady-state concentration as Vmax runs from 314](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-michaelis-menten-steady-state-live-2)
+
+*Steady-state concentration as Vmax runs from 314.3 to 700 mg/day, every other input as you entered it (28 solutions). Marked: your Vmax = 500 mg/day gives C_ss = 6 mg/L. Your inputs: R0 = 300 mg/day, Vmax = 500 mg/day, Km = 4 mg/L.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_pk_michaelis_menten_steady_state', R0=3.472222222222222e-09, Vmax=5.787037037037037e-09, Km=0.004)
@@ -1112,7 +1216,15 @@ $$
 
 ![Two-compartment intravenous bolus (D = 100 mg, V1 = 10 L, k10 = 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-two-compartment-bolus-pharmacokinetics)
 
-*Two-compartment intravenous bolus (D = 100 mg, V1 = 10 L, k10 = 0.2, k12 = 0.5, k21 = 0.3 1/h): central concentration over 24 h (log axis, 97 runs) and its two exponential phases drawn from the returned A = 7.29416 mg/L, α = 0.93589 1/h (distribution) and B = 2.70584 mg/L, β = 0.0641101 1/h (terminal; derived). Marked in the legend; C(4 h) = 2.26643 mg/L.*
+*Two-compartment intravenous bolus (D = 100 mg, V1 = 10 L, k10 = 0.2, k12 = 0.5, k21 = 0.3 1/h): central concentration over 24 h (log axis, 97 runs) and its two exponential phases drawn from the returned A = 7.294 mg/L, alpha = 0.9359 1/h and B = 2.706 mg/L, beta = 0.06411 1/h (derived). Marked: t = 4 h, C = 2.266 mg/L. In SI units: C = 0.002266 kg/m^3. Your inputs: D = 100 mg, V1 = 10 L, k10 = 0.2 1/h, k12 = 0.5 1/h, k21 = 0.3 1/h, t = 4 h.*
+
+![Central concentration at time t as V1 runs from 6 to 14 L, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-two-compartment-bolus-live-1)
+
+*Central concentration at time t as V1 runs from 6 to 14 L, every other input as you entered it (41 solutions). Marked: your V1 = 10 L gives C = 2.266 mg/L. Your inputs: D = 100 mg, V1 = 10 L, k10 = 0.2 1/h, k12 = 0.5 1/h, k21 = 0.3 1/h, t = 4 h.*
+
+![Central concentration at time t as D runs from 60 to 140 mg, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-two-compartment-bolus-live-2)
+
+*Central concentration at time t as D runs from 60 to 140 mg, every other input as you entered it (29 solutions). Marked: your D = 100 mg gives C = 2.266 mg/L. Your inputs: D = 100 mg, V1 = 10 L, k10 = 0.2 1/h, k12 = 0.5 1/h, k21 = 0.3 1/h, t = 4 h.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_pk_two_compartment_bolus', D=9.999999999999999e-05, V1=0.01, k10=5.555555555555556e-05, k12=0.0001388888888888889, k21=8.333333333333333e-05, t=14400.0)
@@ -1130,7 +1242,7 @@ biomedical_science_ai999x.solve('bmed_pk_two_compartment_bolus', D=0.0005, V1=0.
 |---|---|---|
 | Two-compartment bolus: D = 100 mg, V1 = 10 L, k10 = 0.2 1/h, k12 = 0.5 1/h, k21 = 0.3 1/h, t = 4 h | SOLVED | alpha = 0.000259969 1/s, beta = 1.78084e-05 1/s, A = 0.00729416 kg/m^3, B = 0.00270584 kg/m^3, C = 0.00226643 kg/m^3 |
 | Two-compartment bolus: D = 500 mg, V1 = 20 L, k10 = 0.1 1/h, k12 = 1.2 1/h, k21 = 0.4 1/h, t = 30 min | SOLVED | alpha = 0.000465593 1/s, beta = 6.629e-06 1/s, A = 0.0193088 kg/m^3, B = 0.00569119 kg/m^3, C = 0.0139756 kg/m^3 |
-| Two-compartment bolus: V1 = 10 L, k10 = 0.2 1/h, k12 = 0.5 1/h, k21 = 0.3 1/h, t = 4 h | NEEDS_INPUT | bmed_pk_two_compartment_bolus needs D (bolus dose). Example: solve('bmed_pk_two_compartment_bolus', D='0.0001 kg', V1='0 |
+| Two-compartment bolus: V1 = 10 L, k10 = 0.2 1/h, k12 = 0.5 1/h, k21 = 0.3 1/h, t = 4 h | NEEDS_INPUT | bmed_pk_two_compartment_bolus needs D (bolus dose). Example: solve('bmed_pk_two_compartment_bolus', D='9.999999999999999 |
 | Two-compartment bolus: D = 100 mg, V1 = 10 L, k10 = 0.2 1/h, k12 = 0.5 1/h, k21 = 0.3 1/h, t = 4 h, zz = 1 | UNRECOGNIZED_FORMAT | I could not match this question to a documented form, so I will not guess. Every form: biomedical_science_ai999x.templat |
 
 <a id="bmed_pk_two_compartment_micro_constants"></a>
@@ -1164,9 +1276,17 @@ $$
 - **Assumes:** IV bolus, linear two-compartment model, elimination from the central compartment; $\alpha > \beta > 0$, $A > 0$, $B > 0$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![The two-compartment model recovered from the bi-exponential coefficients of the example (D = 100 mg, A = 6 mg/L, α = 1](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-two-compartment-micro-constants-schematic)
+![The two-compartment model recovered from the bi-exponential coefficients given (D = 100 mg, A = 6 mg/L, alpha = 1](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-two-compartment-micro-constants-schematic)
 
-*The two-compartment model recovered from the bi-exponential coefficients of the example (D = 100 mg, A = 6 mg/L, α = 1.5 1/h, B = 2 mg/L, β = 0.15 1/h). Marked: V1 = 12.5 L, k10 = 0.461538 1/h, k12 = 0.700962 1/h, k21 = 0.4875 1/h; also returned CL = 5.76923 L/h and Vss = 30.4734 L.*
+*The two-compartment model recovered from the bi-exponential coefficients given (D = 100 mg, A = 6 mg/L, alpha = 1.5 1/h, B = 2 mg/L, beta = 0.15 1/h). Marked: V1 = 12.5 L, k10 = 0.4615 1/h, k12 = 0.701 1/h, k21 = 0.4875 1/h; also returned CL = 5.769 L/h and Vss = 30.47 L. In SI units: k21 = 0.0001354 1/s. Your inputs: D = 100 mg, A = 6 mg/L, alpha = 1.5 1/h, B = 2 mg/L, beta = 0.15 1/h.*
+
+![Peripheral to central as α runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-two-compartment-micro-constants-live-1)
+
+*Peripheral to central as α runs from 0.9 to 2.1 1/h, every other input as you entered it (41 solutions). Marked: your α = 1.5 1/h gives k21 = 0.4875 1/h. Your inputs: D = 100 mg, A = 6 mg/L, alpha = 1.5 1/h, B = 2 mg/L, beta = 0.15 1/h.*
+
+![Volume of distribution at steady state as D runs from 60 to 140 mg, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-two-compartment-micro-constants-live-2)
+
+*Volume of distribution at steady state as D runs from 60 to 140 mg, every other input as you entered it (29 solutions). Marked: your D = 100 mg gives Vss = 30.47 L. Your inputs: D = 100 mg, A = 6 mg/L, alpha = 1.5 1/h, B = 2 mg/L, beta = 0.15 1/h.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_pk_two_compartment_micro_constants', D=9.999999999999999e-05, A=0.006, alpha=0.00041666666666666664, B=0.002, beta=4.1666666666666665e-05)
@@ -1217,9 +1337,17 @@ $$
 - **Assumes:** linear pharmacokinetics (dose-proportional areas); both profiles sampled to a comparable end; areas to the last sample, no extrapolation; the same units in both profiles
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![The intravenous and oral concentration profiles of the example (inputs) with their areas computed by the package: AUC_iv = 46](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-bioavailability-from-profiles-pharmacokinetics)
+![The intravenous and oral concentration profiles as given, with the areas the model computes: AUC_iv = 46](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-bioavailability-from-profiles-pharmacokinetics)
 
-*The intravenous and oral concentration profiles of the example (inputs) with their areas computed by the package: AUC_iv = 46.55, AUC_oral = 58.9. Dose-normalised, their ratio is the absolute bioavailability F = 0.632653 (marked in the legend).*
+*The intravenous and oral concentration profiles as given, with the areas the model computes: AUC_iv = 46.55, AUC_oral = 58.9. Dose-normalised, their ratio is the absolute bioavailability F = 0.6327. Your inputs: D_iv = 9.999999999999999e-05 kg, t_iv = 0, 1, 2, 4, 8, 12, C_iv = 10, 8.2, 6.7, 4.5, 2, 0.9, D_oral = 0.00019999999999999998 kg, t_oral = 0, 1, 2, 4, 8, 12, C_oral = 0, 6.1, 8, 7.2, 3.9, 1.8.*
+
+![Absolute bioavailability (AUC_oral/D_oral)/(A](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-bioavailability-from-profiles-live-1)
+
+*Absolute bioavailability (AUC_oral/D_oral)/(A... as D_oral runs from 0.00012 to 0.00028 kg, every other input as you entered it (41 solutions). Marked: your D_oral = 0.0002 kg gives F = 0.6327. Your inputs: D_iv = 9.999999999999999e-05 kg, t_iv = 0, 1, 2, 4, 8, 12, C_iv = 10, 8.2, 6.7, 4.5, 2, 0.9, D_oral = 0.00019999999999999998 kg, t_oral = 0, 1, 2, 4, 8, 12, C_oral = 0, 6.1, 8, 7.2, 3.9, 1.8.*
+
+![Absolute bioavailability (AUC_oral/D_oral)/(A](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-bioavailability-from-profiles-live-2)
+
+*Absolute bioavailability (AUC_oral/D_oral)/(A... as D_iv runs from 6e-05 to 0.00014 kg, every other input as you entered it (29 solutions). Marked: your D_iv = 0.0001 kg gives F = 0.6327. Your inputs: D_iv = 9.999999999999999e-05 kg, t_iv = 0, 1, 2, 4, 8, 12, C_iv = 10, 8.2, 6.7, 4.5, 2, 0.9, D_oral = 0.00019999999999999998 kg, t_oral = 0, 1, 2, 4, 8, 12, C_oral = 0, 6.1, 8, 7.2, 3.9, 1.8.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_pk_bioavailability_from_profiles', D_iv=9.999999999999999e-05, t_iv=[0, 1, 2, 4, 8, 12], C_iv=[10, 8.2, 6.7, 4.5, 2.0, 0.9], D_oral=0.00019999999999999998, t_oral=[0, 1, 2, 4, 8, 12], C_oral=[0, 6.1, 8.0, 7.2, 3.9, 1.8])
@@ -1265,9 +1393,13 @@ $$
 - **Assumes:** well-stirred liver: outflow concentration equals the liver concentration; linear elimination
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Hepatic extraction ratio against intrinsic clearance (log axis, 61 runs per model) for hepatic blood flow Q = 90 L/h and unbound fraction fu = 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-hepatic-clearance-well-stirred-curve)
+![Hepatic clearance as fu runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-hepatic-clearance-well-stirred-live-1)
 
-*Hepatic extraction ratio against intrinsic clearance (log axis, 61 runs per model) for hepatic blood flow Q = 90 L/h and unbound fraction fu = 0.1, this capability's well-stirred model beside the parallel-tube model (dashed). Marked: the example CL_int = 500 L/h gives E = 0.357143, hepatic clearance 32.1429 L/h.*
+*Hepatic clearance as fu runs from 0.025 to 0.175, every other input as you entered it (41 solutions). Marked: your fu = 0.1 gives CL_H = 0.5357 L/min. Your inputs: Q = 90 L/h, fu = 0.1, CL_int = 500 L/h.*
+
+![Hepatic clearance as CL_int runs from 300 to 700 L/h, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-hepatic-clearance-well-stirred-live-2)
+
+*Hepatic clearance as CL_int runs from 300 to 700 L/h, every other input as you entered it (29 solutions). Marked: your CL_int = 500 L/h gives CL_H = 0.5357 L/min. Your inputs: Q = 90 L/h, fu = 0.1, CL_int = 500 L/h.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_pk_hepatic_clearance_well_stirred', Q=2.4999999999999998e-05, fu=0.1, CL_int=0.0001388888888888889)
@@ -1313,9 +1445,13 @@ $$
 - **Assumes:** plug flow along identical sinusoids, enzymes evenly distributed; linear elimination
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Hepatic extraction ratio against intrinsic clearance (log axis, 61 runs per model) for hepatic blood flow Q = 90 L/h and unbound fraction fu = 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-hepatic-clearance-parallel-tube-curve)
+![Hepatic clearance as fu runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-hepatic-clearance-parallel-tube-live-1)
 
-*Hepatic extraction ratio against intrinsic clearance (log axis, 61 runs per model) for hepatic blood flow Q = 90 L/h and unbound fraction fu = 0.1, this capability's parallel-tube model beside the well-stirred model (dashed). Marked: the example CL_int = 500 L/h gives E = 0.426247, hepatic clearance 38.3622 L/h.*
+*Hepatic clearance as fu runs from 0.025 to 0.175, every other input as you entered it (41 solutions). Marked: your fu = 0.1 gives CL_H = 0.6394 L/min. Your inputs: Q = 90 L/h, fu = 0.1, CL_int = 500 L/h.*
+
+![Hepatic clearance as CL_int runs from 300 to 700 L/h, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-hepatic-clearance-parallel-tube-live-2)
+
+*Hepatic clearance as CL_int runs from 300 to 700 L/h, every other input as you entered it (29 solutions). Marked: your CL_int = 500 L/h gives CL_H = 0.6394 L/min. Your inputs: Q = 90 L/h, fu = 0.1, CL_int = 500 L/h.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_pk_hepatic_clearance_parallel_tube', Q=2.4999999999999998e-05, fu=0.1, CL_int=0.0001388888888888889)
@@ -1366,7 +1502,15 @@ $$
 
 ![Effect-site concentration after an intravenous bolus (D = 10 mg, V = 20 L, k = 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-effect-site-concentration-pharmacokinetics)
 
-*Effect-site concentration after an intravenous bolus (D = 10 mg, V = 20 L, k = 0.3 1/h, ke0 = 2 1/h), 81 runs over 4 h, beside the plasma concentration of the same bolus (the package's one-compartment bolus). The effect site lags the plasma. Marked: t_peak = 66.9572 min, Ce_peak = 0.357746 mg/L.*
+*Effect-site concentration after an intravenous bolus (D = 10 mg, V = 20 L, k = 0.3 1/h, ke0 = 2 1/h), 81 runs over 4.464 h, beside the plasma concentration of the same bolus (the model's one-compartment bolus). Dot: the peak t_peak = 1.116 h, Ce_peak = 0.3577 mg/L; marked: t = 0.5 h, Ce = 0.2899 mg/L. In SI units: Ce = 0.0002899 kg/m^3. Your inputs: D = 10 mg, V = 20 L, k = 0.3 1/h, ke0 = 2 1/h, t = 30 min.*
+
+![Effect-site concentration at time t as V runs from 12 to 28 L, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-effect-site-concentration-live-1)
+
+*Effect-site concentration at time t as V runs from 12 to 28 L, every other input as you entered it (41 solutions). Marked: your V = 20 L gives Ce = 0.2899 mg/L. Your inputs: D = 10 mg, V = 20 L, k = 0.3 1/h, ke0 = 2 1/h, t = 30 min.*
+
+![Effect-site concentration at time t as D runs from 6 to 14 mg, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-pk-effect-site-concentration-live-2)
+
+*Effect-site concentration at time t as D runs from 6 to 14 mg, every other input as you entered it (29 solutions). Marked: your D = 10 mg gives Ce = 0.2899 mg/L. Your inputs: D = 10 mg, V = 20 L, k = 0.3 1/h, ke0 = 2 1/h, t = 30 min.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_pk_effect_site_concentration', D=9.999999999999999e-06, V=0.02, k=8.333333333333333e-05, ke0=0.0005555555555555556, t=1800.0)
@@ -1384,7 +1528,7 @@ biomedical_science_ai999x.solve('bmed_pk_effect_site_concentration', D=9.9999999
 |---|---|---|
 | Effect-site concentration: D = 10 mg, V = 20 L, k = 0.3 1/h, ke0 = 2 1/h, t = 30 min | SOLVED | Ce = 0.000289899 kg/m^3, t_peak = 4017.43 s, Ce_peak = 0.000357746 kg/m^3 |
 | Effect-site concentration: D = 100 mg, V = 50 L, k = 0.1 1/h, ke0 = 0.5 1/h, t = 4 h | SOLVED | Ce = 0.00133746 kg/m^3, t_peak = 14484.9 s, Ce_peak = 0.00133748 kg/m^3 |
-| Effect-site concentration: V = 20 L, k = 0.3 1/h, ke0 = 2 1/h, t = 30 min | NEEDS_INPUT | bmed_pk_effect_site_concentration needs D (bolus dose). Example: solve('bmed_pk_effect_site_concentration', D='1e-05 kg' |
+| Effect-site concentration: V = 20 L, k = 0.3 1/h, ke0 = 2 1/h, t = 30 min | NEEDS_INPUT | bmed_pk_effect_site_concentration needs D (bolus dose). Example: solve('bmed_pk_effect_site_concentration', D='9.9999999 |
 | Effect-site concentration: D = 10 mg, V = 20 L, k = 0.3 1/h, ke0 = 2 1/h, t = 30 min, zz = 1 | UNRECOGNIZED_FORMAT | I could not match this question to a documented form, so I will not guess. Every form: biomedical_science_ai999x.templat |
 
 <a id="bmed_epi_sir_final_size"></a>
@@ -1412,9 +1556,13 @@ $$
 - **Assumes:** closed population, no births or deaths, homogeneous mixing; fractions of the population; the rest of the population $(1 - s_{0} - i_{0})$ is immune
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Final size of an SIR epidemic against R0 (s0 = 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-epi-sir-final-size-curve)
+![Susceptible fraction at the end as R0 runs from 0](https://huggingface.co/AI999X/biomedical-science-ai999x/resolve/main/figures/bmed-epi-sir-final-size-live-1.svg)
 
-*Final size of an SIR epidemic against R0 (s0 = 0.99, i0 = 0.01), 56 runs from 0.5 to 6: below R0 = 1 almost nobody beyond the initial cases is infected, above it the attack fraction rises steeply. Marked: the example R0 = 2.5, attack 0.884106, s_inf = 0.105894.*
+*Susceptible fraction at the end as R0 runs from 0.625 to 4.375, every other input as you entered it (41 solutions). Marked: your R0 = 2.5 gives s_inf = 0.1059. Your inputs: R0 = 2.5, s0 = 0.99, i0 = 0.01.*
+
+![Susceptible fraction at the end as s0 runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-epi-sir-final-size-live-2)
+
+*Susceptible fraction at the end as s0 runs from 0.2475 to 0.99, every other input as you entered it (15 solutions). Marked: your s0 = 0.99 gives s_inf = 0.1059. Your inputs: R0 = 2.5, s0 = 0.99, i0 = 0.01.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_epi_sir_final_size', R0=2.5, s0=0.99, i0=0.01)
@@ -1463,9 +1611,13 @@ $$
 - **Assumes:** closed population, homogeneous mixing; exponentially distributed latent and infectious periods; $e_{0} + i_{0} > 0$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Final size of an SEIR epidemic against R0 (s0 = 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-epi-seir-final-size-curve)
+![Susceptible fraction at the end as R0 runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-epi-seir-final-size-live-1)
 
-*Final size of an SEIR epidemic against R0 (s0 = 0.98, e0 = 0.01, i0 = 0.01), 56 runs from 0.5 to 6: below R0 = 1 almost nobody beyond the initial cases is infected, above it the attack fraction rises steeply. Marked: the example R0 = 3, attack 0.921922, s_inf = 0.058078.*
+*Susceptible fraction at the end as R0 runs from 0.75 to 5.25, every other input as you entered it (41 solutions). Marked: your R0 = 3 gives s_inf = 0.05808. Your inputs: R0 = 3, s0 = 0.98, e0 = 0.01, i0 = 0.01.*
+
+![Susceptible fraction at the end as s0 runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-epi-seir-final-size-live-2)
+
+*Susceptible fraction at the end as s0 runs from 0.245 to 0.98, every other input as you entered it (15 solutions). Marked: your s0 = 0.98 gives s_inf = 0.05808. Your inputs: R0 = 3, s0 = 0.98, e0 = 0.01, i0 = 0.01.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_epi_seir_final_size', R0=3, s0=0.98, e0=0.01, i0=0.01)
@@ -1512,9 +1664,13 @@ $$
 - **Assumes:** closed population, homogeneous mixing, frequency-dependent transmission; R0 $s_{0} > 1$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Peak of an SIR epidemic against R0 = β/γ (β varied, infectious period 10 days, s0 = 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-epi-sir-peak-curve)
+![Peak infected fraction as s0 runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-epi-sir-peak-live-1)
 
-*Peak of an SIR epidemic against R0 = β/γ (β varied, infectious period 10 days, s0 = 0.999, i0 = 0.001), 50 runs from 1.1 to 6: a higher R0 gives a higher, earlier peak. Marked: the example β = 0.3 1/day (R0 = 3), peak fraction 0.300796 at 38.3553 days.*
+*Peak infected fraction as s0 runs from 0.3531 to 0.999, every other input as you entered it (41 solutions). Marked: your s0 = 0.999 gives i_max = 0.3008. Your inputs: beta = 0.3 1/day, gamma = 0.1 1/day, s0 = 0.999, i0 = 0.001.*
+
+![Peak infected fraction as β runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-epi-sir-peak-live-2)
+
+*Peak infected fraction as β runs from 0.18 to 0.42 1/day, every other input as you entered it (25 solutions). Marked: your β = 0.3 1/day gives i_max = 0.3008. Your inputs: beta = 0.3 1/day, gamma = 0.1 1/day, s0 = 0.999, i0 = 0.001.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_epi_sir_peak', beta=3.472222222222222e-06, gamma=1.1574074074074074e-06, s0=0.999, i0=0.001)
@@ -1532,7 +1688,7 @@ biomedical_science_ai999x.solve('bmed_epi_sir_peak', beta=5.787037037037037e-06,
 |---|---|---|
 | SIR peak: beta = 0.3 1/day, gamma = 0.1 1/day, s0 = 0.999, i0 = 0.001 | SOLVED | i_max = 0.300796, t_peak = 3.3139e+06 s |
 | SIR peak: beta = 0.5 1/day, gamma = 0.2 1/day, s0 = 0.9, i0 = 0.01 | SOLVED | i_max = 0.185628, t_peak = 1.56867e+06 s |
-| SIR peak: gamma = 0.1 1/day, s0 = 0.999, i0 = 0.001 | NEEDS_INPUT | bmed_epi_sir_peak needs beta (transmission rate). Example: solve('bmed_epi_sir_peak', beta='3.47222e-06 1/s', gamma='1.1 |
+| SIR peak: gamma = 0.1 1/day, s0 = 0.999, i0 = 0.001 | NEEDS_INPUT | bmed_epi_sir_peak needs beta (transmission rate). Example: solve('bmed_epi_sir_peak', beta='3.472222222222222e-06 1/s',  |
 | SIR peak: beta = 0.3 1/day, gamma = 0.1 1/day, s0 = 0.999, i0 = 0.001, zz = 1 | UNRECOGNIZED_FORMAT | I could not match this question to a documented form, so I will not guess. Every form: biomedical_science_ai999x.templat |
 | SIR peak: beta = 0.1 1/day, gamma = 0.2 1/day, s0 = 0.999, i0 = 0.001 | INVALID_INPUT | SIR epidemic model: peak prevalence and the time of the peak: no epidemic peak: R0 s0 must exceed 1 (prevalence only fal |
 
@@ -1560,9 +1716,13 @@ $$
 - **Assumes:** fully susceptible population at the start; exponential latent and infectious periods
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Initial growth rate of an SEIR epidemic against R0 for an infectious period of 10 days (γ = 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-epi-seir-growth-rate-curve)
+![Initial growth rate (negative when R0 < 1) as R0 runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-epi-seir-growth-rate-live-1)
 
-*Initial growth rate of an SEIR epidemic against R0 for an infectious period of 10 days (γ = 0.1 1/day) and three latent periods (1/σ), 56 runs each: negative below R0 = 1, slower with a longer latent period. Marked: example R0 = 2.5, r = 0.0791288 per day (doubling time 8.75973 days, derived).*
+*Initial growth rate (negative when R0 < 1) as R0 runs from 0.625 to 4.375, every other input as you entered it (41 solutions). Marked: your R0 = 2.5 gives r = 9.158e-07. Your inputs: R0 = 2.5, sigma = 0.2 1/day, gamma = 0.1 1/day.*
+
+![Initial growth rate (negative when R0 < 1) as γ runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-epi-seir-growth-rate-live-2)
+
+*Initial growth rate (negative when R0 < 1) as γ runs from 0.06 to 0.14 1/day, every other input as you entered it (29 solutions). Marked: your γ = 0.1 1/day gives r = 9.158e-07. Your inputs: R0 = 2.5, sigma = 0.2 1/day, gamma = 0.1 1/day.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_epi_seir_growth_rate', R0=2.5, sigma=2.3148148148148148e-06, gamma=1.1574074074074074e-06)
@@ -1607,9 +1767,13 @@ $$
 - **Assumes:** exponential growth or decline; gamma-distributed generation interval
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Reproduction number implied by an observed growth rate, for a generation interval of mean 5 days and three standard deviations (56 runs each): R = 1 at zero growth; a wider interval lowers R for the same growth](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-epi-r-from-growth-rate-curve)
+![Reproduction number as Tg_mean runs from 3 to 7 day, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-epi-r-from-growth-rate-live-1)
 
-*Reproduction number implied by an observed growth rate, for a generation interval of mean 5 days and three standard deviations (56 runs each): R = 1 at zero growth; a wider interval lowers R for the same growth. Marked: the example r = 0.1 per day gives R = 1.6177.*
+*Reproduction number as Tg_mean runs from 3 to 7 day, every other input as you entered it (41 solutions). Marked: your Tg_mean = 5 day gives R = 1.618. Your inputs: r = 0.1 1/day, Tg_mean = 5 day, Tg_sd = 2 day.*
+
+![Reproduction number as r runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-epi-r-from-growth-rate-live-2)
+
+*Reproduction number as r runs from 0.06 to 0.14 1/day, every other input as you entered it (29 solutions). Marked: your r = 0.1 1/day gives R = 1.618. Your inputs: r = 0.1 1/day, Tg_mean = 5 day, Tg_sd = 2 day.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_epi_r_from_growth_rate', r=1.1574074074074074e-06, Tg_mean=432000.0, Tg_sd=172800.0)
@@ -1656,9 +1820,13 @@ $$
 - **Assumes:** closed population, homogeneous mixing; recovered individuals are susceptible again
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![SIS infection (β = 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-epi-sis-prevalence-curve)
+![Infected fraction at time t as β runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-epi-sis-prevalence-live-1)
 
-*SIS infection (β = 0.4 1/day, γ = 0.1 1/day): the infected fraction over 30 days from three starting fractions, 61 runs each; every start settles on the returned endemic level i* = 0.75. Marked: the example at t = 10 days, i = 0.160111.*
+*Infected fraction at time t as β runs from 0.24 to 0.56 1/day, every other input as you entered it (41 solutions). Marked: your β = 0.4 1/day gives i = 0.1601. Your inputs: beta = 0.4 1/day, gamma = 0.1 1/day, i0 = 0.01, t = 10 day.*
+
+![Infected fraction at time t as t runs from 6 to 14 day, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-epi-sis-prevalence-live-2)
+
+*Infected fraction at time t as t runs from 6 to 14 day, every other input as you entered it (29 solutions). Marked: your t = 10 day gives i = 0.1601. Your inputs: beta = 0.4 1/day, gamma = 0.1 1/day, i0 = 0.01, t = 10 day.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_epi_sis_prevalence', beta=4.6296296296296296e-06, gamma=1.1574074074074074e-06, i0=0.01, t=864000.0)
@@ -1676,7 +1844,7 @@ biomedical_science_ai999x.solve('bmed_epi_sis_prevalence', beta=1.15740740740740
 |---|---|---|
 | SIS prevalence: beta = 0.4 1/day, gamma = 0.1 1/day, i0 = 0.01, t = 10 day | SOLVED | i = 0.160111, i_star = 0.75 |
 | SIS prevalence: beta = 0.1 1/day, gamma = 0.2 1/day, i0 = 0.3, t = 5 day | SOLVED | i = 0.162748, i_star = 0 |
-| SIS prevalence: gamma = 0.1 1/day, i0 = 0.01, t = 10 day | NEEDS_INPUT | bmed_epi_sis_prevalence needs beta (transmission rate). Example: solve('bmed_epi_sis_prevalence', beta='4.62963e-06 1/s' |
+| SIS prevalence: gamma = 0.1 1/day, i0 = 0.01, t = 10 day | NEEDS_INPUT | bmed_epi_sis_prevalence needs beta (transmission rate). Example: solve('bmed_epi_sis_prevalence', beta='4.62962962962962 |
 | SIS prevalence: beta = 0.4 1/day, gamma = 0.1 1/day, i0 = 0.01, t = 10 day, zz = 1 | UNRECOGNIZED_FORMAT | I could not match this question to a documented form, so I will not guess. Every form: biomedical_science_ai999x.templat |
 
 <a id="bmed_epi_reed_frost_final_size"></a>
@@ -1705,13 +1873,21 @@ $$
 - **Assumes:** discrete generations, each infective infectious for one generation; independent contacts
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Reed–Frost chain-binomial final size: probability that 0, 1, …, 4 of 4 susceptibles are infected, starting from 1 infective(s), for three per-contact infection probabilities (one run each)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-epi-reed-frost-final-size-distribution)
+![Reed-Frost chain-binomial final size: probability that 0, 1, ](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-epi-reed-frost-final-size-distribution)
 
-*Reed–Frost chain-binomial final size: probability that 0, 1, …, 4 of 4 susceptibles are infected, starting from 1 infective(s), for three per-contact infection probabilities (one run each). A small p mostly gives no spread; a larger p shifts the mass to a large outbreak. Marked: p = 0.1: mean 0.525363, no spread 0.6561; p = 0.2: mean 1.27014, no spread 0.4096; p = 0.4: mean 2.85302, no spread 0.1296.*
+*Reed-Frost chain-binomial final size: probability that 0, 1, ..., 4 of 4 susceptibles are infected, starting from 1 infective(s), for three per-contact infection probabilities (half, the given and twice p, one run each): p = 0.1: mean 0.5254, no spread 0.6561; p = 0.2: mean 1.27, no spread 0.4096; p = 0.4: mean 2.853, no spread 0.1296. Your inputs: n = 4, m = 1, p = 0.2.*
 
-![mean_final (expected number of susceptibles infected) against p (probability that one infective infects one given susceptible in a generation (0 < p < 1)) from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-epi-reed-frost-final-size-curve)
+![Expected number of susceptibles infected as n runs from 1 to 8, every other input as you entered it (8 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-epi-reed-frost-final-size-live-1)
 
-*mean_final (expected number of susceptibles infected) against p (probability that one infective infects one given susceptible in a generation (0 < p < 1)) from 0.02 to 0.98. One curve for each value of n (initial number of susceptibles (1 to 30)): 4, 2, 8. Other inputs as in the worked example: m = 1. 41 points per curve computed by biomedical-science-ai999x; marked: the worked example, p = 0.2, mean_final = 1.27014.*
+*Expected number of susceptibles infected as n runs from 1 to 8, every other input as you entered it (8 solutions). Marked: your n = 4 gives mean_final = 1.27. Your inputs: n = 4, m = 1, p = 0.2.*
+
+![Every entry of distribution as computed for your inputs (5 entries: 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-epi-reed-frost-final-size-live-2)
+
+*Every entry of distribution as computed for your inputs (5 entries: 0.4096, 0.2097, 0.1636, 0.1352, 0.08195). Your inputs: n = 4, m = 1, p = 0.2.*
+
+![Expected number of susceptibles infected as m runs from 1 to 5, every other input as you entered it (5 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-epi-reed-frost-final-size-live-3)
+
+*Expected number of susceptibles infected as m runs from 1 to 5, every other input as you entered it (5 solutions). Marked: your m = 1 gives mean_final = 1.27. Your inputs: n = 4, m = 1, p = 0.2.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_epi_reed_frost_final_size', n=4, m=1, p=0.2)
@@ -1758,9 +1934,17 @@ $$
 - **Assumes:** higher scores indicate disease; ties count one half
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Scores of the example's 5 diseased and 6 healthy subjects (bottom, input) and the ROC curve they give (top; sensitivity and specificity from the package at each of 12 thresholds)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-dx-roc-auc-roc)
+![Scores of the 5 diseased and 6 healthy subjects given (bottom) and the ROC curve they give (top; sensitivity and specificity from the model at each of 11 thresholds)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-dx-roc-auc-roc)
 
-*Scores of the example's 5 diseased and 6 healthy subjects (bottom, input) and the ROC curve they give (top; sensitivity and specificity from the package at each of 12 thresholds). Marked: the package's area under the curve AUC = 0.883333, equal to the Mann–Whitney U = 26.5 divided by 5 × 6 pairs.*
+*Scores of the 5 diseased and 6 healthy subjects given (bottom) and the ROC curve they give (top; sensitivity and specificity from the model at each of 11 thresholds). The model's area under the curve AUC = 0.8833, equal to the Mann-Whitney U = 26.5 divided by 30 pairs. Your inputs: scores_pos = 0.9, 0.8, 0.7, 0.55, 0.4, scores_neg = 0.6, 0.45, 0.4, 0.3....*
+
+![Area under the ROC curve as scores_pos[3] runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-dx-roc-auc-live-1)
+
+*Area under the ROC curve as scores_pos[3] runs from 0.175 to 1.225, every other input as you entered it (41 solutions). Marked: your scores_pos[3] = 0.7 gives AUC = 0.8833. Your inputs: scores_pos = 0.9, 0.8, 0.7, 0.55, 0.4, scores_neg = 0.6, 0.45, 0.4, 0.3....*
+
+![Area under the ROC curve as scores_pos[4] runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-dx-roc-auc-live-2)
+
+*Area under the ROC curve as scores_pos[4] runs from 0.1375 to 0.9625, every other input as you entered it (29 solutions). Marked: your scores_pos[4] = 0.55 gives AUC = 0.8833. Your inputs: scores_pos = 0.9, 0.8, 0.7, 0.55, 0.4, scores_neg = 0.6, 0.45, 0.4, 0.3....*
 
 ```python
 biomedical_science_ai999x.solve('bmed_dx_roc_auc', scores_pos=[0.9, 0.8, 0.7, 0.55, 0.4], scores_neg=[0.6, 0.45, 0.4, 0.3, 0.2, 0.1])
@@ -1807,9 +1991,13 @@ $$
 - **Assumes:** higher scores indicate disease; cut-offs at the observed scores; ties in J: the highest threshold (most specific); some cut-off has $J > 0$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Youden index J against the threshold for the example's scores (dots below the curve, input), J computed from the package's sensitivity and specificity at 121 thresholds](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-dx-youden-cutoff-curve)
+![Optimal cut-off (score >= threshold is](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-dx-youden-cutoff-live-1)
 
-*Youden index J against the threshold for the example's scores (dots below the curve, input), J computed from the package's sensitivity and specificity at 121 thresholds. Marked: the returned optimal cut-off 0.55 with J = 0.633333 (sensitivity 0.8, specificity 0.833333).*
+*Optimal cut-off (score >= threshold is... as scores_pos[3] runs from 0.175 to 1.225, every other input as you entered it (41 solutions). Marked: your scores_pos[3] = 0.7 gives threshold = 0.55. Your inputs: scores_pos = 0.9, 0.8, 0.7, 0.55, 0.4, scores_neg = 0.6, 0.45, 0.4, 0.3....*
+
+![Optimal cut-off (score >= threshold is](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-dx-youden-cutoff-live-2)
+
+*Optimal cut-off (score >= threshold is... as scores_neg[2] runs from 0.1125 to 0.7875, every other input as you entered it (29 solutions). Marked: your scores_neg[2] = 0.45 gives threshold = 0.55. Your inputs: scores_pos = 0.9, 0.8, 0.7, 0.55, 0.4, scores_neg = 0.6, 0.45, 0.4, 0.3....*
 
 ```python
 biomedical_science_ai999x.solve('bmed_dx_youden_cutoff', scores_pos=[0.9, 0.8, 0.7, 0.55, 0.4], scores_neg=[0.6, 0.45, 0.4, 0.3, 0.2, 0.1])
@@ -1859,17 +2047,17 @@ $$
 - **Assumes:** a score at or above the threshold is positive
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![ROC curve of a test with 5 diseased and 6 healthy scores: sensitivity and specificity computed by the package at 12 thresholds; area under the curve 0](https://huggingface.co/AI999X/biomedical-science-ai999x/resolve/main/figures/bmed-dx-threshold-sensitivity-specificity-roc.svg)
+![ROC curve of a test with 5 diseased and 6 healthy scores (dots below): sensitivity and specificity computed by the model at 11 thresholds; area under the curve 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-dx-threshold-sensitivity-specificity-roc)
 
-*ROC curve of a test with 5 diseased and 6 healthy scores: sensitivity and specificity computed by the package at 12 thresholds; area under the curve 0.883333. Marked: the Youden-optimal cut-off 0.55 (sensitivity 0.8, specificity 0.833333, J = 0.633333).*
+*ROC curve of a test with 5 diseased and 6 healthy scores (dots below): sensitivity and specificity computed by the model at 11 thresholds; area under the curve 0.8833. Marked: the cut-off given, 0.5, sensitivity 0.8, specificity 0.8333. Your inputs: scores_pos = 0.9, 0.8, 0.7, 0.55, 0.4, scores_neg = 0.6, 0.45, 0.4, 0.3..., threshold = 0.5.*
 
-![The 2 × 2 table (rows: diseased, healthy; columns: test positive, test negative) with the same table as rates per row (right), for the test at its Youden-optimal cut-off 0](https://huggingface.co/AI999X/biomedical-science-ai999x/resolve/main/figures/bmed-dx-confusion-heatmap.svg)
+![TP/(TP + FN) as threshold runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-dx-threshold-sensitivity-specificity-live-1)
 
-*The 2 × 2 table (rows: diseased, healthy; columns: test positive, test negative) with the same table as rates per row (right), for the test at its Youden-optimal cut-off 0.55, counted by the package from 5 diseased and 6 healthy scores: TP = 4, FN = 1, FP = 1, TN = 5. Sensitivity 0.8 (95 % interval 0.375535–0.963776), specificity 0.833333 (0.436497–0.969947).*
+*TP/(TP + FN) as threshold runs from 0.125 to 0.875, every other input as you entered it (39 solutions). Marked: your threshold = 0.5 gives sensitivity = 0.8. Your inputs: scores_pos = 0.9, 0.8, 0.7, 0.55, 0.4, scores_neg = 0.6, 0.45, 0.4, 0.3..., threshold = 0.5.*
 
-![Sensitivity and specificity of the example's scores (5 diseased, 6 healthy) at 121 thresholds from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-dx-threshold-sensitivity-specificity-curve)
+![TP/(TP + FN) as scores_pos[5] runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-dx-threshold-sensitivity-specificity-live-2)
 
-*Sensitivity and specificity of the example's scores (5 diseased, 6 healthy) at 121 thresholds from 0.05 to 0.95: raising the threshold trades sensitivity for specificity, in steps at each observed score. Marked: the example threshold 0.5, sensitivity 0.8 (TP = 4, FN = 1), specificity 0.833333 (TN = 5, FP = 1).*
+*TP/(TP + FN) as scores_pos[5] runs from 0.1 to 0.7, every other input as you entered it (29 solutions). Marked: your scores_pos[5] = 0.4 gives sensitivity = 0.8. Your inputs: scores_pos = 0.9, 0.8, 0.7, 0.55, 0.4, scores_neg = 0.6, 0.45, 0.4, 0.3..., threshold = 0.5.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_dx_threshold_sensitivity_specificity', scores_pos=[0.9, 0.8, 0.7, 0.55, 0.4], scores_neg=[0.6, 0.45, 0.4, 0.3, 0.2, 0.1], threshold=0.5)
@@ -1921,9 +2109,17 @@ $$
 - **Assumes:** independent subjects; Wilson score interval (no continuity correction); level stated
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Sensitivity and specificity with their 95 % Wilson intervals for the example's counts (TP = 45, FN = 5, TN = 90, FP = 10) and the same proportions with the counts scaled by 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-dx-sensitivity-specificity-ci-intervals)
+![Sensitivity and specificity with their 90 % Wilson intervals for the counts given (TP = 18, FN = 2, TN = 70, FP = 30) and for the same proportions with the counts scaled by 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-dx-sensitivity-specificity-ci-intervals)
 
-*Sensitivity and specificity with their 95 % Wilson intervals for the example's counts (TP = 45, FN = 5, TN = 90, FP = 10) and the same proportions with the counts scaled by 0.4, 1, 4 (the label gives the factor): more data, narrower intervals, the estimate unchanged. Marked at the example: sens 0.9 (0.786398–0.956524); spec 0.9 (0.825634–0.944771).*
+*Sensitivity and specificity with their 90 % Wilson intervals for the counts given (TP = 18, FN = 2, TN = 70, FP = 30) and for the same proportions with the counts scaled by 0.4 and 4 (the label gives the factor), each a run of the model: more data, narrower intervals. Highlighted: the counts given, sensitivity 0.9 (0.7383 to 0.9663), specificity 0.7 (0.6202 to 0.7693). Your inputs: TP = 18, FN = 2, TN = 70, FP = 30, level = 0.9.*
+
+![TP/(TP + FN) as TP runs from 0 to 38, every other input as you entered it (39 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-dx-sensitivity-specificity-ci-live-1)
+
+*TP/(TP + FN) as TP runs from 0 to 38, every other input as you entered it (39 solutions). Marked: your TP = 18 gives sensitivity = 0.9. Your inputs: TP = 18, FN = 2, TN = 70, FP = 30, level = 0.9.*
+
+![Lower Wilson limit as FP runs from 10 to 50, every other input as you entered it (21 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-dx-sensitivity-specificity-ci-live-2)
+
+*Lower Wilson limit as FP runs from 10 to 50, every other input as you entered it (21 solutions). Marked: your FP = 30 gives spec_lower = 0.6202. Your inputs: TP = 18, FN = 2, TN = 70, FP = 30, level = 0.9.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_dx_sensitivity_specificity_ci', TP=45, FN=5, TN=90, FP=10, level=0.95)
@@ -1973,13 +2169,21 @@ $$
 - **Assumes:** no zero cell (no continuity correction); Woolf interval exp(ln OR +- z SE); level stated
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Forest plot of six effect measures, each computed by the package on its own worked example, with 95 % intervals: odds ratio 2](https://huggingface.co/AI999X/biomedical-science-ai999x/resolve/main/figures/bmed-odds-ratio-ci-forest.svg)
+![Forest plot of the 2 x 2 table given (a = 45, b = 55, c = 30, d = 120): the odds ratio (this capability) and the relative risk (the model's relative-risk capability) with their 90 %, 95 % and 99 % intervals, each a run of the model](https://huggingface.co/AI999X/biomedical-science-ai999x/resolve/main/figures/bmed-odds-ratio-ci-forest.svg)
 
-*Forest plot of six effect measures, each computed by the package on its own worked example, with 95 % intervals: odds ratio 2.25 (0.994295–5.09155); relative risk 2 (0.986563–4.05448); incidence rate ratio 2.4 (1.29133–4.46051); Mantel–Haenszel odds ratio 2.60776 (1.08405–6.27313); exponential hazard ratio 5.16055 (1.58923–16.7573); Cox hazard ratio 1.04846 (0.279864–3.92787). An interval that crosses 1 (grey point) is compatible with no effect.*
+*Forest plot of the 2 x 2 table given (a = 45, b = 55, c = 30, d = 120): the odds ratio (this capability) and the relative risk (the model's relative-risk capability) with their 90 %, 95 % and 99 % intervals, each a run of the model. An interval that crosses 1 (grey) is compatible with no effect. Highlighted: OR 3.273 (1.565 to 6.845) at the level given. Your inputs: a = 45, b = 55, c = 30, d = 120, level = 0.99.*
 
-![The example's 2 × 2 table (rows: exposed, unexposed; columns: with, without the outcome): a = 20, b = 80, c = 10, d = 90](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-odds-ratio-ci-table)
+![The 2 x 2 table given (rows: exposed, unexposed; columns: with, without the outcome): a = 45, b = 55, c = 30, d = 120](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-odds-ratio-ci-table)
 
-*The example's 2 × 2 table (rows: exposed, unexposed; columns: with, without the outcome): a = 20, b = 80, c = 10, d = 90. Returned: odds ratio ad/(bc) = 2.25, 95 % interval 0.994295–5.09155.*
+*The 2 x 2 table given (rows: exposed, unexposed; columns: with, without the outcome): a = 45, b = 55, c = 30, d = 120. Returned: odds ratio ad/(bc) = 3.273, 99 % interval 1.565 to 6.845. Your inputs: a = 45, b = 55, c = 30, d = 120, level = 0.99.*
+
+![Odds ratio ad/(bc) as c runs from 10 to 50, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-odds-ratio-ci-live-1)
+
+*Odds ratio ad/(bc) as c runs from 10 to 50, every other input as you entered it (41 solutions). Marked: your c = 30 gives OR = 3.273. Your inputs: a = 45, b = 55, c = 30, d = 120, level = 0.99.*
+
+![Odds ratio ad/(bc) as a runs from 25 to 65, every other input as you entered it (21 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-odds-ratio-ci-live-2)
+
+*Odds ratio ad/(bc) as a runs from 25 to 65, every other input as you entered it (21 solutions). Marked: your a = 45 gives OR = 3.273. Your inputs: a = 45, b = 55, c = 30, d = 120, level = 0.99.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_odds_ratio_ci', a=20, b=80, c=10, d=90, level=0.95)
@@ -2029,9 +2233,17 @@ $$
 - **Assumes:** cohort (risks estimable); no zero cell; log interval exp(ln RR +- z SE); level stated
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Risk of the outcome in the exposed (20 of 100) and unexposed (10 of 100) groups of the example (risks = events / group size, derived from the inputs), and the package's relative risk 2 with its 95 % interval 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-relative-risk-ci-risk)
+![Risk of the outcome in the exposed (45 of 100) and unexposed (30 of 150) groups given (risks = events / group size, derived from the inputs), and the model's relative risk 2](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-relative-risk-ci-risk)
 
-*Risk of the outcome in the exposed (20 of 100) and unexposed (10 of 100) groups of the example (risks = events / group size, derived from the inputs), and the package's relative risk 2 with its 95 % interval 0.986563–4.05448 (bottom).*
+*Risk of the outcome in the exposed (45 of 100) and unexposed (30 of 150) groups given (risks = events / group size, derived from the inputs), and the model's relative risk 2.25 with its 90 % interval 1.627 to 3.112. Your inputs: a = 45, b = 55, c = 30, d = 120, level = 0.9.*
+
+![Risk ratio [a/(a + b)]/[c/(c + d)] as c runs from 10 to 50, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-relative-risk-ci-live-1)
+
+*Risk ratio [a/(a + b)]/[c/(c + d)] as c runs from 10 to 50, every other input as you entered it (41 solutions). Marked: your c = 30 gives RR = 2.25. Your inputs: a = 45, b = 55, c = 30, d = 120, level = 0.9.*
+
+![Risk ratio [a/(a + b)]/[c/(c + d)] as a runs from 25 to 65, every other input as you entered it (21 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-relative-risk-ci-live-2)
+
+*Risk ratio [a/(a + b)]/[c/(c + d)] as a runs from 25 to 65, every other input as you entered it (21 solutions). Marked: your a = 45 gives RR = 2.25. Your inputs: a = 45, b = 55, c = 30, d = 120, level = 0.9.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_relative_risk_ci', a=20, b=80, c=10, d=90, level=0.95)
@@ -2083,9 +2295,17 @@ $$
 - **Assumes:** unpooled Wald interval for the difference of proportions; the interval excludes zero (a finite NNT interval); level stated; NNT not rounded
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Event risk in the treated (15 of 100) and control (30 of 100) groups of the example (risks derived from the inputs) and the package's absolute risk reduction ARR = 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-nnt-ci-risk)
+![Event risk in the treated (40 of 400) and control (80 of 410) groups given (risks derived from the inputs) and the model's absolute risk reduction ARR = 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-nnt-ci-risk)
 
-*Event risk in the treated (15 of 100) and control (30 of 100) groups of the example (risks derived from the inputs) and the package's absolute risk reduction ARR = 0.15 with its 95 % interval 0.0361364–0.263864. Returned: number needed to treat NNT = 1/ARR = 6.66667 (interval 3.78984–27.6729).*
+*Event risk in the treated (40 of 400) and control (80 of 410) groups given (risks derived from the inputs) and the model's absolute risk reduction ARR = 0.09512 with its 90 % interval 0.05456 to 0.1357. Returned: number needed to treat NNT = 1/ARR = 10.51 (interval 7.37 to 18.33). Your inputs: events_t = 40, n_t = 400, events_c = 80, n_c = 410, level = 0.9.*
+
+![Number needed to treat 1/ARR as events_t runs from 20 to 60, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-nnt-ci-live-1)
+
+*Number needed to treat 1/ARR as events_t runs from 20 to 60, every other input as you entered it (41 solutions). Marked: your events_t = 40 gives NNT = 10.51. Your inputs: events_t = 40, n_t = 400, events_c = 80, n_c = 410, level = 0.9.*
+
+![1/ARR_lower as level runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-nnt-ci-live-2)
+
+*1/ARR_lower as level runs from 0.5143 to 0.9964, every other input as you entered it (29 solutions). Marked: your level = 0.9 gives NNT_upper = 18.33. Your inputs: events_t = 40, n_t = 400, events_c = 80, n_c = 410, level = 0.9.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_nnt_ci', events_t=15, n_t=100, events_c=30, n_c=100, level=0.95)
@@ -2135,9 +2355,17 @@ $$
 - **Assumes:** Poisson counts; log-Wald interval; the same person-time unit for both groups; level stated
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![The incidence rate ratio with its 95 % interval for the example's counts (events1 = 30, time1 = 1000](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-incidence-rate-ratio-ci-intervals)
+![The incidence rate ratio with its 90 % interval for the counts given (events1 = 12, time1 = 2500, events2 = 40, time2 = 4100) and the same proportions with the counts scaled by 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-incidence-rate-ratio-ci-intervals)
 
-*The incidence rate ratio with its 95 % interval for the example's counts (events1 = 30, time1 = 1000.0, events2 = 15, time2 = 1200.0) and the same proportions with the counts scaled by 0.4, 1, 2, 4 (the label gives the factor): more data, narrower intervals, the estimate unchanged. Marked at the example: IRR 2.4 (1.29133–4.46051).*
+*The incidence rate ratio with its 90 % interval for the counts given (events1 = 12, time1 = 2500, events2 = 40, time2 = 4100) and the same proportions with the counts scaled by 0.4, 2 and 4, each a run of the model: more data, narrower intervals. Highlighted: the counts given, IRR 0.4919 (0.2863 to 0.8453). Your inputs: events1 = 12, time1 = 2500.5, events2 = 40, time2 = 4100, level = 0.9.*
+
+![IRR as events1 runs from 1 to 32, every other input as you entered it (32 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-incidence-rate-ratio-ci-live-1)
+
+*IRR as events1 runs from 1 to 32, every other input as you entered it (32 solutions). Marked: your events1 = 12 gives IRR = 0.4919. Your inputs: events1 = 12, time1 = 2500.5, events2 = 40, time2 = 4100, level = 0.9.*
+
+![IRR as events2 runs from 20 to 60, every other input as you entered it (21 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-incidence-rate-ratio-ci-live-2)
+
+*IRR as events2 runs from 20 to 60, every other input as you entered it (21 solutions). Marked: your events2 = 40 gives IRR = 0.4919. Your inputs: events1 = 12, time1 = 2500.5, events2 = 40, time2 = 4100, level = 0.9.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_incidence_rate_ratio_ci', events1=30, time1=1000, events2=15, time2=1200, level=0.95)
@@ -2184,9 +2412,17 @@ $$
 - **Assumes:** observed count Poisson; expected count treated as known; exact (Garwood) limits; level stated
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![The standardised mortality ratio with its exact 95 % interval for the example's counts (observed = 25, expected = 18](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-smr-exact-ci-intervals)
+![The standardised mortality ratio with its exact 90 % interval for the counts given (observed = 3, expected = 7](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-smr-exact-ci-intervals)
 
-*The standardised mortality ratio with its exact 95 % interval for the example's counts (observed = 25, expected = 18.4) and the same proportions with the counts scaled by 0.4, 1, 2, 4 (the label gives the factor): more data, narrower intervals, the estimate unchanged. Marked at the example: SMR 1.3587 (0.879276–2.0057).*
+*The standardised mortality ratio with its exact 90 % interval for the counts given (observed = 3, expected = 7.5) and the same proportions with the counts scaled by 0.4, 2 and 4, each a run of the model: more data, narrower intervals. Highlighted: the counts given, SMR 0.4 (0.109 to 1.034). Your inputs: observed = 3, expected = 7.5, level = 0.9.*
+
+![SMR as observed runs from 0 to 7, every other input as you entered it (8 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-smr-exact-ci-live-1)
+
+*SMR as observed runs from 0 to 7, every other input as you entered it (8 solutions). Marked: your observed = 3 gives SMR = 0.4. Your inputs: observed = 3, expected = 7.5, level = 0.9.*
+
+![Lower exact limit as level runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-smr-exact-ci-live-2)
+
+*Lower exact limit as level runs from 0.5124 to 0.9984, every other input as you entered it (33 solutions). Marked: your level = 0.9 gives lower = 0.109. Your inputs: observed = 3, expected = 7.5, level = 0.9.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_smr_exact_ci', observed=25, expected=18.4, level=0.95)
@@ -2232,9 +2468,13 @@ $$
 - **Assumes:** a common odds ratio across strata; Robins-Breslow-Greenland variance; level stated
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Odds ratio of each stratum of the example (package's odds ratio with its 95 % interval) and the Mantel–Haenszel pooled odds ratio over the 2 strata: stratum 1 [10, 20, 5, 30] OR 3 (0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-mantel-haenszel-odds-ratio-forest)
+![Odds ratio of each stratum given (the model's odds ratio with its 95 % interval) and the Mantel-Haenszel pooled odds ratio over the 2 strata: stratum 1 [10, 20, 5, 30] OR 3 (0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-mantel-haenszel-odds-ratio-forest)
 
-*Odds ratio of each stratum of the example (package's odds ratio with its 95 % interval) and the Mantel–Haenszel pooled odds ratio over the 2 strata: stratum 1 [10, 20, 5, 30] OR 3 (0.891475–10.0956); stratum 2 [8, 12, 6, 20] OR 2.22222 (0.619258–7.97449). Marked: pooled OR_MH = 2.60776 (1.08405–6.27313).*
+*Odds ratio of each stratum given (the model's odds ratio with its 95 % interval) and the Mantel-Haenszel pooled odds ratio over the 2 strata: stratum 1 [10, 20, 5, 30] OR 3 (0.8915 to 10.1); stratum 2 [8, 12, 6, 20] OR 2.222 (0.6193 to 7.974). Highlighted: pooled OR_MH = 2.608 (1.084 to 6.273). Your inputs: tables = 10 20 5 30; 8 12 6 20, level = 0.95.*
+
+![Upper limit as level runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-mantel-haenszel-odds-ratio-live-1)
+
+*Upper limit as level runs from 0.5082 to 0.9999, every other input as you entered it (37 solutions). Marked: your level = 0.95 gives upper = 6.273. Your inputs: tables = 10 20 5 30; 8 12 6 20, level = 0.95.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_mantel_haenszel_odds_ratio', tables=[[10, 20, 5, 30], [8, 12, 6, 20]], level=0.95)
@@ -2278,13 +2518,17 @@ $$
 - **Assumes:** the same subjects rated by both; unweighted kappa; the same categories in rows and columns
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![The example's agreement table of two raters (100 subjects; rows: rater A, columns: rater B; agreements on the diagonal)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-cohens-kappa-table)
+![The agreement table given for two raters (100 subjects; rows: rater A, columns: rater B; agreements on the shaded diagonal)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-cohens-kappa-table)
 
-*The example's agreement table of two raters (100 subjects; rows: rater A, columns: rater B; agreements on the diagonal). Returned: observed agreement 0.85, Cohen's kappa 0.7 (agreement beyond chance).*
+*The agreement table given for two raters (100 subjects; rows: rater A, columns: rater B; agreements on the shaded diagonal). Returned: observed agreement 0.85, Cohen's kappa 0.7 (agreement beyond chance). Your inputs: counts = 40 10; 5 45.*
 
-![Kappa and observed agreement as cases move from the agreement cell (A yes, B yes) to the disagreement cell (A yes, B no) of the example table [[40, 10], [5, 45]] (100 subjects), one run per table](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-cohens-kappa-curve)
+![Cohen's kappa as counts[1,1] runs from 10 to 70, every other input as you entered it (21 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-cohens-kappa-live-1)
 
-*Kappa and observed agreement as cases move from the agreement cell (A yes, B yes) to the disagreement cell (A yes, B no) of the example table [[40, 10], [5, 45]] (100 subjects), one run per table. Kappa falls faster than raw agreement because chance agreement is removed. Marked: the example, κ = 0.7, agreement 0.85.*
+*Cohen's kappa as counts[1,1] runs from 10 to 70, every other input as you entered it (21 solutions). Values in this range where the inputs admit no answer (20 of 41) are left out. Marked: your counts[1,1] = 40 gives κ = 0.7. Your inputs: counts = 40 10; 5 45.*
+
+![Cohen's kappa as counts[1,2] runs from 5 to 15, every other input as you entered it (3 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-cohens-kappa-live-2)
+
+*Cohen's kappa as counts[1,2] runs from 5 to 15, every other input as you entered it (3 solutions). Values in this range where the inputs admit no answer (12 of 15) are left out. Marked: your counts[1,2] = 10 gives κ = 0.7. Your inputs: counts = 40 10; 5 45.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_cohens_kappa', counts=[[40, 10], [5, 45]])
@@ -2330,13 +2574,17 @@ $$
 - **Assumes:** non-informative censoring; a censoring at an event time counts as at risk at that time
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Kaplan–Meier survival estimate for 21 subjects (9 events, the rest censored), with its pointwise 95 % confidence band, both computed by the package at every whole time from 0 to 36](https://huggingface.co/AI999X/biomedical-science-ai999x/resolve/main/figures/bmed-km-survival-median-survival.svg)
+![The 21 subjects given as follow-up lines from 0 to their time (dot: event observed, 9; bar end: censored, 12), the data the Kaplan-Meier estimate is computed from](https://huggingface.co/AI999X/biomedical-science-ai999x/resolve/main/figures/bmed-km-survival-median-follow-up.svg)
 
-*Kaplan–Meier survival estimate for 21 subjects (9 events, the rest censored), with its pointwise 95 % confidence band, both computed by the package at every whole time from 0 to 36. S(12) = 0.752941; marked: median survival t = 23, S = 0.448179.*
+*The 21 subjects given as follow-up lines from 0 to their time (dot: event observed, 9; bar end: censored, 12), the data the Kaplan-Meier estimate is computed from. Marked: t = 12, where the model returns S = 0.7529, and the returned median survival 23. Your inputs: times = 6, 6, 6, 7, 10, 13, 16..., events = 1, 1, 1, 1, 1, 1, 1, 1..., t = 12.*
 
-![The example's 21 subjects as follow-up lines from 0 to their time (dot: event observed, 9; bar end: censored, 12), the data the Kaplan–Meier estimate is computed from](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-km-survival-median-follow-up)
+![Kaplan-Meier survival estimate of the 21 subjects given (9 events, the rest censored), with its pointwise 95 % confidence band, both computed by the model at every step time](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-km-survival-median-survival)
 
-*The example's 21 subjects as follow-up lines from 0 to their time (dot: event observed, 9; bar end: censored, 12), the data the Kaplan–Meier estimate is computed from. Marked: the returned median survival 23 and the example time t = 12, where S = 0.752941.*
+*Kaplan-Meier survival estimate of the 21 subjects given (9 events, the rest censored), with its pointwise 95 % confidence band, both computed by the model at every step time. Marked: S(12) = 0.7529; median survival 23. Your inputs: times = 6, 6, 6, 7, 10, 13, 16..., events = 1, 1, 1, 1, 1, 1, 1, 1..., t = 12.*
+
+![Kaplan-Meier survival probability at t as t runs from 3 to 21, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-km-survival-median-live-1)
+
+*Kaplan-Meier survival probability at t as t runs from 3 to 21, every other input as you entered it (41 solutions). Marked: your t = 12 gives S_t = 0.7529. Your inputs: times = 6, 6, 6, 7, 10, 13, 16..., events = 1, 1, 1, 1, 1, 1, 1, 1..., t = 12.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_km_survival_median', times=[6, 6, 6, 7, 10, 13, 16, 22, 23, 6, 9, 10, 11, 17, 19, 20, 25, 32, 32, 34, 35], events=[1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], t=12)
@@ -2385,9 +2633,17 @@ $$
 - **Assumes:** non-informative censoring; an event at or before t and S(t) > 0; level stated
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Kaplan–Meier estimate of the example's 21 follow-up times with its pointwise 80 % and 99 % confidence bands, both computed by the package at every step time](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-km-confidence-interval-survival)
+![Kaplan-Meier estimate of the 21 follow-up times given with its pointwise 80 % and 99 % confidence bands, both computed by the model at every step time](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-km-confidence-interval-survival)
 
-*Kaplan–Meier estimate of the example's 21 follow-up times with its pointwise 80 % and 99 % confidence bands, both computed by the package at every step time. Marked: at t = 12 the 95 % interval 0.5032–0.889362 around S = 0.752941.*
+*Kaplan-Meier estimate of the 21 follow-up times given with its pointwise 80 % and 99 % confidence bands, both computed by the model at every step time. Marked: at t = 12 the 95 % interval 0.5032 to 0.8894 around S = 0.7529. Your inputs: times = 6, 6, 6, 7, 10, 13, 16..., events = 1, 1, 1, 1, 1, 1, 1, 1..., t = 12, level = 0.95.*
+
+![Kaplan-Meier estimate at t as t runs from 6](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-km-confidence-interval-live-1)
+
+*Kaplan-Meier estimate at t as t runs from 6.15 to 21, every other input as you entered it (34 solutions). Marked: your t = 12 gives S_t = 0.7529. Your inputs: times = 6, 6, 6, 7, 10, 13, 16..., events = 1, 1, 1, 1, 1, 1, 1, 1..., t = 12, level = 0.95.*
+
+![Lower confidence limit as level runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-km-confidence-interval-live-2)
+
+*Lower confidence limit as level runs from 0.5174 to 0.9754, every other input as you entered it (21 solutions). Marked: your level = 0.95 gives lower = 0.5032. Your inputs: times = 6, 6, 6, 7, 10, 13, 16..., events = 1, 1, 1, 1, 1, 1, 1, 1..., t = 12, level = 0.95.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_km_confidence_interval', times=[6, 6, 6, 7, 10, 13, 16, 22, 23, 6, 9, 10, 11, 17, 19, 20, 25, 32, 32, 34, 35], events=[1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], t=12, level=0.95)
@@ -2433,9 +2689,13 @@ $$
 - **Assumes:** non-informative censoring; tied events contribute d/n (no tie smoothing)
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Nelson–Aalen cumulative hazard of the example's 21 follow-up times (9 events; ticks: censored), the package's estimate at every step time: each event adds 1/(number at risk)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-nelson-aalen-hazard-survival)
+![Nelson-Aalen cumulative hazard of the 21 follow-up times given (9 events; ticks: censored), the model's estimate at every step time: each event adds 1/(number at risk)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-nelson-aalen-hazard-survival)
 
-*Nelson–Aalen cumulative hazard of the example's 21 follow-up times (9 events; ticks: censored), the package's estimate at every step time: each event adds 1/(number at risk). Marked: H(12) = 0.268347.*
+*Nelson-Aalen cumulative hazard of the 21 follow-up times given (9 events; ticks: censored), the model's estimate at every step time: each event adds 1/(number at risk). Marked: H(12) = 0.2683. Your inputs: times = 6, 6, 6, 7, 10, 13, 16..., events = 1, 1, 1, 1, 1, 1, 1, 1..., t = 12.*
+
+![Cumulative hazard at t as t runs from 3 to 21, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-nelson-aalen-hazard-live-1)
+
+*Cumulative hazard at t as t runs from 3 to 21, every other input as you entered it (41 solutions). Marked: your t = 12 gives H_t = 0.2683. Your inputs: times = 6, 6, 6, 7, 10, 13, 16..., events = 1, 1, 1, 1, 1, 1, 1, 1..., t = 12.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_nelson_aalen_hazard', times=[6, 6, 6, 7, 10, 13, 16, 22, 23, 6, 9, 10, 11, 17, 19, 20, 25, 32, 32, 34, 35], events=[1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], t=12)
@@ -2482,9 +2742,9 @@ $$
 - **Assumes:** non-informative censoring; hypergeometric variance at each event time
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Kaplan–Meier curves of the example's two groups (9 and 10 subjects; ticks mark censored times), every step the package's survival estimate](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-logrank-test-survival)
+![Kaplan-Meier curves of the two groups given (9 and 10 subjects; ticks mark censored times), every step the model's survival estimate](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-logrank-test-survival)
 
-*Kaplan–Meier curves of the example's two groups (9 and 10 subjects; ticks mark censored times), every step the package's survival estimate. Returned: log-rank χ² = 13.85 (1 degree of freedom), p = 0.000197999.*
+*Kaplan-Meier curves of the two groups given (9 and 10 subjects; ticks mark censored times), every step the model's survival estimate. Returned: log-rank chi-square = 13.85 (1 degree of freedom), p = 0.000198. Your inputs: times1 = 6, 6, 6, 7, 10, 13, 16..., events1 = 1, 1, 1, 1, 1, 1, 1, 1, 1, times2 = 1, 1, 2, 2, 3, 4, 4, 5, 5, 8, events2 = 1, 1, 1, 1, 1, 1, 1, 1, 1, 1.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_logrank_test', times1=[6, 6, 6, 7, 10, 13, 16, 22, 23], events1=[1, 1, 1, 1, 1, 1, 1, 1, 1], times2=[1, 1, 2, 2, 3, 4, 4, 5, 5, 8], events2=[1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
@@ -2534,9 +2794,13 @@ $$
 - **Assumes:** proportional hazards; Efron approximation for tied event times; a finite maximum (no monotone likelihood); level stated
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Kaplan–Meier curves of the example's two covariate groups (x = 1 and x = 0; 21 subjects, ticks mark censored times), each step the package's survival estimate for that group](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-cox-hazard-ratio-survival)
+![Kaplan-Meier curves of the two covariate groups given (21 subjects; ticks mark censored times), each step the model's survival estimate for that group](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-cox-hazard-ratio-survival)
 
-*Kaplan–Meier curves of the example's two covariate groups (x = 1 and x = 0; 21 subjects, ticks mark censored times), each step the package's survival estimate for that group. The proportional-hazards fit returns HR = 1.04846 per unit of x (95 % interval 0.279864–3.92787, β = 0.0473228, se 0.673876).*
+*Kaplan-Meier curves of the two covariate groups given (21 subjects; ticks mark censored times), each step the model's survival estimate for that group. The proportional-hazards fit returns HR = 1.048 per unit of x (95 % interval 0.2799 to 3.928, beta = 0.04732, se 0.6739). Your inputs: times = 6, 6, 6, 7, 10, 13, 16..., events = 1, 1, 1, 1, 1, 1, 1, 1..., x = 1, 0, 1, 0, 1, 0, 1, 0..., level = 0.95.*
+
+![Lower Wald limit of the hazard ratio as level runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-cox-hazard-ratio-live-1)
+
+*Lower Wald limit of the hazard ratio as level runs from 0.5082 to 0.9999, every other input as you entered it (37 solutions). Marked: your level = 0.95 gives HR_lower = 0.2799. Your inputs: times = 6, 6, 6, 7, 10, 13, 16..., events = 1, 1, 1, 1, 1, 1, 1, 1..., x = 1, 0, 1, 0, 1, 0, 1, 0..., level = 0.95.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_cox_hazard_ratio', times=[6, 6, 6, 7, 10, 13, 16, 22, 23, 6, 9, 10, 11, 17, 19, 20, 25, 32, 32, 34, 35], events=[1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], x=[1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1], level=0.95)
@@ -2582,9 +2846,9 @@ $$
 - **Assumes:** constant hazard; non-informative censoring; at least one event
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Exponential survival fitted to the example's 21 follow-up times (9 events; ticks: censored): the returned hazard λ = 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-exponential-survival-fit-survival)
+![Exponential survival fitted to the 21 follow-up times given (9 events; ticks: censored): the returned hazard lambda = 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-exponential-survival-fit-survival)
 
-*Exponential survival fitted to the example's 21 follow-up times (9 events; ticks: censored): the returned hazard λ = 0.0250696 per time unit gives the dashed curve exp(−λt) (derived), beside the package's Kaplan–Meier steps. Marked: median ln2/λ = 27.6489; mean 1/λ = 39.8889.*
+*Exponential survival fitted to the 21 follow-up times given (9 events; ticks: censored): the returned hazard lambda = 0.02507 per time unit gives the dashed curve exp(-lambda t) (derived), beside the model's Kaplan-Meier steps. Marked: median ln2/lambda = 27.65; mean 1/lambda = 39.89. Your inputs: times = 6, 6, 6, 7, 10, 13, 16..., events = 1, 1, 1, 1, 1, 1, 1, 1....*
 
 ```python
 biomedical_science_ai999x.solve('bmed_exponential_survival_fit', times=[6, 6, 6, 7, 10, 13, 16, 22, 23, 6, 9, 10, 11, 17, 19, 20, 25, 32, 32, 34, 35], events=[1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
@@ -2633,9 +2897,13 @@ $$
 - **Assumes:** constant hazard in each group; at least one event per group; level stated
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Kaplan–Meier curves of the example's two groups (9 and 12 subjects; ticks mark censored times), every step the package's survival estimate](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-exponential-hazard-ratio-survival)
+![Kaplan-Meier curves of the two groups given (9 and 12 subjects; ticks mark censored times), every step the model's survival estimate](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-exponential-hazard-ratio-survival)
 
-*Kaplan–Meier curves of the example's two groups (9 and 12 subjects; ticks mark censored times), every step the package's survival estimate. Returned: exponential hazard ratio (group 1 / group 2) 5.16055, 95 % interval 1.58923–16.7573; dashed: exp(−λt) from each group's returned exponential hazard (derived).*
+*Kaplan-Meier curves of the two groups given (9 and 12 subjects; ticks mark censored times), every step the model's survival estimate. Returned: exponential hazard ratio (group 1 / group 2) 5.161, 95 % interval 1.589 to 16.76; dashed: exp(-lambda t) from each group's exponential hazard (0.08257 and 0.016, derived). Your inputs: times1 = 6, 6, 6, 7, 10, 13, 16..., events1 = 1, 1, 1, 1, 1, 1, 1, 1, 1, times2 = 6, 9, 10, 11, 17, 19..., events2 = 1, 0, 1, 0, 0, 1, 0, 0..., level = 0.95.*
+
+![Lower limit as level runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-exponential-hazard-ratio-live-1)
+
+*Lower limit as level runs from 0.5082 to 0.9999, every other input as you entered it (37 solutions). Marked: your level = 0.95 gives lower = 1.589. Your inputs: times1 = 6, 6, 6, 7, 10, 13, 16..., events1 = 1, 1, 1, 1, 1, 1, 1, 1, 1, times2 = 6, 9, 10, 11, 17, 19..., events2 = 1, 0, 1, 0, 0, 1, 0, 0..., level = 0.95.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_exponential_hazard_ratio', times1=[6, 6, 6, 7, 10, 13, 16, 22, 23], events1=[1, 1, 1, 1, 1, 1, 1, 1, 1], times2=[6, 9, 10, 11, 17, 19, 20, 25, 32, 32, 34, 35], events2=[1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0], level=0.95)
@@ -2680,9 +2948,13 @@ $$
 - **Assumes:** non-informative censoring; the Kaplan-Meier step function integrated exactly
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Restricted mean survival time: the area under the Kaplan–Meier curve of the example's 21 follow-up times from 0 to τ = 20 (shaded; the curve is the package's estimate at every step)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-restricted-mean-survival-time-survival)
+![Restricted mean survival time: the area under the Kaplan-Meier curve of the 21 follow-up times given from 0 to tau = 20 (shaded; the curve is the model's estimate at every step)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-restricted-mean-survival-time-survival)
 
-*Restricted mean survival time: the area under the Kaplan–Meier curve of the example's 21 follow-up times from 0 to τ = 20 (shaded; the curve is the package's estimate at every step). Marked: RMST = 16.1165 time units, the expected survival time within the first 20.*
+*Restricted mean survival time: the area under the Kaplan-Meier curve of the 21 follow-up times given from 0 to tau = 20 (shaded; the curve is the model's estimate at every step). Marked: RMST = 16.12 time units, the expected survival time within the first 20. Your inputs: times = 6, 6, 6, 7, 10, 13, 16..., events = 1, 1, 1, 1, 1, 1, 1, 1..., tau = 20.*
+
+![Restricted mean survival time, in the time unit as τ runs from 5 to 35, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-restricted-mean-survival-time-live-1)
+
+*Restricted mean survival time, in the time unit as τ runs from 5 to 35, every other input as you entered it (41 solutions). Marked: your τ = 20 gives RMST = 16.12. Your inputs: times = 6, 6, 6, 7, 10, 13, 16..., events = 1, 1, 1, 1, 1, 1, 1, 1..., tau = 20.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_restricted_mean_survival_time', times=[6, 6, 6, 7, 10, 13, 16, 22, 23, 6, 9, 10, 11, 17, 19, 20, 25, 32, 32, 34, 35], events=[1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], tau=20)
@@ -2733,13 +3005,17 @@ $$
 - **Assumes:** static equilibrium in a vertical plane; forearm horizontal from the elbow, loads vertical; one muscle pulling up and back towards the elbow at angle theta; $0 < \theta < 180$ deg
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Free-body diagram of the forearm as a lever about the elbow (dot): load W = 50 N at 35 cm, forearm weight 15 N at 15 cm, muscle inserted at 4 cm pulling at 80° to the forearm (the example)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-elbow-lever-muscle-force-free-body)
+![Free-body diagram of the forearm as a lever about the elbow (dot): load W = 50 N at 350 mm, forearm weight 15 N at 150 mm, muscle inserted at 40 mm pulling at 80 degrees to the forearm](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-elbow-lever-muscle-force-free-body)
 
-*Free-body diagram of the forearm as a lever about the elbow (dot): load W = 50 N at 35 cm, forearm weight 15 N at 15 cm, muscle inserted at 4 cm pulling at 80° to the forearm (the example). Muscle and joint arrows are drawn to one scale, the two weights to a larger one. Returned: muscle force 501.367 N, joint reaction R = 437.5 N (R_x = 87.0614 N along the forearm, R_y = -428.75 N).*
+*Free-body diagram of the forearm as a lever about the elbow (dot): load W = 50 N at 350 mm, forearm weight 15 N at 150 mm, muscle inserted at 40 mm pulling at 80 degrees to the forearm. Muscle and joint arrows are drawn to one scale, the two weights to a larger one. Returned: muscle force 501.4 N, joint reaction R = 437.5 N (R_x = 87.06 N along the forearm, R_y = -428.8 N). Your inputs: W = 50 N, d_load = 35 cm, W_arm = 15 N, d_arm = 15 cm, d_muscle = 4 cm, theta = 80 deg.*
 
-![F_muscle (muscle force) against theta (angle between the muscle and the forearm) from 0 rad to 1](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-elbow-lever-muscle-force-curve)
+![Muscle force and joint reaction along the forearm as θ runs from 48 to 112 deg, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-elbow-lever-muscle-force-live-1)
 
-*F_muscle (muscle force) against theta (angle between the muscle and the forearm) from 0 rad to 1.5708 rad. One curve for each value of d_muscle (distance of the muscle insertion from the elbow): 0.04 m, 0.02 m, 0.08 m. Other inputs as in the worked example: W = 50.0 N, d_load = 0.35000000000000003 m, W_arm = 15.0 N, d_arm = 0.15 m. 40 points per curve computed by biomedical-science-ai999x; marked: the worked example, theta = 1.39626 rad, F_muscle = 501.367 N.*
+*Muscle force and joint reaction along the forearm as θ runs from 48 to 112 deg, every other input as you entered it (41 solutions). Marked: your θ = 80 deg gives F_muscle = 501.4. Your inputs: W = 50 N, d_load = 35 cm, W_arm = 15 N, d_arm = 15 cm, d_muscle = 4 cm, theta = 80 deg.*
+
+![Muscle force as d_muscle runs from 2](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-elbow-lever-muscle-force-live-2)
+
+*Muscle force as d_muscle runs from 2.4 to 5.6 cm, every other input as you entered it (29 solutions). Marked: your d_muscle = 4 cm gives F_muscle = 501.4. Your inputs: W = 50 N, d_load = 35 cm, W_arm = 15 N, d_arm = 15 cm, d_muscle = 4 cm, theta = 80 deg.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_elbow_lever_muscle_force', W=50.0, d_load=0.35000000000000003, W_arm=15.0, d_arm=0.15, d_muscle=0.04, theta=1.3962634015954636)
@@ -2789,9 +3065,17 @@ $$
 - **Assumes:** steady laminar flow, Newtonian fluid; rigid straight cylindrical vessel, fully developed flow
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Poiseuille flow in a vessel (Δp = 533](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-poiseuille-vessel-flow-flow)
+![Poiseuille flow in a vessel (pressure difference 533](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-poiseuille-vessel-flow-flow)
 
-*Poiseuille flow in a vessel (Δp = 533.29 Pa over L = 10 cm, viscosity 3.5 mPa·s): top, the parabolic velocity profile drawn from the returned mean velocity 76.1842 cm/s (centre velocity twice the mean, derived; arrows not to the length scale of the vessel); bottom, flow against radius, 36 runs, it grows with the fourth power of the radius. Marked: Q = 9.57359 mL/s at r = 2 mm, hydraulic resistance 5.5704e+07 Pa·s/m³.*
+*Poiseuille flow in a vessel (pressure difference 533.3 Pa over L = 100 mm, viscosity 0.0035 Pa s): top, the parabolic velocity profile drawn from the returned mean velocity 0.7618 m/s (centre velocity twice the mean, derived); bottom, flow against radius, 36 runs of the model: it grows with the fourth power of the radius. Marked: Q = 9.574 mL/s at r = 2 mm, hydraulic resistance 5.57e+07 Pa s/m^3. In SI units: Q = 9.574e-06 m^3/s. Your inputs: dP = 4 mmHg, r = 2 mm, L = 10 cm, mu = 3.5 mPa*s.*
+
+![Volume flow rate as r runs from 1](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-poiseuille-vessel-flow-live-1)
+
+*Volume flow rate as r runs from 1.2 to 2.8 mm, every other input as you entered it (41 solutions). Marked: your r = 2 mm gives Q = 0.5744 L/min. Your inputs: dP = 4 mmHg, r = 2 mm, L = 10 cm, mu = 3.5 mPa*s.*
+
+![Volume flow rate as L runs from 6 to 14 cm, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-poiseuille-vessel-flow-live-2)
+
+*Volume flow rate as L runs from 6 to 14 cm, every other input as you entered it (29 solutions). Marked: your L = 10 cm gives Q = 0.5744 L/min. Your inputs: dP = 4 mmHg, r = 2 mm, L = 10 cm, mu = 3.5 mPa*s.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_poiseuille_vessel_flow', dP=533.28954966, r=0.002, L=0.1, mu=0.0035)
@@ -2838,9 +3122,13 @@ $$
 - **Assumes:** no inflow during diastole; linear resistance and compliance
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Two-element Windkessel: arterial pressure falling through diastole from P0 = 120 mmHg towards the venous pressure (R = 1 mmHg·s/mL) for three compliances, 51 runs each over 1 s (1 mmHg = 133](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-windkessel-diastolic-decay-curve)
+![Arterial pressure at time t as P0 runs from 72 to 168 mmHg, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-windkessel-diastolic-decay-live-1)
 
-*Two-element Windkessel: arterial pressure falling through diastole from P0 = 120 mmHg towards the venous pressure (R = 1 mmHg·s/mL) for three compliances, 51 runs each over 1 s (1 mmHg = 133.322 Pa). Marked: example at t = 0.5 s, P = 87.4011 mmHg.*
+*Arterial pressure at time t as P0 runs from 72 to 168 mmHg, every other input as you entered it (41 solutions). Marked: your P0 = 120 mmHg gives P = 11.65 kPa. Your inputs: P0 = 120 mmHg, Pv = 5 mmHg, R = 1 mmHg*s/mL, C = 1.5 mL/mmHg, t = 0.5 s.*
+
+![Arterial pressure at time t as R runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-windkessel-diastolic-decay-live-2)
+
+*Arterial pressure at time t as R runs from 0.6 to 1.4 mmHg*s/mL, every other input as you entered it (29 solutions). Marked: your R = 1 mmHg*s/mL gives P = 11.65 kPa. Your inputs: P0 = 120 mmHg, Pv = 5 mmHg, R = 1 mmHg*s/mL, C = 1.5 mL/mmHg, t = 0.5 s.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_windkessel_diastolic_decay', P0=15998.6864898, Pv=666.611937075, R=133322387.41500002, C=1.1250923637684845e-08, t=0.5)
@@ -2888,9 +3176,17 @@ $$
 - **Assumes:** linear model, sinusoidal steady state; Zc only for the three-element model
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Input impedance of the arterial Windkessel (R = 1 mmHg·s/mL, C = 1](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-windkessel-input-impedance-bode)
+![Input impedance of the arterial Windkessel (R = 1](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-windkessel-input-impedance-bode)
 
-*Input impedance of the arterial Windkessel (R = 1 mmHg·s/mL, C = 1.5 mL/mmHg) against frequency, modulus (top) and phase (bottom), 60 runs per line, for the two-element model and a three-element model with a chosen characteristic impedance Zc = 0.05 R: the third element levels the modulus off at high frequency and brings the phase back towards 0. Marked: example f = 1.2 Hz, |Z| = 0.0880758 mmHg·s/mL, phase -84.9471°.*
+*Input impedance of the arterial Windkessel (R = 1.333e+08 Pa s/m^3, C = 1.125e-08 m^3/Pa) against frequency, modulus (top) and phase (bottom), 60 runs per line of the model, for the two-element model and the three-element model with Zc = 6.666e+06 Pa s/m^3: the third element levels the modulus off at high frequency and brings the phase back towards 0. Marked: f = 1.2 Hz, |Z| = 1.174e+07 Pa s/m^3, phase -84.95 degrees (two element). Your inputs: model = two_element, R = 133322387.41500002 Pa*s/m^3, C = 1.1250923637684845e-08..., f = 1.2 Hz.*
+
+![Impedance modulus as C runs from 6](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-windkessel-input-impedance-live-1)
+
+*Impedance modulus as C runs from 6.751e-09 to 1.575e-08 m^3/Pa, every other input as you entered it (41 solutions). Marked: your C = 1.125e-08 m^3/Pa gives Z_mod = 1.174e+07. Your inputs: model = two_element, R = 133322387.41500002 Pa*s/m^3, C = 1.1250923637684845e-08..., f = 1.2 Hz.*
+
+![Impedance modulus as f runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-windkessel-input-impedance-live-2)
+
+*Impedance modulus as f runs from 0.72 to 1.68 Hz, every other input as you entered it (29 solutions). Marked: your f = 1.2 Hz gives Z_mod = 1.174e+07. Your inputs: model = two_element, R = 133322387.41500002 Pa*s/m^3, C = 1.1250923637684845e-08..., f = 1.2 Hz.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_windkessel_input_impedance', model='two_element', R=133322387.41500002, C=1.1250923637684845e-08, f=1.2)
@@ -2937,9 +3233,13 @@ $$
 - **Assumes:** linear viscoelasticity; stress applied as a step at $t = 0$, no initial strain
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Kelvin–Voigt creep under a constant stress σ = 10000 Pa (spring E = 100000 Pa) for three dashpot viscosities, 61 runs each: the strain creeps up towards σ/E (dashed, from the inputs), slower for a more viscous dashpot](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-kelvin-voigt-creep-curve)
+![Strain at time t as σ runs from 6 to 14 kPa, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-kelvin-voigt-creep-live-1)
 
-*Kelvin–Voigt creep under a constant stress σ = 10000 Pa (spring E = 100000 Pa) for three dashpot viscosities, 61 runs each: the strain creeps up towards σ/E (dashed, from the inputs), slower for a more viscous dashpot. Marked: the example t = 3 s, strain 0.0451188.*
+*Strain at time t as σ runs from 6 to 14 kPa, every other input as you entered it (41 solutions). Marked: your σ = 10 kPa gives strain = 0.04512. Your inputs: sigma = 10 kPa, E = 100 kPa, eta = 500 kPa*s, t = 3 s.*
+
+![Strain at time t as t runs from 1](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-kelvin-voigt-creep-live-2)
+
+*Strain at time t as t runs from 1.8 to 4.2 s, every other input as you entered it (29 solutions). Marked: your t = 3 s gives strain = 0.04512. Your inputs: sigma = 10 kPa, E = 100 kPa, eta = 500 kPa*s, t = 3 s.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_kelvin_voigt_creep', sigma=10000.0, E=100000.0, eta=500000.0, t=3.0)
@@ -2987,9 +3287,13 @@ $$
 - **Assumes:** linear viscoelasticity; step stress at $t = 0$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Standard linear solid under a constant stress σ = 10000 Pa (E∞ = 50000 Pa, Maxwell arm E1 = 100000 Pa, η = 200000 Pa·s), 61 runs: an instantaneous elastic strain (dot) then creep to the final strain σ/E∞ = 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-sls-creep-curve)
+![Strain at time t as σ runs from 6 to 14 kPa, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-sls-creep-live-1)
 
-*Standard linear solid under a constant stress σ = 10000 Pa (E∞ = 50000 Pa, Maxwell arm E1 = 100000 Pa, η = 200000 Pa·s), 61 runs: an instantaneous elastic strain (dot) then creep to the final strain σ/E∞ = 0.2. Marked: the example t = 2 s, strain 0.104462.*
+*Strain at time t as σ runs from 6 to 14 kPa, every other input as you entered it (41 solutions). Marked: your σ = 10 kPa gives strain = 0.1045. Your inputs: sigma = 10 kPa, E_inf = 50 kPa, E1 = 100 kPa, eta = 200 kPa*s, t = 2 s.*
+
+![Strain at time t as E_inf runs from 30 to 70 kPa, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-sls-creep-live-2)
+
+*Strain at time t as E_inf runs from 30 to 70 kPa, every other input as you entered it (29 solutions). Marked: your E_inf = 50 kPa gives strain = 0.1045. Your inputs: sigma = 10 kPa, E_inf = 50 kPa, E1 = 100 kPa, eta = 200 kPa*s, t = 2 s.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_sls_creep', sigma=10000.0, E_inf=50000.0, E1=100000.0, eta=200000.0, t=2.0)
@@ -3037,9 +3341,13 @@ $$
 - **Assumes:** linear viscoelasticity; step strain at $t = 0$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Stress relaxation of a standard linear solid after a step strain ε0 = 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-sls-stress-relaxation-curve)
+![Stress at time t and relaxed stress E_inf eps0 as ε0 runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-sls-stress-relaxation-live-1)
 
-*Stress relaxation of a standard linear solid after a step strain ε0 = 0.05 (E∞ = 50000 Pa, E1 = 100000 Pa, η = 200000 Pa·s), 61 runs: the stress jumps to (E∞ + E1)ε0 and relaxes to E∞ε0 = 2.5 kPa. Marked: example t = 1 s, σ = 5.53265 kPa.*
+*Stress at time t and relaxed stress E_inf eps0 as ε0 runs from 0.0125 to 0.0875, every other input as you entered it (41 solutions). Marked: your ε0 = 0.05 gives stress = 5533. Your inputs: eps0 = 0.05, E_inf = 50 kPa, E1 = 100 kPa, eta = 200 kPa*s, t = 1 s.*
+
+![Stress at time t and relaxed stress E_inf eps0 as E_inf runs from 30 to 70 kPa, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-sls-stress-relaxation-live-2)
+
+*Stress at time t and relaxed stress E_inf eps0 as E_inf runs from 30 to 70 kPa, every other input as you entered it (29 solutions). Marked: your E_inf = 50 kPa gives stress = 5533. Your inputs: eps0 = 0.05, E_inf = 50 kPa, E1 = 100 kPa, eta = 200 kPa*s, t = 1 s.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_sls_stress_relaxation', eps0=0.05, E_inf=50000.0, E1=100000.0, eta=200000.0, t=1.0)
@@ -3085,9 +3393,13 @@ $$
 - **Assumes:** complete mixing, no indicator loss; first-pass curve (recirculation removed by the user); times in s, concentrations in mg/L; linear trapezoids
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Indicator-dilution curve: the example's 9 concentration samples after injecting m = 5 mg of indicator (input), with the area under them computed by the package, AUC = 29](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-indicator-dilution-cardiac-output-fit)
+![Indicator-dilution curve: the 9 concentration samples given after injecting m = 5 mg of indicator, with the area under them computed by the model, AUC = 29](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-indicator-dilution-cardiac-output-fit)
 
-*Indicator-dilution curve: the example's 9 concentration samples after injecting m = 5 mg of indicator (input), with the area under them computed by the package, AUC = 29.6 mg·s/L. Marked: cardiac output m/AUC = 10.1351 L/min (0.000168919 m³/s).*
+*Indicator-dilution curve: the 9 concentration samples given after injecting m = 5 mg of indicator, with the area under them computed by the model, AUC = 29.6 mg s/L (shaded). Returned: cardiac output m/AUC = 10.14 L/min. In SI units: CO = 0.0001689 m^3/s. Your inputs: m = 4.9999999999999996e-06 kg, t = 0, 2, 4, 6, 8, 10, 12..., C = 0, 0.5, 2.8, 4.1, 3.5....*
+
+![CO as m runs from 3e-06 to 7e-06 kg, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-indicator-dilution-cardiac-output-live-1)
+
+*CO as m runs from 3e-06 to 7e-06 kg, every other input as you entered it (41 solutions). Marked: your m = 5e-06 kg gives CO = 0.1689 L/s. Your inputs: m = 4.9999999999999996e-06 kg, t = 0, 2, 4, 6, 8, 10, 12..., C = 0, 0.5, 2.8, 4.1, 3.5....*
 
 ```python
 biomedical_science_ai999x.solve('bmed_indicator_dilution_cardiac_output', m=4.9999999999999996e-06, t=[0, 2, 4, 6, 8, 10, 12, 14, 16], C=[0, 0.5, 2.8, 4.1, 3.5, 2.2, 1.1, 0.5, 0.2])
@@ -3134,9 +3446,9 @@ $$
 - **Assumes:** linear single-compartment model; pressures in cmH2O, flows in L/s, volumes in L; ordinary least squares
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Single-compartment fit of the example's 6 samples of pressure, flow and volume (inputs): the line is P0 + R·Q + V/C from the returned resistance R = 16](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-respiratory-mechanics-fit-fit)
+![Single-compartment fit of the 6 samples of pressure, flow and volume given (dots: the measured pressure): the line is P0 + R Q + V/C from the returned resistance R = 16](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-respiratory-mechanics-fit-fit)
 
-*Single-compartment fit of the example's 6 samples of pressure, flow and volume (inputs): the line is P0 + R·Q + V/C from the returned resistance R = 16.7141 cmH₂O·s/L, compliance C = 0.0216558 L/cmH₂O and P0 = -3.16919 cmH₂O (derived); bars split it into P0 and the elastic part V/C, the gap to the line being the resistive part R·Q.*
+*Single-compartment fit of the 6 samples of pressure, flow and volume given (dots: the measured pressure): the line is P0 + R Q + V/C from the returned resistance R = 16.71 cmH2O s/L, compliance C = 0.02166 L/cmH2O and P0 = -3.169 cmH2O (derived); grey bars: the elastic part V/C above P0, the gap to the line being the resistive part R Q. Your inputs: P = 5.2, 9.8, 13.1, 15.9..., Q = 0.5, 0.5, 0.45, 0.4..., V = 0, 0.1, 0.19, 0.27....*
 
 ```python
 biomedical_science_ai999x.solve('bmed_respiratory_mechanics_fit', P=[5.2, 9.8, 13.1, 15.9, 18.6, 20.2], Q=[0.5, 0.5, 0.45, 0.4, 0.35, 0.3], V=[0.0, 0.1, 0.19, 0.27, 0.34, 0.4])
@@ -3188,9 +3500,13 @@ $$
 - **Assumes:** steady state with zero net current; constant field in the membrane, independent ions; only K+, Na+ and Cl- permeate; only ratios of permeabilities matter
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Goldman–Hodgkin–Katz membrane potential against the outside potassium concentration (log axis, 50 runs per line) for the example's other concentrations (K_i 140, Na 145/12, Cl 116/4 mM, T = 310 K): with potassium alone the line is straight (Nernst-like); the sodium and chloride permeabilities bend it at low K_o](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-ghk-voltage-curve)
+![Membrane potential, inside relative to outside as T runs from 270 to 350 K, every other input as you entered it (41 solutions)](https://huggingface.co/AI999X/biomedical-science-ai999x/resolve/main/figures/bmed-ghk-voltage-live-1.svg)
 
-*Goldman–Hodgkin–Katz membrane potential against the outside potassium concentration (log axis, 50 runs per line) for the example's other concentrations (K_i 140, Na 145/12, Cl 116/4 mM, T = 310 K): with potassium alone the line is straight (Nernst-like); the sodium and chloride permeabilities bend it at low K_o. Marked: example K_o = 4 mM, V_m = -75.0663 mV.*
+*Membrane potential, inside relative to outside as T runs from 270 to 350 K, every other input as you entered it (41 solutions). Marked: your T = 310 K gives V_m = -75.07 mV. Your inputs: T = 310 K, PK = 1, PNa = 0.04, PCl = 0.45, K_o = 4 mmol/L, K_i = 140 mmol/L, Na_o = 145 mmol/L, Na_i = 12 mmol/L.*
+
+![Membrane potential, inside relative to outside as K_i runs from 84 to 196 mmol/L, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-ghk-voltage-live-2)
+
+*Membrane potential, inside relative to outside as K_i runs from 84 to 196 mmol/L, every other input as you entered it (29 solutions). Marked: your K_i = 140 mmol/L gives V_m = -75.07 mV. Your inputs: T = 310 K, PK = 1, PNa = 0.04, PCl = 0.45, K_o = 4 mmol/L, K_i = 140 mmol/L, Na_o = 145 mmol/L, Na_i = 12 mmol/L.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_ghk_voltage', T=310.0, PK=1, PNa=0.04, PCl=0.45, K_o=4.0, K_i=140.0, Na_o=145.0, Na_i=12.0, Cl_o=116.0, Cl_i=4.0)
@@ -3239,9 +3555,13 @@ $$
 - **Assumes:** constant field across the membrane; independent ion movement; outward current positive
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Goldman–Hodgkin–Katz current–voltage curve of one ion (z = 1, P = 1](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-ghk-current-density-curve)
+![Current density, outward positive as C_in runs from 84 to 196 mmol/L, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-ghk-current-density-live-1)
 
-*Goldman–Hodgkin–Katz current–voltage curve of one ion (z = 1, P = 1.0000e-08 m/s, inside 140 mM, outside 4 mM, T = 310 K), 81 runs from −120 to +80 mV: curved (rectifying) because the concentrations differ. Dot: the reversal potential where the current changes sign (interpolated between runs). Marked: example V = -20 mV, I = 0.0852825 A/m².*
+*Current density, outward positive as C_in runs from 84 to 196 mmol/L, every other input as you entered it (41 solutions). Marked: your C_in = 140 mmol/L gives I = 0.08528. Your inputs: P = 1e-8 m/s, z = 1, C_in = 140 mmol/L, C_out = 4 mmol/L, V = -20 mV, T = 310 K.*
+
+![Current density, outward positive as P runs from 6e-09 to 1](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-ghk-current-density-live-2)
+
+*Current density, outward positive as P runs from 6e-09 to 1.4e-08 m/s, every other input as you entered it (29 solutions). Marked: your P = 1e-08 m/s gives I = 0.08528. Your inputs: P = 1e-8 m/s, z = 1, C_in = 140 mmol/L, C_out = 4 mmol/L, V = -20 mV, T = 310 K.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_ghk_current_density', P=1e-08, z=1, C_in=140.0, C_out=4.0, V=-0.02, T=310.0)
@@ -3292,9 +3612,13 @@ $$
 - **Assumes:** V_rest + R $I > V_th$ (otherwise no firing); V_reset < V_th; deterministic constant input
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Leaky integrate-and-fire neuron (τm = 20 ms, Rm = 100 MΩ, rest -70 mV, threshold -50 mV, reset -70 mV): firing rate against input current for three refractory periods, 100 currents up to 1 nA (no firing below the threshold current, where the package gives no rate)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-lif-firing-rate-curve)
+![Firing rate as V_rest runs from -79](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-lif-firing-rate-live-1)
 
-*Leaky integrate-and-fire neuron (τm = 20 ms, Rm = 100 MΩ, rest -70 mV, threshold -50 mV, reset -70 mV): firing rate against input current for three refractory periods, 100 currents up to 1 nA (no firing below the threshold current, where the package gives no rate). Marked: example I = 0.3 nA, rate 41.7149 Hz, interspike interval 23.9722 ms.*
+*Firing rate as V_rest runs from -79.8 to -42 mV, every other input as you entered it (28 solutions). Marked: your V_rest = -70 mV gives rate = 41.71. Your inputs: tau_m = 20 ms, R_m = 100 Mohm, I = 0.3 nA, V_rest = -70 mV, V_th = -50 mV, V_reset = -70 mV, t_ref = 2 ms.*
+
+![Firing rate as R_m runs from 68](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-lif-firing-rate-live-2)
+
+*Firing rate as R_m runs from 68.57 to 140 Mohm, every other input as you entered it (26 solutions). Marked: your R_m = 100 Mohm gives rate = 41.71. Your inputs: tau_m = 20 ms, R_m = 100 Mohm, I = 0.3 nA, V_rest = -70 mV, V_th = -50 mV, V_reset = -70 mV, t_ref = 2 ms.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_lif_firing_rate', tau_m=0.02, R_m=100000000.0, I=3e-10, V_rest=-0.07, V_th=-0.05, V_reset=-0.07, t_ref=0.002)
@@ -3343,9 +3667,13 @@ $$
 - **Assumes:** passive membrane, no spike or threshold; constant current from $t = 0$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Membrane potential of a leaky integrate-and-fire neuron below threshold for a current step of three sizes (τm = 20 ms, Rm = 100 MΩ, V0 = -70 mV), 61 runs over 100 ms: an exponential charge towards V_rest + Rm·I](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-lif-subthreshold-voltage-curve)
+![Membrane potential at time t as V0 runs from -98 to -42 mV, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-lif-subthreshold-voltage-live-1)
 
-*Membrane potential of a leaky integrate-and-fire neuron below threshold for a current step of three sizes (τm = 20 ms, Rm = 100 MΩ, V0 = -70 mV), 61 runs over 100 ms: an exponential charge towards V_rest + Rm·I. Marked: the example at t = 10 ms, V = -64.098 mV.*
+*Membrane potential at time t as V0 runs from -98 to -42 mV, every other input as you entered it (41 solutions). Marked: your V0 = -70 mV gives V = -64.1 mV. Your inputs: tau_m = 20 ms, R_m = 100 Mohm, I = 0.15 nA, V_rest = -70 mV, V0 = -70 mV, t = 10 ms.*
+
+![Membrane potential at time t as V_rest runs from -98 to -42 mV, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-lif-subthreshold-voltage-live-2)
+
+*Membrane potential at time t as V_rest runs from -98 to -42 mV, every other input as you entered it (29 solutions). Marked: your V_rest = -70 mV gives V = -64.1 mV. Your inputs: tau_m = 20 ms, R_m = 100 Mohm, I = 0.15 nA, V_rest = -70 mV, V0 = -70 mV, t = 10 ms.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_lif_subthreshold_voltage', tau_m=0.02, R_m=100000000.0, I=1.5e-10, V_rest=-0.07, V0=-0.07, t=0.01)
@@ -3395,13 +3723,21 @@ $$
 - **Assumes:** passive membrane, steady state; uniform cylinder; L only for a finite cable
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Steady voltage along a passive cable (Rm = 2 Ω·m², Ri = 1 Ω·m, d = 2 µm, V0 = 10 mV at x = 0) for a sealed end, a killed (short-circuited) end at L = 1 mm, and an infinitely long cable, 41 runs each](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-cable-steady-state-curve)
-
-*Steady voltage along a passive cable (Rm = 2 Ω·m², Ri = 1 Ω·m, d = 2 µm, V0 = 10 mV at x = 0) for a sealed end, a killed (short-circuited) end at L = 1 mm, and an infinitely long cable, 41 runs each. Input resistances: sealed: R_in 417.952 MΩ; killed: R_in 242.423 MΩ; infinite: R_in 318.31 MΩ. Marked: the example (sealed, x = 0.3 mm), V = 8.13418 mV.*
-
 ![V_x (voltage at x (relative to rest)) against L (cable length (sealed or killed end only)) from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-cable-steady-state-curve-2)
 
-*V_x (voltage at x (relative to rest)) against L (cable length (sealed or killed end only)) from 0.0001 m to 0.01 m on a logarithmic axis. One curve for each value of V0 (steady voltage at x = 0 (relative to rest)): 0.01 V, 0.005 V, 0.02 V. Other inputs as in the worked example: Rm = 2.0 ohm*m^2, Ri = 1.0 ohm*m, d = 2e-06 m, x = 0.0003 m, end = sealed. 31 points per curve computed by biomedical-science-ai999x; marked: the worked example, L = 0.001 m, V_x = 0.00813418 V.*
+*V_x (voltage at x (relative to rest)) against L (cable length (sealed or killed end only)) from 0.0001 to 0.01, one curve for each value of V0 (steady voltage at x = 0 (relative to rest)): V0 = 10 mV, V0 = 5 mV, V0 = 20 mV. The other inputs as given; 31 points per curve, each a run of the model. Marked: L = 0.001, V_x = 0.008134. Your inputs: Rm = 2 ohm*m^2, Ri = 1 ohm*m, d = 2e-06 m, x = 0.0003 m, V0 = 0.01 V, end = sealed, L = 0.001 m.*
+
+![Voltage at x (relative to rest) as d runs from 1](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-cable-steady-state-live-1)
+
+*Voltage at x (relative to rest) as d runs from 1.2e-06 to 2.8e-06 m, every other input as you entered it (41 solutions). Marked: your d = 2e-06 m gives V_x = 8.134 mV. Your inputs: Rm = 2 ohm*m^2, Ri = 1 ohm*m, d = 2e-06 m, x = 0.0003 m, V0 = 0.01 V, end = sealed, L = 0.001 m.*
+
+![Voltage at x (relative to rest) for every choice of end, every other input as you entered it (highlighted: your choice)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-cable-steady-state-live-2)
+
+*Voltage at x (relative to rest) for every choice of end, every other input as you entered it (highlighted: your choice). sealed: 0.008134; killed: 0.006455; infinite: no answer. Your inputs: Rm = 2 ohm*m^2, Ri = 1 ohm*m, d = 2e-06 m, x = 0.0003 m, V0 = 0.01 V, end = sealed, L = 0.001 m.*
+
+![Voltage at x (relative to rest) as V0 runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-cable-steady-state-live-3)
+
+*Voltage at x (relative to rest) as V0 runs from 0.006 to 0.014 V, every other input as you entered it (29 solutions). Marked: your V0 = 0.01 V gives V_x = 8.134 mV. Your inputs: Rm = 2 ohm*m^2, Ri = 1 ohm*m, d = 2e-06 m, x = 0.0003 m, V0 = 0.01 V, end = sealed, L = 0.001 m.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_cable_steady_state', Rm=2.0, Ri=1.0, d=2e-06, x=0.0003, V0=0.01, end='sealed', L=0.001)
@@ -3448,9 +3784,9 @@ $$
 - **Assumes:** Hodgkin-Huxley 1952 rate functions, modern convention (rest near -65 mV), 6.3 degC; -150 $mV  \leq  V$ <= +100 mV
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Hodgkin–Huxley steady-state gating variables against the clamped potential, 61 runs each from −100 to +50 mV: Na activation and K activation rise with depolarisation, Na inactivation falls](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-hh-gating-steady-state-curve)
+![K activation at steady state as V runs from -91 to -39 mV, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-hh-gating-steady-state-live-1)
 
-*Hodgkin–Huxley steady-state gating variables against the clamped potential, 61 runs each from −100 to +50 mV: Na activation and K activation rise with depolarisation, Na inactivation falls. Marked: at the example V = -65 mV, m∞ = 0.0529325, h∞ = 0.596121, n∞ = 0.317677.*
+*K activation at steady state as V runs from -91 to -39 mV, every other input as you entered it (41 solutions). Marked: your V = -65 mV gives n_inf = 0.3177. Your inputs: V = -65 mV.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_hh_gating_steady_state', V=-0.065)
@@ -3498,9 +3834,13 @@ $$
 - **Assumes:** Hodgkin-Huxley 1952 rate functions (modern convention), gates at steady state; a unique zero-current potential between -120 and +60 mV (checked); that state stable (Routh-Hurwitz test of the linearised model; otherwise refused); EK < EL < ENa
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Zero-current resting potential of the Hodgkin–Huxley membrane against the maximal sodium conductance (log axis, 61 runs; gK = 360, gL = 3 S/m²): it lies between the reversal potentials (inputs, dashed) and moves towards ENa as sodium conductance grows](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-hh-resting-potential-curve)
+![Zero-current steady-state potential as EL runs from -76](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-hh-resting-potential-live-1)
 
-*Zero-current resting potential of the Hodgkin–Huxley membrane against the maximal sodium conductance (log axis, 61 runs; gK = 360, gL = 3 S/m²): it lies between the reversal potentials (inputs, dashed) and moves towards ENa as sodium conductance grows. Marked: the example gNa = 1200 S/m², V_rest = -64.9964 mV.*
+*Zero-current steady-state potential as EL runs from -76.14 to -32.63 mV, every other input as you entered it (41 solutions). Marked: your EL = -54.39 mV gives V_rest = -65 mV. Your inputs: gNa = 120 mS/cm^2, gK = 36 mS/cm^2, gL = 0.3 mS/cm^2, ENa = 50 mV, EK = -77 mV, EL = -54.387 mV.*
+
+![Zero-current steady-state potential as EK runs from -107](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-hh-resting-potential-live-2)
+
+*Zero-current steady-state potential as EK runs from -107.8 to -68.2 mV, every other input as you entered it (19 solutions). Marked: your EK = -77 mV gives V_rest = -65 mV. Your inputs: gNa = 120 mS/cm^2, gK = 36 mS/cm^2, gL = 0.3 mS/cm^2, ENa = 50 mV, EK = -77 mV, EL = -54.387 mV.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_hh_resting_potential', gNa=1200.0, gK=360.0, gL=3.0, ENa=0.05, EK=-0.077, EL=-0.054387000000000005)
@@ -3547,9 +3887,13 @@ $$
 - **Assumes:** ideal voltage clamp; gates at steady state at the holding potential; Hodgkin-Huxley 1952 rate functions
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Voltage clamp: potassium conductance after a step from -65 mV to four potentials (gK_max = 360 S/m²), 61 runs each over 12 ms: a sigmoid delayed rise, larger and faster for a larger depolarisation](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-hh-potassium-conductance-clamp-curve)
+![K conductance at time t as t runs from 1](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-hh-potassium-conductance-clamp-live-1)
 
-*Voltage clamp: potassium conductance after a step from -65 mV to four potentials (gK_max = 360 S/m²), 61 runs each over 12 ms: a sigmoid delayed rise, larger and faster for a larger depolarisation. Marked: the example (step to 0 mV, t = 2 ms), g_K = 104.172 S/m², n = 0.733436.*
+*K conductance at time t as t runs from 1.2 to 2.8 ms, every other input as you entered it (41 solutions). Marked: your t = 2 ms gives g_K = 104.2. Your inputs: gK_max = 36 mS/cm^2, V_hold = -65 mV, V_step = 0 mV, t = 2 ms.*
+
+![K conductance at time t as V_hold runs from -91 to -39 mV, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-hh-potassium-conductance-clamp-live-2)
+
+*K conductance at time t as V_hold runs from -91 to -39 mV, every other input as you entered it (29 solutions). Marked: your V_hold = -65 mV gives g_K = 104.2. Your inputs: gK_max = 36 mS/cm^2, V_hold = -65 mV, V_step = 0 mV, t = 2 ms.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_hh_potassium_conductance_clamp', gK_max=360.0, V_hold=-0.065, V_step=0.0, t=0.002)
@@ -3598,9 +3942,13 @@ $$
 - **Assumes:** passive membrane starting at rest; current jumps to I0 and decays exponentially; $tau_s  \neq  tau_m$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Postsynaptic potential after one synaptic event (τm = 20 ms, Rm = 100 MΩ, peak current 50 pA) for three synaptic decay times, 81 runs each over 100 ms, the returned peak marked on each](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-postsynaptic-potential-curve)
+![Peak potential change and potential change at time t as R_m runs from 60 to 140 Mohm, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-postsynaptic-potential-live-1)
 
-*Postsynaptic potential after one synaptic event (τm = 20 ms, Rm = 100 MΩ, peak current 50 pA) for three synaptic decay times, 81 runs each over 100 ms, the returned peak marked on each. Marked: τs 2 ms: peak 0.387132 mV at 5.11686 ms; τs 5 ms: peak 0.787451 mV at 9.24196 ms; τs 10 ms: peak 1.25 mV at 13.8629 ms.*
+*Peak potential change and potential change at time t as R_m runs from 60 to 140 Mohm, every other input as you entered it (41 solutions). Marked: your R_m = 100 Mohm gives V_peak = 0.7875 mV. Your inputs: tau_m = 20 ms, tau_s = 5 ms, R_m = 100 Mohm, I0 = 50 pA, t = 10 ms.*
+
+![Peak potential change and potential change at time t as I0 runs from 30 to 70 pA, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-postsynaptic-potential-live-2)
+
+*Peak potential change and potential change at time t as I0 runs from 30 to 70 pA, every other input as you entered it (29 solutions). Marked: your I0 = 50 pA gives V_peak = 0.7875 mV. Your inputs: tau_m = 20 ms, tau_s = 5 ms, R_m = 100 Mohm, I0 = 50 pA, t = 10 ms.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_postsynaptic_potential', tau_m=0.02, tau_s=0.005, R_m=100000000.0, I0=5e-11, t=0.01)
@@ -3650,13 +3998,25 @@ $$
 - **Assumes:** dimensionless FitzHugh-Nagumo model; $0 < b < 1$ (a unique fixed point)
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Fixed point of the FitzHugh–Nagumo model (a = 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-fitzhugh-nagumo-fixed-point-stability)
+![stable (true when the fixed point is stable) over a from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-fitzhugh-nagumo-fixed-point-decision)
 
-*Fixed point of the FitzHugh–Nagumo model (a = 0.7, b = 0.8, ε = 0.08) against the applied current, 101 runs, coloured by the stability the package returns: the fixed point loses stability over a window of currents (the neuron fires repetitively there). Marked: example I = 0, v* = -1.19941, w* = -0.62426, trace -0.50258, determinant 0.108069, stable.*
+*stable (true when the fixed point is stable) over a from 0.35 to 1.05 and b from 0.4 to 1.2: each of the 21 x 13 cells is one run of the model, coloured by the verdict it returned (no: 51 cells, yes: 138 cells). Marked: the inputs given, a = 0.7, b = 0.8 gives yes. In SI units: v_star = -1.199. Your inputs: a = 0.7, b = 0.8, eps = 0.08, I = 0.*
 
-![true when the fixed point is stable (stable) over a (parameter a) from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-fitzhugh-nagumo-fixed-point-decision)
+![Fixed point v* of the FitzHugh-Nagumo model (a = 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-fitzhugh-nagumo-fixed-point-stability)
 
-*true when the fixed point is stable (stable) over a (parameter a) from 0.07 to 7 and b (parameter b (0 < b < 1)) from 0.08 to 8 (logarithmic axes): each of the 31 × 21 cells is one run of biomedical-science-ai999x, coloured by the verdict it returned, yes: 166 cells, no: 175 cells; blank cells: inputs the capability refuses. Other inputs as in the worked example: eps = 0.08, I = 0.0. Marked: the worked example, a = 0.7, b = 0.8 → yes.*
+*Fixed point v* of the FitzHugh-Nagumo model (a = 0.7, b = 0.8, eps = 0.08) against the applied current from -0.5 to 2, 101 runs, coloured by the stability the model returns (43 unstable). Marked: I = 0, v* = -1.199, w* = -0.6243, trace -0.5026, determinant 0.1081, stable. Your inputs: a = 0.7, b = 0.8, eps = 0.08, I = 0.*
+
+![Fixed-point v as a runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-fitzhugh-nagumo-fixed-point-live-1)
+
+*Fixed-point v as a runs from 0.175 to 1.225, every other input as you entered it (41 solutions). Marked: your a = 0.7 gives v_star = -1.199. Shaded by true when the fixed point is stable: no, yes. Your inputs: a = 0.7, b = 0.8, eps = 0.08, I = 0.*
+
+![True when the fixed point is stable for 25 5 x 5 combinations of a and I around your inputs (the other inputs as entered); the ring marks your inputs, which give yes](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-fitzhugh-nagumo-fixed-point-live-2)
+
+*True when the fixed point is stable for 25 5 x 5 combinations of a and I around your inputs (the other inputs as entered); the ring marks your inputs, which give yes. Blank cells admit no answer. Your inputs: a = 0.7, b = 0.8, eps = 0.08, I = 0.*
+
+![Fixed-point v as I runs from -1 to 1, every other input as you entered it (27 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-fitzhugh-nagumo-fixed-point-live-3)
+
+*Fixed-point v as I runs from -1 to 1, every other input as you entered it (27 solutions). Marked: your I = 0 gives v_star = -1.199. Shaded by true when the fixed point is stable: yes, no. Your inputs: a = 0.7, b = 0.8, eps = 0.08, I = 0.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_fitzhugh_nagumo_fixed_point', a=0.7, b=0.8, eps=0.08, I=0)
@@ -3706,7 +4066,11 @@ $$
 
 ![X-ray beam through 3 layers drawn to scale (thicknesses 2, 1, 3 cm, mass attenuation 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-xray-attenuation-layers-layers)
 
-*X-ray beam through 3 layers drawn to scale (thicknesses 2, 1, 3 cm, mass attenuation 0.2, 0.5, 0.2 cm²/g, densities 1, 1.85, 1 g/cm³; the example): each point is the package's intensity after the layers crossed so far (log axis, steeper in the denser layer). Marked: I0 = 1000 → I = 145.876, transmitted fraction T = 0.145876.*
+*X-ray beam through 3 layers drawn to scale (thicknesses 2, 1, 3 cm, mass attenuation 0.2, 0.5, 0.2 cm^2/g, densities 1, 1.85, 1 g/cm^3, as given): each point is the model's intensity after the depth crossed so far (log axis, steeper in a denser layer). Marked: I0 = 1000 W/m^2 gives I = 145.9 W/m^2, transmitted fraction T = 0.1459. Your inputs: I0 = 1000 W/m^2, mu_rho = 0.2, 0.5, 0.2, rho = 1, 1.85, 1, x = 2, 1, 3.*
+
+![Transmitted intensity as I0 runs from 600 to 1400 W/m^2, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-xray-attenuation-layers-live-1)
+
+*Transmitted intensity as I0 runs from 600 to 1400 W/m^2, every other input as you entered it (41 solutions). Marked: your I0 = 1000 W/m^2 gives I = 145.9. Your inputs: I0 = 1000 W/m^2, mu_rho = 0.2, 0.5, 0.2, rho = 1, 1.85, 1, x = 2, 1, 3.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_xray_attenuation_layers', I0=1000.0, mu_rho=[0.2, 0.5, 0.2], rho=[1.0, 1.85, 1.0], x=[2, 1, 3])
@@ -3753,9 +4117,13 @@ $$
 - **Assumes:** 90 degree excitations every TR, transverse magnetisation spoiled before each; ideal refocusing without effect on Mz (TE << TR); $TE < TR$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Spin-echo signal of two tissues (A: the example's T1 = 900 ms, T2 = 100 ms; B: a chosen long-T1, long-T2 tissue, T1 = 2500 ms, T2 = 300 ms; M0 = 1) against echo time at TR = 500 ms (top) and against repetition time at TE = 15 ms (bottom), 50 runs per line: short TR and TE weight the image by T1, long ones by T2, and the curves cross](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-mri-spin-echo-signal-curve)
+![Signal in the units of M0 as M0 runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-mri-spin-echo-signal-live-1)
 
-*Spin-echo signal of two tissues (A: the example's T1 = 900 ms, T2 = 100 ms; B: a chosen long-T1, long-T2 tissue, T1 = 2500 ms, T2 = 300 ms; M0 = 1) against echo time at TR = 500 ms (top) and against repetition time at TE = 15 ms (bottom), 50 runs per line: short TR and TE weight the image by T1, long ones by T2, and the curves cross. Marked: the example signal S = 0.366874.*
+*Signal in the units of M0 as M0 runs from 0.25 to 1.75, every other input as you entered it (41 solutions). Marked: your M0 = 1 gives S = 0.3669. Your inputs: M0 = 1, TR = 500 ms, TE = 15 ms, T1 = 900 ms, T2 = 100 ms.*
+
+![Signal in the units of M0 as TR runs from 300 to 700 ms, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-mri-spin-echo-signal-live-2)
+
+*Signal in the units of M0 as TR runs from 300 to 700 ms, every other input as you entered it (29 solutions). Marked: your TR = 500 ms gives S = 0.3669. Your inputs: M0 = 1, TR = 500 ms, TE = 15 ms, T1 = 900 ms, T2 = 100 ms.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_mri_spin_echo_signal', M0=1, TR=0.5, TE=0.015, T1=0.9, T2=0.1)
@@ -3802,9 +4170,13 @@ $$
 - **Assumes:** ideal 180 degree inversion and 90 degree readout at TI; readout leaves $Mz = 0$; steady state, $TI < TR$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Inversion recovery: longitudinal magnetisation against inversion time (TR = 2000 ms) for three T1 values, 81 runs each; dots: each tissue's null point TI_null returned by the package (choosing that TI suppresses the tissue)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-mri-inversion-recovery-curve)
+![Inversion time of zero signal as T1 runs from 150 to 350 ms, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-mri-inversion-recovery-live-1)
 
-*Inversion recovery: longitudinal magnetisation against inversion time (TR = 2000 ms) for three T1 values, 81 runs each; dots: each tissue's null point TI_null returned by the package (choosing that TI suppresses the tissue). Marked: example T1 = 250 ms at TI = 150 ms, Mz/M0 = -0.0972878; its null at 173.203 ms.*
+*Inversion time of zero signal as T1 runs from 150 to 350 ms, every other input as you entered it (41 solutions). Marked: your T1 = 250 ms gives TI_null = 0.1732. Your inputs: T1 = 250 ms, TR = 2000 ms, TI = 150 ms.*
+
+![Mz/M0 at TI as TI runs from 90 to 210 ms, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-mri-inversion-recovery-live-2)
+
+*Mz/M0 at TI as TI runs from 90 to 210 ms, every other input as you entered it (29 solutions). Marked: your TI = 150 ms gives Mz_ratio = -0.09729. Your inputs: T1 = 250 ms, TR = 2000 ms, TI = 150 ms.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_mri_inversion_recovery', T1=0.25, TR=2.0, TI=0.15)
@@ -3852,9 +4224,13 @@ $$
 - **Assumes:** ideal spoiling of transverse magnetisation before each pulse; steady state; $0 < \alpha  \leq  90$ deg, $TE < TR$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![S (signal in the units of M0) against alpha (flip angle) from 0 rad to 1](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-mri-spoiled-gradient-echo-curve)
+![Signal in the units of M0 as M0 runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-mri-spoiled-gradient-echo-live-1)
 
-*S (signal in the units of M0) against alpha (flip angle) from 0 rad to 1.5708 rad. One curve for each value of M0 (equilibrium magnetisation (relative proton density)): 1, 0.5, 2. Other inputs as in the worked example: TR = 0.01 s, TE = 0.003 s, T1 = 1.0 s, T2star = 0.04 s. 40 points per curve computed by biomedical-science-ai999x; marked: the worked example, alpha = 0.139626 rad, S = 0.065597.*
+*Signal in the units of M0 as M0 runs from 0.25 to 1.75, every other input as you entered it (41 solutions). Marked: your M0 = 1 gives S = 0.0656. Your inputs: M0 = 1, TR = 10 ms, TE = 3 ms, T1 = 1000 ms, T2star = 40 ms, alpha = 8 deg.*
+
+![Signal in the units of M0 as TR runs from 6 to 14 ms, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-mri-spoiled-gradient-echo-live-2)
+
+*Signal in the units of M0 as TR runs from 6 to 14 ms, every other input as you entered it (29 solutions). Marked: your TR = 10 ms gives S = 0.0656. Your inputs: M0 = 1, TR = 10 ms, TE = 3 ms, T1 = 1000 ms, T2star = 40 ms, alpha = 8 deg.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_mri_spoiled_gradient_echo', M0=1, TR=0.01, TE=0.003, T1=1.0, T2star=0.04, alpha=0.13962634015954636)
@@ -3901,13 +4277,21 @@ $$
 - **Assumes:** normal incidence on a flat interface; lossless media, plane waves
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Intensity reflection at four tissue interfaces (log axis), one run each with stated acoustic impedances (MRayl: fat 1](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-ultrasound-interface-bars)
+![R (intensity reflection coefficient) over Z1 from 1](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-ultrasound-interface-field)
 
-*Intensity reflection at four tissue interfaces (log axis), one run each with stated acoustic impedances (MRayl: fat 1.38, muscle 1.70, soft tissue 1.63, blood 1.66, bone 7.8, air 0.00043): fat/muscle R = 0.0107944; blood/muscle R = 0.000141723; soft tissue/bone R = 0.428102; soft tissue/air R = 0.998945. The example soft tissue → bone (Z1 = 1.63e+06, Z2 = 7.8e+06 kg/(m²·s)) gives R = 0.428102, T = 0.571898; air reflects almost everything, hence coupling gel.*
+*R (intensity reflection coefficient) over Z1 from 1.38e+05 to 1.38e+07 and Z2 from 42.9 to 4290 (logarithmic axes): each of the 21 x 15 cells is one run of the model, shaded by its value (light 0.883 to dark 1); iso-lines at R = 0.9, 0.92, 0.94, 0.96, 0.98. Marked: the inputs given, Z1 = 1.38e+06, Z2 = 429, R = 0.9988. Your inputs: Z1 = 1.38e6 kg/(m^2*s), Z2 = 429 kg/(m^2*s).*
 
-![R (intensity reflection coefficient) over Z1 (acoustic impedance of the first medium) from 163000 kg/(m^2*s) to 1](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-ultrasound-interface-field)
+![Intensity reflection at four tissue interfaces (log axis), one run of the model each with stated acoustic impedances (MRayl: fat 1](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-ultrasound-interface-bars)
 
-*R (intensity reflection coefficient) over Z1 (acoustic impedance of the first medium) from 163000 kg/(m^2*s) to 1.6300e+07 kg/(m^2*s) and Z2 (acoustic impedance of the second medium) from 780000 kg/(m^2*s) to 7.8000e+07 kg/(m^2*s) (logarithmic axes): each of the 21 × 15 cells is one run of biomedical-science-ai999x, shaded by its value (light 4.4700e-05 to dark 0.991676); iso-lines at R = 0.2, 0.4, 0.6, 0.8. Marked: the worked example, Z1 = 1.63e+06 kg/(m^2*s), Z2 = 7.8e+06 kg/(m^2*s), R = 0.428102.*
+*Intensity reflection at four tissue interfaces (log axis), one run of the model each with stated acoustic impedances (MRayl: fat 1.38, muscle 1.70, soft tissue 1.63, blood 1.66, bone 7.8, air 0.00043): fat/muscle R = 0.01079; blood/muscle R = 0.0001417; tissue/bone R = 0.4281; tissue/air R = 0.9989; given/Z1, Z2 R = 0.9988. Highlighted: the impedances given (Z1 = 1.38e+06, Z2 = 429 kg/(m^2 s)), R = 0.9988, T = 0.001243; air reflects almost everything, hence coupling gel. Your inputs: Z1 = 1.38e6 kg/(m^2*s), Z2 = 429 kg/(m^2*s).*
+
+![Intensity reflection coefficient as Z2 runs from 257](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-ultrasound-interface-live-1)
+
+*Intensity reflection coefficient as Z2 runs from 257.4 to 600.6 kg/(m^2*s), every other input as you entered it (41 solutions). Marked: your Z2 = 429 kg/(m^2*s) gives R = 0.9988. Your inputs: Z1 = 1.38e6 kg/(m^2*s), Z2 = 429 kg/(m^2*s).*
+
+![Intensity reflection coefficient as Z1 runs from 8](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-ultrasound-interface-live-2)
+
+*Intensity reflection coefficient as Z1 runs from 8.28e+05 to 1.932e+06 kg/(m^2*s), every other input as you entered it (29 solutions). Marked: your Z1 = 1.38e+06 kg/(m^2*s) gives R = 0.9988. Your inputs: Z1 = 1.38e6 kg/(m^2*s), Z2 = 429 kg/(m^2*s).*
 
 ```python
 biomedical_science_ai999x.solve('bmed_ultrasound_interface', Z1=1630000.0, Z2=7800000.0)
@@ -3956,9 +4340,13 @@ $$
 - **Assumes:** normal incidence, plane waves, lossless layers; semi-infinite source and load media
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Transmission from a transducer (Z1 = 30 MRayl) into tissue (Z2 = 1](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-ultrasound-matching-layer-curve)
+![Intensity transmission coefficient as c_m runs from 1440 to 3360 m/s, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-ultrasound-matching-layer-live-1)
 
-*Transmission from a transducer (Z1 = 30 MRayl) into tissue (Z2 = 1.6 MRayl) through a matching layer (Zm = 6.9 MRayl, d = 0.15 mm, c = 2400 m/s) against frequency, 91 runs; the line is the package's direct-interface transmission without a layer. Marked: example f = 4 MHz, T = 0.999983, phase thickness kd = 1.5708 rad (a quarter wave is π/2).*
+*Intensity transmission coefficient as c_m runs from 1440 to 3360 m/s, every other input as you entered it (41 solutions). Marked: your c_m = 2400 m/s gives T = 1. Your inputs: Z1 = 30000000 kg/(m^2*s), Zm = 6900000 kg/(m^2*s), Z2 = 1600000 kg/(m^2*s), d = 0.00015 m, c_m = 2400 m/s, f = 4000000 Hz.*
+
+![Intensity transmission coefficient as d runs from 9e-05 to 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-ultrasound-matching-layer-live-2)
+
+*Intensity transmission coefficient as d runs from 9e-05 to 0.00021 m, every other input as you entered it (29 solutions). Marked: your d = 0.00015 m gives T = 1. Your inputs: Z1 = 30000000 kg/(m^2*s), Zm = 6900000 kg/(m^2*s), Z2 = 1600000 kg/(m^2*s), d = 0.00015 m, c_m = 2400 m/s, f = 4000000 Hz.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_ultrasound_matching_layer', Z1=30000000.0, Zm=6900000.0, Z2=1600000.0, d=0.00015, c_m=2400.0, f=4000000.0)
@@ -4003,13 +4391,17 @@ $$
 - **Assumes:** Gaussian, shift-invariant point-spread function; one dimension (a line-spread function)
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Modulation transfer function of a Gaussian point-spread function for three widths (FWHM), 81 runs each up to 4 cycles/mm: a sharper system keeps contrast to higher frequencies](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-gaussian-psf-mtf-curve)
+![MTF (modulation transfer at f) over fwhm from 5e-05 to 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-gaussian-psf-mtf-field)
 
-*Modulation transfer function of a Gaussian point-spread function for three widths (FWHM), 81 runs each up to 4 cycles/mm: a sharper system keeps contrast to higher frequencies. Marked: the example FWHM 0.5 mm at f = 1 cycles/mm, MTF = 0.410686, and its 50 % frequency f50 = 0.882542 cycles/mm.*
+*MTF (modulation transfer at f) over fwhm from 5e-05 to 0.005 and f from 100 to 1e+04 (logarithmic axes): each of the 21 x 15 cells is one run of the model, shaded by its value (light 0 to dark 0.9999); iso-lines at MTF = 0.2, 0.4, 0.6, 0.8. Marked: the inputs given, fwhm = 0.0005, f = 1000, MTF = 0.4107. Your inputs: fwhm = 0.5 mm, f = 1 1/mm.*
 
-![MTF (modulation transfer at f) over fwhm (full width at half maximum of the point-spread function) from 5](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-gaussian-psf-mtf-field)
+![Modulation transfer at f as fwhm runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-gaussian-psf-mtf-live-1)
 
-*MTF (modulation transfer at f) over fwhm (full width at half maximum of the point-spread function) from 5.0000e-05 m to 0.005 m and f (spatial frequency (cycles per length)) from 100 1/m to 10000 1/m (logarithmic axes): each of the 21 × 15 cells is one run of biomedical-science-ai999x, shaded by its value (light 0 to dark 0.999911); iso-lines at MTF = 0.2, 0.4, 0.6, 0.8. Marked: the worked example, fwhm = 0.0005 m, f = 1000 1/m, MTF = 0.410686.*
+*Modulation transfer at f as fwhm runs from 0.3 to 0.7 mm, every other input as you entered it (41 solutions). Marked: your fwhm = 0.5 mm gives MTF = 0.4107. Your inputs: fwhm = 0.5 mm, f = 1 1/mm.*
+
+![Modulation transfer at f as f runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-gaussian-psf-mtf-live-2)
+
+*Modulation transfer at f as f runs from 0.6 to 1.4 1/mm, every other input as you entered it (29 solutions). Marked: your f = 1 1/mm gives MTF = 0.4107. Your inputs: fwhm = 0.5 mm, f = 1 1/mm.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_gaussian_psf_mtf', fwhm=0.0005, f=1000.0)
@@ -4054,9 +4446,9 @@ $$
 - **Assumes:** mono-exponential decay $S = S_{0}$ exp(-b ADC); unweighted least squares on ln S; b in $s/mm^{2}$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Diffusion-weighted signals of the example at b = 0, 1000 s/mm² (input, log axis) and the mono-exponential decay drawn from the returned ADC = 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-mri-adc-fit-fit)
+![The diffusion-weighted signals given at b = 0, 1000 s/mm^2 (log axis) and the mono-exponential decay drawn from the returned ADC = 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-mri-adc-fit-fit)
 
-*Diffusion-weighted signals of the example at b = 0, 1000 s/mm² (input, log axis) and the mono-exponential decay drawn from the returned ADC = 0.00104982 mm²/s and S0 = 1200 (derived), extended to b = 1500.*
+*The diffusion-weighted signals given at b = 0, 1000 s/mm^2 (log axis) and the mono-exponential decay drawn from the returned ADC = 0.00105 mm^2/s and S0 = 1200 (derived), extended to b = 1500. Your inputs: b = 0, 1000, S = 1200, 420.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_mri_adc_fit', b=[0, 1000], S=[1200, 420])
@@ -4101,9 +4493,9 @@ $$
 - **Assumes:** mono-exponential decay $S = S_{0}$ exp(-TE/T2); unweighted least squares on ln S; TE in ms
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![The example's 5 spin-echo signals (input) and the decay S0·exp(−TE/T2) drawn from the returned T2 = 99](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-mri-t2-fit-fit)
+![The 5 spin-echo signals given and the decay S0 exp(-TE/T2) drawn from the returned T2 = 99](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-mri-t2-fit-fit)
 
-*The example's 5 spin-echo signals (input) and the decay S0·exp(−TE/T2) drawn from the returned T2 = 99.4459 ms and S0 = 999.81 (derived). Marked: at TE = T2 the signal is S0/e.*
+*The 5 spin-echo signals given and the decay S0 exp(-TE/T2) drawn from the returned T2 = 99.45 ms and S0 = 999.8 (derived). Marked: at TE = T2 the signal is S0/e. Your inputs: TE = 10, 30, 50, 80, 120, S = 905, 740, 605, 445, 300.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_mri_t2_fit', TE=[10, 30, 50, 80, 120], S=[905, 740, 605, 445, 300])
@@ -4150,13 +4542,17 @@ $$
 - **Assumes:** independent, zero-mean noise of equal variance in every acquisition; an identical signal
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Signal-to-noise ratio after averaging N acquisitions of single-acquisition SNR 10, one run per N from 1 to 64: it grows with √N, so 4, 16 and 64 averages (dots) double it each time](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-snr-averaging-curve)
+![SNR (SNR after averaging) over SNR1 from 5 to 15 and N from 8 to 24: each of the 21 x 15 cells is one run of the model, shaded by its value (light 14](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-snr-averaging-field)
 
-*Signal-to-noise ratio after averaging N acquisitions of single-acquisition SNR 10, one run per N from 1 to 64: it grows with √N, so 4, 16 and 64 averages (dots) double it each time. Marked: the example N = 16, SNR = 40, gain 4.*
+*SNR (SNR after averaging) over SNR1 from 5 to 15 and N from 8 to 24: each of the 21 x 15 cells is one run of the model, shaded by its value (light 14.14 to dark 73.48); iso-lines at SNR = 20, 30, 40, 50, 60, 70. Marked: the inputs given, SNR1 = 10, N = 16, SNR = 40. Your inputs: SNR1 = 10, N = 16.*
 
-![SNR (SNR after averaging) over SNR1 (signal-to-noise ratio of one acquisition) from 5 to 15 and N (number of averages (give N or SNR_target)) from 1 to 32: each of the 21 × 13 cells is one run of biomedical-science-ai999x, shaded by its value (light 5 to dark 84](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-snr-averaging-field)
+![SNR after averaging as SNR1 runs from 2](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-snr-averaging-live-1)
 
-*SNR (SNR after averaging) over SNR1 (signal-to-noise ratio of one acquisition) from 5 to 15 and N (number of averages (give N or SNR_target)) from 1 to 32: each of the 21 × 13 cells is one run of biomedical-science-ai999x, shaded by its value (light 5 to dark 84.8528); iso-lines at SNR = 20, 40, 60, 80. Marked: the worked example, SNR1 = 10, N = 16, SNR = 40.*
+*SNR after averaging as SNR1 runs from 2.5 to 17.5, every other input as you entered it (41 solutions). Marked: your SNR1 = 10 gives SNR = 40. Your inputs: SNR1 = 10, N = 16.*
+
+![SNR after averaging as N runs from 1 to 35, every other input as you entered it (19 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-snr-averaging-live-2)
+
+*SNR after averaging as N runs from 1 to 35, every other input as you entered it (19 solutions). Marked: your N = 16 gives SNR = 40. Your inputs: SNR1 = 10, N = 16.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_snr_averaging', SNR1=10, N=16)
@@ -4203,13 +4599,17 @@ $$
 - **Assumes:** ideal spoiling, steady state; TR, $T_{1} > 0$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Spoiled gradient-echo signal against flip angle (T1 = 1000 ms, three repetition times, no T2* decay: TE = 1 µs, T2* = 1000 s), 80 runs each from the package's spoiled gradient echo; dots: the Ernst angle and its signal returned by this capability for each TR, at the top of each curve](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-mri-ernst-angle-curve)
+![alpha_deg (Ernst angle in degrees) over TR from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-mri-ernst-angle-field)
 
-*Spoiled gradient-echo signal against flip angle (T1 = 1000 ms, three repetition times, no T2* decay: TE = 1 µs, T2* = 1000 s), 80 runs each from the package's spoiled gradient echo; dots: the Ernst angle and its signal returned by this capability for each TR, at the top of each curve. Marked: the example TR = 10 ms, Ernst angle 8.08935°, signal 0.0707104 M0.*
+*alpha_deg (Ernst angle in degrees) over TR from 0.005 to 0.015 and T1 from 0.5 to 1.5: each of the 21 x 15 cells is one run of the model, shaded by its value (light 4.676 to dark 13.96); iso-lines at alpha_deg = 6, 8, 10, 12. Marked: the inputs given, TR = 0.01, T1 = 1, alpha_deg = 8.089. Your inputs: TR = 10 ms, T1 = 1000 ms.*
 
-![alpha_deg (Ernst angle in degrees) over TR (repetition time) from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-mri-ernst-angle-field)
+![Ernst angle in degrees as TR runs from 6 to 14 ms, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-mri-ernst-angle-live-1)
 
-*alpha_deg (Ernst angle in degrees) over TR (repetition time) from 0.005 s to 0.015 s and T1 (longitudinal relaxation time) from 0.5 s to 1.5 s: each of the 21 × 15 cells is one run of biomedical-science-ai999x, shaded by its value (light 4.67558 to dark 13.9645); iso-lines at alpha_deg = 6, 8, 10, 12. Marked: the worked example, TR = 0.01 s, T1 = 1 s, alpha_deg = 8.08935.*
+*Ernst angle in degrees as TR runs from 6 to 14 ms, every other input as you entered it (41 solutions). Marked: your TR = 10 ms gives α_deg = 8.089. Your inputs: TR = 10 ms, T1 = 1000 ms.*
+
+![Ernst angle in degrees as T1 runs from 600 to 1400 ms, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-mri-ernst-angle-live-2)
+
+*Ernst angle in degrees as T1 runs from 600 to 1400 ms, every other input as you entered it (29 solutions). Marked: your T1 = 1000 ms gives α_deg = 8.089. Your inputs: TR = 10 ms, T1 = 1000 ms.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_mri_ernst_angle', TR=0.01, T1=1.0)
@@ -4261,9 +4661,13 @@ $$
 - **Assumes:** closed population, homogeneous mixing, frequency-dependent transmission; R0 $s_{0} > 1$, $e_{0} + i_{0} > 0$; the peak is the first maximum of i after $t = 0$ and exceeds i0
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Peak of an SEIR epidemic against R0 = β/γ (β varied, infectious period 10 days, latent period 5 days, s0 = 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-epi-seir-peak-curve)
+![Time of the peak of the infectious fraction as s0 runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-epi-seir-peak-live-1)
 
-*Peak of an SEIR epidemic against R0 = β/γ (β varied, infectious period 10 days, latent period 5 days, s0 = 0.99, e0 = 0.008, i0 = 0.002), 50 runs from 1.1 to 6: a higher R0 gives a higher, earlier peak. Marked: the example β = 0.5 1/day (R0 = 5), peak fraction 0.30625 at 36.7734 days.*
+*Time of the peak of the infectious fraction as s0 runs from 0.2475 to 0.99, every other input as you entered it (21 solutions). Marked: your s0 = 0.99 gives t_peak = 36.77 day. Your inputs: beta = 0.5 1/day, sigma = 0.2 1/day, gamma = 0.1 1/day, s0 = 0.99, e0 = 0.008, i0 = 0.002.*
+
+![Time of the peak of the infectious fraction as γ runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-epi-seir-peak-live-2)
+
+*Time of the peak of the infectious fraction as γ runs from 0.06 to 0.14 1/day, every other input as you entered it (29 solutions). Marked: your γ = 0.1 1/day gives t_peak = 36.77 day. Your inputs: beta = 0.5 1/day, sigma = 0.2 1/day, gamma = 0.1 1/day, s0 = 0.99, e0 = 0.008, i0 = 0.002.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_epi_seir_peak', beta=5.787037037037037e-06, sigma=2.3148148148148148e-06, gamma=1.1574074074074074e-06, s0=0.99, e0=0.008, i0=0.002)
@@ -4281,7 +4685,7 @@ biomedical_science_ai999x.solve('bmed_epi_seir_peak', beta=3.472222222222222e-06
 |---|---|---|
 | SEIR peak: beta = 0.5 1/day, sigma = 0.2 1/day, gamma = 0.1 1/day, s0 = 0.99, e0 = 0.008, i0 = 0.002 | SOLVED | t_peak = 3.17722e+06 s, i_max = 0.30625, s_at_peak = 0.122176, e_at_peak = 0.153125 |
 | SEIR peak: beta = 0.3 1/day, sigma = 0.5 1/day, gamma = 0.15 1/day, s0 = 0.95, e0 = 0.01, i0 = 0.005 | SOLVED | t_peak = 3.52552e+06 s, i_max = 0.110337, s_at_peak = 0.475211, e_at_peak = 0.033101 |
-| SEIR peak: sigma = 0.2 1/day, gamma = 0.1 1/day, s0 = 0.99, e0 = 0.008, i0 = 0.002 | NEEDS_INPUT | bmed_epi_seir_peak needs beta (transmission rate). Example: solve('bmed_epi_seir_peak', beta='5.78704e-06 1/s', sigma='2 |
+| SEIR peak: sigma = 0.2 1/day, gamma = 0.1 1/day, s0 = 0.99, e0 = 0.008, i0 = 0.002 | NEEDS_INPUT | bmed_epi_seir_peak needs beta (transmission rate). Example: solve('bmed_epi_seir_peak', beta='5.787037037037037e-06 1/s' |
 | SEIR peak: beta = 0.5 1/day, sigma = 0.2 1/day, gamma = 0.1 1/day, s0 = 0.99, e0 = 0.008, i0 = 0.002, zz = 1 | UNRECOGNIZED_FORMAT | I could not match this question to a documented form, so I will not guess. Every form: biomedical_science_ai999x.templat |
 | SEIR peak: beta = 0.1 1/day, sigma = 0.2 1/day, gamma = 0.2 1/day, s0 = 0.99, e0 = 0.008, i0 = 0.002 | INVALID_INPUT | SEIR epidemic model: peak prevalence and the time of the peak: no epidemic peak: R0 s0 must exceed 1. |
 
@@ -4309,13 +4713,17 @@ $$
 - **Assumes:** a calculation only: not medical advice; $1  \leq  m  \leq  700$ kg, $0.3  \leq  h  \leq  2.8$ m
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![BMI (body mass index in kg/m^2) against h (height) from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-bmi-curve)
+![BMI (body mass index in kg/m^2) over h from 0](https://huggingface.co/AI999X/biomedical-science-ai999x/resolve/main/figures/bmed-bmi-field.svg)
 
-*BMI (body mass index in kg/m^2) against h (height) from 0.875 m to 2.625 m. One curve for each value of m (body mass): 70 kg, 35 kg, 140 kg. 31 points per curve computed by biomedical-science-ai999x; marked: the worked example, h = 1.75 m, BMI = 22.8571.*
+*BMI (body mass index in kg/m^2) over h from 0.875 to 2.625 and m from 35 to 105: each of the 21 x 15 cells is one run of the model, shaded by its value (light 5.079 to dark 137.1); iso-lines at BMI = 20, 40, 60, 80, 100, 120. Marked: the inputs given, h = 1.75, m = 70, BMI = 22.86. Your inputs: m = 70 kg, h = 1.75 m.*
 
-![BMI (body mass index in kg/m^2) over h (height) from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-bmi-field)
+![BMI as h runs from 1](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-bmi-live-1)
 
-*BMI (body mass index in kg/m^2) over h (height) from 0.875 m to 2.625 m and m (body mass) from 35 kg to 105 kg: each of the 21 × 15 cells is one run of biomedical-science-ai999x, shaded by its value (light 5.07937 to dark 137.143); iso-lines at BMI = 25, 50, 75, 100, 125. Marked: the worked example, h = 1.75 m, m = 70 kg, BMI = 22.8571.*
+*BMI as h runs from 1.05 to 2.45 m, every other input as you entered it (41 solutions). Marked: your h = 1.75 m gives BMI = 22.86. Your inputs: m = 70 kg, h = 1.75 m.*
+
+![BMI as m runs from 42 to 98 kg, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-bmi-live-2)
+
+*BMI as m runs from 42 to 98 kg, every other input as you entered it (29 solutions). Marked: your m = 70 kg gives BMI = 22.86. Your inputs: m = 70 kg, h = 1.75 m.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_bmi', m=70.0, h=1.75)
@@ -4365,13 +4773,21 @@ $$
 - **Assumes:** a population regression, not a measurement and not advice; adults 18 to 120 years; 1 kcal = 4.184 kJ
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Basal metabolic rate against age for a body of m = 70 kg and h = 1](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-bmr-curve)
+![BMR_kcal_day (basal metabolic rate in kcal/day) against m (body mass) from 35 to 105, one curve for each value of h (height): h = 1](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-bmr-curve-2)
 
-*Basal metabolic rate against age for a body of m = 70 kg and h = 1.75 m, for both sexes and both regressions (32 ages each): it falls steadily with age and is lower for the female form. Marked: the example (male, age 30.0, Mifflin–St Jeor) BMR = 1648.75 kcal/day (79.8422 W).*
+*BMR_kcal_day (basal metabolic rate in kcal/day) against m (body mass) from 35 to 105, one curve for each value of h (height): h = 1.75 m, h = 875 mm. The other inputs as given; 31 points per curve, each a run of the model. Marked: m = 70, BMR_kcal_day = 1649. Your inputs: m = 70 kg, h = 1.75 m, age = 30, sex = male, equation = mifflin_st_jeor.*
 
-![BMR_kcal_day (basal metabolic rate in kcal/day) against m (body mass) from 35 kg to 105 kg](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-bmr-curve-2)
+![Basal metabolic rate in kcal/day as h runs from 1](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-bmr-live-1)
 
-*BMR_kcal_day (basal metabolic rate in kcal/day) against m (body mass) from 35 kg to 105 kg. One curve for each value of h (height): 1.75 m, 0.875 m. Other inputs as in the worked example: age = 30.0, sex = male, equation = mifflin_st_jeor. 31 points per curve computed by biomedical-science-ai999x; marked: the worked example, m = 70 kg, BMR_kcal_day = 1648.75.*
+*Basal metabolic rate in kcal/day as h runs from 1.05 to 2.45 m, every other input as you entered it (41 solutions). Marked: your h = 1.75 m gives BMR_kcal_day = 1649. Your inputs: m = 70 kg, h = 1.75 m, age = 30, sex = male, equation = mifflin_st_jeor.*
+
+![Basal metabolic rate in kcal/day for every choice of sex, every other input as you entered it (highlighted: your choice)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-bmr-live-2)
+
+*Basal metabolic rate in kcal/day for every choice of sex, every other input as you entered it (highlighted: your choice). male: 1649; female: 1483. Your inputs: m = 70 kg, h = 1.75 m, age = 30, sex = male, equation = mifflin_st_jeor.*
+
+![Basal metabolic rate in kcal/day as m runs from 42 to 98 kg, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-bmr-live-3)
+
+*Basal metabolic rate in kcal/day as m runs from 42 to 98 kg, every other input as you entered it (29 solutions). Marked: your m = 70 kg gives BMR_kcal_day = 1649. Your inputs: m = 70 kg, h = 1.75 m, age = 30, sex = male, equation = mifflin_st_jeor.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_bmr', m=70.0, h=1.75, age=30, sex='male', equation='mifflin_st_jeor')
@@ -4418,9 +4834,13 @@ $$
 - **Assumes:** coefficients at the same effective energy; 0 <= mu_air < mu_water
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![The Hounsfield scale: CT number against linear attenuation coefficient for μ_water = 19 1/m (μ_air = 0), 51 runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-hounsfield-units-curve)
+![CT number in Hounsfield units as μ runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-hounsfield-units-live-1)
 
-*The Hounsfield scale: CT number against linear attenuation coefficient for μ_water = 19 1/m (μ_air = 0), 51 runs from 0.2 % to 250 % of μ_water: a straight line that heads to −1000 HU as μ goes to zero (air, dashed: the scale's definition) and passes 0 HU at water (dot, the package's value). Marked: the example μ = 38 1/m, HU = 1000 (μ/μ_water = 2).*
+*CT number in Hounsfield units as μ runs from 0.228 to 0.532 1/cm, every other input as you entered it (41 solutions). Marked: your μ = 0.38 1/cm gives HU = 1000. Your inputs: mu = 0.38 1/cm, mu_water = 0.19 1/cm.*
+
+![CT number in Hounsfield units as μ_water runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-hounsfield-units-live-2)
+
+*CT number in Hounsfield units as μ_water runs from 0.114 to 0.266 1/cm, every other input as you entered it (29 solutions). Marked: your μ_water = 0.19 1/cm gives HU = 1000. Your inputs: mu = 0.38 1/cm, mu_water = 0.19 1/cm.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_hounsfield_units', mu=38.0, mu_water=19.0)
@@ -4467,9 +4887,9 @@ $$
 - **Assumes:** $B > 0$; bare nucleus (no chemical shielding)
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Larmor frequency against field strength (0–7](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-larmor-frequency-curve)
+![Larmor frequency in MHz as B runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-larmor-frequency-live-1)
 
-*Larmor frequency against field strength (0–7.5 T, 31 runs per line) for five nuclei, each given by its reduced gyromagnetic ratio γ̄ in MHz/T (stated inputs: ¹H 42.577478, ¹⁹F 40.078, ³¹P 17.235, ²³Na 11.262, ¹³C 10.7084). Marked: the example, protons at B = 1.5 T, f = 63.8662 MHz.*
+*Larmor frequency in MHz as B runs from 0.9 to 2.1 T, every other input as you entered it (41 solutions). Marked: your B = 1.5 T gives f_MHz = 63.87. Your inputs: B = 1.5 T.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_larmor_frequency', B=1.5)
@@ -4517,9 +4937,9 @@ $$
 - **Assumes:** f, $c > 0$; $c = 1540$ m/s unless stated
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![wavelength_mm (wavelength in mm) against f (ultrasound frequency) from 2](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-ultrasound-wavelength-curve)
+![Wavelength in mm as f runs from 3 to 7 MHz, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-ultrasound-wavelength-live-1)
 
-*wavelength_mm (wavelength in mm) against f (ultrasound frequency) from 2.5e+06 Hz to 7.5e+06 Hz. 31 points computed by biomedical-science-ai999x; marked: the worked example, f = 5e+06 Hz, wavelength_mm = 0.308.*
+*Wavelength in mm as f runs from 3 to 7 MHz, every other input as you entered it (41 solutions). Marked: your f = 5 MHz gives wavelength_mm = 0.308. Your inputs: f = 5 MHz.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_ultrasound_wavelength', f=5000000.0)
@@ -4575,9 +4995,13 @@ $$
 - **Assumes:** 0 <= cases <= population; existing cases <= population; deaths <= cases; one closed population, constant over the period
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![incidence_proportion (incidence proportion (attack rate) = new cases / population) against cases (new cases during the period) from 1 to 300 on a logarithmic axis](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-epi-basic-rates-curve)
+![Incidence rate per person and unit time](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-epi-basic-rates-live-1)
 
-*incidence_proportion (incidence proportion (attack rate) = new cases / population) against cases (new cases during the period) from 1 to 300 on a logarithmic axis. One curve for each value of population (population at risk at the start of the period): 10000, 5000, 20000. Other inputs as in the worked example: prevalent = 400, deaths = 6, period = 31557600.0 s. 29 points per curve computed by biomedical-science-ai999x; marked: the worked example, cases = 150, incidence_proportion = 0.015.*
+*Incidence rate per person and unit time... as period runs from 0.6 to 1.4 yr, every other input as you entered it (41 solutions). Marked: your period = 1 yr gives incidence_rate = 4.753e-10. Your inputs: cases = 150, population = 10000, prevalent = 400, deaths = 6, period = 1 yr.*
+
+![Mortality rate per 100,000 person-years](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-epi-basic-rates-live-2)
+
+*Mortality rate per 100,000 person-years... as deaths runs from 1 to 11, every other input as you entered it (11 solutions). Marked: your deaths = 6 gives mortality_per_100000_person_years = 60. Your inputs: cases = 150, population = 10000, prevalent = 400, deaths = 6, period = 1 yr.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_epi_basic_rates', cases=150, population=10000, prevalent=400, deaths=6, period=31557600.0)
@@ -4628,9 +5052,13 @@ $$
 - **Assumes:** 0 < sensitivity, specificity, prevalence < 1; the test's accuracy does not depend on prevalence
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![PPV (positive predictive value P(disease | positive)) against specificity (specificity P(negative | no disease), a fraction or %) from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-dx-predictive-values-curve)
+![PPV as specificity runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-dx-predictive-values-live-1)
 
-*PPV (positive predictive value P(disease | positive)) against specificity (specificity P(negative | no disease), a fraction or %) from 0.02 to 0.98. One curve for each value of prevalence (prevalence (pre-test probability of disease), a fraction or %): 0.02, 0.26, 0.74. Other inputs as in the worked example: sensitivity = 0.9. 41 points per curve computed by biomedical-science-ai999x; marked: the worked example, specificity = 0.95, PPV = 0.268657.*
+*PPV as specificity runs from 0.225 to 0.9675, every other input as you entered it (23 solutions). Marked: your specificity = 0.9 gives PPV = 0.7742. Your inputs: sensitivity = 0.8, specificity = 0.9, prevalence = 0.3.*
+
+![PPV as sensitivity runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-dx-predictive-values-live-2)
+
+*PPV as sensitivity runs from 0.2 to 0.9714, every other input as you entered it (19 solutions). Marked: your sensitivity = 0.8 gives PPV = 0.7742. Your inputs: sensitivity = 0.8, specificity = 0.9, prevalence = 0.3.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_dx_predictive_values', sensitivity=0.9, specificity=0.95, prevalence=0.02)
@@ -4680,13 +5108,17 @@ $$
 - **Assumes:** $1 < R_{0}  \leq  100$; 0 < efficacy <= 1; homogeneous mixing, lasting all-or-nothing immunity
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![reachable (coverage <= 100 %) or not reachable with this vaccine (reachable) over R0 (basic reproduction number) from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-epi-herd-immunity-decision)
+![Critical coverage in % as efficacy runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-epi-herd-immunity-live-1)
 
-*reachable (coverage <= 100 %) or not reachable with this vaccine (reachable) over R0 (basic reproduction number) from 0.4 to 40 and efficacy (vaccine efficacy against infection, a fraction or % (optional)) from 0.02 to 0.98 (logarithmic horizontal axis): each of the 31 × 21 cells is one run of biomedical-science-ai999x, coloured by the verdict it returned, not reachable with this vaccine: 380 cells, reachable: 145 cells; blank cells: inputs the capability refuses. Marked: the worked example, R0 = 4, efficacy = 0.9 → reachable.*
+*Critical coverage in % as efficacy runs from 0.2425 to 0.97, every other input as you entered it (21 solutions). Marked: your efficacy = 0.97 gives coverage_percent = 96.22. Shaded by reachable (coverage <= 100 %) or not reachable with this vaccine: not reachable with this vaccine, reachable. Your inputs: R0 = 15, efficacy = 0.97.*
 
-![threshold (herd-immunity threshold 1 - 1/R0 (immune fraction)) against R0 (basic reproduction number) from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-epi-herd-immunity-curve)
+![Reachable (coverage <= 100 %) or not reachable with this vaccine for 15 5 x 5 combinations of efficacy and R0 around your inputs (the other inputs as entered); the ring marks your inputs, which give reachable](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-epi-herd-immunity-live-2)
 
-*threshold (herd-immunity threshold 1 - 1/R0 (immune fraction)) against R0 (basic reproduction number) from 0.4 to 40 on a logarithmic axis. Other inputs as in the worked example: efficacy = 0.9. 33 points computed by biomedical-science-ai999x; marked: the worked example, R0 = 4, threshold = 0.75.*
+*Reachable (coverage <= 100 %) or not reachable with this vaccine for 15 5 x 5 combinations of efficacy and R0 around your inputs (the other inputs as entered); the ring marks your inputs, which give reachable. Blank cells admit no answer. Your inputs: R0 = 15, efficacy = 0.97.*
+
+![Herd-immunity threshold 1 - 1/R0 (immune](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-epi-herd-immunity-live-3)
+
+*Herd-immunity threshold 1 - 1/R0 (immune... as R0 runs from 3.75 to 26.25, every other input as you entered it (29 solutions). Marked: your R0 = 15 gives threshold = 0.9333. Your inputs: R0 = 15, efficacy = 0.97.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_epi_herd_immunity', R0=4, efficacy=0.9)
@@ -4746,9 +5178,13 @@ $$
 - **Assumes:** cases <= group size; at least one unvaccinated case; comparable groups, equal follow-up
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![VE (vaccine efficacy 1 - ARV/ARU (fraction)) against cases_u (cases among the unvaccinated) from 1 to 200 on a logarithmic axis](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-vaccine-efficacy-curve)
+![Vaccine efficacy 1 - ARV/ARU as cases_v runs from 0 to 40, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-vaccine-efficacy-live-1)
 
-*VE (vaccine efficacy 1 - ARV/ARU (fraction)) against cases_u (cases among the unvaccinated) from 1 to 200 on a logarithmic axis. One curve for each value of n_v (number vaccinated): 1000, 500, 2000. Other inputs as in the worked example: cases_v = 20, n_u = 1000. 33 points per curve computed by biomedical-science-ai999x; marked: the worked example, cases_u = 100, VE = 0.8.*
+*Vaccine efficacy 1 - ARV/ARU as cases_v runs from 0 to 40, every other input as you entered it (41 solutions). Marked: your cases_v = 20 gives VE = 0.8. Your inputs: cases_v = 20, n_v = 1000, cases_u = 100, n_u = 1000.*
+
+![Vaccine efficacy 1 - ARV/ARU as cases_u runs from 80 to 120, every other input as you entered it (21 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-vaccine-efficacy-live-2)
+
+*Vaccine efficacy 1 - ARV/ARU as cases_u runs from 80 to 120, every other input as you entered it (21 solutions). Marked: your cases_u = 100 gives VE = 0.8. Your inputs: cases_v = 20, n_v = 1000, cases_u = 100, n_u = 1000.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_vaccine_efficacy', cases_v=20, n_v=1000, cases_u=100, n_u=1000)
@@ -4798,9 +5234,17 @@ $$
 - **Assumes:** arithmetic only: not medical advice; 0 < dose per kilogram <= 1000 mg/kg; 0.3 kg <= body weight <= 400 kg; a per-day order needs the number of doses per day (1 to 24)
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![dose (single dose) against dose_mg_per_kg (ordered dose per kilogram of body weight, a number in mg/kg) from 7](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-dose-weight-based-curve)
+![Total dose per day (when the doses per day](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-dose-weight-based-live-1)
 
-*dose (single dose) against dose_mg_per_kg (ordered dose per kilogram of body weight, a number in mg/kg) from 7.5 to 22.5. One curve for each value of W (body weight): 20 kg, 10 kg, 40 kg. Other inputs as in the worked example: basis = per_dose, doses_per_day = 4. 31 points per curve computed by biomedical-science-ai999x; marked: the worked example, dose_mg_per_kg = 15, dose = 0.0003 kg.*
+*Total dose per day (when the doses per day... as doses_per_day runs from 1 to 8, every other input as you entered it (8 solutions). Marked: your doses_per_day = 4 gives daily_dose = 1.2 g. Your inputs: dose_mg_per_kg = 15, W = 20 kg, basis = per_dose, doses_per_day = 4.*
+
+![Single dose for every choice of basis, every other input as you entered it (highlighted: your choice)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-dose-weight-based-live-2)
+
+*Single dose for every choice of basis, every other input as you entered it (highlighted: your choice). per_dose: 0.0003; per_day: 7.5e-05. Your inputs: dose_mg_per_kg = 15, W = 20 kg, basis = per_dose, doses_per_day = 4.*
+
+![Single dose and total dose per day as dose_mg_per_kg runs from 3](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-dose-weight-based-live-3)
+
+*Single dose and total dose per day as dose_mg_per_kg runs from 3.75 to 26.25, every other input as you entered it (29 solutions). Marked: your dose_mg_per_kg = 15 gives dose = 0.3 g. Your inputs: dose_mg_per_kg = 15, W = 20 kg, basis = per_dose, doses_per_day = 4.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_dose_weight_based', dose_mg_per_kg=15, W=20.0, basis='per_dose', doses_per_day=4)
@@ -4853,13 +5297,13 @@ $$
 - **Assumes:** arithmetic only: not medical advice; $D > 0$, $H > 0$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![tablets (number of tablets to give, D/H) against H (strength of one tablet or capsule (have)) from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-dose-tablets-curve)
+![Number of tablets to give, D/H as D runs from 300 to 700 mg, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-dose-tablets-live-1)
 
-*tablets (number of tablets to give, D/H) against H (strength of one tablet or capsule (have)) from 0.000125 kg to 0.000375 kg. One curve for each value of D (ordered (desired) dose): 0.0005 kg, 0.00025 kg, 0.001 kg. 31 points per curve computed by biomedical-science-ai999x; marked: the worked example, H = 0.00025 kg, tablets = 2.*
+*Number of tablets to give, D/H as D runs from 300 to 700 mg, every other input as you entered it (41 solutions). Marked: your D = 500 mg gives tablets = 2. Your inputs: D = 500 mg, H = 250 mg.*
 
-![tablets (number of tablets to give, D/H) over D (ordered (desired) dose) from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-dose-tablets-field)
+![Number of tablets to give, D/H as H runs from 150 to 350 mg, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-dose-tablets-live-2)
 
-*tablets (number of tablets to give, D/H) over D (ordered (desired) dose) from 0.00025 kg to 0.00075 kg and H (strength of one tablet or capsule (have)) from 0.000125 kg to 0.000375 kg: each of the 21 × 15 cells is one run of biomedical-science-ai999x, shaded by its value (light 0.666667 to dark 6); iso-lines at tablets = 1, 2, 3, 4, 5. Marked: the worked example, D = 0.0005 kg, H = 0.00025 kg, tablets = 2.*
+*Number of tablets to give, D/H as H runs from 150 to 350 mg, every other input as you entered it (29 solutions). Marked: your H = 250 mg gives tablets = 2. Your inputs: D = 500 mg, H = 250 mg.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_dose_tablets', D=0.0005, H=0.00025)
@@ -4914,9 +5358,13 @@ $$
 - **Assumes:** arithmetic only: not medical advice; $D > 0$, $H > 0$, $Q > 0$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![V (volume to give) against H (amount of drug in the stock volume (have)) from 6](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-dose-liquid-volume-curve)
+![Volume to give as H runs from 75 to 175 mg, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-dose-liquid-volume-live-1)
 
-*V (volume to give) against H (amount of drug in the stock volume (have)) from 6.2500e-05 kg to 0.0001875 kg. One curve for each value of D (ordered (desired) dose): 0.00025 kg, 0.000125 kg, 0.0005 kg. Other inputs as in the worked example: Q = 4.9999999999999996e-06 m^3. 31 points per curve computed by biomedical-science-ai999x; marked: the worked example, H = 0.000125 kg, V = 1.0000e-05 m^3.*
+*Volume to give as H runs from 75 to 175 mg, every other input as you entered it (41 solutions). Marked: your H = 125 mg gives V = 10 mL. Your inputs: D = 250 mg, H = 125 mg, Q = 5 mL.*
+
+![Volume to give as Q runs from 3 to 7 mL, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-dose-liquid-volume-live-2)
+
+*Volume to give as Q runs from 3 to 7 mL, every other input as you entered it (29 solutions). Marked: your Q = 5 mL gives V = 10 mL. Your inputs: D = 250 mg, H = 125 mg, Q = 5 mL.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_dose_liquid_volume', D=0.00025, H=0.000125, Q=4.9999999999999996e-06)
@@ -4969,9 +5417,13 @@ $$
 - **Assumes:** arithmetic only: not medical advice; drug > 0, diluent > 0, displacement >= 0; ordered dose <= drug in the vial
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![C (concentration after reconstitution (1 kg/m^3 = 1 mg/mL)) against diluent (diluent volume added) from 3](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-reconstitution-concentration-curve)
+![Concentration after reconstitution as powder runs from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-reconstitution-concentration-live-1)
 
-*C (concentration after reconstitution (1 kg/m^3 = 1 mg/mL)) against diluent (diluent volume added) from 3.4000e-07 m^3 to 3.4000e-05 m^3 on a logarithmic axis. One curve for each value of powder (drug amount in the vial): 0.001 kg, 0.0005 kg, 0.002 kg. Other inputs as in the worked example: displacement = 6e-07 m^3, D = 0.0005 kg. 41 points per curve computed by biomedical-science-ai999x; marked: the worked example, diluent = 3.4000e-06 m^3, C = 250 kg/m^3.*
+*Concentration after reconstitution as powder runs from 0.6 to 1.4 g, every other input as you entered it (41 solutions). Marked: your powder = 1 g gives C = 250 mg/mL. Your inputs: powder = 1 g, diluent = 3.4 mL, displacement = 0.6 mL, D = 500 mg.*
+
+![Volume to give in mL as D runs from 300 to 700 mg, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-reconstitution-concentration-live-2)
+
+*Volume to give in mL as D runs from 300 to 700 mg, every other input as you entered it (29 solutions). Marked: your D = 500 mg gives V_give_mL = 2. Your inputs: powder = 1 g, diluent = 3.4 mL, displacement = 0.6 mL, D = 500 mg.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_reconstitution_concentration', powder=0.001, diluent=3.3999999999999996e-06, displacement=6e-07, D=0.0005)
@@ -5024,9 +5476,13 @@ $$
 - **Assumes:** arithmetic only: not medical advice; $V > 0$; exactly one of $T > 0$ or rate > 0; drop factor a whole number of drops per mL, 1 to 100
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![flow_mL_h (flow rate in mL/h) against T (infusion time (give T or rate)) from 14400 s to 43200 s](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-iv-flow-rate-curve)
+![Flow rate in mL/h as T runs from 4](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-iv-flow-rate-live-1)
 
-*flow_mL_h (flow rate in mL/h) against T (infusion time (give T or rate)) from 14400 s to 43200 s. One curve for each value of V (volume to infuse): 0.001 m^3, 0.0005 m^3, 0.002 m^3. Other inputs as in the worked example: drop_factor = 15. 31 points per curve computed by biomedical-science-ai999x; marked: the worked example, T = 28800 s, flow_mL_h = 125.*
+*Flow rate in mL/h as T runs from 4.8 to 11.2 h, every other input as you entered it (41 solutions). Marked: your T = 8 h gives flow_mL_h = 125. Your inputs: V = 1000 mL, T = 8 h, drop_factor = 15.*
+
+![Flow rate in mL/h as V runs from 600 to 1400 mL, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-iv-flow-rate-live-2)
+
+*Flow rate in mL/h as V runs from 600 to 1400 mL, every other input as you entered it (29 solutions). Marked: your V = 1000 mL gives flow_mL_h = 125. Your inputs: V = 1000 mL, T = 8 h, drop_factor = 15.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_iv_flow_rate', V=0.001, T=28800.0, drop_factor=15)
@@ -5087,9 +5543,13 @@ $$
 - **Assumes:** arithmetic only: not medical advice; drug > 0, bag volume > 0; exactly one of a dose rate or a dose per kilogram per minute (with 0.3 $kg  \leq  W  \leq  400$ kg)
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![flow_mL_h (pump rate in mL/h) against drug (amount of drug in the bag) from 0](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-iv-rate-from-dose-rate-curve)
+![Pump rate in mL/h as bag_volume runs from 150 to 350 mL, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-iv-rate-from-dose-rate-live-1)
 
-*flow_mL_h (pump rate in mL/h) against drug (amount of drug in the bag) from 0.0002 kg to 0.0006 kg. One curve for each value of bag_volume (volume of the bag): 0.00025 m^3, 0.000125 m^3, 0.0005 m^3. Other inputs as in the worked example: dose_ug_per_kg_min = 5.0, W = 80.0 kg. 31 points per curve computed by biomedical-science-ai999x; marked: the worked example, drug = 0.0004 kg, flow_mL_h = 15.*
+*Pump rate in mL/h as bag_volume runs from 150 to 350 mL, every other input as you entered it (41 solutions). Marked: your bag_volume = 250 mL gives flow_mL_h = 15. Your inputs: drug = 400 mg, bag_volume = 250 mL, dose_ug_per_kg_min = 5, W = 80 kg.*
+
+![Pump rate in mL/h as dose_ug_per_kg_min runs from 1](https://www.ai999x.com/?ax_fig=biomedical-science-ai999x/bmed-iv-rate-from-dose-rate-live-2)
+
+*Pump rate in mL/h as dose_ug_per_kg_min runs from 1.25 to 8.75, every other input as you entered it (29 solutions). Marked: your dose_ug_per_kg_min = 5 gives flow_mL_h = 15. Your inputs: drug = 400 mg, bag_volume = 250 mL, dose_ug_per_kg_min = 5, W = 80 kg.*
 
 ```python
 biomedical_science_ai999x.solve('bmed_iv_rate_from_dose_rate', drug=0.00039999999999999996, bag_volume=0.00025, dose_ug_per_kg_min=5, W=80.0)
