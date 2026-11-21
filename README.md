@@ -10,8 +10,8 @@ Biomedical Science covers pharmacokinetics and dosing models, epidemic models, d
 
 | | |
 |---|---|
-| **Desktop app** (Windows, Linux) | [Windows](https://github.com/AI999X/ai999x-desktop/releases/download/v1.6.5/ai999x-biomedical-science-1.6.5-windows-x86_64.zip) · [Linux](https://github.com/AI999X/ai999x-desktop/releases/download/v1.6.5/ai999x-biomedical-science-1.6.5-linux-x86_64.tar.gz) |
-| **Command line** `biomedical-science` (Windows, Linux) | [Windows](https://github.com/AI999X/ai999x-desktop/releases/download/v1.6.4/ai999x-cli-1.6.4-windows-x86_64.zip) · [Linux](https://github.com/AI999X/ai999x-desktop/releases/download/v1.6.4/ai999x-cli-1.6.4-linux-x86_64.tar.gz) |
+| **Desktop app** (Windows, Linux) | [Windows](https://github.com/AI999X/ai999x-desktop/releases/download/v1.6.6/ai999x-biomedical-science-1.6.6-windows-x86_64.zip) · [Linux](https://github.com/AI999X/ai999x-desktop/releases/download/v1.6.6/ai999x-biomedical-science-1.6.6-linux-x86_64.tar.gz) |
+| **Command line** `biomedical-science` (Windows, Linux) | [Windows](https://github.com/AI999X/ai999x-desktop/releases/download/v1.6.6/ai999x-cli-1.6.6-windows-x86_64.zip) · [Linux](https://github.com/AI999X/ai999x-desktop/releases/download/v1.6.6/ai999x-cli-1.6.6-linux-x86_64.tar.gz) |
 | **Browser** (any device) | [Try it on the model page](https://www.ai999x.com/models/biomedical-science-ai999x/#capabilities) |
 | **Python** 3.10+ | `pip install biomedical-science-ai999x`: on Windows and Linux (x86-64) `pip` installs the same compiled engine; on other systems (macOS, ARM) it installs a pure-Python build that gives the same answers |
 
@@ -235,128 +235,6 @@ prevalence = 0.04
 prevalence_per_100000 = 4000
 ```
 
-## Rust library: 15 examples
-
-The crate `biomedical-science-ai999x` (in `rust/` of the GitHub repository) answers a JSON request with `biomedical_science_ai999x::solve_json`. Each call below was compiled and run on this release; the comment under it is what it printed. The whole program is `rust/biomedical-science/examples/readme.rs`: `cd rust && cargo run --release --example readme -p biomedical-science-ai999x`.
-
-```rust
-use serde_json::{json, Value};
-
-fn show(request: Value) {
-    let answer: Value = serde_json::from_str(&biomedical_science_ai999x::solve_json(&request.to_string())).unwrap();
-    println!("{}", answer["outcome"].as_str().unwrap_or(""));
-    for v in answer["values"].as_array().into_iter().flatten() {
-        let unit = v[2].as_str().unwrap_or("");
-        let unit = if unit.is_empty() || unit == "1" { String::new() } else { format!(" {unit}") };
-        println!("{} = {}{}", v[0].as_str().unwrap_or(""), v[1], unit);
-    }
-}
-
-show(json!({"key": "bmed_bmr", "inputs": {"m": "70 kg", "h": "175 cm", "age": "30", "sex": "male", "equation": "mifflin_st_jeor"}}));
-// SOLVED
-// BMR_kcal_day = 1648.75
-// BMR_W = 79.8422453704 W
-// BMR_MJ_day = 6.89837
-
-show(json!({"key": "bmed_cohens_kappa", "inputs": {"counts": [[40, 10], [5, 45]]}}));
-// SOLVED
-// kappa = 0.7
-// p_observed = 0.85
-
-show(json!({"key": "bmed_iv_rate_from_dose_rate", "inputs": {"drug": "400 mg", "bag_volume": "250 mL", "dose_ug_per_kg_min": "5", "W": "80 kg"}}));
-// SOLVED
-// C = 1.6 kg/m^3
-// dose_rate = 6.66666666667e-9 kg/s
-// dose_mg_h = 24.0
-// flow = 4.16666666667e-9 m^3/s
-// flow_mL_h = 15.0
-
-show(json!({"key": "bmed_epi_herd_immunity", "inputs": {"R0": "4", "efficacy": "0.9"}}));
-// SOLVED
-// threshold = 0.75
-// threshold_percent = 75.0
-// coverage = 0.833333333333
-// coverage_percent = 83.3333333333
-// reachable = "reachable"
-
-show(json!({"key": "bmed_nnt_ci", "inputs": {"events_t": "15", "n_t": "100", "events_c": "30", "n_c": "100", "level": "0.95"}}));
-// SOLVED
-// ARR = 0.15
-// ARR_lower = 0.0361363819307
-// ARR_upper = 0.263863618069
-// NNT = 6.66666666667
-// NNT_lower = 3.78983661073
-// NNT_upper = 27.6729419652
-
-show(json!({"key": "bmed_hounsfield_units", "inputs": {"mu": "0.38 1/cm", "mu_water": "0.19 1/cm"}}));
-// SOLVED
-// HU = 1000.0
-// mu_rel = 2.0
-
-show(json!({"key": "bmed_fitzhugh_nagumo_fixed_point", "inputs": {"a": "0.7", "b": "0.8", "eps": "0.08", "I": "0"}}));
-// SOLVED
-// v_star = -1.19940803524
-// w_star = -0.624260044055
-// trace = -0.502579635008
-// determinant = 0.108069096641
-// stable = true
-
-show(json!({"key": "bmed_pk_bioavailability_from_profiles", "inputs": {"D_iv": "100 mg", "t_iv": [0, 1, 2, 4, 8, 12], "C_iv": [10, 8.2, 6.7, 4.5, 2, 0.9], "D_oral": "200 mg", "t_oral": [0, 1, 2, 4, 8, 12], "C_oral": [0, 6.1, 8, 7.2, 3.9, 1.8]}}));
-// SOLVED
-// AUC_iv = 46.55
-// AUC_oral = 58.9
-// F = 0.632653061224
-
-show(json!({"key": "bmed_pk_auc_iv_bolus", "inputs": {"D": "500 mg", "CL": "5 L/h", "V": "40 L", "t": "8 h"}}));
-// SOLVED
-// AUC_inf = 360.0 kg*s/m^3
-// AUC_0_t = 227.563401178 kg*s/m^3
-
-show(json!({"key": "bmed_cox_hazard_ratio", "inputs": {"times": [6, 6, 6, 7, 10, 13, 16, 22, 23, 6, 9, 10, 11, 17, 19, 20, 25, 32, 32, 34, 35], "events": [1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "x": [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1], "level": "0.95"}}));
-// SOLVED
-// beta = 0.047322792962
-// HR = 1.0484603901
-// se = 0.67387638333
-// HR_lower = 0.279864240599
-// HR_upper = 3.92786583685
-
-show(json!({"key": "bmed_bmi", "inputs": {"m": "70 kg", "h": "1.75 m"}}));
-// SOLVED
-// BMI = 22.8571428571
-// BMI_prime = 0.914285714286
-
-show(json!({"key": "bmed_dx_youden_cutoff", "inputs": {"scores_pos": [0.9, 0.8, 0.7, 0.55, 0.4], "scores_neg": [0.6, 0.45, 0.4, 0.3, 0.2, 0.1]}}));
-// SOLVED
-// threshold = 0.55
-// sensitivity = 0.8
-// specificity = 0.833333333333
-// J = 0.633333333333
-
-show(json!({"key": "bmed_iv_flow_rate", "inputs": {"V": "1000 mL", "T": "8 h", "drop_factor": "15"}}));
-// SOLVED
-// flow = 3.47222222222e-8 m^3/s
-// flow_mL_h = 125.0
-// duration = 28800.0 s
-// duration_h = 8.0
-// duration_min = 480.0
-// drops_per_min = 31.25
-
-show(json!({"key": "bmed_epi_reed_frost_final_size", "inputs": {"n": "4", "m": "1", "p": "0.2"}}));
-// SOLVED
-// mean_final = 1.2701372416
-// P_no_spread = 0.4096
-// distribution = [0.4096,0.2097152,0.163577856,0.1351614464,0.0819454976]
-
-show(json!({"key": "bmed_epi_basic_rates", "inputs": {"cases": "150", "population": "10000", "prevalent": "400", "deaths": "6", "period": "1 yr"}}));
-// SOLVED
-// incidence_proportion = 0.015
-// incidence_per_100000 = 1500.0
-// incidence_rate = 4.7532131721e-10 Hz
-// incidence_per_100000_person_years = 1500.0
-// prevalence = 0.04
-// prevalence_per_100000 = 4000.0
-```
-
 ## Guides
 
 - Desktop app guide: the window, every calculation, scenes and charts: [PDF](https://huggingface.co/AI999X/biomedical-science-ai999x/blob/main/docs/biomedical_science_ai999x_desktop_guide.pdf) · [HTML](https://huggingface.co/AI999X/biomedical-science-ai999x/blob/main/docs/biomedical_science_ai999x_desktop_guide.html) · [Markdown](https://huggingface.co/AI999X/biomedical-science-ai999x/blob/main/docs/biomedical_science_ai999x_desktop_guide.md)
@@ -365,7 +243,7 @@ show(json!({"key": "bmed_epi_basic_rates", "inputs": {"cases": "150", "populatio
 
 Every calculation, with its formula, a worked example and its figures: **[Biomedical Science on ai999x.com](https://www.ai999x.com/models/biomedical-science-ai999x/)**. Install guides for the app and the command line: [https://www.ai999x.com/desktop-cli/](https://www.ai999x.com/desktop-cli/).
 
-Version 1.6.4 · License: Apache-2.0 · Author: Ibnul Jaif Farabi · Organization: AI999X · Contact: support@ai999x.com · [Support the project](https://buymeacoffee.com/ibnuljaiffarabi)
+Version 1.6.6 · License: Apache-2.0 · Author: Ibnul Jaif Farabi · Organization: AI999X · Contact: support@ai999x.com · [Support the project](https://buymeacoffee.com/ibnuljaiffarabi)
 
 *The Future Is Self-Improving.*
 
